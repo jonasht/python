@@ -8,8 +8,8 @@ segundos = None
 
 
 #dimisões da janela
-largura = 230
-altura = 250
+largura = 250
+altura = 350
 
 #resolução do sistema
 largura_screen = janela.winfo_screenwidth()
@@ -40,13 +40,19 @@ def Contagem():
 label = Label(janela, text="quantos segundos:", fg='green', bg='black')
 label.grid(row=0, column=0)
 
-entrada = Entry(janela, textvariable=0, bg='gray')
+entrada = Entry(janela, textvariable=0, borderwidth=5, bg='gray')
 entrada.grid(row=0, column=1)
 
 lb_contagem = Label(janela, fg='green', font='Times 100 bold', bg='black', text='0')
 lb_contagem.grid(row=2, column=0, columnspan=2, sticky=W+E)
 
-bt = Button(janela, fg='dark green', bg='light sea green', text='Começar', command=Contagem, font='Arial 20 bold')
+bt = Button(janela, fg='dark green', bg='light sea green', padx=25, pady=25,
+             text='Começar',
+             command=Contagem,
+              font='Arial 20 bold')
 bt.grid(row=3, column=0, columnspan=2, sticky=W+E)
+
+bt_sair = Button(janela, text='sair', fg='dark green', bg='light sea green', command=janela.quit, font='Arial 20 bold')
+bt_sair.grid(row=4, columnspan=2, sticky=W+E)
 
 janela.mainloop()

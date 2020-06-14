@@ -4,14 +4,18 @@ x2=[]
 cx=[]
 
 contar=0
+
+def l():
+    print('=-=-=-'*15, end='')
+    print('=')
+
 for i  in range(0, 11):
-    print('-'*12)
     for ii in range(0, 11):
         x1.insert(contar, i)
         x2.insert(contar, ii)
         contar = contar + 1
-        print(i, 'X' ,ii, '=', i*ii)
-print('contar:', contar)
+   
+
 
 
 
@@ -23,7 +27,8 @@ random.shuffle(cx)
 
 
 while 1:
-    op = int(input('op:'))
+    l()
+    op = int(input('multiplication table/tabuada de multiplicação\n1 Normal\n2 random/Aleatorio\n0 exit/Sair\nop:'))
     if op == 1:
         for i in range(0, contar):
             print(x1[i], 'x', x2[i])

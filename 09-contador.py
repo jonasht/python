@@ -2,13 +2,12 @@ import random
 import os
 
 #feito no window/ it was made on windows
-resposta=0
-x2 = []
+cont = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 def l():
     print('=-=-'*15,'=')
 
-os.system('clear')
-print('[', end='')
-for i in range (0, 10):
-    print(f'{i}, ', end='')
+for i in cont:
+    print(' \n', end='')
+    for ii in cont:
+        print(f'{i}{ii} ', end='')  

@@ -10,4 +10,4 @@ def l():
 for i in cont:
     print(' \n', end='')
     for ii in cont:
-        print(f'{i}{ii} ', end='')  
+        print(f'{i}{ii}', end=' ')  

@@ -4,20 +4,23 @@ def l():
     print('\n', '=-=-'*15 +'=')
 l()
 pl = 0 # pula linha
-parts = []
+
 
 
 
 part = 0
 
-qtd=int(input('contar ate:'))
 
 l()
-while qtd != 0:
-    if len(parts) < qtd:
-        for i in range(0, len(str(qtd)-len(parts))):
-            parts.insert(i, 0)    
+while 1:
     
+    qtd=int(input('contar ate:'))
+    qtd+=1
+    if qtd == 0: break
+    parts = []    
+    for i in range(0, len(str(qtd))):
+        parts.insert(i, 0)    
+
     for i in range (0, qtd):
         
         for p in reversed(parts): # mostrar
@@ -36,8 +39,8 @@ while qtd != 0:
                 parts[ii] = 0
                 parts[ii+1] = parts[ii+1] + 1
     l()            
-    qtd=int(input('contar ate:'))
-    l()
+
+
 l()
 print('\n\tfinished program/ fim de programa')
 l()

@@ -14,9 +14,11 @@ part = 0
 l()
 while 1:
     
-    qtd=int(input('contar ate:'))
+    qtd=int(input('\rtype 0 to exit\ndigite 0 p/ sair\ncount until:\ncontar ate\n decimal n:'))
+
+    if qtd == 0:
+        break    
     qtd+=1
-    if qtd == 0: break
     parts = []    
     for i in range(0, len(str(qtd))):
         parts.insert(i, 0)    

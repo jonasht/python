@@ -5,16 +5,13 @@ def l():
 l()
 pl = 0 # pula linha
 
-
-
-
 part = 0
 
-
+remove0 = True
 l()
 while 1:
     
-    qtd=int(input('type 0 to exit\ndigite 0 p/ sair\ncount until:\ncontar ate\n decimal n:'))
+    qtd=int(input('type 0 to exit\ndigite 0 p/ sair\ncount until:\ncontar ate:\ndecimal n:'))
 
     if qtd == 0:
         break    
@@ -24,10 +21,16 @@ while 1:
         parts.insert(i, 0)    
 
     for i in range (0, qtd):
-        
+        remove0 = True
+        if i == 0: print(c[0], end='')
         for p in reversed(parts): # mostrar
             
-            print(c[p], end='')
+            if c[p] == '0' and remove0 == True :
+                print(' ', end='')
+            else:
+                remove0 = False        
+                print(c[p], end='')
+            
         pl += 1
         if pl == 10:
             print('\n')

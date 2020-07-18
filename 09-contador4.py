@@ -11,12 +11,11 @@ parts = []
 part = 0
 
 qtd=int(input('contar ate:'))
-
+for i in range(0, len(str(qtd))):
+    parts.insert(i, 0)
 l()
 while qtd != 0:
-    if len(parts) < qtd:
-        for i in range(0, len(str(qtd)-len(parts))):
-            parts.insert(i, 0)    
+    
     
     for i in range (0, qtd):
         

@@ -26,9 +26,6 @@ class Voxel(Button):
 
             if key == 'right mouse down':
                 destroy(self)
-
-
-
 for z in range(50):
     for x in range(50):
         voxel = Voxel(position=(x,0,z))

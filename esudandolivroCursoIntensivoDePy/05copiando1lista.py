@@ -1,5 +1,7 @@
-from random import shuffle
-pessoas = ['jonas', 'roberto', 'rodrigo', 'roberta', 'charles', 'eli', 'regia']
 
-shuffle(pessoas)
-print(pessoas)
+pessoas = ['roberta', 'eli', 'charles', 'roberto', 'regia', 'rodrigo']
+
+pessoas_legais = pessoas[:]
+
+print('pessoas:' + pessoas)
+print('pessoas legais:' + pessoas_legais)

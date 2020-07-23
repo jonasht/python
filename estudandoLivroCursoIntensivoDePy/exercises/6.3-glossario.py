@@ -1,19 +1,18 @@
 import colorama 
 colorama.init()
+def l(): print(b, 20*'=-'+'=')
 r = '\033[31m' # red
 b = '\033[34m' # blue
 f = '\33[m'
 dict = {
     '-English-': '-Portugues-',
     'book': 'livro',
-    'pencil': 'lapis',
-    'notebook': 'caderno',
-    'teacher': 'professor',
-    'student': 'aluno'
+    'if': 'se'
     
     }
+l()
 
-for en, pt in dict.items():
-    print(f'{r}{en.title():9} ={b}  {pt.title()}')
+print(r, dict['book'])
+print(b, dict['if'])
 
-print(f)
+l()

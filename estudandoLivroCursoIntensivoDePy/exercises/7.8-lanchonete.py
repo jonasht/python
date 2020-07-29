@@ -1,4 +1,6 @@
+# 
 sandwich_orders = ['atum', 'ovo', 'frango', 'churiço', 'melão', 'macarão', 'banana', 'pera', 'arroz', 'feijão']
+
 
 finished_sandwiches = []
 

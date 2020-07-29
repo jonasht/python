@@ -14,7 +14,7 @@ while polling_active:
     if repeat == 'no' or 'n':
         polling_active = False
     
-print(f'\n{6*"--"}{"<resultados:>":^5}{6*"--"} ')
+print(f'\n{6*"---"}{"<resultados:>":^5}{6*"---"} ')
 for name, response in responses.items():
     print(f'\t{name} gostaria de escalar {response}.')
     

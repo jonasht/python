@@ -5,8 +5,8 @@ b = '\033[34m' # blue
 g = '\033[32m' # green
 y = '\033[33m' # yellow
 
-f = '\33[m'
 
+f = '\33[m'
 print(r, '\n este programa foi feito no linux')
 def l(): print(g, 40*'=-'+'=')
 

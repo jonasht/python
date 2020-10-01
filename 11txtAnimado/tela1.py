@@ -14,4 +14,4 @@ def tela(mensagem):
                 print(y, mensagem, end='')
     print(f)
 
-tela(' Esta daqui é uma frase ')
+tela('Esta daqui é uma frase')

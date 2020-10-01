@@ -6,12 +6,12 @@ f = '\33[m'
 
 bgBlue = '\033[44m' # backgournd blue
 bgYellow = '\033[43m' #backgournd yellow
-bgred = '\033[41m' #backgournd red
+bgRed = '\033[41m' #backgournd red
 
 def tela(mensagens, colunatxt=5, qtdLinhas = 10, bg=bgYellow, fg = green):
     espaco = bg + ' ' + f
-    
-    for i in range(qtdLinhas-len(mensagens)):
+
+    for i in range(qtdLinhas-len(mensagens)): 
         print('')
         if i == 2:
             for mensagem in mensagens: 
@@ -32,7 +32,7 @@ tela(['eu estou escrevendo mais um texto',
        'outra aqui', 
        'eu estou escrevendo outro texto'], fg=blue)
 
-tela(['eu estou escrevendo \nmais um texto',
+tela(['eu estou escrevendo mais um texto',
     'aqui tem uma mensagem escrita', 
       'esta é outra mensagem',
        'outra aqui', 

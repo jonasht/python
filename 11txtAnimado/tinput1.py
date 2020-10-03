@@ -22,8 +22,8 @@ def tprint(p='', bg=bgBlue , fg=yellow, op=1):
             print(f"{palavra:^5}{f}")
         print(f, end='')
         
-def tinput(mensagem, bg=bgBlue):
-    entrada = input(bg + mensagem)
+def tinput(mensagem, bg=bgBlue, fg=yellow):
+    entrada = input(bg + fg + mensagem + 3*" "f)
     return entrada
 
 print('\n')

@@ -14,11 +14,11 @@ def tprint(p='', bg=bgBlue , fg=yellow, op=1):
     palavrasN.append(len(p))
     
     if op == 2:
-        palavras.append(bg+fg+'=-'*20)
+        palavras.append(bg+fg+'=-'*11)
             
     
     if op == 1 and p != '':
-        palavras.append(bg + fg + ' ' + p + ' ' * (max(palavrasN) - len(p)) + ' ')
+        palavras.append(bg + fg + p + ' ' * (max(palavrasN) - len(p)))
 
     if op == 0:
         print(end='')
@@ -33,14 +33,14 @@ def tinput(mensagem, bg=bgBlue, fg=yellow):
     return entrada
 
 print('\n')
-tprint(op=2, fg=green)
+tprint('=-'* 20, fg=green)
 
 tprint('qual opção voce deseja')
 tprint('1 - sacar')
 tprint('2 - depositar')
-tprint('--' * 11)
+tprint('--' * 20, fg=red)
 tprint('3 - fazer conta')
-tprint(op=2, fg=green)
+tprint('=-'* 20, fg=green)
 tprint(op=0)
 #receber = tinput('qual opção:')
 #print(f'a opcão "{receber}" foi escolhida')

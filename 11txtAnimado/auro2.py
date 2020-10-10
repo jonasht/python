@@ -14,7 +14,8 @@ def tprint(p='', bg=bgBlue , fg=yellow, op=1):
     palavrasN.append(len(p))
     
     if op == 2:
-        palavras.append(bg+fg+'=-'*11)
+        palavrasN.append(10)
+        palavras.append(bg+fg+'='*max(palavrasN))
             
     
     if op == 1 and p != '':
@@ -33,6 +34,7 @@ def tinput(mensagem, bg=bgBlue, fg=yellow):
     return entrada
 
 print('\n')
+
 tprint('=-'* 20, fg=green)
 
 tprint('qual opção voce deseja')

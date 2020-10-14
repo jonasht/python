@@ -8,5 +8,8 @@ while True:
         qtd_apertos += 1
         
         print('A foi apertado ', qtd_apertos)
-        
+    if keyboard.is_pressed('s'):
+        print('\nfim de programa')
+        break
+    
     

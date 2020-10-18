@@ -5,6 +5,7 @@ red = '\033[31m' # red
 blue = '\033[34m' # blue
 green = '\033[32m' # green
 yellow = '\033[33m' # yellow
+white = '\033[37m' # white
 f = '\33[m'
 
 bgBlue = '\033[44m' # backgournd blue
@@ -25,7 +26,7 @@ def mostrar():
     system('clear')
     print('\n')
     print('aperte esc para sair// ESC to exit')
-    print(f'{bgRed} 1 {bgGreen} 2 {bgYellow} 3 ', f)
+    print(f'{bgRed+white} 1 {bgGreen+white} 2 {bgYellow+white} 3 {bgBlue+white} 4 {f}')
     for i in range(tamanhaDeX):
         for l in range(tamanhaDeY):
             if i == x and l == y:

@@ -1,12 +1,13 @@
-import sys
+import colorama
+colorama.init()
 red = '\033[31m' # red
 blue = '\033[34m' # blue
 green = '\033[32m' # green
 yellow = '\033[33m' # yellow
 f = '\33[m'
 
-print(f"{bcolors.WARNING}Warning: No active frommets remain. Continue?{bcolors.ENDC}")
-bgBlue = '\033[44m' # backgournd blue
+
+bgBlue = '\033[46m' # backgournd blue
 bgYellow = '\033[43m' #backgournd yellow
 bgRed = '\033[41m' #backgournd red
 
@@ -14,7 +15,7 @@ palavras = []
 palavrasN = []
 tipo = []
 
-def tprint(p='', bg=bgBlue , fg=yellow, op=1, tamanhoDaPalavra=0):
+def tprint(p='', bg=bgBlue , fg=green, op=1, tamanhoDaPalavra=0):
     if tamanhoDaPalavra!= 0: # decidir o tamanho da palavra
         palavrasN.append(tamanhoDaPalavra)
     else:
@@ -48,8 +49,9 @@ def tinput(mensagem, bg=bgBlue, fg=yellow):
     fimDaMsg = '___________'
     espaço = len(mensagem) * ' '
 
-    print(bg, fg, espaço + fimDaMsg + "\r" + mensagem, f, flush=True, end="")
-    entrada = input('') 
+    print(bg, fg, espaço + fimDaMsg + "\r" + mensagem, flush=True, end="")
+    entrada = input() 
+    print(f)
     return entrada
 
 print('\n')

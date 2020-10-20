@@ -2,7 +2,7 @@ import keyboard
 from os import system
 
 red = '\033[31m' # red
-blue = '\033[34m' # blue
+blue = '\033[35m' # blue
 green = '\033[32m' # green
 yellow = '\033[33m' # yellow
 f = '\33[m'
@@ -10,24 +10,31 @@ f = '\33[m'
 bgBlue = '\033[44m' # backgournd blue
 bgYellow = '\033[43m' #backgournd yellow
 bgRed = '\033[41m' #backgournd red
+bgGreen = '\033[42m' # background green
+bgWhite = '\033[47m' # backgroundwhite
 
 x = y = 0
 
 tamanhaDeX = 10
 tamanhaDeY = 10
+picss = list(list(bgWhite+'  ' + f for i in range(10))for ii in range(10))
+corDeLapis = green
 def mostrar():
     global x
     global y
+    global corDeLapis
 
-    print('\n')
     system('clear')
-    for i in range(tamanhaDeX):
-        for l in range(tamanhaDeY):
+    print('\n')
+    print('aperte esc para sair// ESC to exit')
+    print(f'{bgRed} 1 {bgGreen} 2 {bgYellow} 3 '+ f)
+    for i, pics in enumerate(picss):
+        for l, pic in enumerate(pics):
             if i == x and l == y:
-                print(f'{bgYellow} {f}', flush=True, end='')
+                print(f'{bgWhite+corDeLapis}><', flush=True, end='')
             else:
-                print(f'{bgBlue} {f}', flush=True, end='')
-            print()
+                print(f'{pic}', flush=True, end='')
+        print(f)
 
 mostrar()
 def up():
@@ -67,4 +74,4 @@ keyboard.add_hotkey('w', up)
 keyboard.add_hotkey('s', down)
 
 
-keyboard.wait()
+keyboard.wait('ESC')

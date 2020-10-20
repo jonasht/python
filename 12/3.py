@@ -11,7 +11,6 @@ bgBlue = '\033[44m' # backgournd blue
 bgYellow = '\033[43m' #backgournd yellow
 bgRed = '\033[41m' #backgournd red
 bgGreen = '\033[42m' # background green
-bgWhite = '\033[47m' # backgroundwhite
 
 x = y = 0
 
@@ -31,7 +30,7 @@ def mostrar():
             if i == x and l == y:
                 print(f'{bgYellow+green}><{f}', flush=True, end='')
             else:
-                print(f'{bgWhite}  {f}', flush=True, end='')
+                print(f'{bgBlue}  {f}', flush=True, end='')
         print()
 
 mostrar()

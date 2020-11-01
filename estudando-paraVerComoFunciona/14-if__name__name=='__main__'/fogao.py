@@ -6,3 +6,4 @@ def fazer_comida():
 
 if __name__ == '__main__':
     tirar_foto()
+    fazer_comida()

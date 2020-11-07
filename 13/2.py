@@ -1,6 +1,7 @@
 import colorama
 colorama.init()
 
+# foregrounds
 black = '\033[30m' # black
 red = '\033[31m' # red
 green = '\033[32m' # green
@@ -11,6 +12,7 @@ cyan = '\033[36m' #
 white = '\033[37m' #
 f = '\33[m'
 
+# backgrounds
 bgBlack = '\033[40m' # background black
 bgRed = '\033[41m' # background red
 bgGreen = '\033[42m' # background green

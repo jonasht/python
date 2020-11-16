@@ -1,3 +1,3 @@
-palavras {jonas: jonas, jonas}
+palavras = {'jonas': 'jonas'}
 
-print(palavras[jonas])
+print(palavras['jonas'])

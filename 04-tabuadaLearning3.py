@@ -1,5 +1,6 @@
 from tkinter import *
 import random
+print('feito no windows')
 t = Tk()
 t.title('FTabuada v3')
 t.iconbitmap('04/ico.xbm')

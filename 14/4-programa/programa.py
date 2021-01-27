@@ -20,14 +20,15 @@ print()
 # mostrar lista, serve para mostrar a lista de forma legal
 def Mostrar(mostrarLista):
     system('clear')
-    print()
     for cs in mostrarLista:
         for c in cs:
             if c == 1:
                 print(f'{bgBlue} {c} {f}', end='')
             else:
                 print('   ', end='')
-        print()                
+        print()
+    
+    sleep(.04)                  
     #mostrarLista.clear()
 
     

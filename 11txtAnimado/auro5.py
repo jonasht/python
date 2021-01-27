@@ -5,7 +5,6 @@ green = '\033[32m' # green
 yellow = '\033[33m' # yellow
 f = '\33[m'
 
-print(f"{bcolors.WARNING}Warning: No active frommets remain. Continue?{bcolors.ENDC}")
 bgBlue = '\033[44m' # backgournd blue
 bgYellow = '\033[43m' #backgournd yellow
 bgRed = '\033[41m' #backgournd red

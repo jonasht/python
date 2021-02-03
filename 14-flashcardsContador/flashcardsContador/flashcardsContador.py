@@ -11,7 +11,7 @@ def mostrar():
     print(f'|\tCartas para ReComeçar: {recomeçar.Somar()}')
     print(f'|\tCartas para   Começar: {começar.Somar()}')    
     print(f'|\t                Total: {recomeçar.Somar()+começar.Somar()}')
-
+    
 
 while 1:
     mostrar()

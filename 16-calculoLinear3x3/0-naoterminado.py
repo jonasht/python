@@ -57,28 +57,21 @@ enfeitar()
 print(lista_delta)
 d_resultado = 1
 
-for seguinte in range(3):
-    for i in range(3):
-        if i >= 0:
-            print(lista_delta[i][i+seguinte], f'[{i}][{i}]')
-        #d_resultado *= lista_delta[i][i+seguinte] 
-        #print(d_resultado)
-    print()
-enfeitar()
-mostrar_delta()
-enfeitar()
-for seguinte in range(3):
-    for i in range(3):
-        if i >= 0:
-            print(lista_delta[i][i+seguinte], f'[{i}][{i}]')
-        #d_resultado *= lista_delta[i][i+seguinte] 
-        #print(d_resultado)
-    print()
+def somarMatriz():
+    multiplicacao = 1
+    
+    for seguinte in range(3):
+        for i in range(3):
+            multiplicacao *= lista_delta[i][i+seguinte]
+        resultado += multiplicacao
+        multiplicacao = 1
+            
+    for seguinte in range(3):
+        for i in range(3):            
+            multiplicacao *= -(lista_delta[-(i-2)][i+seguinte])
+        
+
+        
+    return resultado
 
 enfeitar()
-
-mostrar_delta()
-enfeitar()
-print(lista_delta[2][0])
-print(lista_delta[1][1])
-print(lista_delta[0][2])

@@ -59,7 +59,7 @@ d_resultado = 1
 
 def somarMatriz():
     multiplicacao = 1
-    
+    resultado = 0
     for seguinte in range(3):
         for i in range(3):
             multiplicacao *= lista_delta[i][i+seguinte]
@@ -69,9 +69,12 @@ def somarMatriz():
     for seguinte in range(3):
         for i in range(3):            
             multiplicacao *= -(lista_delta[-(i-2)][i+seguinte])
-        
+        resultado += multiplicacao
+        multiplicacao = 1
 
         
     return resultado
 
 enfeitar()
+delta = somarMatriz()
+print(f'delta = {delta}')

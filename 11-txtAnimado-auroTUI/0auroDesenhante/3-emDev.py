@@ -15,7 +15,7 @@ class auro:
             for char in chars:
                 print(f'{char}', end='')
             print()
-
+    
 
 fim = '\033[0m'
 black = '\033[40m'

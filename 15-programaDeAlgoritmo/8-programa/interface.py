@@ -26,6 +26,7 @@ class Interface:
         shuffle(self.lista)
         
     def set_tempoDeAtraso(self, tempoDeAtraso):
+        # definir o tempo de atraso
         self.tempoDeAtraso = tempoDeAtraso
 
     # mostrar lista, serve para mostrar a lista de forma legal
@@ -44,7 +45,7 @@ class Interface:
         sleep(self.tempoDeAtraso)                  
 
 
-# aqui serve para tranformar uma lista em matrix para mostrar() conseguir mostrar
+    # aqui serve para tranformar uma lista em matriz para mostrar() conseguir mostrar
     def converterPMostrar(self, n):
         
         mostrarLista = [([0 for i in range(self.tamanhoDaLista)]) for i in range(self.tamanhoDaLista)]

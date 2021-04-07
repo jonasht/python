@@ -1,4 +1,4 @@
-# auroGame versão 0 dev - de: versão auroDesenhante 5 dev
+# auroGame versão 1 dev 
 
 from time import sleep
 from os import system
@@ -32,11 +32,11 @@ class auro:
 
         if op == '>' or op == 'right':
             self.set_objeto(posicao['nome'], posicao['x']+1, posicao['y'], posicao['qtdCasas'])
-            self.remove(posicao['x'], posicao['y'], posicao['qtdCasas'])
+            self.remove(posicao['x']+posicao['qtdCasas']-1, posicao['y'], 1)
             
         if op == '<' or op.lower() == 'left':
             self.set_objeto(posicao['nome'], posicao['x']-1, posicao['y'], posicao['qtdCasas'])
-            self.remove(posicao['x'], posicao['y'], posicao['qtdCasas'])
+            self.remove(posicao['x']+posicao['qtdCasas']-1, posicao['y'], 1)
         
         if op == '^' or op.lower() == 'up':
             self.set_objeto(posicao['nome'], posicao['x'], posicao['y']-1, posicao['qtdCasas'])
@@ -51,8 +51,10 @@ class auro:
         for i in range(qtdCasas):
             self.desenho[y][x+i] = self.background
         
-    def set_info(self, **info):
-        self.info = info
+    def set_info(self, **usar_info):
+        
+        for k, v in usar_info.items():
+            self.info[k] = v
     
     def get_info(self):
         return self.info
@@ -76,8 +78,9 @@ class auro:
            'nome': p['nome'], 
            'x': p['x'], 
            'y': p['y'],
-           'qtdCasas': p['qtdCasas']}
-    
+           'qtdCasas': p['qtdCasas'],
+           }
+
     def get_posicao(self):
         return self.posicao
 

@@ -62,10 +62,7 @@ class Interface:
                 if contador == n:
                     chars[contador] = 2    
     
-                    
-                    
         self.Mostrar(mostrarLista)
-        mostrarLista.clear()
-        #sleep(.02)    
+
 
 

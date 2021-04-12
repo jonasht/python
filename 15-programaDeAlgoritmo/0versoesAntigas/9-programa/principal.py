@@ -2,8 +2,7 @@ from algoritmo2 import *
 
 # -------------------------------------------------
 # definir de tamanho, o tempo e o pixel de character
-# M2(tamanho, tempo)
-
+# M2(tamanho, tempo, tamanho do pixel ou oque vai estar nele)
 # pr = M2(55, .05, "    ")
 pr = M2(30, .1, "    ")
 

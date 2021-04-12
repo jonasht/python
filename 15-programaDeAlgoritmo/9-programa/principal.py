@@ -5,7 +5,7 @@ from algoritmo2 import *
 # M2(tamanho, tempo)
 
 # pr = M2(55, .05, "    ")
-pr = M2(90, .01, "    ")
+pr = M2(30, .1, "    ")
 
 # se aparecer tudo errado, tem que diminuir a fonte do terminal (ctrl + -)
 # também se aparecer tudo errado mostrar [alguma coisa, o terminal não suporta ansii

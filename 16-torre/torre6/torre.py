@@ -10,11 +10,12 @@ disponivel = {
    'parte3': 7-4
 }
 
-# declarando as partes atuais
+# declarando as partes atuais, onde cada barra estah
 parte1 = []
 parte2 = []
 parte3 = ['1', '2', '3', '4']
 
+# valor de cada barra para poder saber seu peso
 # ----------------------------------
 valorDeCadaBarra = {
    '1':1,
@@ -22,7 +23,7 @@ valorDeCadaBarra = {
    '3':3,
    '4':4}
 
-
+# descer barra | nome = nome da barra
 def up(nome):
    
    # parte1 =-=-=-=-=-=-=-=-=-
@@ -58,6 +59,7 @@ def mudarPartes(nomeParte, nome, para):
    if para == 3:
       parte3.append(nome)
 
+# mover a barra | nome = nome da barra, opcao = para onde barra vai (parte1, parte2, parte3)
 def move(nome, opcao):
    parte = 0
    mudarPartes(posicaoAtual[nome], nome, opcao)
@@ -115,7 +117,7 @@ def move(nome, opcao):
             backend.move(nome, '>')
             mostrar()
          
-
+# descer para baixo | nome = nome da barra
 def down(nome):
    
    if posicaoAtual[nome] == 1:
@@ -135,7 +137,8 @@ def down(nome):
    # for _ in range(6-lenParte):
    #    backend.move(nome, 'v')
    #    mostrar()
-      
+
+# cores para poder pintar os graficos
 fim = '\033[0m'
 black = '\033[40m ' + fim 
 red = '\033[41m '  + fim
@@ -145,6 +148,7 @@ blue = '\033[44m ' + fim
 pink = '\033[45m ' + fim 
 white = '\033[107m ' + fim
 
+# mostrar, serve para mostrar na tela os graficos TUI
 def mostrar(tempo=.1):
    system('clear')
    # backend.mostrar()
@@ -168,11 +172,12 @@ def mostrar(tempo=.1):
    # print(f'd:{disponivel}')
    # print(f'posicaoAtual: {posicaoAtual}')
 
-
+# chamando o auro game
 backend = auroGame(56, 10, f' ')
 
 print(backend.get_info())
 
+# funcao para iniciar, declarando onde cada barra estarah
 def iniciar():
    parte3 = 45
    mostrar()
@@ -193,15 +198,10 @@ def iniciar():
    posicaoAtual['4'] = 3
    
    
-   
+# iniciando a fucao para começar 
 iniciar()
 
-
-
-print(posicaoAtual)
-# print('='*30)
-
-
+# fazendo a movimentacao por movimentacao de barra (barra de cores)
 up('1')
 move('1', 2)
 down('1')
@@ -261,3 +261,6 @@ down('2')
 up('1')
 move('1', 1)
 down('1')
+
+# fim de programa
+# auro game é codigo feito por mim 

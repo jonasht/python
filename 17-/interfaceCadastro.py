@@ -1,23 +1,34 @@
 from tkinter import *
+from registradorDB import Db
+
+db = Db()
+
 
 cadastro = Tk()
 def cadastrar():
-    bd = dict(
-        id =entd_id.get(),
-        nome=entdNome.get(),
-        sexo=entdSexo.get(),
-        idade=entdIdade.get()
-    )
-    lb_aviso.config(text='cadastro feito com sucesso', fg='green')
+    nome = entdNome.get()
+    idade = entdIdade.get()
+
+
+    if nome and idade:
+        db.nome = nome
+        db.idade = idade
+
+        db.cadastrar()
+        db.mostrar()
+        lb_aviso.config(text='cadastro feito com sucesso', fg='green')
+    else:
+        lb_aviso.config(text='preencha todos os pontos', fg='red')
+
     
-    print(bd)
+    
 cadastro.geometry('200x150+400+300')
 
 # id
-lb_id = Label(cadastro, text='id:')
-entd_id = Entry(cadastro)
-lb_id.grid(row=0, column=1, pady=2)
-entd_id.grid(row=0, column=2, pady=2)
+# lb_id = Label(cadastro, text='id:')
+# entd_id = Entry(cadastro)
+# lb_id.grid(row=0, column=1, pady=2)
+# entd_id.grid(row=0, column=2, pady=2)
 
 lbnome = Label(cadastro, text='nome:')
 lbnome.grid(row=1, column=1, pady=2)
@@ -27,11 +38,11 @@ cadastro.title('cadastro')
 entdNome = Entry(cadastro)
 entdNome.grid(row=1, column=2, pady=2)
 
-# sexo
-lbsexo = Label(cadastro, text='sexo:')
-entdSexo = Entry(cadastro)
-lbsexo.grid(row=2, column=1, pady=2)
-entdSexo.grid(row=2, column=2, pady=2)
+# # sexo
+# lbsexo = Label(cadastro, text='sexo:')
+# entdSexo = Entry(cadastro)
+# lbsexo.grid(row=2, column=1, pady=2)
+# entdSexo.grid(row=2, column=2, pady=2)
 
 # idade
 lbidade = Label(cadastro, text='idade:')

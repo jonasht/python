@@ -15,6 +15,7 @@ root = Tk()
 root.title('cadastro')
 root.geometry('407x200+450+300')
 
+
 def limpar_Entradas():
     etd_nome.delete(0, END)
     etd_idade.delete(0, END)
@@ -36,6 +37,7 @@ def cadastrar():
 
     if not ehNumero(idade) and nome:
         lb_aviso.config(text='idade precisa ser numero', fg='red')
+        etd_idade.config(relief=SOLID, highlightbackground='red')
 
     elif nome and idade:
         db.nome = nome
@@ -63,7 +65,6 @@ def cadastrar():
         lb_aviso.config(text='preencha  todos  os pontos', fg='red')
 
 
-
 # id
 lb_id = Label(root, text='Id:', width=10)
 lb_id_mostrar = Label(root, text=db.get_nextId())
@@ -73,7 +74,7 @@ lb_nome = Label(root, text='Nome:', width=10)
 
 # nome
 etd_nome = Entry(root)
-etd_nome.bind('<Return>', cadastrar)
+etd_nome.bind('<Return>', onReturn)
 
 # # sexo
 # lbsexo = Label(root, text='sexo:')

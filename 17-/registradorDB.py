@@ -37,7 +37,7 @@ class Db:
     def cadastrar(self):
         self.id = str(len(self.get_db()) + 1)
         dados ={self.id: dict(
-            nome=self.nome,
+            nome=self.nome.title(),
             idade=self.idade,
         )}
         self.update_db(dados)

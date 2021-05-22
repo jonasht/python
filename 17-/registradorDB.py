@@ -33,6 +33,7 @@ class Db:
         for id, dados in db.items():
             print('id:', id, 'dados:', dados)
     
+    # cadastrar clientes
     def cadastrar(self):
         self.id = str(len(self.get_db()) + 1)
         dados ={self.id: dict(
@@ -40,6 +41,8 @@ class Db:
             idade=self.idade,
         )}
         self.update_db(dados)
+    def get_nextId(self):
+        return str(len(self.get_db()) + 1)        
 
 
 if __name__ == '__main__':        

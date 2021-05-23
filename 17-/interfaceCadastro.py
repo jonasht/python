@@ -24,12 +24,12 @@ def limpar_Entradas():
 def proximoId():
     id = int(db.id)+1
     return id
+
+
+
 # botao return (key=enter)
-
-
 def onReturn(evento):
     cadastrar()
-
 
 def cadastrar():
     nome = etd_nome.get()

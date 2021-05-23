@@ -1,5 +1,14 @@
 from tkinter import *
 
+
+
+def ehNumero(n):
+    try:
+        int(n)
+        return True
+    except:
+        return False
+
 def cadastrar():
     print("entrando em cadastro")
 def conta():

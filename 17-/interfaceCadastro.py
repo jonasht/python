@@ -13,7 +13,7 @@ def ehNumero(n):
 db = Db()
 root = Tk()
 root.title('cadastro')
-root.geometry('407x200+450+300')
+root.geometry('407x200+651+300')
 
 
 def limpar_Entradas():

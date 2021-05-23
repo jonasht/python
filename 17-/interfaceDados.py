@@ -51,12 +51,14 @@ def mostrar_info():
 
 
 root = Tk()
-root.geometry('407x200+450+300')
+root.geometry('407x200+651+300')
+
+
 
 # labels titulo, id
 lb_tititlo = Label(root, text='pesquisar por Id')
 
-lb_id = Label(root, text='Id:')
+lb_id = Label(root, text='Id:', width=5)
 
 # entrada id
 etd_id = Entry(root)
@@ -66,7 +68,7 @@ etd_id.bind('<Return>', onReturn)
 bt_pesquisar = Button(root, text='pesquisar', command=mostrar_info)
 
 # label aviso
-lb_aviso = Label(root, text='=-=-=-=')
+lb_aviso = Label(root, text='')
 
 # informacoes
 lb_idMostrar = Label(root, text=' ')

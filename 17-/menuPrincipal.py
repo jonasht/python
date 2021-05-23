@@ -19,7 +19,8 @@ def Pesquisar():
 
 
 root = Tk()
-root.geometry('200x150+450+300')
+root.geometry('200x200+450+300')
+
 
 lb_telaPricipal = Label(root, text='tela principal', fg='blue').pack(pady=2)
 bt_cadastrar    = Button(root, text='cadastrar', width=15, command=cadastrar).pack(pady=2)

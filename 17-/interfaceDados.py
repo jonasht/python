@@ -56,7 +56,7 @@ root.geometry('407x200+651+300')
 
 
 # labels titulo, id
-lb_tititlo = Label(root, text='pesquisar por Id')
+lb_titulo = Label(root, text='pesquisar por Id')
 
 lb_id = Label(root, text='Id:', width=5)
 
@@ -75,7 +75,7 @@ lb_idMostrar = Label(root, text=' ')
 lb_nome = Label(root, text=' ')
 lb_idade = Label(root, text=' ')
 
-lb_tititlo.grid(row=0, column=1)
+lb_titulo.grid(row=0, column=1,columnspan=2, sticky='news')
 lb_id.grid(row=1, column=0)
 etd_id.grid(row=1, column=1)
 

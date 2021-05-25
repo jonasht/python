@@ -1,92 +1,93 @@
 from tkinter import *
 from registradorDB import Db
 
+class Dados(Tk):
+    def __init__(self):
+        super().__init__()
+        
+        self.geometry('407x200+651+300')
+        self.title('Pesquisar')
 
-def ehNumero(n):
-    try:
-        int(n)
-        return True
-    except:
-        return False
+        # labels titulo, id
+        self.lb_titulo = Label(self, text='pesquisar por Id')
+
+        self.lb_id = Label(self, text='Id:', width=5)
+
+        # entrada id
+        self.etd_id = Entry(self)
+        self.etd_id.bind('<Return>', self.onReturn)
+
+        # botao pesquisar
+        self.bt_pesquisar = Button(self, text='pesquisar', command=self.mostrar_info)
+
+        # label aviso
+        self.lb_aviso = Label(self, text='')
+
+        # informacoes
+        self.lb_idMostrar = Label(self, text=' ')
+        self.lb_nome = Label(self, text=' ')
+        self.lb_idade = Label(self, text=' ')
+
+        self.lb_titulo.grid(row=0, column=1,columnspan=2, sticky='news')
+        self.lb_id.grid(row=1, column=0)
+        self.etd_id.grid(row=1, column=1)
+
+        self.bt_pesquisar.grid(row=1, column=2)
+
+        self.lb_aviso.grid(row=2, column=1)
+
+        self.lb_idMostrar.grid(row=3, column=1)
+        self.lb_nome.grid(row=4, column=1)
+        self.lb_idade.grid(row=5, column=1)
     
-# botao return (key=enter)
-def onReturn(evento):
-    mostrar_info()
-
-
-
-def limpar_Entradas():
-    etd_id.delete(0, END)
-
-def limpar_labels():
-    lb_idMostrar.config(text='')
-    lb_nome.config(text='')
-    lb_idade.config(text='')
-
-def mostrar_info():
-    limpar_labels()
-
-    db = Db()
+    def ehNumero(self, n):
+        try:
+            int(n)
+            return True
+        except:
+            return False
     
-    id = etd_id.get()
-    db = db.get_db()
-    
-    limpar_Entradas()
+    # botao return (key=enter)
+    def onReturn(self, evento):
+        self.mostrar_info()
 
-    if id:
-        print(f'entrou {id}')
-        if ehNumero(id):
-            try:
-                lb_nome.config(text='Nome: '+db[id]['nome'].title())
-                lb_idade.config(text='Idade: '+db[id]['idade'])
-                lb_idMostrar.config(text='Id: ' + id)
-                
-                lb_aviso.config(text='')
-            except:
-                lb_aviso.config(text='Id não encontrado', fg='red')
+
+
+    def limpar_Entradas(self):
+        self.etd_id.delete(0, END)
+
+    def limpar_labels(self):
+        self.lb_idMostrar.config(text='')
+        self.lb_nome.config(text='')
+        self.lb_idade.config(text='')
+
+    def mostrar_info(self):
+        self.limpar_labels()
+
+        db = Db()
+        
+        id = self.etd_id.get()
+        db = db.get_db()
+        
+        self.limpar_Entradas()
+
+        if id:
+            if self.ehNumero(id):
+                try:
+                    self.lb_nome.config(text='Nome: '+db[id]['nome'].title())
+                    self.lb_idade.config(text='Idade: '+db[id]['idade'])
+                    self.lb_idMostrar.config(text='Id: ' + id)
+                    self.lb_aviso.config(text='')
+                except:
+                    self.lb_aviso.config(text='Id não encontrado', fg='red')
+            else:
+                self.lb_aviso.config(text='Id precisa ser um numero', fg='red')
         else:
-            lb_aviso.config(text='Id precisa ser um numero', fg='red')
-    else:
-        lb_aviso.config(text='por favor, digite algum Id', fg='red')
-
-
-root = Tk()
-root.geometry('407x200+651+300')
+            self.lb_aviso.config(text='por favor, digite algum Id', fg='red')
 
 
 
-# labels titulo, id
-lb_titulo = Label(root, text='pesquisar por Id')
-
-lb_id = Label(root, text='Id:', width=5)
-
-# entrada id
-etd_id = Entry(root)
-etd_id.bind('<Return>', onReturn)
-
-# botao pesquisar
-bt_pesquisar = Button(root, text='pesquisar', command=mostrar_info)
-
-# label aviso
-lb_aviso = Label(root, text='')
-
-# informacoes
-lb_idMostrar = Label(root, text=' ')
-lb_nome = Label(root, text=' ')
-lb_idade = Label(root, text=' ')
-
-lb_titulo.grid(row=0, column=1,columnspan=2, sticky='news')
-lb_id.grid(row=1, column=0)
-etd_id.grid(row=1, column=1)
-
-bt_pesquisar.grid(row=1, column=2)
-
-lb_aviso.grid(row=2, column=1)
-
-lb_idMostrar.grid(row=3, column=1)
-lb_nome.grid(row=4, column=1)
-lb_idade.grid(row=5, column=1)
-
-
-root.mainloop()
+if __name__ == '__main__':
+    root = Dados()
+    root.mainloop()
 

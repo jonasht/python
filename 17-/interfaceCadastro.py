@@ -1,15 +1,13 @@
 from tkinter import *
 from registradorDB import Db
 
-class Cadastro(Tk):
-    def __init__(self):
-        super().__init__()
-        self.db = Db()
-        self.title('cadastro')
-        self.geometry('407x200+651+300')
+class FrameCadastro(Frame):
+    def __init__(self, container):
+        super().__init__(container)
         
-
-    # id
+        self.db = Db()
+        
+        # id
         self.lb_id = Label(self, text='Id:', width=10)
         self.lb_id_mostrar = Label(self, text=self.db.get_nextId())
 
@@ -20,11 +18,11 @@ class Cadastro(Tk):
         self.etd_nome = Entry(self)
         self.etd_nome.bind('<Return>', self.onReturn)
 
-    # # sexo
-    # lbsexo = Label(self, text='sexo:')
-    # entdSexo = Entry(self)
-    # lbsexo.grid(row=2, column=1, pady=2)
-    # entdSexo.grid(row=2, column=2, pady=2)
+        # # sexo
+        # lbsexo = Label(self, text='sexo:')
+        # entdSexo = Entry(self)
+        # lbsexo.grid(row=2, column=1, pady=2)
+        # entdSexo.grid(row=2, column=2, pady=2)
 
         # idade
         self.lb_idade = Label(self, text='Idade:', width=10)
@@ -37,7 +35,7 @@ class Cadastro(Tk):
         # botao cadatrar, limpar, sair
         self.bt_cadastrar = Button(self, text='Cadastrar', command=self.cadastrar)
         self.bt_limpar = Button(self, text='Limpar', width=10, command=self.limpar_Entradas)
-        self.bt_sair = Button(self, text='Sair', command=self.quit)
+        
 
         # labels de confirmacao
         self.lb_id_confirmacao = Label(self, width=15)
@@ -62,7 +60,6 @@ class Cadastro(Tk):
         # botao cadastrar, limpar, sair
         self.bt_cadastrar.grid(row=5, column=2, columnspan=3, padx=2, pady=2, sticky='news')
         self.bt_limpar.grid(row=5, column=1, padx=2, pady=2)
-        self.bt_sair.grid(row=6, column=1, columnspan=3, pady=2, padx=2, sticky='news')
 
         # confirmacoes
         self.lb_id_confirmacao.grid(row=0, column=3, padx=2, pady=2)
@@ -127,6 +124,18 @@ class Cadastro(Tk):
         else:
             self.lb_aviso.config(text='preencha  todos  os pontos', fg='red')
 
+            
+class Cadastro(Tk):
+    
+    def __init__(self):
+        super().__init__()
+        self.title('cadastro')
+        self.geometry('407x200+651+300')
+
+        self.frame = FrameCadastro(self)
+        self.frame.grid()
+        
+        
 
 if __name__ == '__main__':
     cadastro = Cadastro()

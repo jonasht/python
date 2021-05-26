@@ -1,17 +1,16 @@
 from tkinter import *
 from registradorDB import Db
 
-class Dados(Tk):
-    def __init__(self):
-        super().__init__()
+
+class FrameDados(Frame):
+    def __init__(self, container):
+        super().__init__(container)
         
-        self.geometry('407x200+651+300')
-        self.title('Pesquisar')
 
         # labels titulo, id
         self.lb_titulo = Label(self, text='pesquisar por Id')
 
-        self.lb_id = Label(self, text='Id:', width=5)
+        self.lb_id = Label(self, text='Id:')
 
         # entrada id
         self.etd_id = Entry(self)
@@ -85,7 +84,14 @@ class Dados(Tk):
         else:
             self.lb_aviso.config(text='por favor, digite algum Id', fg='red')
 
-
+class Dados(Tk):
+    def __init__(self):
+        super().__init__()
+        self.geometry('407x200+651+300')
+        self.title('Pesquisar')
+        
+        self.frame = FrameDados(self)
+        self.frame.grid()
 
 if __name__ == '__main__':
     root = Dados()

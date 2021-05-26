@@ -8,7 +8,7 @@ class Db:
         self.id = str(1)
         self.nome = ''
         self.idade = ''
-        # self.sexo
+        
         
         
     def set_db(self, dados):

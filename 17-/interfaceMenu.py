@@ -1,7 +1,7 @@
-from os import RTLD_NOW, close
 from interfaceCadastro import FrameCadastro
 from interfaceDados import FrameDados
 from tkinter import *
+import os
 
 class Menu(Tk):
     def __init__(self):
@@ -9,6 +9,10 @@ class Menu(Tk):
         
         self.geometry('600x300+450+300')
         self.title('Menu')
+
+        # definindo botao de sair
+        self.bt_sair = Button(self, text='Sair', width=15, command=os.sys.exit)
+        self.bt_sair.pack(side=BOTTOM, anchor=W)
         
         # frame
         self.frame = Frame(self)
@@ -27,8 +31,10 @@ class Menu(Tk):
         # false ou true para as frame sair e entrarem 
         self.xCadastro = [True, False]
         self.xDados = [True, False]
-        
-        
+
+        # linha entre o frame menu e a frame..
+        self.risco = Label(self,text='|\n'*16, fg='darkgray', width=1, height=15).pack(side=LEFT, anchor=CENTER)
+
     def ehNumero(self, n):
         try:
             int(n)
@@ -44,7 +50,7 @@ class Menu(Tk):
                 self.Pesquisar()
                 
             self.frameCadastro = FrameCadastro(self)
-            self.frameCadastro.pack(side=RIGHT, anchor=N)
+            self.frameCadastro.pack(side=LEFT, anchor=N)
             self.xCadastro.reverse()
 
         else:
@@ -57,7 +63,7 @@ class Menu(Tk):
                 self.cadastrar()
 
             self.framedados = FrameDados(self)
-            self.framedados.pack(side=RIGHT, anchor=N)
+            self.framedados.pack(side=LEFT, anchor=N)
             self.xDados.reverse()
         else:
             self.framedados.pack_forget()

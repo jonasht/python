@@ -8,16 +8,16 @@ class FrameDados(Frame):
         
 
         # labels titulo, id
-        self.lb_titulo = Label(self, text='pesquisar por Id')
+        # self.lb_titulo = Label(self, text='pesquisar por Id')
 
-        self.lb_id = Label(self, text='Id:')
+        self.lb_id = Label(self, text='Id:', width=10)
 
         # entrada id
         self.etd_id = Entry(self)
         self.etd_id.bind('<Return>', self.onReturn)
 
         # botao pesquisar
-        self.bt_pesquisar = Button(self, text='pesquisar', command=self.mostrar_info)
+        self.bt_pesquisar = Button(self, text='Pesquisar', width=10, command=self.mostrar_info)
 
         # label aviso
         self.lb_aviso = Label(self, text='')
@@ -27,7 +27,7 @@ class FrameDados(Frame):
         self.lb_nome = Label(self, text=' ')
         self.lb_idade = Label(self, text=' ')
 
-        self.lb_titulo.grid(row=0, column=1,columnspan=2, sticky='news')
+        # self.lb_titulo.grid(row=0, column=1,columnspan=2, sticky='news')
         self.lb_id.grid(row=1, column=0)
         self.etd_id.grid(row=1, column=1)
 

@@ -3,9 +3,9 @@ from conta import Conta
 from random import shuffle
 
 
-class FrameStart(Tk):
-        def __init__(self, ):
-                super().__init__()
+class FrameStart(Frame):
+        def __init__(self, container):
+                super().__init__(container)
                 self.conta = Conta()
                 # variaveis
                 self.posicao = 0
@@ -74,10 +74,16 @@ class FrameStart(Tk):
                 self.posicao += 1
                 self.next()
 
-        def iniciar(self):
+        
+        def iniciar(self, numero1):
+                self.conta.fazerContas(numero1)
                 self.next()
+                
+                
 
 if __name__ == '__main__':
-        root = FrameStart()
-        root.iniciar()
+        root = Tk()
+        frame = FrameStart(root)
+        frame.pack()
+        frame.iniciar(8)
         root.mainloop()

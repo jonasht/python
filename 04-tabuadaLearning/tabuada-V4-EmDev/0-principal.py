@@ -62,15 +62,12 @@ class Tabuada(Tk):
         self.bt_start.grid(row=5, columnspan=3, sticky=W+E)
 
 
-    def Start(self):
-        conta = Conta()
-        conta.set_numero1(self.valor.get())
-        sleep(1)
-        # conta.update_conta_1(self.valor)
+    def Start(self):  
 
 
-        root = FrameStart()
-        root.next()
+        frameStart = FrameStart(self)
+        frameStart.grid()
+        frameStart.iniciar(self.valor.get())
     
 
 

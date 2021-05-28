@@ -1,6 +1,7 @@
 from tkinter import *
 from conta import Conta
 from interfaceStart import FrameStart
+from time import sleep
 
 print('feito no linux')
 
@@ -63,7 +64,11 @@ class Tabuada(Tk):
 
     def Start(self):
         conta = Conta()
+        conta.set_numero1(self.valor.get())
+        sleep(1)
         # conta.update_conta_1(self.valor)
+
+
         root = FrameStart()
         root.next()
     

@@ -3,15 +3,16 @@ from random import shuffle
 class Conta:
     def __init__(self):
         
-        self.conta_1 = 1
+        self.conta_1 = 0
 
         self.conta_2 = list(range(10))
         self.contas = list()
         
         self.fazerContas()
         
-    def update_conta_1(self, n):
+    def set_numero1(self, n):
         self.conta_1 = n
+        self.fazerContas()
         
     def mostrar(self):
         print(f'conta1: {self.conta_1}')

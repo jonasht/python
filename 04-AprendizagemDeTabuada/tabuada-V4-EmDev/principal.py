@@ -4,11 +4,12 @@ from sys import exit
 
 print('feito no linux')
 
+
 class Tabuada(Tk):
     def __init__(self):
         super().__init__()
         self.title('FTabuada v4')
-        self.geometry('500x500')
+        self.geometry('500x400')
         
         self.opcaoMenu = Frame(self)
     
@@ -64,7 +65,7 @@ class Tabuada(Tk):
         # mostrar menu - chamando a funcao
         self.mostrarMenu()
         
-    def escodeMenu(self):
+    def esconder(self):
         self.opcaoMenu.pack_forget()
         self.bt_start.pack_forget()
         
@@ -72,14 +73,15 @@ class Tabuada(Tk):
         self.frameStart.pack_forget()
         self.mostrarMenu()
 
-    def mostrarMenu(self):
+    def mostrarMenu(self): 
         self.opcaoMenu.pack()
         self.opcaoMenu.pack(anchor=CENTER, padx=10, pady=20)
         self.bt_start.pack(anchor=CENTER)
         self.bt_voltar.config(state=DISABLED)
-        
+    
+    
     def Start(self):  
-        self.escodeMenu()
+        self.esconder()
         self.bt_voltar.config(state=NORMAL)
         
         self.frameStart = FrameStart(self)

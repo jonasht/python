@@ -6,6 +6,7 @@ from random import shuffle
 class FrameStart(Frame):
         def __init__(self, container):
                 super().__init__(container)
+                
                 self.conta = Conta()
                 # variaveis
                 self.posicao = 0
@@ -18,7 +19,7 @@ class FrameStart(Frame):
                 self.bt1 = Button(self, text='', command=lambda: self.opcaoQuestao(2), font='arial 20 bold', width=5, borderwidth=2)
                 self.bt2 = Button(self, text='', command=lambda: self.opcaoQuestao(3), font='arial 20 bold', width=5, borderwidth=2)
 
-                self.lb_validacao = Label(self, text='')
+                self.lb_validacao = Label(self, text='', width=5)
                 
                 
                 self.lb_conta.grid(row=1, columnspan=3, sticky=W+E)
@@ -27,19 +28,22 @@ class FrameStart(Frame):
                 self.bt0.grid(row=2, sticky=W+E)
                 self.bt1.grid(row=3, sticky=W+E)
                 self.bt2.grid(row=4, sticky=W+E)
-                self.lb_validacao.grid()
+                self.lb_validacao.grid(row=3, column=1, sticky=W+E)
                 
+                self.n1 = 0
+                self.n2 = 0
+                self.resultado = 0
         def next(self):
                 
-                n1 = self.conta.contas[self.posicao][0]
-                n2 = self.conta.contas[self.posicao][1] 
-                resultado = n1*n2     
+                self.n1 = self.conta.contas[self.posicao][0]
+                self.n2 = self.conta.contas[self.posicao][1] 
+                self.resultado = self.n1*self.n2     
     
-                self.lb_conta.config(text=f'{n1}X{n2}')
+                self.lb_conta.config(text=f'{self.n1}X{self.n2}')
                 self.questao = [
-                        (resultado * 2) +1,
-                        (resultado + 1) * 2,
-                        resultado
+                        (self.resultado + 5),
+                        (self.resultado + 1),
+                        self.resultado
                 ] 
                 
                 # >>>>>>>>>>> embaralhar questao <<<<<<<<<<<
@@ -48,7 +52,7 @@ class FrameStart(Frame):
                 self.bt0.config(text=self.questao[0])
                 self.bt1.config(text=self.questao[1])
                 self.bt2.config(text=self.questao[2])
-                                                 
+                   
         def opcaoQuestao(self, opcao=0):      
 
                 
@@ -60,20 +64,30 @@ class FrameStart(Frame):
                         self.resposta(self.questao[2])
 
         def resposta(self, resultadoDado):
-                n1 = self.conta.contas[self.posicao][0]
-                n2 = self.conta.contas[self.posicao][1] 
-                resultado = n1*n2 
+           
                 
-                if resultado == resultadoDado:
-                        self.lb_validacao.config(text='correto')
-                        print(resultado, resultadoDado)
+                if self.resultado == resultadoDado:
+                        self.lb_validacao.config(text='correto',
+                                                 fg='green')
+                        print(self.resultado, resultadoDado)
                 else:
-                        self.lb_validacao.config(text='incorreto')
-                        print(resultado,resultadoDado)
+                        self.lb_validacao.config(text='incorreto',
+                                                 fg='red')
+                        print(self.resultado,resultadoDado)
                 
                 
                 self.posicao += 1
-                self.next()
+                if self.posicao == len(self.conta.contas):
+                        self.bt0.config(text='', state=DISABLED)
+                        self.bt1.config(text='', state=DISABLED)
+                        self.bt2.config(text='', state=DISABLED)
+                        self.lb_conta.config(text='=-=-=')
+                        self.lb_validacao.config(text='fim') 
+                        # self.destroy()
+                        
+                else:
+                
+                        self.next()
 
                 
         

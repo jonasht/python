@@ -1,7 +1,6 @@
 from tkinter import *
-from conta import Conta
 from interfaceStart import FrameStart
-from time import sleep
+from sys import exit
 
 print('feito no linux')
 
@@ -11,64 +10,82 @@ class Tabuada(Tk):
         self.title('FTabuada v4')
         self.geometry('500x500')
         
+        self.opcaoMenu = Frame(self)
     
         self.bt_start = Button(self, text='start', command=self.Start, font='arial 20')
 
-        self.frame_op = Frame(self)
-        self.frame_op.grid(row=0, column=0, columnspan=3, sticky=W+E)
 
         self.valor = IntVar()
 
-        self.lb_op = Label(self.frame_op, text='qual tabuada?:')
-        self.lb_op.grid(row=0)
+        self.lb_op = Label(self.opcaoMenu, text='qual tabuada?:')
+        self.lb_op.pack()
 
+        # ======= radio Button ===========================================
+        # radio button das opcao para escolher
+        self.rbt1 = Radiobutton(self.opcaoMenu, text='1', variable=self.valor, value=1, indicatoron=0, padx=10, pady=10, bg='green')
+        self.rbt2 = Radiobutton(self.opcaoMenu, text='2', variable=self.valor, value=2, indicatoron=0, padx=10, pady=10, bg='green')
+        self.rbt3 = Radiobutton(self.opcaoMenu, text='3', variable=self.valor, value=3, indicatoron=0, padx=10, pady=10,bg='green')
+        self.rbt4 = Radiobutton(self.opcaoMenu, text='4', variable=self.valor, value=4, indicatoron=0, padx=10, pady=10, bg='green')
+        self.rbt5 = Radiobutton(self.opcaoMenu, text='5', variable=self.valor, value=5, indicatoron=0, padx=10, pady=10, bg='green')
+        self.rbt6 = Radiobutton(self.opcaoMenu, text='6', variable=self.valor, value=6, indicatoron=0, padx=10, pady=10,bg='green')
+        self.rbt7 = Radiobutton(self.opcaoMenu, text='7', variable=self.valor, value=7, indicatoron=0, padx=10, pady=10,bg='green')
+        self.rbt8 = Radiobutton(self.opcaoMenu, text='8', variable=self.valor, value=8, indicatoron=0, padx=10, pady=10,bg='green')
+        self.rbt9 = Radiobutton(self.opcaoMenu, text='9', variable=self.valor, value=9, indicatoron=0, padx=10, pady=10, bg='green')
+        self.rbt10 = Radiobutton(self.opcaoMenu, text='10', variable=self.valor, value=10, indicatoron=0, padx=10, pady=10, bg='green')
 
-        self.rbt1 = Radiobutton(self.frame_op, text='1', variable=self.valor, value=1, indicatoron=0, padx=10, pady=10, bg='green')
-        self.rbt1.grid(row=0, column=1)
-
-        self.rbt2 = Radiobutton(self.frame_op, text='2', variable=self.valor, value=2, indicatoron=0, padx=10, pady=10, bg='green')
-        self.rbt2.grid(row=0, column=2)
-
-        self.rbt3 = Radiobutton(self.frame_op, text='3', variable=self.valor, value=3, indicatoron=0, padx=10, pady=10,bg='green')
-        self.rbt3.grid(row=0, column=3)
-
-        self.rbt4 = Radiobutton(self.frame_op, text='4', variable=self.valor, value=4, indicatoron=0, padx=10, pady=10, bg='green')
-        self.rbt4.grid(row=0, column=4)
-
-        self.rbt5 = Radiobutton(self.frame_op, text='5', variable=self.valor, value=5, indicatoron=0, padx=10, pady=10, bg='green')
-        self.rbt5.grid(row=0, column=5)
-
-        self.rbt6 = Radiobutton(self.frame_op, text='6', variable=self.valor, value=6, indicatoron=0, padx=10, pady=10,
-                        bg='green')
-        self.rbt6.grid(row=0, column=6)
-
-        self.rbt7 = Radiobutton(self.frame_op, text='7', variable=self.valor, value=7, indicatoron=0, padx=10, pady=10,
-                        bg='green')
-
-        self.rbt7.grid(row=0, column=7)
-        self.rbt8 = Radiobutton(self.frame_op, text='8', variable=self.valor, value=8, indicatoron=0, padx=10, pady=10,
-                        bg='green')
-
-        self.rbt8.grid(row=0, column=8)
-        self.rbt9 = Radiobutton(self.frame_op, text='9', variable=self.valor, value=9, indicatoron=0, padx=10, pady=10, bg='green')
-
-        self.rbt9.grid(row=0, column=9)
-        self.rbt10 = Radiobutton(self.frame_op, text='10', variable=self.valor, value=10, indicatoron=0, padx=10, pady=10, bg='green')
-        self.rbt10.grid(row=0, column=10)
+        self.rbt1.pack (side=LEFT)
+        self.rbt2.pack (side=LEFT)
+        self.rbt3.pack (side=LEFT)
+        self.rbt4.pack (side=LEFT)
+        self.rbt5.pack (side=LEFT)
+        self.rbt6.pack (side=LEFT)
+        self.rbt7.pack (side=LEFT)
+        self.rbt8.pack (side=LEFT)
+        self.rbt9.pack (side=LEFT)
+        self.rbt10.pack(side=LEFT)
 
         self.rbt9.select()
 
-        
-        self.bt_start.grid(row=5, columnspan=3, sticky=W+E)
+        self.frameVoltarSair = Frame(self)
+        self.bt_voltar = Button(self.frameVoltarSair, 
+                                text='Voltar', width=15, font='arial 20 bold', 
+                                command=self.esconderFrameStart)
+        self.bt_sair = Button(self.frameVoltarSair, 
+                              text='Sair', width=20, 
+                              font='arial 20 bold',
+                              command=exit
+                              )
 
+        self.bt_voltar.pack(side=RIGHT)
+        self.bt_sair.pack(side=LEFT)
 
-    def Start(self):  
-
-
-        frameStart = FrameStart(self)
-        frameStart.grid()
-        frameStart.iniciar(self.valor.get())
+        self.frameVoltarSair.pack(side=TOP) 
     
+        # mostrar menu - chamando a funcao
+        self.mostrarMenu()
+        
+    def escodeMenu(self):
+        self.opcaoMenu.pack_forget()
+        self.bt_start.pack_forget()
+        
+    def esconderFrameStart(self):
+        self.frameStart.pack_forget()
+        self.mostrarMenu()
+
+    def mostrarMenu(self):
+        self.opcaoMenu.pack()
+        self.opcaoMenu.pack(anchor=CENTER, padx=10, pady=20)
+        self.bt_start.pack(anchor=CENTER)
+        self.bt_voltar.config(state=DISABLED)
+        
+    def Start(self):  
+        self.escodeMenu()
+        self.bt_voltar.config(state=NORMAL)
+        
+        self.frameStart = FrameStart(self)
+        self.frameStart.pack()
+        self.frameStart.iniciar(self.valor.get())
+
 
 
 

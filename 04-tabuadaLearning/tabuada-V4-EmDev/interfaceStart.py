@@ -30,6 +30,7 @@ class FrameStart(Frame):
                 self.lb_validacao.grid()
                 
         def next(self):
+                
                 n1 = self.conta.contas[self.posicao][0]
                 n2 = self.conta.contas[self.posicao][1] 
                 resultado = n1*n2     
@@ -49,7 +50,7 @@ class FrameStart(Frame):
                 self.bt2.config(text=self.questao[2])
                                                  
         def opcaoQuestao(self, opcao=0):      
-        
+
                 
                 if opcao == 1:
                         self.resposta(self.questao[0])
@@ -74,9 +75,11 @@ class FrameStart(Frame):
                 self.posicao += 1
                 self.next()
 
+                
         
         def iniciar(self, numero1):
-                self.conta.fazerContas(numero1)
+                # self.conta.fazerContas(numero1)
+                self.conta.set_numero1(numero1)
                 self.next()
                 
                 

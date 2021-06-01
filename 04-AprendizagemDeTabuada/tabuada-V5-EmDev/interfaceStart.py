@@ -12,27 +12,52 @@ class FrameStart(Frame):
                 self.posicao = 0
                 self.questao = list()
                 
-                
+                # label da conta =======================================
                 self.lb_conta = Label(self, text='=-=-=-=', width=5, fg='red', font='arial 80 bold')
 
+                # botoes de opcoes de questoes =====================================
                 self.bt0 = Button(self, text='', command=lambda: self.opcaoQuestao(1), font='arial 20 bold', width=5, borderwidth=2)
                 self.bt1 = Button(self, text='', command=lambda: self.opcaoQuestao(2), font='arial 20 bold', width=5, borderwidth=2)
                 self.bt2 = Button(self, text='', command=lambda: self.opcaoQuestao(3), font='arial 20 bold', width=5, borderwidth=2)
 
-                self.lb_validacao = Label(self, text='', width=5)
+                self.lb_doBt0 = Label(self, text='1', font='arial 20 bold', fg='gray')
+                self.lb_doBt1 = Label(self, text='2', font='arial 20 bold', fg='gray')
+                self.lb_doBt2 = Label(self, text='3', font='arial 20 bold', fg='gray')
+
+                self.lb_validacao = Label(self, text='', width=5,
+                                          font='bold')
                 
                 
                 self.lb_conta.grid(row=1, columnspan=3, sticky=W+E)
 
                 
-                self.bt0.grid(row=2, sticky=W+E)
-                self.bt1.grid(row=3, sticky=W+E)
-                self.bt2.grid(row=4, sticky=W+E)
-                self.lb_validacao.grid(row=3, column=1, sticky=W+E)
+                self.bt0.grid(row=2, column=1,sticky=W+E)
+                self.bt1.grid(row=3, column=1,sticky=W+E)
+                self.bt2.grid(row=4, column=1,sticky=W+E)
+                
+                self.lb_doBt0.grid(row=2, column=0)
+                self.lb_doBt1.grid(row=3, column=0)
+                self.lb_doBt2.grid(row=4, column=0)
+                self.lb_validacao.grid(row=3, column=2, sticky=W+E)
+                
+                # teclas 1 2 3
+                self.bind('1', self.tecla1)
+                self.bind('2', self.tecla2)
+                self.bind('3', self.tecla3)
+                
+                
                 
                 self.n1 = 0
                 self.n2 = 0
                 self.resultado = 0
+        def tecla1(self, event):
+                self.opcaoQuestao(1)
+                print('1')
+        def tecla2(self, event):
+                self.opcaoQuestao(2)
+        def tecla3(self, event):
+                self.opcaoQuestao(3)
+        
         def next(self):
                 
                 self.n1 = self.conta.contas[self.posicao][0]

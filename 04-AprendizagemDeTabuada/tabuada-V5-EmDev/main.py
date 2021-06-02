@@ -9,6 +9,7 @@ class Principal(Tk):
         self.title('FTabuada v5')
         self.geometry('500x400')
         
+       
         # chamando classes
         
         self.menu = Menu(self)
@@ -45,7 +46,8 @@ class Principal(Tk):
         self.frameVoltarSair.pack(side=TOP) 
         
         self.mostrarMenu()
-        
+        print(self.menu.frameStartOn)
+
     def tecla1(self, event):
         self.menu.rbt1.select()
     def tecla2(self, event):
@@ -79,14 +81,13 @@ class Principal(Tk):
         self.menu.pack()
         self.bt_voltar.config(state=DISABLED)   
     
+    
     def Start(self):  
         self.esconderMenu()
-        
         self.bt_voltar.config(state=NORMAL)
-
         self.frameStart.pack()
-        self.frameStart.iniciar(self.valor.get())
-
+        self.frameStart.iniciar(self.menu.valor.get())
+        
 
 
     

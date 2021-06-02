@@ -7,6 +7,9 @@ class Menu(Frame):
         super().__init__(container)
         
         self.opcaoMenu = Frame(self)
+        
+        # variaveis
+        self.frameStartOn = 0
     
         self.bt_start = Button(self, text='start', command=self.Start, font='arial 20')
         self.valor = IntVar()
@@ -49,10 +52,15 @@ class Menu(Frame):
         self.opcaoMenu.pack(anchor=CENTER, padx=10, pady=20)
         self.bt_start.pack(anchor=CENTER)
 
+    def esconderMenu(self):
+        self.opcaoMenu.pack_forget()
+        self.bt_start.pack_forget()
     
-    
-    def Start(self):  
+    def Start(self):
+        self.frameStartOn = 1
+        
         self.frameStart = FrameStart(self)
+        self.esconderMenu()
         self.frameStart.pack()
         self.frameStart.iniciar(self.valor.get())
 

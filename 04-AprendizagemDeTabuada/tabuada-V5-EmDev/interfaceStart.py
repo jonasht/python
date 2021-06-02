@@ -120,36 +120,8 @@ class FrameStart(Frame):
                 # self.conta.fazerContas(numero1)
                 self.conta.set_numero1(numero1)
                 self.next()
-        
-        def teclaEnter(self, event):
-                self.Start()
-        
-        def esconder(self):
-                self.opcaoMenu.pack_forget()
-                self.bt_start.pack_forget()
-        
-        def esconderFrameStart(self):
-                self.frameStart.pack_forget()
-                self.mostrarMenu()
-
-        def mostrarMenu(self): 
-                self.opcaoMenu.pack()
-                self.opcaoMenu.pack(anchor=CENTER, padx=10, pady=20)
-                self.bt_start.pack(anchor=CENTER)
-                self.bt_voltar.config(state=DISABLED)
-    
-    
-        def Start(self):  
-                self.esconder()
-                self.bt_voltar.config(state=NORMAL)
                 
-                self.frameStart = FrameStart(self)
-                self.frameStart.pack()
-                self.frameStart.iniciar(self.valor.get())
-
-
-        
-        
+                
 
 if __name__ == '__main__':
         root = Tk()

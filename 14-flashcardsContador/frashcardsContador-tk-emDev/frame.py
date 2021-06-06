@@ -8,17 +8,20 @@ class Interface(Frame):
         self.frameComecar = Frame(self)
         self.frameTotal = Frame(self)
 
-        self.lb1 = Label(self.frameRecomecar, text='Cartas para Recomeçar:')
+        self.lb1 = Label(self.frameRecomecar, text='Cartas para Recomeçar:', width=20)
         self.lb_numero1 = Label(self.frameRecomecar, text='0', fg='green')
 
-        self.lb2 = Label(self.frameComecar, text='Cartas para   Começar:')
+        self.lb2 = Label(self.frameComecar, text='Cartas para   Começar:', width=20)
         self.lb_numero2 = Label(self.frameComecar, text='0', fg='blue')
 
-        self.lb_falta = Label(self.frameTotal, text='Faltam')
+        self.lb_falta = Label(self.frameTotal, text='Faltam:', width=6)
         self.lb_faltaNum = Label(self.frameTotal, text='0', fg='red')
 
-        self.lb_total = Label(self.frameTotal, text='Total')
+        self.lb_total = Label(self.frameTotal, text='Total:', width=10)
         self.lb_totalNum = Label(self.frameTotal, text='0', fg='blue')
+
+        self.lb_lista1 = Label(self, text='')
+        self.lb_lista2 = Label(self, text='')
 
         self.lb_falta.pack(side=LEFT)
         self.lb_faltaNum.pack(side=LEFT)
@@ -36,6 +39,9 @@ class Interface(Frame):
         self.frameRecomecar.pack()
         self.frameComecar.pack()
         self.frameTotal.pack()
+        
+        self.lb_lista1.pack()
+        self.lb_lista2.pack()
         
     def atualizarTotal(self, n):
         self.lb_totalNum.config(text=n)

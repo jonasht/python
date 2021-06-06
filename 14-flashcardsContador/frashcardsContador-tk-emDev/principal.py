@@ -27,6 +27,7 @@ class Principal(Tk):
         
         self.recomecar = True
         
+        self.mudarDeCor()
         self.mostrar()
 
     def botao1(self, event):
@@ -95,13 +96,31 @@ class Principal(Tk):
     def teclaEnter(self, event):
         self.recomecar = False
         print('enter apertado')
-        
+        self.mudarDeCor(2)
+        # mudar de cor as rows da frames ...
+    def mudarDeCor(self, op=1):
+        if op==1:
+            self.frame.lb2.config(bg='lightgray')
+            self.frame.lb_numero2.config(bg='lightgray')
+            self.frame.lb1.config(bg='gray')
+            self.frame.lb_numero1.config(bg='gray')
+        if op==2:
+            self.frame.lb1.config(bg='lightgray')
+            self.frame.lb_numero1.config(bg='lightgray')    
+                    
+            self.frame.lb2.config(bg='gray')
+            self.frame.lb_numero2.config(bg='gray')
+            
     def mostrar(self):
         self.frame.atualizarTotal(self.conta.get_total())
-        self.frame.atualizarRecomecar(self.conta.get_numRecomecar())
-        self.frame.atualizarComecar(self.conta.get_numComecar())
+        self.frame.atualizarRecomecar(self.conta.get_totalRecomecar())
+        self.frame.atualizarComecar(self.conta.get_totalComecar())
         self.frame.atualizarRestanteDeCartas(self.conta.get_restanteDeCartas())
 
+        self.frame.lb_lista1.config(text=self.conta.get_recomecar())
+        self.frame.lb_lista2.config(text=self.conta.get_comecar())
+
+        
 if __name__ == '__main__':
     root = Principal()
     root.geometry('300x300')

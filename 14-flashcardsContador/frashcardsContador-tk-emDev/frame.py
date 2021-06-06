@@ -18,7 +18,7 @@ class Interface(Frame):
         self.lb_faltaNum = Label(self.frameTotal, text='0', fg='red')
 
         self.lb_total = Label(self.frameTotal, text='Total')
-        self.lb_totalNum = Label(self.frameTotal, text='0')
+        self.lb_totalNum = Label(self.frameTotal, text='0', fg='blue')
 
         self.lb_falta.pack(side=LEFT)
         self.lb_faltaNum.pack(side=LEFT)
@@ -39,8 +39,16 @@ class Interface(Frame):
         
     def atualizarTotal(self, n):
         self.lb_totalNum.config(text=n)
+    
+    def atualizarRecomecar(self, n):
+        self.lb_numero1.config(text=n)  
         
-        
+    def atualizarComecar(self, n):
+        self.lb_numero2.config(text=n)
+    
+    def atualizarRestanteDeCartas(self, n):
+        self.lb_faltaNum.config(text=n)         
+    
 if __name__ == '__main__':
     root = Tk()
     root.geometry('300x300')

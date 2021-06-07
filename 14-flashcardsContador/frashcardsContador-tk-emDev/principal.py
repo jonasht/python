@@ -25,6 +25,8 @@ class Principal(Tk):
         # tecla enter
         self.bind('<Return>', self.teclaEnter)
         
+        # tecla backspace/apagar
+        self.bind('<BackSpace>', self.apagar)
         self.recomecar = True
         
         self.mudarDeCor()
@@ -97,7 +99,17 @@ class Principal(Tk):
         self.recomecar = False
         print('enter apertado')
         self.mudarDeCor(2)
-        # mudar de cor as rows da frames ...
+        
+    # backspace/apagar ultimo item de lista
+    def apagar(self, event):
+        if self.recomecar and self.conta.recomecar:
+            del(self.conta.recomecar[-1])
+        elif self.conta.comecar:
+            del(self.conta.comecar[-1])
+        
+        self.mostrar()
+        print('funcionando')
+    # mudar de cor as rows da frames ...
     def mudarDeCor(self, op=1):
         if op==1:
             self.frame.lb2.config(bg='lightgray')

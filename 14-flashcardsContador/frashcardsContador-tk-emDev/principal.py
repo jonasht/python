@@ -33,10 +33,14 @@ class Principal(Tk):
         self.bind('<KP_8>', self.teclaNum8)
         self.bind('<KP_9>', self.teclaNum9)
         
+        
         # tecla enter e tecla enter NumPad
         self.bind('<Return>', self.teclaEnter)
         self.bind('<KP_Enter>', self.teclaNumEnter)
         # ====================================
+
+        # tecla q para sair
+        self.bind('q', self.teclaQ)
         
         # tecla backspace/apagar
         self.bind('<BackSpace>', self.apagar)
@@ -92,6 +96,7 @@ class Principal(Tk):
         else:
             self.conta.somarComecar(6)
         self.mostrar()
+        
     def botao7(self, event):
         if self.posicaofileira[0]:
             self.conta.somarRecomecar(7)
@@ -183,11 +188,13 @@ class Principal(Tk):
         self.posicaofileira.reverse()
         print('enter apertado')
         self.mostrarFileira()
+        
     def teclaNumEnter(self, event):
         self.posicaofileira.reverse()
         print('enter apertado')
         self.mostrarFileira()
-        
+    
+    
     def teclaUp(self, event):
         print('up')
         self.posicaofileira.reverse()
@@ -196,7 +203,11 @@ class Principal(Tk):
     def teclaDown(self, event):
         print('down')
         self.posicaofileira.reverse()
-        self.mostrarFileira()        
+        self.mostrarFileira()
+
+    # tecla q para sair        
+    def teclaQ(self, event):
+        self.quit()
         
     # backspace/apagar ultimo item de lista
     def apagar(self, event):
@@ -228,6 +239,7 @@ class Principal(Tk):
         self.frame.atualizarTotal(self.conta.get_total())
         self.frame.atualizarRecomecar(self.conta.get_totalRecomecar())
         self.frame.atualizarComecar(self.conta.get_totalComecar())
+        
         self.frame.atualizarRestanteDeCartas(self.conta.get_restanteDeCartas())
 
         self.frame.lb_lista1.config(text=self.conta.get_recomecar())

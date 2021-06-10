@@ -10,15 +10,15 @@ class Interface(Frame):
         
 
         self.lb1 = Label(self.frameRecomecar, text='Cartas para Recomeçar:', width=20, font='arial 16')
-        self.lb_numero1 = Label(self.frameRecomecar, text='0', fg='purple', font='arial 16 bold')
+        self.lb_numero1 = Label(self.frameRecomecar, text='0', fg='purple', font='arial 16 bold', width=2)
 
         self.lb2 = Label(self.frameComecar,   text='Cartas para   Começar:', width=20, font='arial 16')
-        self.lb_numero2 = Label(self.frameComecar, text='0', fg='blue', font='arial 16 bold')
+        self.lb_numero2 = Label(self.frameComecar, text='0', fg='blue', font='arial 16 bold', width=2)
 
         self.lb_falta = Label(self.frameTotal, text='Faltam:', width=8, font='arial 16')
         self.lb_faltaNum = Label(self.frameTotal, text='0', fg='red', width=2, font='arial 16 bold')
 
-        self.lb_total = Label(self.frameTotal, text='Total:', width=9, font='arial 16')
+        self.lb_total = Label(self.frameTotal, text='     Total:', width=9, font='arial 16')
         self.lb_totalNum = Label(self.frameTotal, text='0', fg='blue', font='arial 16 bold')
 
         self.lb_lista1 = Label(self, text='', fg='purple')

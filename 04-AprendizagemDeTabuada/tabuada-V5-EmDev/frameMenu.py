@@ -57,8 +57,7 @@ class Menu(Frame):
         self.bt_start.pack_forget()
     
     def Start(self):
-        self.frameStartOn = 1
-        
+    
         self.frameStart = FrameStart(self)
         self.esconderMenu()
         self.frameStart.pack()

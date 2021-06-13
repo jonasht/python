@@ -3,14 +3,16 @@ from cl_3x3 import *
 
 
 class Frame_matriz(Frame):
-    def __init__(self, parent, matriz, resposta = ''):
+    def __init__(self, parent, titulo, matriz, resposta = ''):
         super().__init__(parent)
         
+        self.lb_titulo = Label(self, text=titulo, fg='blue').grid()
+        self.frameMatriz = Frame(self)
         # colocando as labels
         for i, im in enumerate(matriz):
             for ii, iim in enumerate(im):
-                Label(self, text=f'{iim}').grid(row=i, column=ii, padx=5)
-
+                Label(self.frameMatriz, text=f'{iim}').grid(row=i, column=ii, padx=5)
+        self.frameMatriz.grid()
         self.lb_resposta = Label(self,text=resposta, fg='green').grid()
 
         
@@ -102,26 +104,26 @@ class Interface(Frame):
         self.bt_fazerConta.pack()
         self.bt_contaDefault.pack()
         
-        self.lb_matrizDelta = Label(self, text='')
-        self.lb_deltaResposta = Label(self, fg='green')
+        # self.lb_matrizDelta = Label(self, text='')
+        # self.lb_deltaResposta = Label(self, fg='green')
 
         
-        self.lb_deltaXResposta = Label(self, fg='green')
-        self.lb_deltaYResposta = Label(self, fg='green')
-        self.lb_deltaZResposta = Label(self, fg='green')
+        # self.lb_deltaXResposta = Label(self, fg='green')
+        # self.lb_deltaYResposta = Label(self, fg='green')
+        # self.lb_deltaZResposta = Label(self, fg='green')
         
-        self.lb_respostaX = Label(self, fg='green')
-        self.lb_respostaY = Label(self, fg='green')
-        self.lb_respostaZ = Label(self, fg='green')
+        self.lb_ContaRespostaX = Label(self, fg='green')
+        self.lb_ContaRespostaY = Label(self, fg='green')
+        self.lb_ContaRespostaZ = Label(self, fg='green')
         
-        self.lb_deltaResposta.pack()
-        self.lb_deltaXResposta.pack()
-        self.lb_deltaYResposta.pack()
-        self.lb_deltaZResposta.pack()
+        # self.lb_deltaResposta.pack()
+        # self.lb_deltaXResposta.pack()
+        # self.lb_deltaYResposta.pack()
+        # self.lb_deltaZResposta.pack()
         
-        self.lb_respostaX.pack()
-        self.lb_respostaY.pack()
-        self.lb_respostaZ.pack()
+        # self.lb_ContaRespostaX.pack()
+        # self.lb_ContaRespostaY.pack()
+        # self.lb_ContaRespostaZ.pack()
         
         
         
@@ -170,99 +172,41 @@ class Interface(Frame):
                 {'x': x3, 'y': y3, 'z': z3, '=': igual3}
         ]
         a = cl_3x3(conta)
+ 
+        self.frame_matrizContas = Frame(self)
+        self.matriz_delta = Frame_matriz( self.frame_matrizContas, 'matriz delta:', a.matriz_delta, (f'delta = {a.delta}'))
+        self.matriz_deltaX = Frame_matriz(self.frame_matrizContas, 'matriz delta X:' ,a.matriz_deltaX, (f'delta x = {a.deltaX}'))
+        self.matriz_deltaY = Frame_matriz(self.frame_matrizContas, 'matriz delta Y:',a.matriz_deltaY, (f'delta y = {a.deltaY}'))
+        self.matriz_deltaZ = Frame_matriz(self.frame_matrizContas, 'matriz delta Z:', a.matriz_deltaZ, (f'delta z = {a.deltaZ}'))
+        self.matriz_delta. grid(row=0, column=0, padx=5, pady=5)
+        self.matriz_deltaX.grid(row=0, column=1, padx=5, pady=5)
+        self.matriz_deltaY.grid(row=1, column=0, padx=5, pady=5)
+        self.matriz_deltaZ.grid(row=1, column=1, padx=5, pady=5)
+        self.frame_matrizContas.pack()
 
-        print('conta:')
-        a.mostrar_conta()
+
+        self.lb_ContaRespostaX.config(text=f'x = {a.deltaX} / {a.delta} = {a.x}')
+        self.lb_ContaRespostaY.config(text=f'y = {a.deltaY} / {a.delta} = {a.y}')
+        self.lb_ContaRespostaZ.config(text=f'z = {a.deltaZ} / {a.delta} = {a.z}')
+        self.lb_ContaRespostaX.pack()
+        self.lb_ContaRespostaY.pack()
+        self.lb_ContaRespostaZ.pack()
         
-        # 
-        print('matriz delta:')
-        a.mostrar_matriz()
-        print(f'delta = {a.delta}')
-        # self.lb_matrizDelta.config(text=f'{a.matriz_delta[0]}\n{a.matriz_delta[1]}\n{a.matriz_delta[2]}')
-        # self.lb_deltaResposta.config(text=f'delta = {a.delta}')
-        self.matriz_delta = Frame_matriz(self, a.matriz_delta, (f'delta = {a.delta}'))
-        self.matriz_delta.pack()
-
-
         
-        
-        # a.mostrar_matriz('x')
-        # print(f'deltaX = {a.deltaX}')
-        # self.lb_matrizDeltaX.config(text=f'{a.matriz_deltaX[0]}\n{a.matriz_deltaX[1]}\n{a.matriz_deltaX[2]}')
-        # self.lb_deltaXResposta.config(text=f'delta X = {a.deltaX}')
-        self.matriz_deltaX = Frame_matriz(self, a.matriz_deltaX, (f'delta x = {a.deltaX}'))
-        self.matriz_deltaX.pack()
+        self.lb_respostaX = Label(self, text=f'x = {a.x}')
+        self.lb_respostaY = Label(self, text=f'y = {a.y}')
+        self.lb_respostaZ = Label(self, text=f'z = {a.z}')
+        self.lb_respostaX.pack()
+        self.lb_respostaY.pack()
+        self.lb_respostaZ.pack()
 
-        # a.mostrar_matriz('y')
-        # print(f'deltaX = {a.deltaY}')
-        # self.lb_matrizDeltay.config(text=f'{a.matriz_deltaY[0]}\n{a.matriz_deltaY[1]}\n{a.matriz_deltaY[2]}')
-        # self.lb_deltaYResposta.config(text=f'delta Y = {a.deltaY}')
-        self.matriz_deltaY = Frame_matriz(self, a.matriz_deltaY, (f'delta y = {a.deltaY}'))
-        self.matriz_deltaY.pack()
-
-        # a.mostrar_matriz('z')
-        # print(f'deltaZ = {a.deltaZ}')
-        # self.lb_matrizDeltaz.config(text=f'{a.matriz_deltaZ[0]}\n{a.matriz_deltaZ[1]}\n{a.matriz_deltaZ[2]}')
-        # self.lb_deltaZResposta.config(text=f'delta Z = {a.deltaZ}')
-        self.matriz_deltaZ = Frame_matriz(self, a.matriz_deltaZ, (f'delta z = {a.deltaZ}'))
-        self.matriz_deltaZ.pack()
-
-        # print(f'delta={a.delta}, deltaX={a.deltaX}, deltaY={a.deltaY}, deltaZ={a.deltaZ}')
-
-        # print(f'x = {a.deltaX}/{a.delta} = {a.x}\n')
-        # print(f'y = {a.deltaY}/{a.delta} = {a.y}\n')
-        # print(f'z = {a.deltaZ}/{a.delta} = {a.z}\n')
-        
-        self.lb_respostaX.config(text=f'x = {a.deltaX}/{a.delta} = {a.x}')
-        self.lb_respostaY.config(text=f'y = {a.deltaY}/{a.delta} = {a.y}')
-        self.lb_respostaZ.config(text=f'z = {a.deltaZ}/{a.delta} = {a.z}')
-        
-        # print(f'x = {a.x}, y = {a.y}, z = {a.z}')
-   
                 
         
 
 if __name__ == '__main__':
     root = Tk()
+    root.geometry('400x500')
     frame = Interface(root)
     frame.pack()
     root.mainloop()
         
-# --------------------------------------------------
-# conta = [
-#     {'x': 1, 'y': 2, 'z': 1, '=': 8},
-#     {'x': 2, 'y': -1, 'z': 1, '=': 3},
-#     {'x': 3, 'y': 1, 'z': -1, '=': 2}
-# ]
-# --------------------------------------------------
-
-# a = cl_3x3(conta)
-
-print()
-
-
-# print('conta:')
-# a.mostrar_conta()
-
-# print('matriz delta:')
-# a.mostrar_matriz()
-# print(f'delta = {a.delta}')
-
-
-# a.mostrar_matriz('x')
-# print(f'deltaX = {a.deltaX}')
-
-# a.mostrar_matriz('y')
-# print(f'deltaX = {a.deltaY}')
-
-# a.mostrar_matriz('z')
-
-# print(f'deltaZ = {a.deltaZ}')
-
-# print(f'delta={a.delta}, deltaX={a.deltaX}, deltaY={a.deltaY}, deltaZ={a.deltaZ}')
-
-# print(f'x = {a.deltaX}/{a.delta} = {a.x}\n')
-# print(f'y = {a.deltaY}/{a.delta} = {a.y}\n')
-# print(f'z = {a.deltaZ}/{a.delta} = {a.z}\n')
-
-# print(f'x = {a.x}, y = {a.y}, z = {a.z}')

@@ -7,6 +7,8 @@ print(matriz)
 class Teste(Frame):
     def __init__(self, parent, matriz):
         super().__init__(parent)
+        
+        # colocando as labels
         for i, im in enumerate(matriz):
             for ii, iim in enumerate(im):
                 Label(self, text=f'{iim}').grid(row=i, column=ii, padx=5)

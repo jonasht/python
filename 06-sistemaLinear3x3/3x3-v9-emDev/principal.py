@@ -1,7 +1,19 @@
-from enum import IntEnum
 from tkinter import *
 from cl_3x3 import *
 
+
+class Frame_matriz(Frame):
+    def __init__(self, parent, matriz, resposta = ''):
+        super().__init__(parent)
+        
+        # colocando as labels
+        for i, im in enumerate(matriz):
+            for ii, iim in enumerate(im):
+                Label(self, text=f'{iim}').grid(row=i, column=ii, padx=5)
+
+        self.lb_resposta = Label(self,text=resposta, fg='green').grid()
+
+        
 class Interface(Frame):
     def __init__(self, parent):
         super().__init__(parent)
@@ -93,26 +105,18 @@ class Interface(Frame):
         self.lb_matrizDelta = Label(self, text='')
         self.lb_deltaResposta = Label(self, fg='green')
 
-        self.lb_matrizDeltaX = Label(self)
+        
         self.lb_deltaXResposta = Label(self, fg='green')
-
-        self.lb_matrizDeltay = Label(self)
         self.lb_deltaYResposta = Label(self, fg='green')
-
-        self.lb_matrizDeltaz = Label(self)
         self.lb_deltaZResposta = Label(self, fg='green')
         
         self.lb_respostaX = Label(self, fg='green')
         self.lb_respostaY = Label(self, fg='green')
         self.lb_respostaZ = Label(self, fg='green')
         
-        self.lb_matrizDelta.pack()
         self.lb_deltaResposta.pack()
-        self.lb_matrizDeltaX.pack()
         self.lb_deltaXResposta.pack()
-        self.lb_matrizDeltay.pack()
         self.lb_deltaYResposta.pack()
-        self.lb_matrizDeltaz.pack()
         self.lb_deltaZResposta.pack()
         
         self.lb_respostaX.pack()
@@ -174,23 +178,35 @@ class Interface(Frame):
         print('matriz delta:')
         a.mostrar_matriz()
         print(f'delta = {a.delta}')
-        self.lb_matrizDelta.config(text=f'{a.matriz_delta[0]}\n{a.matriz_delta[1]}\n{a.matriz_delta[2]}')
-        self.lb_deltaResposta.config(text=f'delta = {a.delta}')
+        # self.lb_matrizDelta.config(text=f'{a.matriz_delta[0]}\n{a.matriz_delta[1]}\n{a.matriz_delta[2]}')
+        # self.lb_deltaResposta.config(text=f'delta = {a.delta}')
+        self.matriz_delta = Frame_matriz(self, a.matriz_delta, (f'delta = {a.delta}'))
+        self.matriz_delta.pack()
+
+
+        
         
         # a.mostrar_matriz('x')
         # print(f'deltaX = {a.deltaX}')
-        self.lb_matrizDeltaX.config(text=f'{a.matriz_deltaX[0]}\n{a.matriz_deltaX[1]}\n{a.matriz_deltaX[2]}')
-        self.lb_deltaXResposta.config(text=f'delta X = {a.deltaX}')
+        # self.lb_matrizDeltaX.config(text=f'{a.matriz_deltaX[0]}\n{a.matriz_deltaX[1]}\n{a.matriz_deltaX[2]}')
+        # self.lb_deltaXResposta.config(text=f'delta X = {a.deltaX}')
+        self.matriz_deltaX = Frame_matriz(self, a.matriz_deltaX, (f'delta x = {a.deltaX}'))
+        self.matriz_deltaX.pack()
 
         # a.mostrar_matriz('y')
         # print(f'deltaX = {a.deltaY}')
-        self.lb_matrizDeltay.config(text=f'{a.matriz_deltaY[0]}\n{a.matriz_deltaY[1]}\n{a.matriz_deltaY[2]}')
-        self.lb_deltaYResposta.config(text=f'delta Y = {a.deltaY}')
+        # self.lb_matrizDeltay.config(text=f'{a.matriz_deltaY[0]}\n{a.matriz_deltaY[1]}\n{a.matriz_deltaY[2]}')
+        # self.lb_deltaYResposta.config(text=f'delta Y = {a.deltaY}')
+        self.matriz_deltaY = Frame_matriz(self, a.matriz_deltaY, (f'delta y = {a.deltaY}'))
+        self.matriz_deltaY.pack()
 
         # a.mostrar_matriz('z')
         # print(f'deltaZ = {a.deltaZ}')
-        self.lb_matrizDeltaz.config(text=f'{a.matriz_deltaZ[0]}\n{a.matriz_deltaZ[1]}\n{a.matriz_deltaZ[2]}')
-        self.lb_deltaZResposta.config(text=f'delta Z = {a.deltaZ}')
+        # self.lb_matrizDeltaz.config(text=f'{a.matriz_deltaZ[0]}\n{a.matriz_deltaZ[1]}\n{a.matriz_deltaZ[2]}')
+        # self.lb_deltaZResposta.config(text=f'delta Z = {a.deltaZ}')
+        self.matriz_deltaZ = Frame_matriz(self, a.matriz_deltaZ, (f'delta z = {a.deltaZ}'))
+        self.matriz_deltaZ.pack()
+
         # print(f'delta={a.delta}, deltaX={a.deltaX}, deltaY={a.deltaY}, deltaZ={a.deltaZ}')
 
         # print(f'x = {a.deltaX}/{a.delta} = {a.x}\n')
@@ -202,7 +218,7 @@ class Interface(Frame):
         self.lb_respostaZ.config(text=f'z = {a.deltaZ}/{a.delta} = {a.z}')
         
         # print(f'x = {a.x}, y = {a.y}, z = {a.z}')
-
+   
                 
         
 

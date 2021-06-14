@@ -6,8 +6,10 @@ class Frame_matriz(Frame):
     def __init__(self, parent, titulo, matriz, resposta = ''):
         super().__init__(parent)
         
-        self.lb_titulo = Label(self, text=titulo, fg='blue').grid()
-        self.frameMatriz = Frame(self)
+        # self.lb_titulo = Label(self, text=titulo, fg='blue').grid()
+        
+        
+        self.frameMatriz = LabelFrame(self, text=titulo.title())
         # colocando as labels
         for i, im in enumerate(matriz):
             for ii, iim in enumerate(im):
@@ -20,6 +22,8 @@ class Interface(Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
+        # variaveis
+        self.jaFoiApertado = False
         
         # declarando frame =======
         self.frame_conta = Frame(self)
@@ -104,31 +108,18 @@ class Interface(Frame):
         self.bt_fazerConta.pack()
         self.bt_contaDefault.pack()
         
-        # self.lb_matrizDelta = Label(self, text='')
-        # self.lb_deltaResposta = Label(self, fg='green')
-
+        self.frame_todosResultados = Frame(self)
         
-        # self.lb_deltaXResposta = Label(self, fg='green')
-        # self.lb_deltaYResposta = Label(self, fg='green')
-        # self.lb_deltaZResposta = Label(self, fg='green')
+        self.lb_ContaRespostaX = Label(self.frame_todosResultados, fg='green')
+        self.lb_ContaRespostaY = Label(self.frame_todosResultados, fg='green')
+        self.lb_ContaRespostaZ = Label(self.frame_todosResultados, fg='green')
         
-        self.lb_ContaRespostaX = Label(self, fg='green')
-        self.lb_ContaRespostaY = Label(self, fg='green')
-        self.lb_ContaRespostaZ = Label(self, fg='green')
-        
-        # self.lb_deltaResposta.pack()
-        # self.lb_deltaXResposta.pack()
-        # self.lb_deltaYResposta.pack()
-        # self.lb_deltaZResposta.pack()
-        
-        # self.lb_ContaRespostaX.pack()
-        # self.lb_ContaRespostaY.pack()
-        # self.lb_ContaRespostaZ.pack()
         
         
         
         self.mostrar_contaDefault()
     def mostrar_contaDefault(self):
+        
         # desativando botao
         self.bt_contaDefault.config(state=DISABLED)
         
@@ -151,8 +142,12 @@ class Interface(Frame):
         self.etd_igual1.insert(0, conta[0]['='])
         self.etd_igual2.insert(0, conta[1]['='])
         self.etd_igual3.insert(0, conta[2]['='])
-    
+
     def fazer_conta(self):
+        if self.jaFoiApertado:
+            self.frame_todosResultados.pack_forget()
+            self.jaFoiApertado = False
+            
         x1 = int(self.etd_x1.get())
         x2 = int(self.etd_x2.get())
         x3 = int(self.etd_x3.get())
@@ -173,7 +168,7 @@ class Interface(Frame):
         ]
         a = cl_3x3(conta)
  
-        self.frame_matrizContas = Frame(self)
+        self.frame_matrizContas = Frame(self.frame_todosResultados)
         self.matriz_delta = Frame_matriz( self.frame_matrizContas, 'matriz delta:', a.matriz_delta, (f'delta = {a.delta}'))
         self.matriz_deltaX = Frame_matriz(self.frame_matrizContas, 'matriz delta X:' ,a.matriz_deltaX, (f'delta x = {a.deltaX}'))
         self.matriz_deltaY = Frame_matriz(self.frame_matrizContas, 'matriz delta Y:',a.matriz_deltaY, (f'delta y = {a.deltaY}'))
@@ -192,15 +187,16 @@ class Interface(Frame):
         self.lb_ContaRespostaY.pack()
         self.lb_ContaRespostaZ.pack()
         
-        
-        self.lb_respostaX = Label(self, text=f'x = {a.x}')
-        self.lb_respostaY = Label(self, text=f'y = {a.y}')
-        self.lb_respostaZ = Label(self, text=f'z = {a.z}')
+        self.lb_respostaX = Label(self.frame_todosResultados, text=f'x = {a.x}')
+        self.lb_respostaY = Label(self.frame_todosResultados, text=f'y = {a.y}')
+        self.lb_respostaZ = Label(self.frame_todosResultados, text=f'z = {a.z}')
         self.lb_respostaX.pack()
         self.lb_respostaY.pack()
         self.lb_respostaZ.pack()
 
-                
+        self.frame_todosResultados.pack()
+        
+        self.jaFoiApertado = True
         
 
 if __name__ == '__main__':

@@ -1,32 +1,28 @@
-from tkinter import *
+from tkinter import *  
 from cl_3x3 import *
-
-
-class Frame_matriz(Frame):
-    def __init__(self, parent, titulo, matriz, resposta = ''):
-        super().__init__(parent)
-        
-        # self.lb_titulo = Label(self, text=titulo, fg='blue').grid()
-        
-        
-        self.frameMatriz = LabelFrame(self, text=titulo.title())
-        # colocando as labels
-        for i, im in enumerate(matriz):
-            for ii, iim in enumerate(im):
-                Label(self.frameMatriz, text=f'{iim}').grid(row=i, column=ii, padx=5)
-        self.frameMatriz.grid()
-        self.lb_resposta = Label(self,text=resposta, fg='green').grid()
-
+from frameContas import *
         
 class Interface(Frame):
     def __init__(self, parent):
         super().__init__(parent)
-
-        # variaveis
-        self.jaFoiApertado = False
         
+        # definindo frames 
+        self.frame_principal = Frame(self)
+        self.frameTOP = Frame(self.frame_principal, width=500)
+        self.frameBAIXO = Frame(self.frame_principal)
+        
+        # botao fazer conta e botao conta default
+        self.bt_contaDefault = Button(self.frameTOP, text='set conta default', command=self.mostrar_contaDefault)
+        self.bt_contaDefault.pack(side=RIGHT)
+        self.bt_sair = Button(self.frameTOP, text='Sair', command=self.quit)
+        self.bt_sair.pack(side=LEFT, expand=True, fill=BOTH)
+        
+        self.bt_limpar = Button(self.frameBAIXO, text='Limpar', command=self.limparEntradas)
+        self.bt_limpar.pack(side=LEFT)
+        self.bt_fazerConta = Button(self.frameBAIXO, text='fazer conta', command=self.fazer_conta)
+        self.bt_fazerConta.pack(side=RIGHT, expand=True, fill=BOTH)
         # declarando frame =======
-        self.frame_conta = Frame(self)
+        self.frame_conta = Frame(self.frame_principal)
 
         # 1 ============== conta
         self.etd_x1 = Entry(self.frame_conta, width=5)
@@ -99,25 +95,21 @@ class Interface(Frame):
         self.etd_igual3.grid(row=3, column=8)
         self.lb_igual3.grid(row=3, column=7)
         
-        self.frame_conta.pack()
+    
         
-        # botao fazer conta e botao conta default 
-        self.bt_fazerConta = Button(self, text='fazer conta', command=self.fazer_conta)
-        self.bt_contaDefault = Button(self, text='set conta default', command=self.mostrar_contaDefault)
-
-        self.bt_fazerConta.pack()
-        self.bt_contaDefault.pack()
+        self.frameTOP.pack(fill=BOTH)
+        self.frame_conta.pack()
+        self.frameBAIXO.pack(fill=BOTH)
+        
+        self.frame_principal.pack()
         
         self.frame_todosResultados = Frame(self)
         
-        self.lb_ContaRespostaX = Label(self.frame_todosResultados, fg='green')
-        self.lb_ContaRespostaY = Label(self.frame_todosResultados, fg='green')
-        self.lb_ContaRespostaZ = Label(self.frame_todosResultados, fg='green')
         
         
         
         
-        self.mostrar_contaDefault()
+        # self.mostrar_contaDefault()
     def mostrar_contaDefault(self):
         
         # desativando botao
@@ -128,7 +120,6 @@ class Interface(Frame):
         {'x': 2, 'y': -1, 'z': 1, '=': 3},
         {'x': 3, 'y': 1, 'z': -1, '=': 2}
         ]
-        # self.etd_x1.config(textvariable=1)
         self.etd_x1.insert(0, conta[0]['x'])
         self.etd_y1.insert(0, conta[0]['y'])
         self.etd_z1.insert(0, conta[0]['z'])
@@ -142,12 +133,25 @@ class Interface(Frame):
         self.etd_igual1.insert(0, conta[0]['='])
         self.etd_igual2.insert(0, conta[1]['='])
         self.etd_igual3.insert(0, conta[2]['='])
-
-    def fazer_conta(self):
-        if self.jaFoiApertado:
-            self.frame_todosResultados.pack_forget()
-            self.jaFoiApertado = False
-            
+    
+    # limpar todas as entradas/Entry
+    def limparEntradas(self):
+        self.etd_x1.delete(0, END)
+        self.etd_y1.delete(0, END)
+        self.etd_z1.delete(0, END)
+        self.etd_x2.delete(0, END)
+        self.etd_y2.delete(0, END)
+        self.etd_z2.delete(0, END)
+        self.etd_x3.delete(0, END)
+        self.etd_y3.delete(0, END)
+        self.etd_z3.delete(0, END)
+        
+        self.etd_igual1.delete(0, END)
+        self.etd_igual2.delete(0, END)
+        self.etd_igual3.delete(0, END)
+        
+    # pega os numeros de entradas/Entry
+    def get_numDeEntradas(self):
         x1 = int(self.etd_x1.get())
         x2 = int(self.etd_x2.get())
         x3 = int(self.etd_x3.get())
@@ -160,12 +164,17 @@ class Interface(Frame):
         igual1 = int(self.etd_igual1.get())
         igual2 = int(self.etd_igual2.get())
         igual3 = int(self.etd_igual3.get())
-        
         conta = [
                 {'x': x1, 'y': y1, 'z': z1, '=': igual1},
                 {'x': x2, 'y': y2, 'z': z2, '=': igual2},
                 {'x': x3, 'y': y3, 'z': z3, '=': igual3}
         ]
+        return conta
+    
+    def fazer_conta(self):
+        self.bt_fazerConta.config(state=DISABLED)
+        
+        conta = self.get_numDeEntradas()
         a = cl_3x3(conta)
  
         self.frame_matrizContas = Frame(self.frame_todosResultados)
@@ -179,24 +188,32 @@ class Interface(Frame):
         self.matriz_deltaZ.grid(row=1, column=1, padx=5, pady=5)
         self.frame_matrizContas.pack()
 
+        self.frame_resultadoFinal1 = Frame(self.frame_todosResultados)
+        self.frame_resultadoFinal2 = Frame(self.frame_todosResultados)
 
-        self.lb_ContaRespostaX.config(text=f'x = {a.deltaX} / {a.delta} = {a.x}')
-        self.lb_ContaRespostaY.config(text=f'y = {a.deltaY} / {a.delta} = {a.y}')
-        self.lb_ContaRespostaZ.config(text=f'z = {a.deltaZ} / {a.delta} = {a.z}')
+        self.lb_ContaRespostaX = Label(self.frame_resultadoFinal1, 
+                                       fg='green', 
+                                       text=f'x = {a.deltaX} / {a.delta} = {a.x}')
+        self.lb_ContaRespostaY = Label(self.frame_resultadoFinal1, fg='green',
+                                       text=f'y = {a.deltaY} / {a.delta} = {a.y}')
+        self.lb_ContaRespostaZ = Label(self.frame_resultadoFinal1, 
+                                       fg='green',
+                                       text=f'z = {a.deltaZ} / {a.delta} = {a.z}')
         self.lb_ContaRespostaX.pack()
         self.lb_ContaRespostaY.pack()
         self.lb_ContaRespostaZ.pack()
         
-        self.lb_respostaX = Label(self.frame_todosResultados, text=f'x = {a.x}')
-        self.lb_respostaY = Label(self.frame_todosResultados, text=f'y = {a.y}')
-        self.lb_respostaZ = Label(self.frame_todosResultados, text=f'z = {a.z}')
+        self.lb_respostaX = Label(self.frame_resultadoFinal2, text=f'x = {a.x}', font='bold')
+        self.lb_respostaY = Label(self.frame_resultadoFinal2, text=f'y = {a.y}', font='bold')
+        self.lb_respostaZ = Label(self.frame_resultadoFinal2, text=f'z = {a.z}', font='bold')
         self.lb_respostaX.pack()
         self.lb_respostaY.pack()
         self.lb_respostaZ.pack()
 
+        self.frame_resultadoFinal1.pack(side=LEFT)
+        self.frame_resultadoFinal2.pack(side=RIGHT)
         self.frame_todosResultados.pack()
         
-        self.jaFoiApertado = True
         
 
 if __name__ == '__main__':

@@ -10,8 +10,7 @@ class Principal(Tk):
         
         self.bind('<Return>', self.teclaEnter)
         
-        self.frame.entrada.focus()
-        self.frame.bt.config(state=)
+        # self.frame.entrada.focus()
         
     def teclaEnter(self, event):
         self.iniciar()

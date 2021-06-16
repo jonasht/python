@@ -1,12 +1,10 @@
 from tkinter import *  
 from cl_3x3 import *
-from frameContas import Frame_matriz
+from frameContas import *
         
 class Interface(Frame):
     def __init__(self, parent):
         super().__init__(parent)
-        # variaveis ==============================================
-        self.jaFoiFeito = False 
         
         # definindo frames 
         self.frame_principal = Frame(self)
@@ -26,7 +24,7 @@ class Interface(Frame):
         # declarando frame =======
         self.frame_conta = Frame(self.frame_principal)
 
-        # linha 1 conta ======================================= 
+        # 1 ============== conta
         self.etd_x1 = Entry(self.frame_conta, width=5)
         self.lb_x1 = Label(self.frame_conta, text='X')
         
@@ -36,7 +34,7 @@ class Interface(Frame):
         self.etd_z1 = Entry(self.frame_conta, width=5)
         self.lb_z1 = Label(self.frame_conta, text='Z')
 
-        # linha 2 conta ======================================= 
+        # 2 ============== conta
         self.etd_x2 = Entry(self.frame_conta, width=5)
         self.lb_x2 = Label(self.frame_conta, text='X')
 
@@ -46,7 +44,7 @@ class Interface(Frame):
         self.etd_z2 = Entry(self.frame_conta, width=5)
         self.lb_z2 = Label(self.frame_conta, text='Z')
 
-        # linha 3 conta =======================================
+        # 3 conta =============
         self.etd_x3 = Entry(self.frame_conta, width=5)
         self.lb_x3 = Label(self.frame_conta, text='X')
 
@@ -56,7 +54,7 @@ class Interface(Frame):
         self.etd_z3 = Entry(self.frame_conta, width=5)
         self.lb_z3  = Label(self.frame_conta, text='Z')
         
-        # sinal de igual (=), =============================
+        # sinal  (=) de igual =====================
 
         self.etd_igual1 = Entry(self.frame_conta, width=5)
         self.lb_igual1 = Label(self.frame_conta, text='=')
@@ -106,35 +104,22 @@ class Interface(Frame):
         self.frame_principal.pack()
         
         self.frame_todosResultados = Frame(self)
-        # labels de resultados finais ====================================
         
-        self.frame_resultadoFinal1 = Frame(self.frame_todosResultados)
-        self.frame_resultadoFinal2 = Frame(self.frame_todosResultados)
-
-        self.lb_ContaRespostaX = Label(self.frame_resultadoFinal1, 
-                                       fg='green', 
-                                       text='')
-        self.lb_ContaRespostaY = Label(self.frame_resultadoFinal1, fg='green',
-                                       text='')
-        self.lb_ContaRespostaZ = Label(self.frame_resultadoFinal1, 
-                                       fg='green',
-                                       text='')
-
-        self.lb_respostaX = Label(self.frame_resultadoFinal2, text=f'', font='bold')
-        self.lb_respostaY = Label(self.frame_resultadoFinal2, text=f'', font='bold')
-        self.lb_respostaZ = Label(self.frame_resultadoFinal2, text=f'', font='bold')
-
-    
         
-        # self.mostrar_contaDefault()
+        
+        bt_destruir = Button(self, text='destruir', command=self.destruir)
+        bt_destruir.pack()
+        
+        self.mostrar_contaDefault()
         
     def destruir(self):
-        if self.jaFoiFeito:
-            print('destruir')
-            self.frame_matrizContas.destroy()
-            self.frame_resultadoFinal1.pack_forget()
-            self.frame_resultadoFinal2.pack_forget()
-
+        print('destruir')
+        self.frame_matrizContas.destroy()
+        
+        # self.matriz_delta.pack_forget()
+        # self.matriz_deltaX.pack_forget()
+        # self.matriz_deltaY.pack_forget()
+        # self.matriz_deltaZ.pack_forget()
         
     def mostrar_contaDefault(self):
         
@@ -198,15 +183,11 @@ class Interface(Frame):
         return conta
     
     def fazer_conta(self):
-        self.destruir()
+        # self.bt_fazerConta.config(state=DISABLED)
         
-        # pegando numeros das entradas
         conta = self.get_numDeEntradas()
-
-        # fazendo as 3x3
         a = cl_3x3(conta)
  
-        # fazendo/chamando as frames e colocando os resultados ==========================================
         self.frame_matrizContas = Frame(self.frame_todosResultados)
         self.matriz_delta = Frame_matriz( self.frame_matrizContas, 'matriz delta:', a.matriz_delta, (f'delta = {a.delta}'))
         self.matriz_deltaX = Frame_matriz(self.frame_matrizContas, 'matriz delta X:' ,a.matriz_deltaX, (f'delta x = {a.deltaX}'))
@@ -218,21 +199,24 @@ class Interface(Frame):
         self.matriz_deltaZ.grid(row=1, column=1, padx=5, pady=5)
         self.frame_matrizContas.pack()
 
-        
-        # colocando o resutado final deltas.., x y z====================================
+        self.frame_resultadoFinal1 = Frame(self.frame_todosResultados)
+        self.frame_resultadoFinal2 = Frame(self.frame_todosResultados)
 
-        self.lb_ContaRespostaX.config(text=f'x = {a.deltaX} / {a.delta} = {a.x}')
-        self.lb_ContaRespostaY.config(text=f'y = {a.deltaY} / {a.delta} = {a.y}')
-        self.lb_ContaRespostaZ.config(text=f'z = {a.deltaZ} / {a.delta} = {a.z}')
-        
+        self.lb_ContaRespostaX = Label(self.frame_resultadoFinal1, 
+                                       fg='green', 
+                                       text=f'x = {a.deltaX} / {a.delta} = {a.x}')
+        self.lb_ContaRespostaY = Label(self.frame_resultadoFinal1, fg='green',
+                                       text=f'y = {a.deltaY} / {a.delta} = {a.y}')
+        self.lb_ContaRespostaZ = Label(self.frame_resultadoFinal1, 
+                                       fg='green',
+                                       text=f'z = {a.deltaZ} / {a.delta} = {a.z}')
         self.lb_ContaRespostaX.pack()
         self.lb_ContaRespostaY.pack()
         self.lb_ContaRespostaZ.pack()
         
-        self.lb_respostaX.config(text=f'x = {a.x}')
-        self.lb_respostaY.config(text=f'y = {a.y}')
-        self.lb_respostaZ.config(text=f'z = {a.z}')
-
+        self.lb_respostaX = Label(self.frame_resultadoFinal2, text=f'x = {a.x}', font='bold')
+        self.lb_respostaY = Label(self.frame_resultadoFinal2, text=f'y = {a.y}', font='bold')
+        self.lb_respostaZ = Label(self.frame_resultadoFinal2, text=f'z = {a.z}', font='bold')
         self.lb_respostaX.pack()
         self.lb_respostaY.pack()
         self.lb_respostaZ.pack()
@@ -241,8 +225,7 @@ class Interface(Frame):
         self.frame_resultadoFinal2.pack(side=RIGHT)
         self.frame_todosResultados.pack()
         
-        # variavel dizendo que conta jah foi feita, para destruir a frame poder funcionar
-        self.jaFoiFeito = True
+        
 
 if __name__ == '__main__':
     root = Tk()

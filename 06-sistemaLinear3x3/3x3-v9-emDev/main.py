@@ -5,6 +5,7 @@ from frameContas import Frame_matriz
 class Interface(Frame):
     def __init__(self, parent):
         super().__init__(parent)
+        
         # variaveis ==============================================
         self.jaFoiFeito = False 
         
@@ -23,7 +24,8 @@ class Interface(Frame):
         self.bt_limpar.pack(side=LEFT)
         self.bt_fazerConta = Button(self.frameBAIXO, text='fazer conta', command=self.fazer_conta)
         self.bt_fazerConta.pack(side=RIGHT, expand=True, fill=BOTH)
-        # declarando frame =======
+        
+        # declarando frame onde é colocando os numeros p fazer a conta ===========================================
         self.frame_conta = Frame(self.frame_principal)
 
         # linha 1 conta ======================================= 
@@ -103,6 +105,9 @@ class Interface(Frame):
         self.frame_conta.pack()
         self.frameBAIXO.pack(fill=BOTH)
         
+        self.lb_aviso = Label(self.frame_principal, text='aviso---')
+        self.lb_aviso.pack()
+        
         self.frame_principal.pack()
         
         self.frame_todosResultados = Frame(self)
@@ -146,6 +151,7 @@ class Interface(Frame):
         {'x': 2, 'y': -1, 'z': 1, '=': 3},
         {'x': 3, 'y': 1, 'z': -1, '=': 2}
         ]
+        
         self.etd_x1.insert(0, conta[0]['x'])
         self.etd_y1.insert(0, conta[0]['y'])
         self.etd_z1.insert(0, conta[0]['z'])
@@ -178,18 +184,20 @@ class Interface(Frame):
         
     # pega os numeros de entradas/Entry
     def get_numDeEntradas(self):
-        x1 = int(self.etd_x1.get())
-        x2 = int(self.etd_x2.get())
-        x3 = int(self.etd_x3.get())
-        y1 = int(self.etd_y1.get())
-        y2 = int(self.etd_y2.get())
-        y3 = int(self.etd_y3.get())
-        z1 = int(self.etd_z1.get())
-        z2 = int(self.etd_z2.get())
-        z3 = int(self.etd_z3.get())
-        igual1 = int(self.etd_igual1.get())
-        igual2 = int(self.etd_igual2.get())
-        igual3 = int(self.etd_igual3.get())
+        x1 = int(self.etd_x1.get()) if self.etd_x1.get() != '' else 0
+        x2 = int(self.etd_x2.get()) if self.etd_x2.get() != '' else 0
+        x3 = int(self.etd_x3.get()) if self.etd_x3.get() != '' else 0
+        y1 = int(self.etd_y1.get()) if self.etd_y1.get() != '' else 0
+        y2 = int(self.etd_y2.get()) if self.etd_y2.get() != '' else 0
+        y3 = int(self.etd_y3.get()) if self.etd_y3.get() != '' else 0
+        z1 = int(self.etd_z1.get()) if self.etd_z1.get() != '' else 0
+        z2 = int(self.etd_z2.get()) if self.etd_z2.get() != '' else 0
+        z3 = int(self.etd_z3.get()) if self.etd_z3.get() != '' else 0
+        
+        igual1 = int(self.etd_igual1.get()) if self.etd_igual1.get() != '' else 0
+        igual2 = int(self.etd_igual2.get()) if self.etd_igual2.get() != '' else 0
+        igual3 = int(self.etd_igual3.get()) if self.etd_igual3.get() != '' else 0
+        
         conta = [
                 {'x': x1, 'y': y1, 'z': z1, '=': igual1},
                 {'x': x2, 'y': y2, 'z': z2, '=': igual2},

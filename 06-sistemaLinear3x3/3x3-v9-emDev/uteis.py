@@ -42,6 +42,7 @@ def separarLetra(letras):
     
     return list(letras)
 
+
 def temLetra_exceto(chars, exceto='x'):
     # chars = strings com letras e numero, exceto = a letra que eh para ignorar
     # retorna true pq tem ou false porque nao
@@ -51,7 +52,6 @@ def temLetra_exceto(chars, exceto='x'):
     sim = False
     
     for char in chars:
-        print('char:', char)
         if ehLetra(char) and char != exceto:
             sim = True
 

@@ -1,44 +1,47 @@
-def ehNumero(n):
-    try:
-        int(n)
-    except:
-        return False
-    else:
-        return True
-def TemNumero_list(lista):
-    for valor in lista:
-        if ehNumero(valor):
-            return True
-    return False
+from uteis import *
+
 
 def filtrar(chave, valor):
     erro = False
     
-    valorlista = list(valor)
- 
-    if chave in valorlista:
-        qtdChave = valorlista.count(chave)
-        print(valorlista)
-        if TemNumero_list(valorlista) and qtdChave > 0:
-                qtdChave -= 1
-                print(valorlista)
-                
-        if valorlista[0] == '-' or valorlista[0] == '+':
-            valor = valorlista[0] + str(qtdChave)
+
+    if temLetra_exceto(valor, chave):
+        valor = 0
+        erro = True
+        print('foi digitado um valor incorreto')
+    elif ehLetra(valor):
+        if ehNumero(valor[-1]):
+            valor = 0
+            erro = True
+            print('nao consigo entender o numero do final')
         else:
-            valor = str(qtdChave)
+            erro = False    
+            # oque = 'nada' 
+            letras = separarLetra(valor)    
+            numeros = separarNumero(valor)  
+            valor = sum(map(int, numeros)) + (len(letras)-len(numeros)) 
+    else:
+        valor = int(valor)
 
-    
-    valor = int(valor)
-    
-    
-    
     return chave, valor, erro
-    
-
-    
-print(filtrar('x', '-xxxxxx'))
-print(filtrar('y', '9y'))
+        
+        
 
 
+chave, valor, erro = filtrar('x','103xx')
+print('chave:', chave, 'valor:', valor, 'erro:', erro,'\ntipoValor:', type(valor))
 
+chave, valor, erro = filtrar('x','103x')
+print('chave:', chave, 'valor:', valor, 'erro:', erro,'\ntipoValor:', type(valor))
+
+chave, valor, erro = filtrar('x','103x2')
+print('chave:', chave, 'valor:', valor, 'erro:', erro,'\ntipoValor:', type(valor))
+
+chave, valor, erro = filtrar('x','8')
+print('chave:', chave, 'valor:', valor, 'erro:', erro,'\ntipoValor:', type(valor))
+
+chave, valor, erro = filtrar('x', '8a')
+print('chave:', chave, 'valor:', valor, 'erro:', erro,'\ntipoValor:', type(valor))
+
+chave, valor, erro = filtrar('x', '8ax')
+print('chave:', chave, 'valor:', valor, 'erro:', erro,'\ntipoValor:', type(valor))

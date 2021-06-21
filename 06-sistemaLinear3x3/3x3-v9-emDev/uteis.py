@@ -6,15 +6,14 @@ def ehNumero(n):
     else:
         return True
     
-def ehString(char):
+def ehLetra(char):
     if ehNumero(char):
         return False
     else:
         return True
 
-def separarNum(caracteres):
+def separarNumero(caracteres):
     
-    print('começo:',caracteres)
     lista_chars = list(caracteres)
     
     numeros = list()
@@ -25,14 +24,37 @@ def separarNum(caracteres):
         if ehNumero(chars) or chars == '-' or chars == '+':
             numero += chars
         
-        
-        # if ehString(chars) and numero != '' and numero != '+' and numero != '-':
         elif numero != '':
             
             numeros.append(numero)
             numero = ''
-
     
     return numeros
 
-# print(separarNum('52x78xxx'))
+# separar as letras 
+def separarLetra(letras):
+    lista_letras = list(letras)
+    letras = ''
+
+    for letra in lista_letras:
+        if ehLetra(letra) and letra != '-' and letra != '+' :
+            letras += letra
+    
+    return list(letras)
+
+def temLetra_exceto(chars, exceto='x'):
+    # chars = strings com letras e numero, exceto = a letra que eh para ignorar
+    # retorna true pq tem ou false porque nao
+    
+    chars = list(chars)
+    
+    sim = False
+    
+    for char in chars:
+        print('char:', char)
+        if ehLetra(char) and char != exceto:
+            sim = True
+
+            
+    return sim
+# print(separarNumero('52x78xxx'))

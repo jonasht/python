@@ -2,21 +2,24 @@ from uteis import *
 
 
 
-# numero = separarNum('-598xxx21x')
-# print(numero)
-
-def separarLetra(letras):
-    lista_letras = list(letras)
-    letras = ''
-
+def temLetra_exceto(chars, exceto='x'):
+    # chars = strings com letras e numero, exceto = a letra que eh para ignorar
+    # retorna true pq tem ou false porque nao
     
-    for letra in lista_letras:
-        if ehString(letra) and letra != '-' and letra != '+' :
-            letras += letra
+    chars = list(chars)
     
-    return list(letras)
+    sim = False
+    
+    for char in chars:
+        print('char:', char)
+        if ehLetra(char) and char != exceto:
+            sim = True
+
             
-letras = separarLetra('-598xxx21x')
-print(letras)
+    return sim
+        
 
 
+
+print(temLetra_exceto('12xxax'))
+print(temLetra_exceto('12xxxx'))

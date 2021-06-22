@@ -129,10 +129,9 @@ class Interface(Frame):
         self.lb_respostaY = Label(self.frame_resultadoFinal2, text=f'', font='bold')
         self.lb_respostaZ = Label(self.frame_resultadoFinal2, text=f'', font='bold')
 
-    
         
         # self.mostrar_contaDefault()
-        
+
     def destruir(self):
         if self.jaFoiFeito:
             print('destruir')

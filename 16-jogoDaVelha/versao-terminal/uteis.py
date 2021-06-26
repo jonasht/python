@@ -1,3 +1,5 @@
+
+
 # verificar se o X ou O ganhou returnando verdadeiro, matriz = eh jogo da velha
 def verificar(char, matriz):
     # char = caracter para X ou O ou outro que quiser pode verificar se ganhou

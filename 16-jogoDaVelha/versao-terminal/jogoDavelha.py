@@ -1,5 +1,6 @@
 import uteis
-import colorama
+import colors as c
+
 matriz = [[str(i)+str(ii) for ii in range(3)] for i in range(3)]
 
 
@@ -8,8 +9,10 @@ def mostrar(matriz):
     print('-'*22)
     for linhas in matriz:
         for char in linhas:
-            if char == 'O' or char == 'X':
-                print(f'|   {char}  ', end='')
+            if char == 'O' :
+                print(f'|{c.red}  {char}  {c.fim}', end='')
+            elif char == 'X':
+                print(f'|{c.blue}  {char}  {c.fim}', end='')
             else:
                 print(f'|   {char} ', end='')
         print('|')

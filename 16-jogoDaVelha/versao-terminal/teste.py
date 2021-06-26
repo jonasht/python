@@ -11,32 +11,32 @@ def mostrar():
         print()
 
 # simula colocando x ou o na matriz
-def simular(onde='/'):
+def simular(onde='/', char='x'):
     if onde == '\\':
         for i in range(3):
-            matriz[i][i] = 'x'
+            matriz[i][i] = char
     if onde == '/':
         for i in range(3):
-            matriz[2-i][i] = 'x'
+            matriz[2-i][i] = char
     if onde == '0-':
         for i in range(3):
-            matriz[0][i] = 'x'
+            matriz[0][i] = char
     if onde == '1-':
         for i in range(3):
-            matriz[1][i] = 'x'
+            matriz[1][i] = char
             
     if onde == '2-':
         for i in range(3):
-            matriz[2][i] = 'x'  
+            matriz[2][i] = char
     if onde == '0|':
         for i in range(3):
-            matriz[i][0] = 'x'
+            matriz[i][0] = char
     if onde == '1|':
         for i in range(3):
-            matriz[i][1] = 'x'       
+            matriz[i][1] = char       
     if onde == '2|':
         for i in range(3):
-            matriz[i][2] = 'x'
+            matriz[i][2] = char
 
 
 # verificar se o X ou O ganhou returnando verdadeiro

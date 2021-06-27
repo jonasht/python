@@ -52,39 +52,39 @@ class Interface(Frame):
     def marcar(self, opcao):
         if opcao == '00':
             print(00)
-            self.bt00.config(state=DISABLED, text=self.vez[0])
+            self.bt00.config(state=DISABLED, text=self.vez[0], disabledforeground=self.colorirBts())
             self.matriz = uteis.colocar(self.vez[0], 0, 0, self.matriz)
             
         if opcao == '01':
-            self.bt01.config(state=DISABLED, text=self.vez[0])
+            self.bt01.config(state=DISABLED, text=self.vez[0], disabledforeground=self.colorirBts())
             self.matriz = uteis.colocar(self.vez[0], 0, 1, self.matriz)
 
         if opcao == '02':
-            self.bt02.config(state=DISABLED, text=self.vez[0])
+            self.bt02.config(state=DISABLED, text=self.vez[0], disabledforeground=self.colorirBts())
             self.matriz = uteis.colocar(self.vez[0], 0, 2, self.matriz)
 
         if opcao == '10':
-            self.bt10.config(state=DISABLED, text=self.vez[0])
+            self.bt10.config(state=DISABLED, text=self.vez[0], disabledforeground=self.colorirBts())
             self.matriz = uteis.colocar(self.vez[0], 1, 0, self.matriz)
 
         if opcao == '11':
-            self.bt11.config(state=DISABLED, text=self.vez[0])
+            self.bt11.config(state=DISABLED, text=self.vez[0], disabledforeground=self.colorirBts())
             self.matriz = uteis.colocar(self.vez[0], 1, 1, self.matriz)
 
         if opcao == '12':
-            self.bt12.config(state=DISABLED, text=self.vez[0])
+            self.bt12.config(state=DISABLED, text=self.vez[0], disabledforeground=self.colorirBts())
             self.matriz = uteis.colocar(self.vez[0], 1, 2, self.matriz)
             
         if opcao == '20':
-            self.bt20.config(state=DISABLED, text=self.vez[0])
+            self.bt20.config(state=DISABLED, text=self.vez[0], disabledforeground=self.colorirBts())
             self.matriz = uteis.colocar(self.vez[0], 2, 0, self.matriz)
 
         if opcao == '21':
-            self.bt21.config(state=DISABLED, text=self.vez[0])
+            self.bt21.config(state=DISABLED, text=self.vez[0], disabledforeground=self.colorirBts())
             self.matriz = uteis.colocar(self.vez[0], 2, 1, self.matriz)
 
         if opcao == '22':
-            self.bt22.config(state=DISABLED, text=self.vez[0])
+            self.bt22.config(state=DISABLED, text=self.vez[0], disabledforeground=self.colorirBts())
             self.matriz = uteis.colocar(self.vez[0], 2, 2, self.matriz)
 
         
@@ -109,6 +109,11 @@ class Interface(Frame):
         self.vez.reverse()
         self.lb_vez.config(text=f'vez do {self.vez[0]}')
     
+    def colorirBts(self):
+        if self.vez[0] == 'X':
+            return 'red'
+        else:
+            return 'blue'
     # desativar todos os botoes
     def desativar_TdsBts(self):
         self.bt00.config(state=DISABLED)

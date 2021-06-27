@@ -22,15 +22,15 @@ class Interface(Frame):
         self.frameMeio = Frame(self)
         
         # botoes ...
-        self.bt00 = Button(self.frameMeio, width=10, height=5, font='arial 15 bold', command=lambda : self.marcar('00'))
-        self.bt01 = Button(self.frameMeio, width=10, height=5, font='arial 15 bold', command=lambda : self.marcar('01'))
-        self.bt02 = Button(self.frameMeio, width=10, height=5, font='arial 15 bold', command=lambda : self.marcar('02'))
-        self.bt10 = Button(self.frameMeio, width=10, height=5, font='arial 15 bold', command=lambda : self.marcar('10'))
-        self.bt11 = Button(self.frameMeio, width=10, height=5, font='arial 15 bold', command=lambda : self.marcar('11'))
-        self.bt12 = Button(self.frameMeio, width=10, height=5, font='arial 15 bold', command=lambda : self.marcar('12'))
-        self.bt20 = Button(self.frameMeio, width=10, height=5, font='arial 15 bold', command=lambda : self.marcar('20'))
-        self.bt21 = Button(self.frameMeio, width=10, height=5, font='arial 15 bold', command=lambda : self.marcar('21'))
-        self.bt22 = Button(self.frameMeio, width=10, height=5, font='arial 15 bold', command=lambda : self.marcar('22'))
+        self.bt00 = Button(self.frameMeio, width=2, font='Arial 75 bold', command=lambda : self.marcar('00'))
+        self.bt01 = Button(self.frameMeio, width=2, font='arial 75 bold', command=lambda : self.marcar('01'))
+        self.bt02 = Button(self.frameMeio, width=2, font='arial 75 bold', command=lambda : self.marcar('02'))
+        self.bt10 = Button(self.frameMeio, width=2, font='arial 75 bold', command=lambda : self.marcar('10'))
+        self.bt11 = Button(self.frameMeio, width=2, font='arial 75 bold', command=lambda : self.marcar('11'))
+        self.bt12 = Button(self.frameMeio, width=2, font='arial 75 bold', command=lambda : self.marcar('12'))
+        self.bt20 = Button(self.frameMeio, width=2, font='arial 75 bold', command=lambda : self.marcar('20'))
+        self.bt21 = Button(self.frameMeio, width=2, font='arial 75 bold', command=lambda : self.marcar('21'))
+        self.bt22 = Button(self.frameMeio, width=2, font='arial 75 bold', command=lambda : self.marcar('22'))
         
         # colocando botoes com o grid
         self.bt00.grid(row=0, column=0)

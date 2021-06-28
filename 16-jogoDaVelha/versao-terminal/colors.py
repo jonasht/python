@@ -3,7 +3,7 @@
 import colorama
 colorama.init()
 
-
+# definindo as variaveis das cores
 fim = '\033[0m'
 black = '\033[30m '
 red = '\033[31m ' 

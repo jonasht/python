@@ -1,4 +1,5 @@
-
+import os
+import colors as c
 
 # verificar se o X ou O ganhou returnando verdadeiro, matriz = eh jogo da velha
 def verificar(char, matriz):
@@ -32,3 +33,32 @@ def verificar(char, matriz):
         return True 
     else:
         return False
+    
+def limpar():
+    os.system('clear')
+
+def mostrar(matriz):
+    # limpar()
+    print('-'*22)
+    for linhas in matriz:
+        for char in linhas:
+            if char == 'X':
+                print(f'|{c.red}  {char}  {c.fim}', end='')
+            elif char == 'O':
+                print(f'|{c.blue}  {char}  {c.fim}', end='')
+            else:
+                print(f'|  {char}  ', end='')
+        print('|')
+    print('-'*22)
+    
+
+
+def colocar(char, x, y, matriz):
+    x = int(x)
+    y = int(y)
+    if matriz[x][y] != 'X' or matriz[x][y] != 'O':
+        matriz[x][y] = char
+        return True
+    else:
+        return False
+    

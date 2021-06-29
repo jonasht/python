@@ -5,8 +5,8 @@ class Principal(Tk):
     def __init__(self):
         super().__init__()
         
-        interfaceMatriz = Interface(self)
-        interfaceMatriz.pack()
-
+        self.interfaceMatriz = Interface(self)
+        self.interfaceMatriz.pack()
+        
 root = Principal()
 root.mainloop()

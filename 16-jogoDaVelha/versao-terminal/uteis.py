@@ -56,6 +56,8 @@ def mostrar(matriz):
 def colocar(char, x, y, matriz):
     x = int(x)
     y = int(y)
+    char = char.upper()
+    
     if matriz[x][y] != 'X' or matriz[x][y] != 'O':
         matriz[x][y] = char
         return True

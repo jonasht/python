@@ -19,20 +19,31 @@ def colocarNumeros(matriz):
                 
 def show(matriz):
     matriz = colocarNumeros(matriz)
-
+    numeros = []
+    soma = 0
+    for i, ms in enumerate(matriz):
+        for ii, m in enumerate(ms):
+            print((matriz[3-i][ii]), end='')
+        print()
+    print()
+            
     for ms in matriz:
         for m in ms:
             print(m, end='')
         print('',sum(ms))
+        numeros.append(sum(ms))
         # print()
     # print()
     soma = 0
     for i, ms in enumerate(matriz):
         for ii, m in enumerate(ms):
             soma += matriz[ii][i]
+        numeros.append(soma)
+            
         print(soma, end='')
         soma = 0
     print()
+    print(numeros)
 mostrar(matriz)
 colocar('O', 0, 0, matriz)
 colocar('X', 0, 1, matriz)

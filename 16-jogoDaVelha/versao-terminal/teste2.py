@@ -62,6 +62,29 @@ def somarNumeros(matriz):
 def fazerJogada(matriz):
     numeros = somarNumeros(matriz)
     print(numeros)
+    maior = 0
+    for char in numeros:
+        print(char)
+        # maior 
+        if char > maior and char <= 6:
+            maior = char
+    
+    print(maior)
+    
+    fileira = find(numeros, maior)
+    mostrar(matriz)
+    print(encontrarEspoco(fileira, matriz)
+          
+# encontrar espaca na matriz para poder colocar em uma determinada fileira
+def encontrarEspoco(opcao, matriz):
+    fileira = []
+
+    for i, ms in enumerate(matriz):
+        if opcao == 1:
+            if matriz[i][1]== 0:
+                fileira.append(i, 1)
+    return fileira
+
     
 mostrar(matriz)
 colocar('O', 0, 0, matriz)

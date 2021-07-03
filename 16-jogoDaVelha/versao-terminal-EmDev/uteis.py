@@ -37,19 +37,30 @@ def verificar(char, matriz):
 def limpar():
     os.system('clear')
 
-def mostrar(matriz):
-    # limpar()
-    print('-'*22)
+def mostrar(matriz, limpar=False):
+    if limpar: limpar()
+    
+    
+    print('-'*20)
     for linhas in matriz:
         for char in linhas:
             if char == 'X':
-                print(f'|{c.red}  {char}  {c.fim}', end='')
+                print(f'|{c.red }{char:^5}{c.fim}', end='')
             elif char == 'O':
-                print(f'|{c.blue}  {char}  {c.fim}', end='')
+                print(f'|{c.blue}{char:^5}{c.fim}', end='')
             else:
-                print(f'|  {char}  ', end='')
+                print(f'|{char:^5}', end='')
         print('|')
-    print('-'*22)
+    print('-'*20)
+
+# def mostrar(matriz):
+    # limpar()
+    # print('-'*22)
+    # for linhas in matriz:
+        # for char in linhas:
+            # print(f'|  {char:^3} ', end='')
+        # print('|')
+    # print('-'*22)
     
 
 

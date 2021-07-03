@@ -96,7 +96,7 @@ colocar('O', 2, 0, matriz)
 
 
 mostrar(matriz)
-# mandarmatriz = matriz[:]
+
 jogada = fazerJogada(matriz)
 
 colocar('X', jogada[0][0], jogada[0][1], matriz)

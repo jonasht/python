@@ -52,15 +52,6 @@ def mostrar(matriz, limpar=False):
                 print(f'|{char:^5}', end='')
         print('|')
     print('-'*20)
-
-# def mostrar(matriz):
-    # limpar()
-    # print('-'*22)
-    # for linhas in matriz:
-        # for char in linhas:
-            # print(f'|  {char:^3} ', end='')
-        # print('|')
-    # print('-'*22)
     
 
 

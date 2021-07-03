@@ -104,8 +104,7 @@ colocar('O', 2, 0, matriz)
 
 
 mostrar(matriz)
-# mandarmatriz = matriz.copy()
-# jogada = fazerJogada(mandarmatriz)
+
 jogada = fazerJogada(matriz)
 
 print('jogada:', jogada)

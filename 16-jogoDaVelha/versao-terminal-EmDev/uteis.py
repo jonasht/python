@@ -37,6 +37,7 @@ def verificar(char, matriz):
 def limpar():
     os.system('clear')
 
+# mostra a matriz no terminal, onde matriz = matriz p mostrar, limpar = limpar a tela
 def mostrar(matriz, limpar=False):
     if limpar: limpar()
     
@@ -54,7 +55,7 @@ def mostrar(matriz, limpar=False):
     print('-'*20)
     
 
-
+# colocar numa posicao x y em uma matriz, char = X ou O, x y = posicao, matriz = matriz JogoDaVelha
 def colocar(char, x, y, matriz):
     x = int(x)
     y = int(y)

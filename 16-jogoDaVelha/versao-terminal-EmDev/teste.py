@@ -1,17 +1,8 @@
 # from ia import *
 import colors as c
 from uteis import *
+from random import shuffle
 
-
-
-# encontrar numero, mas deve ser substituido pela funcao index()
-def find(lista, oque):
-    oque = str(oque)
-    lista = map(str, lista)
-    
-    for i, char in enumerate(lista):
-        if char == oque:
-            return i
             
 # colocar numero no local de matriz
 def colocarNumeros(matriz):
@@ -71,9 +62,9 @@ def encontrarEspoco(opcao, matrizNum):
         if opcao == 1:
             if matrizNum[i][1]== 0:
                 fileira.append([i, 1])
-
+    shuffle(fileira)
     print('fileira:', fileira)
-    return fileira
+    return fileira[0]
 
 
 def fazerJogada(matriz):
@@ -84,7 +75,7 @@ def fazerJogada(matriz):
         if char > maior and char <= 6:
             maior = char
     
-    fileira = find(numeros, maior)
+    fileira = numeros.index(maior)
     
     print('retornarEspaço: fileira:', fileira, matrizNum)
     return encontrarEspoco(fileira, matrizNum)
@@ -105,10 +96,9 @@ colocar('O', 2, 0, matriz)
 
 mostrar(matriz)
 
-jogada = fazerJogada(matriz)
+jogadaX, jogadaY = fazerJogada(matriz)
 
-print('jogada:', jogada)
-colocar('X', jogada[0][0], jogada[0][1], matriz)
+colocar('X', jogadaX, jogadaY, matriz)
 mostrar(matriz)
 
 

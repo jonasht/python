@@ -30,11 +30,9 @@ def somarNumeros(matrizNum):
         for ii, m in enumerate(ms):
             soma += matrizNum[ii][i]
         numeros.append(soma)
-            
         soma = 0
     
     soma = 0
-    
     # /
     for i in range(3):
             soma += matrizNum[2-i][i]
@@ -72,9 +70,10 @@ def fazerJogada(matriz):
     maior = 0
     
     for char in numeros:
-        if char > maior and char <= 6:
+        if (char > maior and char <= 6) and char != 5:
             maior = char
-    
+        
+    print('maior:', maior)
     fileira = numeros.index(maior)
     
     print('retornarEspaço: fileira:', fileira, matrizNum)
@@ -89,8 +88,8 @@ mostrar(matriz)
 colocar('O', 0, 0, matriz)
 colocar('X', 0, 1, matriz)
 colocar('O', 2, 2, matriz)
-colocar('X', 1, 1, matriz)
-colocar('O', 2, 0, matriz)
+# colocar('X', 1, 1, matriz)
+# colocar('O', 2, 0, matriz)
 
 
 

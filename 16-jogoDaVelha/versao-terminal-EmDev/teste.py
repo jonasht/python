@@ -57,8 +57,20 @@ def encontrarEspoco(opcao, matrizNum):
     fileira = []
 
     for i, ms in enumerate(matrizNum):
+        # ||| 
+        if opcao == 0:
+            if matrizNum[i][0]== 0:
+                fileira.append([i, 1])
         if opcao == 1:
             if matrizNum[i][1]== 0:
+                fileira.append([i, 1])        
+        if opcao == 2:
+            if matrizNum[i][2]== 0:
+                fileira.append([i, 1])
+
+        # \ 7
+        if opcao == 7:
+            if matrizNum[i][i] == 0:
                 fileira.append([i, 1])
     shuffle(fileira)
     print('fileira:', fileira)
@@ -89,7 +101,7 @@ colocar('O', 0, 0, matriz)
 colocar('X', 0, 1, matriz)
 colocar('O', 2, 2, matriz)
 # colocar('X', 1, 1, matriz)
-# colocar('O', 2, 0, matriz)
+colocar('O', 2, 0, matriz)
 
 
 
@@ -100,6 +112,10 @@ jogadaX, jogadaY = fazerJogada(matriz)
 colocar('X', jogadaX, jogadaY, matriz)
 mostrar(matriz)
 
+jogadaX, jogadaY = fazerJogada(matriz)
+
+colocar('X', jogadaX, jogadaY, matriz)
+mostrar(matriz)
 
         
 

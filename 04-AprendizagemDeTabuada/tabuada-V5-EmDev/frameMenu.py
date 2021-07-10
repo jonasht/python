@@ -6,6 +6,7 @@ class Menu(Frame):
     def __init__(self, container):
         super().__init__(container)
         
+        
         self.opcaoMenu = Frame(self)
         
         self.bt_start = Button(self, text='start', command=self.Start, font='arial 20')
@@ -14,6 +15,8 @@ class Menu(Frame):
         self.lb_op = Label(self.opcaoMenu, text='qual tabuada?:')
         self.lb_op.pack()
 
+        # frameStart on pelo menu
+        self.frameStart_on = False
 
         # ======= radio Button ===========================================
         # radio button das opcao para escolher
@@ -54,7 +57,7 @@ class Menu(Frame):
         self.bt_start.pack_forget()
     
     def Start(self):
-    
+        self.frameStart_on = True
         self.frameStart = FrameStart(self)
         self.esconderMenu()
         self.frameStart.pack()

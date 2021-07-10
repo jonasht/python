@@ -56,18 +56,24 @@ class Principal(Tk):
         print('frame start on?:', self.frameStart_on)
         if self.frameStart_on:
             self.frameStart.tecla1(None)
+        elif self.menu.frameStart_on:
+            self.menu.frameStart.tecla1(None)
         else:
             self.menu.rbt1.select()
             
     def tecla2(self, event):
         if self.frameStart_on:
             self.frameStart.tecla2(None)
+        elif self.menu.frameStart_on:
+            self.menu.frameStart.tecla2(None)
         else:
             self.menu.rbt2.select()
             
     def tecla3(self, event):
         if self.frameStart_on:
             self.frameStart.tecla3(None)
+        elif self.menu.frameStart_on: 
+            self.menu.frameStart.tecla3(None)
         else:
             self.menu.rbt3.select()
 

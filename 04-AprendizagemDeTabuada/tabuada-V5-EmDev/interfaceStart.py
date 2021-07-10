@@ -48,8 +48,6 @@ class FrameStart(Frame):
                 
                 
                 
-                
-                
                 self.n1 = 0
                 self.n2 = 0
                 self.resultado = 0

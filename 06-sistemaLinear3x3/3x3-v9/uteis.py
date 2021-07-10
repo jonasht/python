@@ -1,16 +1,8 @@
 def ehNumero(n):
-    try:
-        int(n)
-    except:
-        return False
-    else:
-        return True
+    return n.isnumeric()
     
 def ehLetra(char):
-    if ehNumero(char):
-        return False
-    else:
-        return True
+    return char.isalpha()
 
 def separarNumero(caracteres):
     
@@ -21,7 +13,7 @@ def separarNumero(caracteres):
     
     for chars in lista_chars:
         
-        if ehNumero(chars) or chars == '-' or chars == '+':
+        if chars.isnumeric() or chars == '-' or chars == '+':
             numero += chars
         
         elif numero != '':
@@ -37,7 +29,7 @@ def separarLetra(letras):
     letras = ''
 
     for letra in lista_letras:
-        if ehLetra(letra) and letra != '-' and letra != '+' :
+        if letra.isalpha() and letra != '-' and letra != '+' :
             letras += letra
     
     return list(letras)
@@ -51,9 +43,10 @@ def temLetra_exceto(chars, exceto):
     sim = False
     
     for char in chars:
-        if ehLetra(char) and char != exceto:
+        if char.isalpha() and char != exceto:
             sim = True
     return sim
+
 
 def filtrar(chave, valor):
     # filtrar chave e valor de um dicionaria{}
@@ -68,7 +61,7 @@ def filtrar(chave, valor):
         frase = 'foi digitado um valor incorreto'
 
     # se tem letra 
-    elif ehLetra(valor):
+    elif valor.isalpha():
         # se tem numero no final de valor de dic{}
 
         if ehNumero(valor[-1]):

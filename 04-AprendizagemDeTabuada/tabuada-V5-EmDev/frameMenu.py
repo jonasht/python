@@ -8,9 +8,6 @@ class Menu(Frame):
         
         self.opcaoMenu = Frame(self)
         
-        # variaveis
-        self.frameStartOn = 0
-    
         self.bt_start = Button(self, text='start', command=self.Start, font='arial 20')
         self.valor = IntVar()
 

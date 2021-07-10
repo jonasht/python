@@ -40,10 +40,13 @@ class FrameStart(Frame):
                 self.lb_doBt2.grid(row=4, column=0)
                 self.lb_validacao.grid(row=3, column=2, sticky=W+E)
                 
-                # teclas 1 2 3
-                self.bind('1', self.tecla1)
-                self.bind('2', self.tecla2)
-                self.bind('3', self.tecla3)
+                # teclas 1 2 3 - obs: nao esta funcionando 
+                # self.bind('1', self.tecla1)
+                # self.bind('2', self.tecla2)
+                # self.bind('3', self.tecla3)
+                
+                
+                
                 
                 
                 

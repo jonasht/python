@@ -14,6 +14,9 @@ class Principal(Tk):
         
         self.menu = Menu(self)
         self.frameStart = FrameStart(self)
+        
+        # dizendo que frameStart ainda nao foi colocada na tela
+        self.frameStart_on = False
                 
         # teclado dos numeros das tabuadas
         self.bind('1', self.tecla1)
@@ -35,7 +38,7 @@ class Principal(Tk):
                                 text='Voltar', width=15, font='arial 20 bold', 
                                 command=self.esconderFrameStart)
         self.bt_sair = Button(self.frameVoltarSair, 
-                              text='Sair', width=20, 
+                              text='Fechar X', width=20, 
                               font='arial 20 bold',
                               command=exit
                               )
@@ -46,14 +49,28 @@ class Principal(Tk):
         self.frameVoltarSair.pack(side=TOP) 
         
         self.mostrarMenu()
-        print(self.menu.frameStartOn)
+        
 
     def tecla1(self, event):
-        self.menu.rbt1.select()
+        print('tecla1 apertada main')
+        print('frame start on?:', self.frameStart_on)
+        if self.frameStart_on:
+            self.frameStart.tecla1(None)
+        else:
+            self.menu.rbt1.select()
+            
     def tecla2(self, event):
-        self.menu.rbt2.select()
+        if self.frameStart_on:
+            self.frameStart.tecla2(None)
+        else:
+            self.menu.rbt2.select()
+            
     def tecla3(self, event):
-        self.menu.rbt3.select()
+        if self.frameStart_on:
+            self.frameStart.tecla3(None)
+        else:
+            self.menu.rbt3.select()
+
     def tecla4(self, event):
         self.menu.rbt4.select()
     def tecla5(self, event):
@@ -86,6 +103,7 @@ class Principal(Tk):
         self.esconderMenu()
         self.bt_voltar.config(state=NORMAL)
         self.frameStart.pack()
+        self.frameStart_on = True
         self.frameStart.iniciar(self.menu.valor.get())
         
 

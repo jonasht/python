@@ -31,7 +31,8 @@ class Principal(Tk):
         
         # tecla enter
         self.bind('<Return>', self.teclaEnter)
-        # botoes do topo da tela ================================
+        
+        # botoes do topo da tela ====================================
         self.frameVoltarSair = Frame(self)
         
         self.bt_voltar = Button(self.frameVoltarSair, 
@@ -97,6 +98,8 @@ class Principal(Tk):
         self.menu.pack_forget()
         
     def esconderFrameStart(self):
+        self.frameStart_on = False
+        self.menu.frameStart_on = False
         self.frameStart.pack_forget()
         self.mostrarMenu()
 

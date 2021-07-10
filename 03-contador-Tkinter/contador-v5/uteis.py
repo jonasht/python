@@ -1,11 +1,6 @@
 def ehNumero(n):
-    try:
-        int(n)
-    except:
-        return False
-    else:
-        return True
-    
+    n = str(n)
+    return n.isnumeric()
     
 if __name__ == '__main__':
     print(ehNumero(1))

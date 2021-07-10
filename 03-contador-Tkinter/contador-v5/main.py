@@ -1,5 +1,4 @@
 from tkinter import Tk
-from tkinter.constants import DISABLED
 from frame import Interface
 
 

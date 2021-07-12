@@ -2,8 +2,6 @@ from random import shuffle
 
 class Conta:
     def __init__(self):
-        
-
 
         self.contas = list()
         # self.fazerContas()

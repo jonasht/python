@@ -1,7 +1,8 @@
 from tkinter import *
 from conta import Conta
 from random import shuffle
-
+# from frameMenu import Menu
+# from main import Principal
 
 class FrameStart(Frame):
         def __init__(self, container):
@@ -39,12 +40,6 @@ class FrameStart(Frame):
                 self.lb_doBt1.grid(row=3, column=0)
                 self.lb_doBt2.grid(row=4, column=0)
                 self.lb_validacao.grid(row=3, column=2, sticky=W+E)
-                
-                # teclas 1 2 3 - obs: nao esta funcionando 
-                # self.bind('1', self.tecla1)
-                # self.bind('2', self.tecla2)
-                # self.bind('3', self.tecla3)
-                
                 
                 
                 
@@ -109,7 +104,13 @@ class FrameStart(Frame):
                         self.bt2.config(text='', state=DISABLED)
                         self.lb_conta.config(text='=-=-=')
                         self.lb_validacao.config(text='fim') 
+                        # Menu.mostrarMenu()
+                        # super().mostrarMenu()
+                        # self.Principal.mostrarMenu()
+                        # Container.mostrarMenu()
+                        self.container.mostrarMenu()               
                         # self.destroy()
+                        
                         
                 else:
                 

@@ -1,8 +1,7 @@
 from tkinter import *
 from conta import ContaCards
 from random import shuffle, randint
-# from frameMenu import Menu
-# from main import Principal
+
 
 class FrameStart(Frame):
         def __init__(self, container):
@@ -36,6 +35,7 @@ class FrameStart(Frame):
                 self.lb_doBt1.grid(row=3, column=0)
                 self.lb_doBt2.grid(row=4, column=0)
                 self.lb_validacao.grid(row=3, column=2, sticky=W+E)
+                
                 
                 self.conta = ContaCards()
                 # variaveis

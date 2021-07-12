@@ -1,6 +1,6 @@
 from tkinter import *
-from conta import Conta
-from random import shuffle
+from conta import ContaCards
+from random import shuffle, randint
 # from frameMenu import Menu
 # from main import Principal
 
@@ -8,10 +8,6 @@ class FrameStart(Frame):
         def __init__(self, container):
                 super().__init__(container)
                 
-                self.conta = Conta()
-                # variaveis
-                self.posicao = 0
-                self.questao = list()
                 
                 # label da conta =======================================
                 self.lb_conta = Label(self, text='=-=-=-=', width=5, fg='red', font='arial 80 bold')
@@ -41,7 +37,9 @@ class FrameStart(Frame):
                 self.lb_doBt2.grid(row=4, column=0)
                 self.lb_validacao.grid(row=3, column=2, sticky=W+E)
                 
-                
+                self.conta = ContaCards()
+                # variaveis
+                self.questao = list()
                 
                 self.n1 = 0
                 self.n2 = 0
@@ -56,14 +54,16 @@ class FrameStart(Frame):
         
         def next(self):
                 
-                self.n1 = self.conta.contas[self.posicao][0]
-                self.n2 = self.conta.contas[self.posicao][1] 
+                self.n1, self.n2 = self.conta.get_vez()
+                
                 self.resultado = self.n1*self.n2     
     
                 self.lb_conta.config(text=f'{self.n1}X{self.n2}')
+                
+                # fazendo questoes falsas e verdadeira
                 self.questao = [
-                        (self.resultado + 5),
-                        (self.resultado + 1),
+                        (self.resultado + randint(1, 5)),
+                        (self.resultado + randint(1, 4)),
                         self.resultado
                 ] 
                 
@@ -73,9 +73,12 @@ class FrameStart(Frame):
                 self.bt0.config(text=self.questao[0])
                 self.bt1.config(text=self.questao[1])
                 self.bt2.config(text=self.questao[2])
+                
+                # mostrando contas
+                self.conta.mostrar()
+                print('removidas:', self.conta.removido)
                    
         def opcaoQuestao(self, opcao=0):      
-
                 
                 if opcao == 1:
                         self.resposta(self.questao[0])
@@ -91,25 +94,24 @@ class FrameStart(Frame):
                         self.lb_validacao.config(text='correto',
                                                  fg='green')
                         print(self.resultado, resultadoDado)
+                        
+                        self.conta.passar_vez(correto=True)
                 else:
                         self.lb_validacao.config(text='incorreto',
                                                  fg='red')
                         print(self.resultado,resultadoDado)
+                        
+                        self.conta.passar_vez(correto=False)
                 
                 
-                self.posicao += 1
-                if self.posicao == len(self.conta.contas):
+                
+                if len(self.conta.contas) == 0:
                         self.bt0.config(text='', state=DISABLED)
                         self.bt1.config(text='', state=DISABLED)
                         self.bt2.config(text='', state=DISABLED)
                         self.lb_conta.config(text='=-=-=')
                         self.lb_validacao.config(text='fim') 
-                        # Menu.mostrarMenu()
-                        # super().mostrarMenu()
-                        # self.Principal.mostrarMenu()
-                        # Container.mostrarMenu()
-                        self.container.mostrarMenu()               
-                        # self.destroy()
+
                         
                         
                 else:
@@ -119,8 +121,12 @@ class FrameStart(Frame):
                 
         
         def iniciar(self, numero1):
-                # self.conta.fazerContas(numero1)
-                self.conta.set_numero1(numero1)
+                
+                if type(numero1) == list:
+                        self.conta.set_numero1(numero1)
+                else:
+                        self.conta.set_numero1([numero1])
+                        
                 self.next()
                 
                 
@@ -129,5 +135,6 @@ if __name__ == '__main__':
         root = Tk()
         frame = FrameStart(root)
         frame.pack()
-        frame.iniciar(8)
+        # frame.iniciar([8])
+        frame.iniciar(6)
         root.mainloop()

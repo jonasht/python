@@ -18,7 +18,7 @@ class Principal(Tk):
         # dizendo que frameStart ainda nao foi colocada na tela
         self.frameStart_on = False
                 
-        # teclado dos numeros das tabuadas
+        # numeros para apertas as teclas do teclado
         self.bind('1', self.tecla1)
         self.bind('2', self.tecla2)
         self.bind('3', self.tecla3)
@@ -29,8 +29,22 @@ class Principal(Tk):
         self.bind('8', self.tecla8)
         self.bind('9', self.tecla9)
         
+        # numeros numPad para apertar
+        self.bind('<KP_1>', self.tecla1)
+        self.bind('<KP_2>', self.tecla2)
+        self.bind('<KP_3>', self.tecla3)
+        self.bind('<KP_4>', self.tecla4)
+        self.bind('<KP_5>', self.tecla5)
+        self.bind('<KP_6>', self.tecla6)
+        self.bind('<KP_7>', self.tecla7)
+        self.bind('<KP_8>', self.tecla8)
+        self.bind('<KP_9>', self.tecla9)
+        
+        
         # tecla enter
         self.bind('<Return>', self.teclaEnter)
+        
+        self.bind('<KP_Enter>', self.teclaEnter)
         
         # botoes do topo da tela ====================================
         self.frameVoltarSair = Frame(self)

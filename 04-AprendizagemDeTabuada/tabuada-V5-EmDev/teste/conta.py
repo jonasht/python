@@ -5,8 +5,13 @@ class Conta:
     def __init__(self):
         self.contas = list()
 
-    # set numero 1
+    # set numero 1 
     def set_numero1(self, ns):
+        
+        # se nao eh lista, passa para lista
+        if not(type(ns) == list):
+            ns = list([ns])
+        
         for n in ns:
             self.fazerContas(n)
     
@@ -32,7 +37,7 @@ class ContaCards(Conta):
         return self.contas[0]
     
     # passar a vez, correto = true, tira o numero lista
-    def passar_vez(self, correto=False):
+    def passar_vez(self, correto):
         itemDaLista = self.contas.pop(0)
         
         if correto:
@@ -60,10 +65,23 @@ class ContaCards(Conta):
         return self.alternativas
 
     def check_alternativa(self, alternativaNum):
-        if self.alternativas[alternativaNum] == self.resultado:
+        if self.resultado == alternativaNum:
+            self.passar_vez(True)
+            return True  
+        elif alternativaNum <3 and alternativaNum >=0 and self.alternativas[alternativaNum] == self.resultado:
+            self.passar_vez(True)
+            return True
+        else:
+            self.passar_vez(False)
+            return False
+    
+    # se programa nao acabou = true, terminou = false
+    def isRun(self):
+        if len(self.contas) != 0:
             return True
         else:
             return False
+    
     
 # fazendo o teste
 if __name__ == '__main__':
@@ -78,4 +96,5 @@ if __name__ == '__main__':
     # escolhendo alternativa
     print('escolhendo alternativa 1 de 0-1-2 ')
     print('correto' if conta.check_alternativa(1) else 'incorreto')
+    
     

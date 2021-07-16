@@ -9,7 +9,7 @@ c.set_numero1(7)
 c.mostrar()
 
 while True:
-    if c.isRun():
+    if c.isRunning():
         
         vez = c.get_vez()
         alternativas = c.get_alternativas()

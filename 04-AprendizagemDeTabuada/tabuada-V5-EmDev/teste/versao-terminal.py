@@ -28,6 +28,7 @@ while True:
             print(f'\t{green}correto{fim}')
         else:
             print(f'{red}incorreto{fim}')
+            
     else:
         print('acabou, parabens')
         break

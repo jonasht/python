@@ -9,7 +9,7 @@ class ContaCards:
 
     # set numero 1 
     def set_numero1(self, ns):
-        
+        self.limpar()
         # se nao eh lista, passa para lista
         if not(type(ns) == list):
             ns = list([ns])
@@ -85,7 +85,7 @@ class ContaCards:
         # del(self.removid o)
         self.contas = list()
         self.removido = list()
-        
+
 # fazendo o teste
 if __name__ == '__main__':
     conta = ContaCards()

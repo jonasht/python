@@ -1,22 +1,21 @@
 from tkinter import *
-from interfaceStart import FrameStart
 
 
-class Menu(Frame):
-    def __init__(self, container):
-        super().__init__(container)
+class FrameMenu(Frame):
+    def __init__(self, parent, controller):
+        Frame.__init__(self, parent)
+        self.controller = controller
         
         
         self.opcaoMenu = Frame(self)
         
-        self.bt_start = Button(self, text='start', command=self.Start, font='arial 20')
+        self.bt_start = Button(self, text='Start', font='arial 20', command=lambda: controller.show_frame('FrameStart'))
         self.valor = IntVar()
 
         self.lb_op = Label(self.opcaoMenu, text='qual tabuada?:')
         self.lb_op.pack()
 
-        # frameStart on pelo menu
-        self.frameStart_on = False
+
 
         # ======= radio Button ===========================================
         # radio button das opcao para escolher
@@ -29,7 +28,6 @@ class Menu(Frame):
         self.rbt7 = Radiobutton(self.opcaoMenu, text='7', variable=self.valor, value=7, indicatoron=0, padx=10, pady=10,bg='green')
         self.rbt8 = Radiobutton(self.opcaoMenu, text='8', variable=self.valor, value=8, indicatoron=0, padx=10, pady=10,bg='green')
         self.rbt9 = Radiobutton(self.opcaoMenu, text='9', variable=self.valor, value=9, indicatoron=0, padx=10, pady=10, bg='green')
-        self.rbt10 = Radiobutton(self.opcaoMenu, text='10', variable=self.valor, value=10, indicatoron=0, padx=10, pady=10, bg='green')
 
         self.rbt1.pack (side=LEFT)
         self.rbt2.pack (side=LEFT)
@@ -40,38 +38,21 @@ class Menu(Frame):
         self.rbt7.pack (side=LEFT)
         self.rbt8.pack (side=LEFT)
         self.rbt9.pack (side=LEFT)
-        self.rbt10.pack(side=LEFT)
 
         self.rbt9.select()
-        
-        self.mostrarMenu()
-        
-
-
-    def mostrarMenu(self): 
+    
         self.opcaoMenu.pack(anchor=CENTER, padx=10, pady=20)
         self.bt_start.pack(anchor=CENTER)
 
-    def esconderMenu(self):
-        self.opcaoMenu.pack_forget()
-        self.bt_start.pack_forget()
-    
-    def Start(self):
-        self.frameStart_on = True
-        self.frameStart = FrameStart(self)
-        self.esconderMenu()
-        self.frameStart.pack()
-        self.frameStart.iniciar(self.valor.get())
-
-
 if __name__ == '__main__':
+    
     root = Tk()
-    frame = Menu(root)
+    frame = FrameMenu(root)
     def tecla1(event):
         print('1 apertado')
         frame.rbt1.select()
     def tecla2(event):
-        print('-2')
+        print('2 apertado')
         frame.rbt2.select()
 
     root.bind('1', tecla1)

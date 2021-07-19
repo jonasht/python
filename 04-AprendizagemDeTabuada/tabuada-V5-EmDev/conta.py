@@ -1,9 +1,11 @@
 from random import shuffle, randint
 from tkinter import Checkbutton
 
-class Conta:
+
+class ContaCards:
     def __init__(self):
         self.contas = list()
+        self.removido = list()
 
     # set numero 1 
     def set_numero1(self, ns):
@@ -27,10 +29,7 @@ class Conta:
     def mostrar(self):
         print(self.contas)
         
-class ContaCards(Conta):
-    def __init__(self):
-        super().__init__()
-        self.removido = []
+    
 
     # pega vez
     def get_vez(self):
@@ -81,8 +80,12 @@ class ContaCards(Conta):
             return True
         else:
             return False
-    
-    
+    def limpar(self):
+        # del(self.contas)
+        # del(self.removid o)
+        self.contas = list()
+        self.removido = list()
+        
 # fazendo o teste
 if __name__ == '__main__':
     conta = ContaCards()

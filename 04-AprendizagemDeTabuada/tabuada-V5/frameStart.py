@@ -4,11 +4,14 @@ from random import shuffle, randint
 
 
 class FrameStart(Frame):
-        def __init__(self, container):
-                super().__init__(container)
+        
                 
-                
-                # label da conta =======================================
+        def __init__(self, parent, controller):
+                Frame.__init__(self, parent)
+                self.controller = controller
+        
+        
+                # label da conta ================================================
                 self.lb_conta = Label(self, text='=-=-=-=', width=5, fg='red', font='arial 80 bold')
 
                 # botoes de opcoes de questoes =====================================
@@ -27,14 +30,14 @@ class FrameStart(Frame):
                 self.lb_conta.grid(row=1, columnspan=3, sticky=W+E)
 
                 
-                self.bt0.grid(row=2, column=1,sticky=W+E)
+                self.lb_validacao.grid(row=2, column=2, sticky=W+E)
+                self.bt0.grid(row=3, column=0,sticky=W+E)
                 self.bt1.grid(row=3, column=1,sticky=W+E)
-                self.bt2.grid(row=4, column=1,sticky=W+E)
+                self.bt2.grid(row=3, column=2,sticky=W+E)
                 
-                self.lb_doBt0.grid(row=2, column=0)
-                self.lb_doBt1.grid(row=3, column=0)
-                self.lb_doBt2.grid(row=4, column=0)
-                self.lb_validacao.grid(row=3, column=2, sticky=W+E)
+                self.lb_doBt0.grid(row=4, column=0)
+                self.lb_doBt1.grid(row=4, column=1)
+                self.lb_doBt2.grid(row=4, column=2)
                 
                 
                 self.conta = ContaCards()
@@ -106,12 +109,8 @@ class FrameStart(Frame):
                 
                 
                 if len(self.conta.contas) == 0:
-                        self.bt0.config(text='', state=DISABLED)
-                        self.bt1.config(text='', state=DISABLED)
-                        self.bt2.config(text='', state=DISABLED)
-                        self.lb_conta.config(text='=-=-=')
-                        self.lb_validacao.config(text='fim') 
-
+                        self.controller.show_frame('FrameMenu')
+                        self.conta.limpar()
                         
                         
                 else:
@@ -132,9 +131,10 @@ class FrameStart(Frame):
                 
 
 if __name__ == '__main__':
-        root = Tk()
-        frame = FrameStart(root)
-        frame.pack()
-        # frame.iniciar([8])
-        frame.iniciar(6)
-        root.mainloop()
+        import main
+        # root = Tk()
+        # frame = FrameStart(root, None)
+        # frame.pack()
+        # # frame.iniciar([8])
+        # frame.iniciar(6)
+        # root.mainloop()

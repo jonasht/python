@@ -45,18 +45,19 @@ class FrameMenu(Frame):
         self.bt_start.pack(anchor=CENTER)
 
 if __name__ == '__main__':
-    
-    root = Tk()
-    frame = FrameMenu(root)
-    def tecla1(event):
-        print('1 apertado')
-        frame.rbt1.select()
-    def tecla2(event):
-        print('2 apertado')
-        frame.rbt2.select()
+    import main
 
-    root.bind('1', tecla1)
-    root.bind('2', tecla2)
-    frame.pack()
+    # root = Tk()
+    # frame = FrameMenu(root)
+    # def tecla1(event):
+    #     print('1 apertado')
+    #     frame.rbt1.select()
+    # def tecla2(event):
+    #     print('2 apertado')
+    #     frame.rbt2.select()
+
+    # root.bind('1', tecla1)
+    # root.bind('2', tecla2)
+    # frame.pack()
     
-    root.mainloop()
+    # root.mainloop()

@@ -1,13 +1,15 @@
 from random import shuffle, randint
 from tkinter import Checkbutton
 
-class Conta:
+
+class ContaCards:
     def __init__(self):
         self.contas = list()
+        self.removido = list()
 
     # set numero 1 
     def set_numero1(self, ns):
-        
+        self.limpar()
         # se nao eh lista, passa para lista
         if not(type(ns) == list):
             ns = list([ns])
@@ -27,10 +29,7 @@ class Conta:
     def mostrar(self):
         print(self.contas)
         
-class ContaCards(Conta):
-    def __init__(self):
-        super().__init__()
-        self.removido = []
+    
 
     # pega vez
     def get_vez(self):
@@ -81,21 +80,27 @@ class ContaCards(Conta):
             return True
         else:
             return False
-    
-    
+    def limpar(self):
+        # del(self.contas)
+        # del(self.removid o)
+        self.contas = list()
+        self.removido = list()
+
 # fazendo o teste
 if __name__ == '__main__':
-    conta = ContaCards()
-    conta.set_numero1([8])
-    print('tabuada gerada:')
-    conta.mostrar()    
+    import main
 
-    print('vez:', conta.get_vez())
-    alternativas = conta.get_alternativas()
-    print('alternativas:', alternativas)
+    # conta = ContaCards()
+    # conta.set_numero1([8])
+    # print('tabuada gerada:')
+    # conta.mostrar()    
+
+    # print('vez:', conta.get_vez())
+    # alternativas = conta.get_alternativas()
+    # print('alternativas:', alternativas)
     
-    # escolhendo alternativa
-    print('escolhendo alternativa 1 de 0-1-2 ')
-    print('correto' if conta.check_alternativa(1) else 'incorreto')
+    # # escolhendo alternativa
+    # print('escolhendo alternativa 1 de 0-1-2 ')
+    # print('correto' if conta.check_alternativa(1) else 'incorreto')
     
     

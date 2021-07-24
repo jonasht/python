@@ -59,30 +59,41 @@ def encontrarEspoco(opcao, matrizNum):
     for i, ms in enumerate(matrizNum):
         # ||| 1,2,3
         if opcao == 0:
-            if matrizNum[i][0]== 0:
-                fileira.append([i, 1])
-        if opcao == 1:
-            if matrizNum[i][1]== 0:
+            if matrizNum[i][0] == 0:
+                fileira.append([i, 0])
+        elif opcao == 1:
+            if matrizNum[i][1] == 0:
                 fileira.append([i, 1])        
-        if opcao == 2:
+        elif opcao == 2:
             if matrizNum[i][2] == 0:
-                fileira.append([i, 1])
+                fileira.append([i, 2])
         # / 3
-        if opcao == 3:
+        elif opcao == 3:
             if matriz[2-i][i] == 0:
-                fileira.append([i, 1])
-        
+                fileira.append([2-i, i])
+
+        # --- 4
+        if opcao == 4:
+            if matrizNum[0][i] == 0:
+                fileira.append([0, i])
+        if opcao == 5:
+            if matrizNum[1][i] == 0:
+                fileira.append([1, i])
+        if opcao == 6:
+            if matrizNum[2][i] == 0:
+                fileira.append([2, i])    
         # =======================================
         # \ 7
-        if opcao == 7:
+        elif opcao == 7:
             if matrizNum[i][i] == 0:
-                fileira.append([i, 1])
+                fileira.append([i, i])
     shuffle(fileira)
     print('fileira:', fileira)
     return fileira[0]
 
 
 def fazerJogada(matriz):
+
     numeros, matrizNum = somarNumeros(matriz)
     maior = 0
     
@@ -101,27 +112,39 @@ def fazerJogada(matriz):
 matriz = [[str(i)+str(ii) for ii in range(3)] for i in range(3)]
 
 
-mostrar(matriz)
-colocar('O', 0, 0, matriz)
-colocar('X', 0, 1, matriz)
-colocar('O', 2, 2, matriz)
-# colocar('X', 1, 1, matriz)
-colocar('O', 2, 0, matriz)
+# mostrar(matriz)
+
+# colocar('O', 0, 0, matriz)
+# mostrar(matriz)
 
 
+# colocar('x', 0, 1, matriz)
+# mostrar(matriz)
 
-mostrar(matriz)
+# colocar('o', 1, 0, matriz)
+# # colocar('x', 1, 1, matriz)
+# x, y = fazerJogada(matriz)
+# print('x:', x, 'y:', y)
 
-jogadaX, jogadaY = fazerJogada(matriz)
+# mostrar(matriz)
 
-colocar('X', jogadaX, jogadaY, matriz)
-mostrar(matriz)
-
-jogadaX, jogadaY = fazerJogada(matriz)
-
-colocar('X', jogadaX, jogadaY, matriz)
+colocar('o', 0, 0, matriz)
 mostrar(matriz)
 
-        
+x, y = fazerJogada(matriz)
+colocar('x', x, y, matriz)
+mostrar(matriz)
 
-        
+colocar('o', 1, 1, matriz)
+mostrar(matriz)
+
+x, y = fazerJogada(matriz)
+colocar('x', x, y, matriz)
+mostrar(matriz)
+
+colocar('o', 0, 2, matriz)
+mostrar(matriz)
+
+x, y = fazerJogada(matriz)
+colocar('x', x, y, matriz)
+mostrar(matriz)

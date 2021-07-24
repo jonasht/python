@@ -57,7 +57,7 @@ def encontrarEspoco(opcao, matrizNum):
     fileira = []
 
     for i, ms in enumerate(matrizNum):
-        # ||| 
+        # ||| 1,2,3
         if opcao == 0:
             if matrizNum[i][0]== 0:
                 fileira.append([i, 1])
@@ -65,9 +65,14 @@ def encontrarEspoco(opcao, matrizNum):
             if matrizNum[i][1]== 0:
                 fileira.append([i, 1])        
         if opcao == 2:
-            if matrizNum[i][2]== 0:
+            if matrizNum[i][2] == 0:
                 fileira.append([i, 1])
-
+        # / 3
+        if opcao == 3:
+            if matriz[2-i][i] == 0:
+                fileira.append([i, 1])
+        
+        # =======================================
         # \ 7
         if opcao == 7:
             if matrizNum[i][i] == 0:

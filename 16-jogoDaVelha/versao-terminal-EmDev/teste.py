@@ -73,13 +73,13 @@ def encontrarEspoco(opcao, matrizNum):
                 fileira.append([2-i, i])
 
         # --- 4
-        if opcao == 4:
+        elif opcao == 4:
             if matrizNum[0][i] == 0:
                 fileira.append([0, i])
-        if opcao == 5:
+        elif opcao == 5:
             if matrizNum[1][i] == 0:
                 fileira.append([1, i])
-        if opcao == 6:
+        elif opcao == 6:
             if matrizNum[2][i] == 0:
                 fileira.append([2, i])    
         # =======================================

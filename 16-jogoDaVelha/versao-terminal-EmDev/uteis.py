@@ -4,6 +4,8 @@ import colors as c
 # verificar se o X ou O ganhou returnando verdadeiro, matriz = eh jogo da velha
 def verificar(char, matriz):
     # char = caracter para X ou O ou outro que quiser pode verificar se ganhou
+    char = char.upper()
+
     # 0 --- posicao
     if matriz[0][0] == char and matriz[0][1] == char and matriz[0][2] == char:
         return True
@@ -25,9 +27,11 @@ def verificar(char, matriz):
     # 2 |   posicao
     elif matriz[0][2] == char and matriz[1][2] == char and matriz[2][2] == char:
         return True         
+    
     # \     posicao
     elif matriz[0][0] == char and matriz[1][1] == char and matriz[2][2] == char:
         return True 
+    
     # /     posicao
     elif matriz[2][0] == char and matriz[1][1] == char and matriz[0][2] == char:
         return True 

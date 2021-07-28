@@ -6,8 +6,10 @@ from algoritmo2 import *
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # definir de tamanho, o tempo e o pixel de character
 # M2(tamanho, tempo, tamanho do pixel ou oque vai estar nele)
-pr = M2(32, .0, "   ")
+
+pr = M2(64, .0, "   ")
 # pr = M2(30, .05, "   ")
+
 
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

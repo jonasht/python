@@ -10,6 +10,9 @@ bgblue = Back.BLUE
 bgyellow = Back.YELLOW
 bgwhite = Back.WHITE
 bgblack= Back.BLACK
+bgcyan = Back.CYAN
+bgmagenta = Back.MAGENTA
+bgfim = Back.RESET
 
 fgred = Fore.RED
 fggreen = Fore.GREEN
@@ -17,27 +20,30 @@ fgblue = Fore.BLUE
 fgyellow = Fore.YELLOW
 fgwhite = Fore.WHITE
 fgblack = Fore.BLACK
+fgcyan = Fore.CYAN
+fgmagenta = Fore.MAGENTA
+fgfim = Fore.RESET
 
 fim = Style.NORMAL
 
 
 
-a = auroGame(largura=60, altura=10, background=bgwhite+'  ')
-nomesObjetos = list(range(15))
+a = auroGame(largura=180, altura=10, background=' ')
+nomesObjetos = list(range(60))
 shuffle(nomesObjetos)
 
 
 for i, nome in enumerate(nomesObjetos):
     if len(str(nome)) == 1:
-        a.set_objeto((' ' + str(nome)), x=i+i, y=-5, inicio=bgblue+Fore.WHITE, fim=fim)
+        a.set_objeto((' ' + str(nome)), x=i+i+i, y=-5, inicio=bgblue+Fore.WHITE, fim=fim)
     else:   
-        a.set_objeto(nome, x=i+i, y=-5, inicio=bgblue, fim=fim)
+        a.set_objeto(nome, x=i+i+i, y=-5, inicio=bgblue, fim=fim)
     a.mostrar()
 
 
 
 guardarNumero = 0
-def paraFrente(nome2, nome1, tempo=0.1):
+def paraFrente(nome2, nome1, tempo=0.00):
     nome2 = str(nome2)
     nome1 = str(nome1)
     
@@ -51,29 +57,28 @@ def paraFrente(nome2, nome1, tempo=0.1):
     a.mostrar()
     sleep(tempo)
 
-    for _ in range(2):
+    for _ in range(3):
         a.move(nome2, op='^')
         a.move(nome=nome1, op='v')
         a.mostrar()
         sleep(tempo)
 
-    
-
-    for _ in range(2):
+    for _ in range(3):
         a.move(nome=nome2, op='<')
         a.move(nome=nome1, op='>')
         a.mostrar()
         sleep(tempo)
-    for _ in range(2):
+        
+    for _ in range(3):
         a.move(nome=nome2, op='v')
         a.move(nome=nome1, op='^')
         a.mostrar()
         sleep(tempo)
+
     a.reset_objeto(nome=nome1, inicio=bgblue+fgwhite)
     a.reset_objeto(nome=nome2, inicio=bgblue+fgwhite)
     a.mostrar()
-
-    
+    sleep(tempo)
     
 def Maneira():
     for c in np.arange(len(nomesObjetos)):
@@ -88,6 +93,6 @@ def Maneira():
                     nomesObjetos[i+1] = guardarNumero
                     paraFrente(nomesObjetos[i], nomesObjetos[i+1])
 
-            
+a.mostrar()
 Maneira()
-# paraFrente(' 1', ' 0')
+# paraFrente(' 1', ' 0', 2)

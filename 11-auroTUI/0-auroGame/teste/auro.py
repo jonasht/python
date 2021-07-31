@@ -2,7 +2,7 @@
 # versão 2: arrumado o bug de move() right
 
 from time import sleep
-from os import name, system
+from os import system
 import numpy as np
 from colorama.ansi import Back, Fore, Style 
 
@@ -10,8 +10,8 @@ class auroGame:
     def __init__(self, largura, altura, background=0):
         self.largura = largura
         self.altura = altura
-        self.background = background
-        self.desenho = [[self.background for _ in np.arange(self.largura)] for i in np.arange(self.altura)]
+        self.background = background+Back.RESET
+        self.desenho = [[self.background for _ in np.arange(self.largura)] for _ in np.arange(self.altura)]
         self.posicao = {}
         self.info = {}
     
@@ -22,13 +22,20 @@ class auroGame:
             self.desenho[y][x+i] = nome
     
     # definir objeto
-    def set_objeto(self, nome, x, y, qtdCasas=1, inicio='', fim=Style.NORMAL):
+    def set_objeto(self, nome, x, y, qtdCasas=0, inicio='', fim=Style.NORMAL):
         nome = str(nome)
         qtdCasas = int(qtdCasas)
         fim = Back.RESET if fim else ''
         
-        for i in np.arange(qtdCasas):
-            self.desenho[y][x+i] = str(inicio+nome+fim)
+        if qtdCasas == 0:
+            for i, n in enumerate(nome):
+                self.desenho[y][x+i] = str(inicio+n+fim)
+            
+        else:
+            for i in np.arange(qtdCasas):
+                
+                self.desenho[y][x+i] = str(inicio+nome+fim)
+
         posicao = {'nome': nome, 'x': x, 'y': y, 'qtdCasas': qtdCasas, 'inicio': inicio, 'fim': fim}
         self.set_posicao(posicao)
         
@@ -49,44 +56,57 @@ class auroGame:
 
         x = self.posicao[nome]['x']
         y = self.posicao[nome]['y']
+        
+        
         qtdCasas = self.posicao[nome]['qtdCasas']
         inicio = self.posicao[nome]['inicio']
         fim = self.posicao[nome]['fim']
 
+        if self.posicao[nome]['qtdCasas'] == 0:
+            for i, n in enumerate(nome):
+                self.desenho[y][x+i] = inicio+n+fim
+        else:
+            for i in np.arange(qtdCasas):
+                self.desenho[y][x+i] = inicio+nome+fim
 
-        for i in np.arange(qtdCasas):
-            self.desenho[y][x+i] = inicio+nome+fim
-
-        # posicao = {'nome': nome, 'x': x, 'y': y, 'qtdCasas': qtdCasas, 'inicio': inicio, 'fim': fim}
-        # self.set_posicao(posicao)
     # mover 
     def move(self, nome, op='>'):
         nome = str(nome)
         
         posicao = self.posicao[nome]
+        
+        if posicao['qtdCasas'] == 0:
+            qtdCasas = len(nome)
+        else: 
+            qtdCasas = posicao['qtdCasas']
 
         if op == '>' or op == 'right':
             self.set_objeto(posicao['nome'], posicao['x']+1, posicao['y'], posicao['qtdCasas'],
-                            posicao['inicio'], posicao['fim'])            
+                            posicao['inicio'], posicao['fim']) 
+                       
             self.remove(posicao['x'], posicao['y'], 1)
             
         if op == '<' or op.lower() == 'left':
             self.set_objeto(posicao['nome'], posicao['x']-1, posicao['y'], posicao['qtdCasas'],
                             posicao['inicio'], posicao['fim'])
-            self.remove(posicao['x']+posicao['qtdCasas']-1, posicao['y'], 1)
+
+            self.remove(posicao['x']+qtdCasas-1, posicao['y'], 1)
         
         if op == '^' or op.lower() == 'up':
             self.set_objeto(posicao['nome'], posicao['x'], posicao['y']-1, posicao['qtdCasas'],
                             posicao['inicio'], posicao['fim'])
-            self.remove(posicao['x'], posicao['y'], posicao['qtdCasas'],)
+            
+            self.remove(posicao['x'], posicao['y'], qtdCasas)
 
         if op.lower() == 'v' or op.lower() == 'down':
             self.set_objeto(posicao['nome'], posicao['x'], posicao['y']+1, posicao['qtdCasas'],
                             posicao['inicio'], posicao['fim'])
-            self.remove(posicao['x'], posicao['y'], posicao['qtdCasas'])
+            
+            self.remove(posicao['x'], posicao['y'], qtdCasas)
 
 
     def remove(self, x, y, qtdCasas):
+        
         for i in range(qtdCasas):
             self.desenho[y][x+i] = self.background
         

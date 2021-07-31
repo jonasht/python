@@ -1,8 +1,8 @@
-from typing import final
 from auro import auroGame
 from time import sleep
 from colorama.ansi import Back, Fore, Style
 from random import shuffle
+import numpy as np
 
 bgred = Back.RED
 bggreen = Back.GREEN
@@ -10,38 +10,74 @@ bgblue = Back.BLUE
 bgyellow = Back.YELLOW
 bgwhite = Back.WHITE
 bgblack= Back.BLACK
+
+fgred = Fore.RED
+fggreen = Fore.GREEN
+fgblue = Fore.BLUE
+fgyellow = Fore.YELLOW
+fgwhite = Fore.WHITE
+fgblack = Fore.BLACK
+
 fim = Style.NORMAL
 
 
-a = auroGame(largura=50, altura=10, background='  ')
-nomesObjetos = list(range(11, 60))
+
+a = auroGame(largura=60, altura=10, background=bgwhite+'  ')
+nomesObjetos = list(range(15))
 shuffle(nomesObjetos)
 
+
 for i, nome in enumerate(nomesObjetos):
-    a.set_objeto(nome, x=i, y=-5, inicio=bgblue, fim=fim)
+    if len(str(nome)) == 1:
+        a.set_objeto((' ' + str(nome)), x=i+i, y=-5, inicio=bgblue+Fore.WHITE, fim=fim)
+    else:   
+        a.set_objeto(nome, x=i+i, y=-5, inicio=bgblue, fim=fim)
     a.mostrar()
 
 
 
 guardarNumero = 0
-def paraFrente(nome2, nome1, tempo=0.01):
+def paraFrente(nome2, nome1, tempo=0.1):
+    nome2 = str(nome2)
+    nome1 = str(nome1)
     
+
+    if len(nome2) == 1:
+        nome2 = ' ' + nome2
+    if len(nome1) == 1:
+        nome1 = ' ' + nome1
+    a.reset_objeto(nome=nome1, inicio=bggreen+fgblack)
+    a.reset_objeto(nome=nome2, inicio=bggreen+fgblack)
     a.mostrar()
     sleep(tempo)
-    a.move(nome=nome2, op='up')          
+
+    for _ in range(2):
+        a.move(nome2, op='^')
+        a.move(nome=nome1, op='v')
+        a.mostrar()
+        sleep(tempo)
+
+    
+
+    for _ in range(2):
+        a.move(nome=nome2, op='<')
+        a.move(nome=nome1, op='>')
+        a.mostrar()
+        sleep(tempo)
+    for _ in range(2):
+        a.move(nome=nome2, op='v')
+        a.move(nome=nome1, op='^')
+        a.mostrar()
+        sleep(tempo)
+    a.reset_objeto(nome=nome1, inicio=bgblue+fgwhite)
+    a.reset_objeto(nome=nome2, inicio=bgblue+fgwhite)
     a.mostrar()
-    sleep(tempo)
-    a.move(nome=nome1, op='>')
-    a.mostrar()
-    a.move(nome2, op='left')
-    a.mostrar()
-    sleep(tempo)
-    a.move(nome2, op='down')
-    a.mostrar()
+
+    
     
 def Maneira():
-    for c in range(len(nomesObjetos)):
-        for i in range(len(nomesObjetos)):
+    for c in np.arange(len(nomesObjetos)):
+        for i, nomeNum in enumerate(nomesObjetos):
 
             if i+1 == len(nomesObjetos):
                 continue
@@ -51,7 +87,7 @@ def Maneira():
                     nomesObjetos[i] = nomesObjetos[i+1]
                     nomesObjetos[i+1] = guardarNumero
                     paraFrente(nomesObjetos[i], nomesObjetos[i+1])
-            a.mostrar()
-            # print(nomesObjetos)
+
+            
 Maneira()
-# paraFrente('1', '2')
+# paraFrente(' 1', ' 0')

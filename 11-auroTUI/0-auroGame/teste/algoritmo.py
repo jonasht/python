@@ -1,7 +1,7 @@
 
 
 class M1:
-    interface = Interface()
+    interface 
     def __init__(self, tamanhoDaLista, tempoDeAtraso):
         self.guardarNumero = 0
         
@@ -10,7 +10,6 @@ class M1:
 
     
     def Maneira(self):
-        self.guardarNumero
         
         for c in range(len(self.interface.lista)):
             for i in range(len(self.interface.lista)):

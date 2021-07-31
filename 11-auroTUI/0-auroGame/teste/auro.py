@@ -4,14 +4,14 @@
 from time import sleep
 from os import name, system
 import numpy as np
-from colorama.ansi import Back 
+from colorama.ansi import Back, Fore, Style 
 
 class auroGame:
     def __init__(self, largura, altura, background=0):
         self.largura = largura
         self.altura = altura
         self.background = background
-        self.desenho = [[self.background for ii in range(self.largura)] for i in range(self.altura)]
+        self.desenho = [[self.background for _ in np.arange(self.largura)] for i in np.arange(self.altura)]
         self.posicao = {}
         self.info = {}
     
@@ -22,7 +22,7 @@ class auroGame:
             self.desenho[y][x+i] = nome
     
     # definir objeto
-    def set_objeto(self, nome, x, y, qtdCasas=1, inicio='', fim=''):
+    def set_objeto(self, nome, x, y, qtdCasas=1, inicio='', fim=Style.NORMAL):
         nome = str(nome)
         qtdCasas = int(qtdCasas)
         fim = Back.RESET if fim else ''

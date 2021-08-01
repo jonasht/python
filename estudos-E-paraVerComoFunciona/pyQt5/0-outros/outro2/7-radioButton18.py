@@ -9,7 +9,7 @@ class Window(QWidget):
         self.setLayout(layout)
 
         radiobutton = QRadioButton('brasil')
-        radiobutton.setChecked(True)
+        radiobutton.setChecked(True) # eh p ficar radio ficar marcado
 
         radiobutton.country = 'Brazil'
         radiobutton.toggled.connect(self.on_radio_button_toggeled)

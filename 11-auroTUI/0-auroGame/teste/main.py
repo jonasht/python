@@ -43,7 +43,7 @@ for i, nome in enumerate(nomesObjetos):
 
 
 guardarNumero = 0
-def paraFrente(nome2, nome1, tempo=0.00):
+def paraFrente(nome2, nome1, tempo=0.001):
     nome2 = str(nome2)
     nome1 = str(nome1)
     

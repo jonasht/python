@@ -28,8 +28,8 @@ fim = Style.NORMAL
 
 
 
-a = auroGame(largura=180, altura=10, background=' ')
-nomesObjetos = list(range(60))
+a = auroGame(largura=100, altura=10, background=' ')
+nomesObjetos = list(range(30))
 shuffle(nomesObjetos)
 
 
@@ -43,7 +43,11 @@ for i, nome in enumerate(nomesObjetos):
 
 
 guardarNumero = 0
+<<<<<<< HEAD
 def paraFrente(nome2, nome1, tempo=0.001):
+=======
+def paraFrente(nome2, nome1, tempo=0.1):
+>>>>>>> 725926d3dc35b41b22152311def36b5cd0db34f8
     nome2 = str(nome2)
     nome1 = str(nome1)
     

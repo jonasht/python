@@ -1,15 +1,15 @@
 from colorama.ansi import Back, Fore, Style
 
 
-
 class Conta:
     def __init__(self, numero, titular, saldo, limite ):
-        
-        
+
         self.__numero = numero
         self.__titular = titular.title()
         self.__saldo = float(saldo)
         self.__limite = float(limite)
+        self.__codigoBanco = '001'
+
         
         
     def extrato(self):
@@ -20,10 +20,17 @@ class Conta:
         print('=-'*20+'=')
     def depositar(self, valor):
         self.__saldo += valor
-    
+    def __pode_sacar(self, valorASacar):
+        valorDisponivelASacar = self.__saldo + self.__limite
+        return True if valorASacar <= valorDisponivelASacar else False
+
     def sacar(self, valor):
-        self.__saldo -= valor
-    
+        if self.__pode_sacar(valor):
+            self.__saldo -= valor
+        else:
+            print(f'o vaor {valor} passou o limite')
+
+
     def transferir(self, destino, valor):
         self.sacar(valor)
         destino.depositar(valor)
@@ -34,10 +41,13 @@ class Conta:
               f'\tpara: {destino.__titular:^5}\n'
               f'feita com {Fore.GREEN}sucesso{Fore.RESET}')
         print('=-'*20+'=')
-    
-    def get_saldo(self):
+
+    @property
+    def saldo(self):
         return self.__saldo
-    def get_titular(self):
+
+    @property
+    def titular(self):
         return self.__titular
     
     @property
@@ -48,7 +58,14 @@ class Conta:
     def limite(self, NovoLimite):
         self.__limite = float(NovoLimite)
     
-
+    @staticmethod
+    def codigoBanco():
+        return '001'
+    
+    @staticmethod
+    def codigoBancos():
+        return {'BB':'001', 'caixa':'104', 'bradesco':'237'}
+    
 if __name__ == '__main__':
     conta1 = Conta(123, 'jonas', 520.0, 1000.0)
     conta1.extrato()

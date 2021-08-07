@@ -8,8 +8,8 @@ class Conta:
         
         self.__numero = numero
         self.__titular = titular.title()
-        self.__saldo = saldo
-        self.__limete = limite
+        self.__saldo = float(saldo)
+        self.__limite = float(limite)
         
         
     def extrato(self):
@@ -34,10 +34,22 @@ class Conta:
               f'\tpara: {destino.__titular:^5}\n'
               f'feita com {Fore.GREEN}sucesso{Fore.RESET}')
         print('=-'*20+'=')
+    
+    def get_saldo(self):
+        return self.__saldo
+    def get_titular(self):
+        return self.__titular
+    
+    @property
+    def limite(self):
+        return self.__limite
+    
+    @limite.setter
+    def limite(self, NovoLimite):
+        self.__limite = float(NovoLimite)
+    
 
-
-
-if __name__ == '__main__':        
+if __name__ == '__main__':
     conta1 = Conta(123, 'jonas', 520.0, 1000.0)
     conta1.extrato()
     
@@ -45,3 +57,5 @@ if __name__ == '__main__':
     conta2.extrato()
 
     conta1.transferir(destino=conta2, valor=10)
+
+    conta1.limite

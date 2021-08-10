@@ -45,7 +45,18 @@ class Principal:
 
 
 
+<<<<<<< HEAD
         self.guardarNumero = 0
+=======
+guardarNumero = 0
+<<<<<<< HEAD
+def paraFrente(nome2, nome1, tempo=0.001):
+=======
+def paraFrente(nome2, nome1, tempo=0.1):
+>>>>>>> 725926d3dc35b41b22152311def36b5cd0db34f8
+    nome2 = str(nome2)
+    nome1 = str(nome1)
+>>>>>>> b270a9b034587353285c638d5bc5a8462e75a1dd
     
         self.a.mostrar()
         self.Maneira()

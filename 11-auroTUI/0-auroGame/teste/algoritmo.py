@@ -1,24 +1,29 @@
 
+from random import shuffle
+from os import system
+import time
+nomesObjetos = list(range(5))
+shuffle(nomesObjetos)
 
-class M1:
-    interface 
-    def __init__(self, tamanhoDaLista, tempoDeAtraso):
-        self.guardarNumero = 0
-        
-        self.interface.set_tamanhoDaLista(tamanhoDaLista)
-        self.interface.set_tempoDeAtraso(tempoDeAtraso)
 
-    
-    def Maneira(self):
-        
-        for c in range(len(self.interface.lista)):
-            for i in range(len(self.interface.lista)):
+def maneira():
+    tamanho = len(nomesObjetos)
+    for _ in range(tamanho):
+        for i in range(tamanho):
 
-                if i+1 == len(self.interface.lista):
-                    continue
-                else:
-                    if self.interface.lista[i] > self.interface.lista[i+1]:
-                        guardarNumero = self.interface.lista[i]
-                        self.interface.lista[i] = self.interface.lista[i+1]
-                        self.interface.lista[i+1] = guardarNumero
-                        self.interface.converterPMostrar(i+1)
+            if i+1 != tamanho:
+                if nomesObjetos[i] > nomesObjetos[i+1]:
+                    guardarNumero = nomesObjetos[i]
+                    nomesObjetos[i] = nomesObjetos[i+1]
+                    nomesObjetos[i+1] = guardarNumero
+            if i > 1:
+                if nomesObjetos[tamanho-i+1] < nomesObjetos[tamanho-i]:
+                    guardarNumero = nomesObjetos[tamanho-i]
+                    nomesObjetos[tamanho-i] = nomesObjetos[tamanho-i+1]
+                    nomesObjetos[tamanho-i+1] = guardarNumero
+                
+        # system('clear')
+        print(*nomesObjetos)
+        # time.sleep(.5)
+            
+maneira()

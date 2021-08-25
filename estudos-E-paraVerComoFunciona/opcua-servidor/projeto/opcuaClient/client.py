@@ -15,7 +15,6 @@ print(' client connected ', Fore.RESET)
 while True:
     Temp = client.get_node('ns=2;i=2')
     Temperature = Temp.get_value()
-    Temperature = Temp.get_value()
     print(Temperature)
     
 

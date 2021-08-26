@@ -1,0 +1,13 @@
+antiorm==1.2.1
+cffi==1.14.6
+colorama==0.4.4
+cryptography==3.4.8
+db==0.1.1
+db-sqlite3==0.0.1
+freeopcua==0.90.6
+lxml==4.6.3
+opcua==0.98.13
+pycparser==2.20
+python-dateutil==2.8.2
+pytz==2021.1
+six==1.16.0

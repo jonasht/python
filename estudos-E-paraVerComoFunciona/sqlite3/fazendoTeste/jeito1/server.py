@@ -20,13 +20,12 @@ Dados.set_writable()
 # começando servidor
 server.start()
 
-print(f'servidor funcionando em{url}')
 
-dados = v.get_Pessoas()
 while True:
     
-    # dados = v.get_Pessoas()
-    Dados.set_value(dados)
- 
-    print('funcionando')
-    time.sleep(1)
+    for tuplas in v.get_Pessoas():
+        
+        Dados.set_value(tuplas)
+
+    
+        time.sleep(1)

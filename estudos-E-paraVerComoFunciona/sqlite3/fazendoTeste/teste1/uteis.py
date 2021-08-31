@@ -9,7 +9,9 @@ def get_Pessoas():
     
     dados.commit()
     dados.close()
-    
-    return pessoas
+    convertido = []
+    for pessoa in pessoas:
+        convertido.append(list(pessoa))
+    return convertido
 
 

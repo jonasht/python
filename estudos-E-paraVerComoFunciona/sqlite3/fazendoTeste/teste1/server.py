@@ -1,5 +1,5 @@
 from opcua import Server
-import PegandoVariavel as v
+import uteis as v
 import time
 server = Server()
 
@@ -23,10 +23,10 @@ server.start()
 
 while True:
     
-    for tuplas in v.get_Pessoas():
+    for lista in v.get_Pessoas():
         
+        # Dados.set_value(lista)
         # Dados.set_value(tuplas)
-        print('tupla:', map(dict, tuplas))
-        # print('tipo:', type(tuplas))
+        print('lista:', lista)
     
         time.sleep(1)

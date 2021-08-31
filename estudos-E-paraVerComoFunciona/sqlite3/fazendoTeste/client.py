@@ -1,4 +1,3 @@
-
 import time
 from opcua import Client
 from colorama.ansi import Fore
@@ -12,10 +11,10 @@ client.connect()
 
 mensagemAntiga = ''
 while True:
-
-    dados = client.get_node('ns=2;i=2')
+    
+    dados = client.get_node('ns=2;i=4')
     mensagem = dados.get_value()
     print(mensagem)
-    time.sleep(3)
+    time.sleep(1)
   
     

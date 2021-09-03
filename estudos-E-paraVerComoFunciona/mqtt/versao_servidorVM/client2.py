@@ -14,7 +14,7 @@ print(Fore.GREEN, 'cliente conectado', Fore.RESET)
 
 
 # mqtt -------------------------------------
-broker = '192.168.15.130'
+broker = '192.168.15.131'
 port = 1883
 topic = 'teste'
 

@@ -7,7 +7,7 @@ def on_message(client, userdata, msg):
     
 
 def run():
-    broker = '192.168.15.131'
+    broker = 'broker.emqx.io'
     port = 1883
     topic = "teste"
     client_id = f'python-mqtt-{random.randint(0, 100)}'

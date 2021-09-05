@@ -1,5 +1,8 @@
 from interfaceMenu import Menu
 
-menu = Menu()
-menu.mainloop() 
+
+
+if __name__ == '__main__':
+    menu = Menu()
+    menu.mainloop() 
 

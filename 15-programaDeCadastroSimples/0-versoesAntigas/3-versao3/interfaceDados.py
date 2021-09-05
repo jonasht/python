@@ -1,5 +1,5 @@
 from tkinter import *
-from registradora import *
+from registradorDB import Db
 
 
 class FrameDados(Frame):
@@ -26,7 +26,6 @@ class FrameDados(Frame):
         self.lb_idMostrar = Label(self, text=' ')
         self.lb_nome = Label(self, text=' ')
         self.lb_idade = Label(self, text=' ')
-        self.lb_sexo = Label(self, text=' ')
 
         # self.lb_titulo.grid(row=0, column=1,columnspan=2, sticky='news')
         self.lb_id.grid(row=1, column=0)
@@ -39,9 +38,14 @@ class FrameDados(Frame):
         self.lb_idMostrar.grid(row=3, column=1)
         self.lb_nome.grid(row=4, column=1)
         self.lb_idade.grid(row=5, column=1)
-        self.lb_sexo.grid(row=6, column=1)
     
-
+    def ehNumero(self, n):
+        try:
+            int(n)
+            return True
+        except:
+            return False
+    
     # botao return (key=enter)
     def onReturn(self, evento):
         self.mostrar_info()
@@ -55,25 +59,22 @@ class FrameDados(Frame):
         self.lb_idMostrar.config(text='')
         self.lb_nome.config(text='')
         self.lb_idade.config(text='')
-        self.lb_sexo.config(text='')
 
     def mostrar_info(self):
         self.limpar_labels()
 
-    
+        db = Db()
         
         id = self.etd_id.get()
-        db = get_dados(id)
-        
+        db = db.get_db()
         
         self.limpar_Entradas()
 
         if id:
-            if id.isnumeric():
+            if self.ehNumero(id):
                 try:
-                    self.lb_nome.config(text='Nome: '+db[1].title())
-                    self.lb_sexo.config(text='Sexo: '+db[2].title())
-                    self.lb_idade.config(text='Idade: '+str(db[3]))
+                    self.lb_nome.config(text='Nome: '+db[id]['nome'].title())
+                    self.lb_idade.config(text='Idade: '+db[id]['idade'])
                     self.lb_idMostrar.config(text='Id: ' + id)
                     self.lb_aviso.config(text='')
                 except:

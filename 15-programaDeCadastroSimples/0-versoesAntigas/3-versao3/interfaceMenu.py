@@ -35,6 +35,13 @@ class Menu(Tk):
         # linha entre o frame menu e a frame..
         self.risco = Label(self,text='|\n'*16, fg='darkgray', width=1, height=15).pack(side=LEFT, anchor=CENTER)
 
+    def ehNumero(self, n):
+        try:
+            int(n)
+            return True
+        except:
+            return False
+        
 
 
     def cadastrar(self):

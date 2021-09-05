@@ -1,15 +1,15 @@
 from tkinter import *
-from registradora import *
-
+from registradorDB import Db
 
 class FrameCadastro(Frame):
     def __init__(self, container):
         super().__init__(container)
         
+        self.db = Db()
         
         # id
         self.lb_id = Label(self, text='Id:', width=10)
-        self.lb_id_mostrar = Label(self, text=get_nextId())
+        self.lb_id_mostrar = Label(self, text=self.db.get_nextId())
 
         self.lb_nome = Label(self, text='Nome:', width=10)
 
@@ -18,12 +18,11 @@ class FrameCadastro(Frame):
         self.etd_nome = Entry(self)
         self.etd_nome.bind('<Return>', self.onReturn)
 
-        # sexo
-        self.lb_sexo = Label(self, text='sexo:')
-        self.etd_sexo = Entry(self)
-        
-        self.lb_sexo.grid(row=2, column=1, pady=2)
-        self.etd_sexo.grid(row=2, column=2, pady=2)
+        # # sexo
+        # lbsexo = Label(self, text='sexo:')
+        # entdSexo = Entry(self)
+        # lbsexo.grid(row=2, column=1, pady=2)
+        # entdSexo.grid(row=2, column=2, pady=2)
 
         # idade
         self.lb_idade = Label(self, text='Idade:', width=10)
@@ -41,9 +40,8 @@ class FrameCadastro(Frame):
         # labels de confirmacao
         self.lb_id_confirmacao = Label(self, width=15)
         self.lb_nome_confirmacao = Label(self, width=15)
-        self.lb_sexo_confirmacao = Label(self, width=15)
         self.lb_idade_confirmacao = Label(self, width=15)
-        
+
         # --- posicoes ---------------
 
         # id:, id_mostrar, entradaNome, lb_idade, entrada_idade
@@ -66,14 +64,26 @@ class FrameCadastro(Frame):
         # confirmacoes
         self.lb_id_confirmacao.grid(row=0, column=3, padx=2, pady=2)
         self.lb_nome_confirmacao.grid(row=1, column=3, padx=2, pady=2)
-        self.lb_sexo_confirmacao.grid(row=2, column=3)
         self.lb_idade_confirmacao.grid(row=3, column=3)
-        
+
+    def ehNumero(self, n):
+        try:
+            int(n)
+            return True
+        except:
+            return False
+
+
+
 
     def limpar_Entradas(self):
         self.etd_nome.delete(0, END)
-        self.etd_sexo.delete(0, END)
         self.etd_idade.delete(0, END)
+
+
+    def proximoId(self):
+        id = int(self.db.id)+1
+        return id
 
 
 
@@ -83,35 +93,30 @@ class FrameCadastro(Frame):
 
     def cadastrar(self):
         nome = self.etd_nome.get()
-        sexo = self.etd_sexo.get()
         idade = self.etd_idade.get()
 
-        if not idade.isnumeric() and nome:
+        if not self.ehNumero(idade) and nome:
             self.lb_aviso.config(text='idade precisa ser numero', fg='red')
             self.etd_idade.config(relief=SOLID, highlightbackground='red')
 
-        elif nome and sexo and idade:
-            get_id = get_nextId()
-            
-            cadastrar(nome=nome, sexo=sexo, idade=idade)
-            mostrar_bd()
-            
-            dados = get_dados(get_id)
-            nome = dados[1]
-            sexo = dados[2]
-            idade = dados[3]
+        elif nome and idade:
+            self.db.nome = nome
+            self.db.idade = idade
+
+            self.db.cadastrar()
+            self.db.mostrar()
+            print(self.db.get_db()[self.db.id])
 
             # mostrando a confirmacao na tela do que foi salvo
             self.lb_aviso.config(text='cadastro feito com sucesso', fg='green')
 
-            self.lb_id_confirmacao.config(text='Id: '+str(get_id), fg='green')
+            self.lb_id_confirmacao.config(text='Id: '+self.db.id, fg='green')
             self.lb_nome_confirmacao.config(
-                text='Nome: '+nome, fg='green')
-            self.lb_sexo_confirmacao.config(text='Sexo: '+sexo, fg='green')
+                text='Nome: '+self.db.get_db()[self.db.id]['nome'], fg='green')
             self.lb_idade_confirmacao.config(
-                text='Idade: '+str(idade), fg='green')
+                text='Idade: '+self.db.get_db()[self.db.id]['idade'], fg='green')
 
-            self.lb_id_mostrar.config(text=get_nextId())
+            self.lb_id_mostrar.config(text=self.db.get_nextId())
 
             # limpar todas as entradas/entry
             self.limpar_Entradas()

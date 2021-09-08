@@ -1,4 +1,6 @@
+from sqlite3.dbapi2 import Row
 from tkinter import *
+from typing import Collection
 import uteis as u
 
 
@@ -19,12 +21,20 @@ class FrameProduto(Frame):
         self.frameBaixo.pack(side=BOTTOM)
         
         self.frameProdutos = Frame(self.frameBaixo)
-        self.lb_pesquisar = Label(self.frameProdutos, text='pesquisar:')
-        self.etd_pesquisar = Entry(self.frameProdutos)
-        self.lb_pesquisar.grid()
-        self.etd_pesquisar.grid()
         
-        
+        self.lb_pesquisarId = Label(self.frameProdutos, text='pesquisar ID nome:')
+        self.etd_pesquisarId = Entry(self.frameProdutos)
+        # self.lb_pesquisarNome = Label(self.frameProdutos, text='pesquisar Nome:')
+        # self.etd_pesquisarNome = Entry(self.frameProdutos)    
+        self.bt_pesquisar = Button(self.frameProdutos, text='pesquisar', command=self.pesquisar)
+        self.lb_avisoProduto = Label(self.frameProdutos, text=' ')
+
+        self.lb_pesquisarId.grid(row='1', column='0')
+        self.etd_pesquisarId.grid(row='1', column='1')
+        # self.lb_pesquisarNome.grid(row='2', column='0')
+        # self.etd_pesquisarNome.grid(row='2', column='1')
+        self.bt_pesquisar.grid(row=3, column=1)
+        self.lb_avisoProduto.grid(row=4, column=1)
         
         # frame cadastro ===================================
         self.frameCadastro = Frame(self.frameBaixo)
@@ -56,7 +66,16 @@ class FrameProduto(Frame):
         # self.show_frProdutos()
         self.show_frCadastro()
         self.frameBaixo.pack()
+    def pesquisar(self):
+        opcao = self.etd_pesquisarId.get()
+        dados = u.pesquisar(opcao=opcao)
+
+        print(dados)
         
+        
+        for dado in dados:
+            Label(None, text=f'nome:{dado[1]} quatidade:{dado[2]} tamanho:{dado[3]} cor:{dado[4]}').pack()
+            
     def show_frProdutos(self):
         self.frameCadastro.forget()
         self.frameProdutos.pack()
@@ -64,6 +83,7 @@ class FrameProduto(Frame):
     def show_frCadastro(self):
         self.frameProdutos.forget()
         self.frameCadastro.pack()
+        
     def cadastrar(self):
         print('cadastrar')
         nome = self.etd_nome.get()

@@ -7,6 +7,7 @@ cursor.execute("""
                CREATE TABLE produtos (
                    codigo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                    nome TEXT NOT NULL,
+                   preco REAL,
                    quantidade INTEGER,
                    tamanho TEXT,
                    cores TEXT

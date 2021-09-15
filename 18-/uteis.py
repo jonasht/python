@@ -13,7 +13,7 @@ def mostrar_produtos():
 
     dados.close()
 
-def cadastrar_produto(nome, quantidade=0, tamanho='', cor=''):
+def cadastrar_produto(nome, preco, quantidade=0, tamanho='', cor=''):
     
     
     
@@ -21,9 +21,9 @@ def cadastrar_produto(nome, quantidade=0, tamanho='', cor=''):
     cursor = dados.cursor()
 
     cursor.execute("""
-                   INSERT INTO produtos(nome, quantidade, tamanho, cores)
-                   VALUES (?, ?,?,?)
-                   """, (nome, quantidade, tamanho, cor))
+                   INSERT INTO produtos(nome, preco, quantidade, tamanho, cores)
+                   VALUES (?, ?, ?, ?, ?)
+                   """, (nome, preco, quantidade, tamanho, cor))
     dados.commit()
     dados.close()
     
@@ -66,16 +66,16 @@ def pesquisar(opcao):
         dados.close()
     
     return retornar
-def cadastrar(nome, quantidade, tamanho, cor):
+def cadastrar(nome, preco, quantidade, tamanho, cor):
     
     dados = sqlite3.connect('bancoDeDados.db')
     cursor = dados.cursor()
 
     # inserindo dados na tabela
     cursor.execute("""
-    INSERT INTO clientes (nome, quantidade, tamanho, cor)
+    INSERT INTO clientes (nome, preco, quantidade, tamanho, cor)
     VALUES (?,?,?)
-    """, (nome, quantidade, tamanho, cor))
+    """, (nome, preco, quantidade, tamanho, cor))
 
     # gravando no bd
     dados.commit()
@@ -87,4 +87,6 @@ def cadastrar(nome, quantidade, tamanho, cor):
 # mostrar_produtos()
 
 if __name__ == '__main__':
-    print(pesquisar('bone'))
+    # print(pesquisar('bone'))
+    cadastrar_produto(nome='asdf', preco=1.80, quantidade=5, tamanho='', cor='')
+    mostrar_produtos()

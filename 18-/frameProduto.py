@@ -1,4 +1,4 @@
-from sqlite3.dbapi2 import Row
+from sqlite3.dbapi2 import PrepareProtocol, Row
 from tkinter import *
 from typing import Collection
 import uteis as u
@@ -36,10 +36,12 @@ class FrameProduto(Frame):
         self.bt_pesquisar.grid(row=3, column=1)
         self.lb_avisoProduto.grid(row=4, column=1)
         
-        # frame cadastro ===================================
+        # frame cadastro =====================================
         self.frameCadastro = Frame(self.frameBaixo)
         self.lb_nome = Label(self.frameCadastro, text='nome:')
         self.etd_nome = Entry(self.frameCadastro)
+        self.lb_preco = Label(self.frameCadastro, text='preço:')
+        self.etd_preco = Entry(self.frameCadastro)
         self.lb_qtd = Label(self.frameCadastro, text='quantidade:')
         self.etd_qtd = Entry(self.frameCadastro)
         self.lb_tamanho = Label(self.frameCadastro, text='tamanho:')
@@ -49,14 +51,17 @@ class FrameProduto(Frame):
 
         self.lb_nome.grid(row=1, column=0)
         self.etd_nome.grid(row=1, column=1)
-        self.lb_qtd.grid(row=2, column=0)
-        self.etd_qtd.grid(row=2, column=1)
-        self.lb_tamanho.grid(row=3, column=0)
-        self.etd_tamanho.grid(row=3, column=1)
-        self.lb_cor.grid(row=4, column=0)
-        self.etd_cor.grid(row=4, column=1)
+        self.lb_preco.grid(row=2, column=0)
+        self.etd_preco.grid(row=2, column=1)
+
+        self.lb_qtd.grid(row=3, column=0)
+        self.etd_qtd.grid(row=3, column=1)
+        self.lb_tamanho.grid(row=4, column=0)
+        self.etd_tamanho.grid(row=4, column=1)
+        self.lb_cor.grid(row=5, column=0)
+        self.etd_cor.grid(row=5, column=1)
         self.lb_avisoCadas = Label(self.frameCadastro, text=' ', fg='red')
-        self.lb_avisoCadas.grid(row=5, column=1)
+        self.lb_avisoCadas.grid(row=7, column=1)
 
         self.bt_cadastrar = Button(self.frameCadastro, width=15, text='cadastrar', command=self.cadastrar)
         self.bt_cadastrar.grid(row=6, column=1)
@@ -65,28 +70,33 @@ class FrameProduto(Frame):
 
         # self.show_frProdutos()
         self.show_frCadastro()
-        self.frameBaixo.pack()
+        self.frameBaixo.pack()  
+        
+        
     def pesquisar(self):
         opcao = self.etd_pesquisarId.get()
         dados = u.pesquisar(opcao=opcao)
 
         print(dados)
         
-        
         for dado in dados:
-            Label(None, text=f'nome:{dado[1]} quatidade:{dado[2]} tamanho:{dado[3]} cor:{dado[4]}').pack()
-            
+            Label(None, text=f'nome:{dado[1]} valor:{dado[2]} quatidade:{dado[3]} tamanho:{dado[4]} cor:{dado[5]}').pack()
+        
+        self.etd_pesquisarId.delete(0, END)
     def show_frProdutos(self):
+        self.etd_pesquisarId.focus()
         self.frameCadastro.forget()
         self.frameProdutos.pack()
         
     def show_frCadastro(self):
+        self.etd_nome.focus()
         self.frameProdutos.forget()
         self.frameCadastro.pack()
         
     def cadastrar(self):
         print('cadastrar')
         nome = self.etd_nome.get()
+        preco = self.etd_preco.get()
         qtd = self.etd_qtd.get()
         tamanho = self.etd_tamanho.get()
         cor = self.etd_cor.get()
@@ -94,13 +104,19 @@ class FrameProduto(Frame):
         if not(qtd): 
             qtd = '0'
   
+        if not(preco):
+            preco = 0
             
         if nome== '':
             self.lb_avisoCadas.config(text='campo nome obrigatorio', fg='red')
         elif qtd.isnumeric():
             qtd = int(qtd)
+            preco = float(preco)
+            
+            print('preco', preco, 'tipo:', type(preco))
             print(nome, qtd, tamanho, cor)
-            u.cadastrar_produto(nome=nome, quantidade=qtd, tamanho=tamanho, cor=cor)
+            u.cadastrar_produto(nome=nome, preco=preco, quantidade=qtd, tamanho=tamanho, cor=cor)
+            
             self.lb_avisoCadas.config(fg='green', text='cadastro feito com sucesso')
             self.reset_campoCadastro()
 
@@ -108,9 +124,12 @@ class FrameProduto(Frame):
             self.lb_avisoCadas.config(text='somente numeros em quantidade', fg='red')
     def reset_campoCadastro(self):
         self.etd_nome.delete(0, END)
+        self.etd_preco.delete(0, END)
         self.etd_qtd.delete(0, END)
         self.etd_cor.delete(0, END)
         self.etd_tamanho.delete(0, END)
+        
+        self.etd_nome.focus()
 
 if __name__ == '__main__':
     root = Tk()

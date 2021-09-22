@@ -15,6 +15,8 @@ def mostrar_produtos():
 
 def cadastrar_produto(nome, preco, quantidade=0, tamanho='', cor=''):
     
+    
+    
     dados = sqlite3.connect('bancoDeDados.db')
     cursor = dados.cursor()
 

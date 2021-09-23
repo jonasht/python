@@ -4,7 +4,7 @@ from uteis import *
 server = Server()
 
 # url = 'opc.tcp://localhost:4840' 
-url = 'opc.tcp://192.168.15.130:4840' 
+url = 'opc.tcp://localhost' 
 
 
 server.set_endpoint(url)

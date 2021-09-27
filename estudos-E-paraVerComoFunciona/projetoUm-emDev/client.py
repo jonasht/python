@@ -5,7 +5,7 @@ from uteis import *
 
 # opcua   ---------------------------------------------------
 # ip local do cliente
-url = 'opc.tcp://192.168.15.130:4840' 
+url = 'opc.tcp://localhost:4840' 
 
 client_op = Client(url)
 client_op.connect()
@@ -14,7 +14,7 @@ print(Fore.GREEN, 'cliente conectado', Fore.RESET)
 
 
 # mqtt -------------------------------------
-broker = '192.168.15.130'
+broker = 'localhost'
 
 
 port = 1883

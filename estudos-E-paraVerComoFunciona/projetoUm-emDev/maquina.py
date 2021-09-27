@@ -5,29 +5,63 @@ import json
 class Maquina:
     def __init__(self, nomeMaquina):
         self.nomeMaquina = nomeMaquina
+
         
-        self.dados = []
+        self.nomeArquivo = self.nomeMaquina + '.json'
+
 
     def set_data(self, variableName, type, value):
+        dados = []
+
+        dado = {'variable': variableName, 'type': type, 'value': value}
+        dados.append(dado)
+        
+    
+        self.record_data(dados)
+
+
+    # gravar dados
+    def record_data(self, dados):
+        dados = {self.nomeMaquina: dados}
+
+        with open(self.nomeArquivo, 'w') as f_obj:
+            json.dump(dados, f_obj)
+
+
+
+    def update_data(self, variable, type, value):
+        dados = []
+
+        dados = self.get_data()
+        dados = json.loads(dados)
+        dados = dados[self.nomeMaquina]
+        
+        
+        novoDado = {'variable': variable, 'type': type, 'value': value}
+        dados.append(novoDado)
+
+        self.record_data(dados)
+
+        
+    def get_data(self):
+        with open(self.nomeArquivo) as f:
+            dados = json.load(f)
         
 
-        dados = {'variable': variableName, 'type': type, 'value': value}
-        self.dados.append(dados)
+        dados_json= json.dumps(dados)
+        return dados_json
+
     
-    def get_data(self):
-        data = {self.nomeMaquina: self.dados}
-        data_json = json.dumps(data)
-        return data_json
-
-
 if __name__ == '__main__':
     m = Maquina('m')
     m.set_data(variableName='teste', type='int', value=50)
-    print(m.dados)
+    print(m.get_data())
+    m.set_data(variableName='teste2', type='int', value=80)
+    print(m.get_data())
+    
+    print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-')
 
-    print()
+    m.update_data('teste3', 'str', 'umaPalavra')
     print(m.get_data())
 
-    m.set_data(variableName='teste2', type='char', value='caracter')
-    print(m.get_data())
 

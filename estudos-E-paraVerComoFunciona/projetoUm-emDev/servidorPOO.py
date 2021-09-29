@@ -38,8 +38,6 @@ class Servidor:
         print(f'servidor funcionando em {self.url}')
 
 
-
-
         while True:
 
             sleep(.5)

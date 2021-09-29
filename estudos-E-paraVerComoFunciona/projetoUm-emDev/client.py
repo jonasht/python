@@ -1,6 +1,7 @@
 from opcua import Client
 from paho.mqtt import client as mqtt_client
 from uteis import *
+import mqtt_conFunc as mqttCon
 
 
 # opcua   ---------------------------------------------------
@@ -14,18 +15,18 @@ print(Fore.GREEN, 'cliente conectado', Fore.RESET)
 
 
 # mqtt -------------------------------------
-broker = 'localhost'
+broker = mqttCon.get_serverIP()
 
 
-port = 1883
-topic = 'teste'
+port = mqttCon.get_serverPort()
+topic = mqttCon.get_serverPubTopic()
 
 
 # gerando client id com pub prefixo aleatorio
 client_id = f'python-mqtt-{randint(0, 1000)}'
 
-username = 'teste'
-password = '123'
+username = mqttCon.get_serverUsername()
+password = mqttCon.get_serverPassword()
 
 
 

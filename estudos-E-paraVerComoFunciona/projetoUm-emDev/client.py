@@ -4,8 +4,10 @@ from uteis import *
 import mqtt_conFunc as mqttCon
 
 
-# opcua   ---------------------------------------------------
+# --- opcua   ---------------------------------------------------
 # ip local do cliente
+# url = 'opc.tcp://localhost:4840' 
+
 url = 'opc.tcp://localhost:4840' 
 
 client_op = Client(url)
@@ -14,7 +16,11 @@ client_op.connect()
 print(Fore.GREEN, 'cliente conectado', Fore.RESET)
 
 
-# mqtt -------------------------------------
+# --- mqtt -------------------------------------------------------
+# broker = 'localhost'
+# port = 1883
+# topic = 'teste'
+
 broker = mqttCon.get_serverIP()
 
 
@@ -25,6 +31,8 @@ topic = mqttCon.get_serverPubTopic()
 # gerando client id com pub prefixo aleatorio
 client_id = f'python-mqtt-{randint(0, 1000)}'
 
+# username = 'teste'
+# password = '123'
 username = mqttCon.get_serverUsername()
 password = mqttCon.get_serverPassword()
 

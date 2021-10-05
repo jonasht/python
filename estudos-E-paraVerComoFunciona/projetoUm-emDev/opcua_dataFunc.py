@@ -69,6 +69,7 @@ def mostrar():
 
     cursor.execute('SELECT * FROM tbl_opcua_data')
     print(cursor.fetchall())
+    
 def add_(variableName, ns, type):
     add_variableName(variableName)
     add_ns(ns)
@@ -82,7 +83,5 @@ if __name__ == '__main__':
     print(get_variableName())
 
 
-    banco.commit()
-    banco.close()
 
 

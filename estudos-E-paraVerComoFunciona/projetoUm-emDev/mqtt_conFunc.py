@@ -143,4 +143,6 @@ def mostrar():
     banco.close()
 
 if __name__ == '__main__':
-    print(get_serverIP())    
+    set_serverIP('localhost')
+    # print(get_serverIP())    
+    mostrar()

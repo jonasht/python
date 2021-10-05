@@ -1,4 +1,4 @@
-
+import sqlite3
 import json
 
 
@@ -51,7 +51,16 @@ class Maquina:
         dados_json= json.dumps(dados)
         return dados_json
 
-    
+    def add_intoDB(self, ip=None, url=None):
+        banco = sqlite3.connect('bancoDeDados.db')
+        cursor = banco.cursor()
+
+        cursor.execute("""
+                        INSERT INTO (name, ip, url) VALUES(?, ?, ?))
+                       """, (self.nomeMaquina, ip, url ))
+        banco.commit()
+        banco.close()
+        
 if __name__ == '__main__':
     m = Maquina('m')
     m.set_data(variableName='teste', type='int', value=50)

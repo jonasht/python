@@ -13,10 +13,7 @@ class Servidor:
 
         # self.url = 'opc.tcp://localhost:4840' 
         self.url = opMachine.get_url(self.nomeMaquina)
-
-
         self.server.set_endpoint(self.url)
-        
         
         # registrando nome
         self.name = 'OPCUA_SIMULATION_SERVER'

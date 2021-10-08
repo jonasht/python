@@ -3,38 +3,18 @@ import sqlite3
 
 
 
-def set_serverIP(ip):
 
+
+def add_(serverIP=None, serverPort=None, serverClientID=None, serverUsername=None, serverPassword=None, serverPubTopic=None):
     banco = sqlite3.connect('bancoDeDados.db')
-    cursor = banco.cursor()
-
+    cursor = banco.cursor()    
     cursor.execute("""
-                   UPDATE tbl_mqtt_con 
-                   SET serverIP = ?
-                   """, (ip, ))
+                   INSERT INTO tbl_mqtt_con (serverIP, serverPort, serverClientID, serverUsername, serverPassword, serverPubTopic) 
+                   VALUES(?, ?, ?, ?, ?, ?)
+                   """, (serverIP, serverPort, serverClientID, serverUsername, serverPassword, serverPubTopic))
     banco.commit()
     banco.close()
-    
-def get_serverIP():
-    banco = sqlite3.connect('bancoDeDados.db')
-    cursor = banco.cursor()
-    cursor.execute('SELECT serverIP FROM tbl_mqtt_con')
-    retornar = cursor.fetchall()
-    banco.commit()
-    banco.close()
-    return retornar[0][0]
 
-
-def set_serverPort(port):
-    banco = sqlite3.connect('bancoDeDados.db')
-    cursor = banco.cursor()
-
-    cursor.execute("""
-                   UPDATE tbl_mqtt_con 
-                   SET serverPort = ?
-                   """, (port, ))
-    banco.commit()
-    banco.close()
 def get_serverPort():
     banco = sqlite3.connect('bancoDeDados.db')
     cursor = banco.cursor()
@@ -43,18 +23,6 @@ def get_serverPort():
     banco.commit()
     banco.close()
     return retornar[0][0]
-
-def set_serverClientID(id):
-    banco = sqlite3.connect('bancoDeDados.db')
-    cursor = banco.cursor()
-    
-    cursor.execute("""
-                UPDATE tbl_mqtt_con 
-                SET serverClientID = ?
-                """, (id, ))
-    banco.commit()
-    banco.close()
-        
 def get_serverClientID():
     banco = sqlite3.connect('bancoDeDados.db')
     cursor = banco.cursor()
@@ -65,25 +33,6 @@ def get_serverClientID():
     banco.close()
     return retornar[0][0]
 
-
-# cursor.execute("""CREATE TABLE tbl_mqtt_con (
-#     serverIP text, 
-#     serverPort interger, 
-#     serverClientID text, 
-#     serverUsername text, 
-#     serverPassword text, 
-#     serverPubTopic
-#     )""")
-
-def set_serverUsername(name):
-    banco = sqlite3.connect('bancoDeDados.db')
-    cursor = banco.cursor()
-    cursor.execute("""
-                UPDATE tbl_mqtt_con 
-                SET serverUsername = ?
-                """, (name, ))      
-    banco.commit()
-    banco.close()
 def get_serverUsername():
     banco = sqlite3.connect('bancoDeDados.db')
     cursor = banco.cursor()
@@ -92,18 +41,7 @@ def get_serverUsername():
     banco.commit()
     banco.close()
     return retornar[0][0]
-     
 
-def set_serverPassword(password):
-    banco = sqlite3.connect('bancoDeDados.db')
-    cursor = banco.cursor()
-    cursor.execute("""
-                UPDATE tbl_mqtt_con 
-                SET serverPassword = ?
-                """, (password, ))
-    banco.commit()
-    banco.close()     
-    
 def get_serverPassword():
     banco = sqlite3.connect('bancoDeDados.db')
     cursor = banco.cursor()
@@ -112,18 +50,7 @@ def get_serverPassword():
     banco.commit()
     banco.close()
     return retornar[0][0]
-      
 
-def set_serverPubTopic(topic):
-    banco = sqlite3.connect('bancoDeDados.db')
-    cursor = banco.cursor()
-    cursor.execute("""
-                UPDATE tbl_mqtt_con 
-                SET serverPubTopic = ?
-                """, (topic, )) 
-    banco.commit()
-    banco.close()
-         
 def get_serverPubTopic():
     banco = sqlite3.connect('bancoDeDados.db')
     cursor = banco.cursor()
@@ -132,17 +59,30 @@ def get_serverPubTopic():
     banco.commit()
     banco.close()
     return retornar[0][0]
-      
+
+
+def get_serverIP():
+    banco = sqlite3.connect('bancoDeDados.db')
+    cursor = banco.cursor()    
+    cursor.execute("""
+                   SELECT serverIP FROM tbl_mqtt_con
+                   """) 
+    retornar = cursor.fetchall()   
+    banco.commit()
+    banco.close()
+    return retornar[0][0]
 
 def mostrar():
     banco = sqlite3.connect('bancoDeDados.db')
-    cursor = banco.cursor()
-    cursor.execute('SELECT * FROM tbl_mqtt_con')
+    cursor = banco.cursor()    
+    cursor.execute("""
+                   SELECT * FROM tbl_mqtt_con
+                   """)
     print(cursor.fetchall())
     banco.commit()
     banco.close()
 
 if __name__ == '__main__':
-    set_serverIP('localhost')
-    # print(get_serverIP())    
+    # add_(serverIP='localhost', serverPort=1883, serverUsername='teste', serverPassword='123', serverPubTopic='teste')
     mostrar()
+    print('ip:', get_serverIP(), 'port:', get_serverPort(),'clientId:', get_serverClientID(), 'username:', get_serverUsername(), 'password:', get_serverPassword(), 'pubTopic:', get_serverPubTopic())

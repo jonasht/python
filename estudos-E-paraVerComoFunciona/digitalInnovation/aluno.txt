@@ -1,0 +1,5 @@
+roger, 7.5, 5.9
+felipe, 6.5, 5.9
+carlos, 6.5, 5.9
+flavio, 6.5, 9.9
+mateus, 2.5, 8.9

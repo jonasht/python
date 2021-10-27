@@ -1,5 +1,5 @@
 from tkinter import *
-import uteis as u
+import func_produtos as fp
 
 
 class FrameProduto(Frame):
@@ -8,7 +8,7 @@ class FrameProduto(Frame):
         lb_titulo = Label(self, text='Cadastro de Produto').pack()
         self.frBaixo = Frame(self)
 
-        self.bt_cadastrar = Button(self.frBaixo, text='Cadastrar')
+        self.bt_cadastrar = Button(self.frBaixo, text='Cadastrar', command=self.cadastrar)
         self.bt_resetar = Button(self.frBaixo, text='Resetar')
         self.bt_cadastrar.pack(side=RIGHT)
         self.bt_resetar.pack(side=LEFT)
@@ -64,12 +64,12 @@ class FrameProduto(Frame):
     def cadastrar(self):
         print('cadastrar')
         nome = self.etd_nome.get()
-        preco = self.etd_preco.get()
+        marca = self.etd_marca.get()
         qtd = self.etd_qtd.get()
-        tamanho = self.etd_tamanho.get()
-        cor = self.etd_cor.get()
-        
-        print(qtd)
+
+        preco = self.etd_preco.get()
+        descricao = self.text_descricao.get('1.0', END)    
+  
         if not(qtd): 
             qtd = '0'
   
@@ -77,16 +77,17 @@ class FrameProduto(Frame):
             preco = 0
             
         if nome== '':
-            self.lb_avisoCadas.config(text='campo nome obrigatorio', fg='red')
+            self.lb_aviso.config(text='campo nome obrigatorio', fg='red')
         elif qtd.isnumeric():
             qtd = int(qtd)
             preco = float(preco)
             
-            print('preco', preco, 'tipo:', type(preco))
-            print(nome, qtd, tamanho, cor)
-            u.cadastrar_produto(nome=nome, preco=preco, quantidade=qtd, tamanho=tamanho, cor=cor)
+
+            print(nome, marca, qtd, preco, qtd, descricao)
+            # u.cadastrar_produto(nome=nome, preco=preco, quantidade=qtd, tamanho=tamanho, cor=cor)
+            fp.add_(nome=nome, marca=marca, quantidade=qtd, preco=preco, descricao=descricao)
             
-            self.lb_avisoCadas.config(fg='green', text='cadastro feito com sucesso')
+            self.lb_aviso.config(fg='green', text='cadastro feito com sucesso')
             self.reset_campoCadastro()
 
         else:
@@ -95,11 +96,10 @@ class FrameProduto(Frame):
     
     def reset_campoCadastro(self):
         self.etd_nome.delete(0, END)
-        self.etd_preco.delete(0, END)
+        self.etd_marca.delete(0, END)
         self.etd_qtd.delete(0, END)
-        self.etd_cor.delete(0, END)
-        self.etd_tamanho.delete(0, END)
-        
+        self.etd_preco.delete(0, END)
+        self.text_descricao.delete('1.0', END)  
         self.etd_nome.focus()
 
 if __name__ == '__main__':

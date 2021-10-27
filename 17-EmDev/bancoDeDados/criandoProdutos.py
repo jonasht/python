@@ -7,11 +7,12 @@ cursor.execute("""
                CREATE TABLE produtos (
                    codigo INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                    nome TEXT NOT NULL,
-                   preco REAL,
+                   marca TEXT,
                    quantidade INTEGER,
-                   tamanho TEXT,
-                   cores TEXT
+                   preco REAL,
+                   descricao TEXT
                );
                """)
 
+dados.commit()
 dados.close()

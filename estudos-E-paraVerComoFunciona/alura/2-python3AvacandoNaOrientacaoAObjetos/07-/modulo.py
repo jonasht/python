@@ -43,10 +43,13 @@ class Serie(Programa):
         return f'nome: {self._nome} - ano: {self.ano} - temporada: {self.temporada} - likes: {self._likes}'
         
         
-class PlayList(list):
+class PlayList:
     def __init__(self, nome, programas):
         self.nome = nome
-        super().__init__(programas)
+        self.programas = programas
+    
+    def tamanho (self):
+        return len(self.programas)
 
     
 vingadores = Filme('vigadores - a guerra', 2020, 160)
@@ -85,7 +88,6 @@ print('\n=======================================================================
 filmesESeries = [senhorDosAneis, vingadores, gameOf, atlanta, demolidor, tmep]
 
 weekend = PlayList('fim de semana', filmesESeries)
-print('tamanho:', len(weekend))
-for programa in weekend:
+for programa in weekend.programas:
     # colocando __str__ pode retornar colocando o nome dada da classe: programa 
     print(programa)

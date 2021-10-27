@@ -8,11 +8,13 @@ cursor.execute("""
                CREATE TABLE clientes(
                    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                    nome TEXT NOT NULL,
-                   idade INTERGER,
-                   email TEXT,
-                   fone TEXT,
+                   cpf TEXT,
+                   uf VARCHAR(2),
                    cidade TEXT,
-                   uf VARCHAR(2)
+                   rua TEXT,
+                   numero TEXT,
+                   telefone TEXT,
+                   email TEXT
                );
                """)
 dados.close()

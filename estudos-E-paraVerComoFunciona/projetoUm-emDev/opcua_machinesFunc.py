@@ -1,5 +1,8 @@
+from os import getpid
 import sqlite3
 from sqlite3.dbapi2 import Cursor
+
+from maquina import Maquina
 
 def add_(name=None, ip=None, url=None):
     banco = sqlite3.connect('bancoDeDados.db')
@@ -14,17 +17,7 @@ def add_(name=None, ip=None, url=None):
 
     
     
-# def set_name(name):
-    
-#     banco = sqlite3.connect('bancoDeDados.db')
-#     cursor = banco.cursor()
 
-#     cursor.execute("""
-#                    UPDATE tbl_opcua_machines 
-#                    SET name = ?
-#                    """, (name, ))
-#     banco.commit()
-#     banco.close()
     
     
 def get_name(nomeMaquina):
@@ -38,15 +31,7 @@ def get_name(nomeMaquina):
     banco.close()
     return retornar[0][0] 
 
-# def set_ip(ip):
-#     banco = sqlite3.connect('bancoDeDados.db')
-#     cursor = banco.cursor()        
-#     cursor.execute("""
-#                    UPDATE tbl_opcua_machines 
-#                    SET ip = ?
-#                    """, (ip, ))  
-#     banco.commit()
-#     banco.close()
+
       
 def get_ip(maquina):
     banco = sqlite3.connect('bancoDeDados.db')
@@ -57,17 +42,41 @@ def get_ip(maquina):
     retornar = cursor.fetchall()
     banco.commit()
     banco.close()
-    return retornar[0][0] 
+    return retornar[0][0]
 
-# def set_url(url):
-#     banco = sqlite3.connect('bancoDeDados.db')
-#     cursor = banco.cursor()       
-#     cursor.execute("""
-#                    UPDATE tbl_opcua_machines 
-#                    SET url = ?
-#                    """, (url, ))  
-#     banco.commit()
-#     banco.close()
+ 
+def update_ip(nomeMaquina, ip):
+    banco = sqlite3.connect('bancoDeDados.db')
+    cursor = banco.cursor()        
+    cursor.execute("""
+                   UPDATE tbl_opcua_machines 
+                   SET ip = ?
+                   WHERE name = ?
+                   """, (ip, nomeMaquina))  
+    banco.commit()
+    banco.close()
+    
+def update_name(nomeMaquina, name):
+    banco = sqlite3.connect('bancoDeDados.db')
+    cursor = banco.cursor()        
+    cursor.execute("""
+                   UPDATE tbl_opcua_machines 
+                   SET name = ?
+                   WHERE name = ?
+                   """, (name, nomeMaquina))  
+    banco.commit()
+    banco.close()
+    
+def update_url(maquina, url):
+    banco = sqlite3.connect('bancoDeDados.db')
+    cursor = banco.cursor()       
+    cursor.execute("""
+                   UPDATE tbl_opcua_machines 
+                   SET url = ?
+                   WHERE name = ?
+                   """, (url, maquina))  
+    banco.commit()
+    banco.close()
     
 def get_url(maquina): 
     banco = sqlite3.connect('bancoDeDados.db')
@@ -91,13 +100,8 @@ def mostrar():
 
 
 if __name__ == '__main__':
-    # mostrar()
-    # set_name('umNome1')
-    # add_('ip', '123.123.123.123')
-
-    # cursor.execute('DELETE FROM tbl_opcua_machines',())
-
-    # add_('ip', '123.123.123.123')
-
+    maquina = 'maquina1'
+    print(get_ip(maquina='maquina1'))
+    update_url(maquina, '127.0.0.1')
     mostrar()
 

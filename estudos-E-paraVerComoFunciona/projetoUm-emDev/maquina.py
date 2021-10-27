@@ -56,8 +56,8 @@ class Maquina:
         cursor = banco.cursor()
 
         cursor.execute("""
-                        INSERT INTO (name, ip, url) VALUES(?, ?, ?))
-                       """, (self.nomeMaquina, ip, url ))
+                        INSERT INTO (name, ip, url) VALUES(?, ?, ?)
+                       """, (self.nomeMaquina, ip, url))
         banco.commit()
         banco.close()
         

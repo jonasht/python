@@ -1,4 +1,4 @@
-from random import randint 
+
 
 class Programa:
     def __init__(self, nome, ano):
@@ -43,12 +43,7 @@ class Serie(Programa):
         return f'nome: {self._nome} - ano: {self.ano} - temporada: {self.temporada} - likes: {self._likes}'
         
         
-class PlayList(list):
-    def __init__(self, nome, programas):
-        self.nome = nome
-        super().__init__(programas)
-
-    
+        
 vingadores = Filme('vigadores - a guerra', 2020, 160)
 vingadores.dar_like()
 vingadores.dar_like()
@@ -76,16 +71,9 @@ atlanta.dar_like()
 
 print(f'Nome: {atlanta.nome} - Ano: {atlanta.ano}')
 
-tmep = Filme('todo mundo em panico', 2000, 100)
-demolidor = Serie('demolidor', 2015, 3)
-
-[tmep.dar_like() for _ in range(randint(0, 10))]
-[demolidor.dar_like() for _ in range(randint(0, 20))]
 print('\n=======================================================================')
-filmesESeries = [senhorDosAneis, vingadores, gameOf, atlanta, demolidor, tmep]
+filmesESeries = [senhorDosAneis, vingadores, gameOf, atlanta]
 
-weekend = PlayList('fim de semana', filmesESeries)
-print('tamanho:', len(weekend))
-for programa in weekend:
+for programa in filmesESeries:
     # colocando __str__ pode retornar colocando o nome dada da classe: programa 
     print(programa)

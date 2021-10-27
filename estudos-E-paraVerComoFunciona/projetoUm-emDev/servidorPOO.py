@@ -21,7 +21,7 @@ class Servidor:
 
         self.node = self.server.get_objects_node()
 
-        self.Param = self.node.add_object(self.addspace, "Parameters")
+        self.Param = self.node.add_object(self.addspace, self.nomeMaquina)
 
         self.Dados = self.Param.add_variable(self.addspace, 'Dados', 0)
 
@@ -51,8 +51,8 @@ if __name__ == '__main__':
     maquina1.set_data(variableName='teste', type='int', value=50)
     # maquina1.add_intoDB(url='opc.tcp://localhost:4840')
     servidor = Servidor(maquina1.nomeMaquina)
-    # print(maquina1.nomeMaquina)
-    # print(maquina1.get_data())
-    # print('url:', opMachine.get_url(maquina1.nomeMaquina))
-    servidor.dados = maquina1.get_data()
-    servidor.start()
+    print(maquina1.nomeMaquina)
+    print(maquina1.get_data())
+    print('url:', opMachine.get_url(maquina1.nomeMaquina))
+    # servidor.dados = maquina1.get_data()
+    # servidor.start()

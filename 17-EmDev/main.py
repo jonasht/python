@@ -2,6 +2,8 @@ from tkinter import *
 from frameCadastroCliente import FrameCadastroCliente
 from frameVenda import FrameVenda
 from frameCadastroProduto import FrameProduto
+from framePesquisarProduto import FrPesquisarProduto
+from FramePesquisarClientes import FrPesquisarCliente
 
 class Principal(Tk):
     def __init__(self):
@@ -21,7 +23,7 @@ class Principal(Tk):
         # label frame produto =============================================================
         self.lbfr_produto = LabelFrame(self.frameBotoes, text='Produto')
         self.bt_cadastrarProduto = Button(self.lbfr_produto, width=10, text='Cadastrar', command=self.show_fr_CadastrarProduto)
-        self.bt_pesquisarProduto = Button(self.lbfr_produto, width=10, text='Pesquisar')
+        self.bt_pesquisarProduto = Button(self.lbfr_produto, width=10, text='Pesquisar', command=self.show_fr_pesquisarProduto)
 
         self.bt_cadastrarProduto.grid(row=0)
         self.bt_pesquisarProduto.grid(row=1)
@@ -30,7 +32,7 @@ class Principal(Tk):
         # label frame cliente =============================================================
         self.lbfr_cliente = LabelFrame(self.frameBotoes, text='Clientes')
         self.bt_cadastrarCliente = Button(self.lbfr_cliente, text='Cadastrar', width=10, command=self.show_fr_CadstroCliente)
-        self.bt_pesquisarCliente = Button(self.lbfr_cliente, text='Pesquisar', width=10)
+        self.bt_pesquisarCliente = Button(self.lbfr_cliente, text='Pesquisar', width=10, command=self.show_fr_pesquisarCliente)
 
         self.bt_cadastrarCliente.grid(row=0)
         self.bt_pesquisarCliente.grid(row=1)
@@ -48,18 +50,33 @@ class Principal(Tk):
         self.frameDireita = Frame(self)
         self.frameCadastroProduto = FrameProduto(self.frameDireita)
         self.frameCadastroCliente = FrameCadastroCliente(self.frameDireita)
+        self.framePesquisarProduto = FrPesquisarProduto(self.frameDireita)
+        self.framePesquisarCliente = FrPesquisarCliente(self.frameDireita)
 
         self.frameDireita.pack(side=LEFT, fill=BOTH)
-        
-    def show_fr_CadastrarProduto(self):
+    
+    def apagar_frames(self):
         self.frameCadastroCliente.forget()
-        
+        self.frameCadastroProduto.forget()
+        self.framePesquisarProduto.forget()
+        self.framePesquisarCliente.forget()
+    def show_fr_CadastrarProduto(self):
+        self.apagar_frames()
         self.frameCadastroProduto.pack()
         
     def show_fr_CadstroCliente(self):
-        self.frameCadastroProduto.forget()
-        
+        self.apagar_frames()
         self.frameCadastroCliente.pack()
+    def show_fr_pesquisarProduto(self):
+        self.apagar_frames()
+        
+        self.framePesquisarProduto.pack()
+        
+    def show_fr_pesquisarCliente(self):
+        self.apagar_frames()
+        
+        self.framePesquisarCliente.pack()
+        
         
         
         

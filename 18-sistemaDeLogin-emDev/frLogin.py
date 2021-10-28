@@ -25,11 +25,7 @@ class FrLogin(Frame):
         
         self.lbfr_meio.pack()
 
-        # botao cadastrar
-        self.bt_cadastrar = Button(self, text='Cadastrar')
-        self.bt_cadastrar.pack()
-
-        
+ 
         
 if __name__ == '__main__':
     

@@ -1,8 +1,12 @@
 from tkinter import *
+import uteis as u
+from colorama.ansi import Fore
 
 class FrLogin(Frame):
-    def __init__(self, parents):
-        super().__init__(parents)
+    def __init__(self, parent, controller):
+        
+        Frame.__init__(self, parent)
+        self.controller = controller
 
         self.lbfr_meio = LabelFrame(self, text='Login')
         
@@ -18,14 +22,36 @@ class FrLogin(Frame):
         self.etd_senha.grid(row=1, column=1)
 
         self.bt_limpar = Button(self.lbfr_meio, text='Limpar')
-        self.bt_entrar = Button(self.lbfr_meio, text='Entrar')
+        self.bt_entrar = Button(self.lbfr_meio, text='Entrar', command=self.acessar)
         self.bt_limpar.grid(row=2, column=0)
         self.bt_entrar.grid(row=2, column=1)
 
         
         self.lbfr_meio.pack()
 
+        self.lb_aviso = Label(self, text='aviso', fg='red')
+        self.lb_aviso.pack()
  
+    def acessar(self):
+        login = self.etd_login.get()
+        senha = self.etd_senha.get()
+
+        print(login, senha)
+        
+        senhaDoSistema = u.get_senha(login)
+        
+        if senhaDoSistema and senhaDoSistema == senha:
+            print(Fore.GREEN+'acesso permitido', Fore.RESET)
+            self.controller.show_frame('FrAcesso')
+            
+        else:
+            print(Fore.RED+'acesso negado', Fore.RESET)
+
+
+
+
+        
+        
         
 if __name__ == '__main__':
     

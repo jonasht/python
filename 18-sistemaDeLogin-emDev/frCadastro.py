@@ -1,8 +1,9 @@
 from tkinter import *
 
 class FrCadastro(Frame):
-    def __init__(self, parent):
-        super().__init__(parent)
+    def __init__(self, parent, controller):
+        Frame.__init__(self, parent)
+        self.controller = controller
 
         self.lbfr_principal = LabelFrame(self, text='Cadastrar nova conta')
         
@@ -32,7 +33,7 @@ class FrCadastro(Frame):
         self.bt_cadastrar.grid(row=3, column=1)
 
         self.lbfr_principal.pack()
-
+        
 
 if __name__ == '__main__':
     root = Tk()

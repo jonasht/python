@@ -26,7 +26,20 @@ def get_senha(login):
     
     return retornar[0][0]
 
+def login_in_data(login):
+    # retorna true se tem, false se nao tem
+    banco = sql.connect('db.db')
 
+    cursor = banco.cursor()
+
+    cursor.execute('SELECT login FROM conta WHERE login = ?', (login,) )
+    retornar = cursor.fetchall()
+    banco.commit()
+    banco.close()
+
+    print(retornar)
+    
+    return True if retornar else False
 
 def mostrar():
     banco = sql.connect('db.db')
@@ -45,4 +58,5 @@ if __name__ == '__main__':
     # add_data(nome='jonas3', sobrenome='teixeira', login='jonas3', senha='123', email='jonas@email.com')
     mostrar()
     print()
-    get_senha('jonas')
+    # get_senha('jonas')
+    print(login_in_data('jonas'))

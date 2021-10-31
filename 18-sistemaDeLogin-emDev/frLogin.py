@@ -14,7 +14,7 @@ class FrLogin(Frame):
         self.lb_senha = Label(self.lbfr_meio, text='Senha:')
 
         self.etd_login = Entry(self.lbfr_meio)
-        self.etd_senha = Entry(self.lbfr_meio)
+        self.etd_senha = Entry(self.lbfr_meio, show='*')
 
         self.lb_login.grid(row=0, column=0)
         self.etd_login.grid(row=0, column=1)
@@ -28,6 +28,7 @@ class FrLogin(Frame):
 
         
         self.lbfr_meio.pack()
+        self.bt_cadastrar = Button(self, text='fazer cadastro', command=lambda:self.controller.show_frame('FrCadastro')).pack()
 
         self.lb_aviso = Label(self, text='aviso', fg='red')
         self.lb_aviso.pack()
@@ -47,6 +48,7 @@ class FrLogin(Frame):
         else:
             print(Fore.RED+'acesso negado', Fore.RESET)
 
+    
 
 
 

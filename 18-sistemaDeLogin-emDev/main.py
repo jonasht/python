@@ -12,9 +12,6 @@ class Principal(Tk):
 
         self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
 
-        # the container is where we'll stack a bunch of frames
-        # on top of each other, then the one we want visible
-        # will be raised above the others
         container = Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
@@ -35,7 +32,7 @@ class Principal(Tk):
         frame = self.frames[page_name]
         frame.tkraise()
 
-
+    
 
 
 if __name__ == "__main__":

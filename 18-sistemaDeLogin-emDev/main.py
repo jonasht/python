@@ -27,10 +27,18 @@ class Principal(Tk):
 
         self.show_frame('FrLogin') 
         
+        
 
-    def show_frame(self, page_name):
-        frame = self.frames[page_name]
-        frame.tkraise()
+    def show_frame(self, page_name, op=None):
+        if page_name == 'FrAcesso':
+            frame = self.frames[page_name]
+            # FrAcesso.set_login(login='jonas')
+            frame.tkraise()
+
+        else:
+            
+            frame = self.frames[page_name]
+            frame.tkraise()
 
     
 

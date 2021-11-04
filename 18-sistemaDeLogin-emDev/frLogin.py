@@ -1,4 +1,5 @@
 from tkinter import *
+from frAcesso import FrAcesso
 import uteis as u
 from colorama.ansi import Fore
 
@@ -37,16 +38,25 @@ class FrLogin(Frame):
         login = self.etd_login.get()
         senha = self.etd_senha.get()
 
+        if login == '':
+            self.lb_aviso.config(text='por favor insira o login', fg='red')
+        elif senha == '':
+            self.lb_aviso.config(text='por favor insira o senha', fg='red')
+            
         print(login, senha)
         
         senhaDoSistema = u.get_senha(login)
-        
+        print('senhaDoSistema:', senhaDoSistema)
+
+
         if senhaDoSistema and senhaDoSistema == senha:
             print(Fore.GREEN+'acesso permitido', Fore.RESET)
             self.controller.show_frame('FrAcesso')
-            
+            # FrAcesso.set_login(login=login)
+            FrAcesso.set_login(self.controller, login)
         else:
             print(Fore.RED+'acesso negado', Fore.RESET)
+            self.lb_aviso.config(text='senha ou login invalido', fg='red')
 
     
 
@@ -58,7 +68,7 @@ class FrLogin(Frame):
 if __name__ == '__main__':
     
     root = Tk()
-    frame = FrLogin(root)
+    frame = FrLogin(root, None)
     root.geometry('500x500')
 
     frame.pack()

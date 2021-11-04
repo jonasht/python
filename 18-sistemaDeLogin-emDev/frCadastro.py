@@ -95,7 +95,7 @@ class FrCadastro(Frame):
             if not(u.login_in_data(login)):
                 if senha and resenha:
                     if senha == resenha:
-                        # u.add_data(nome=nome, sobrenome=sobrenome, login=login, senha=senha, email=email)
+                        u.add_data(nome=nome, sobrenome=sobrenome, login=login, senha=senha, email=email)
                         self.lb_aviso.config(text='Cadastro Feito com sucesso', fg='green')
                         print(nome, sobrenome, login, senha, resenha, email)
                     else:

@@ -1,4 +1,3 @@
-from os import getsid
 import sqlite3 as sql
 from sqlite3.dbapi2 import Cursor
 
@@ -62,11 +61,11 @@ def get_msg(login):
     cursor = banco.cursor()
 
     cursor.execute('SELECT frase FROM conta WHERE login = ?', (login, ))
-    retornar = cursor.fetchall()
+    retornar = cursor.fetchall()[0][0]
     banco.commit()
     banco.close()
     print(retornar)
-    return retornar [0][0] if retornar else retornar
+    return retornar
     
 
 

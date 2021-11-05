@@ -1,25 +1,27 @@
+from tkinter.constants import BOTTOM, CENTER, LEFT, N, W
 from interfaceCadastro import FrameCadastro
 from interfaceDados import FrameDados
-from tkinter import *
+import tkinter as tk
+from tkinter import ttk
 import os
 
-class Menu(Tk):
+class Menu(tk.Tk):
     def __init__(self):
         super().__init__()
         
         self.geometry('600x300+450+300')
         self.title('Menu')
-
+        
         # definindo botao de sair
-        self.bt_sair = Button(self, text='Sair', width=15, command=os.sys.exit)
+        self.bt_sair = ttk.Button(self, text='Sair', width=15, command=os.sys.exit)
         self.bt_sair.pack(side=BOTTOM, anchor=W)
         
         # frame
-        self.frame = Frame(self)
+        self.frame = ttk.Frame(self)
         
-        self.lb_telaPricipal = Label(self.frame, text='tela principal', fg='blue')
-        self.bt_cadastrar    = Button(self.frame, text='cadastrar', width=15, command=self.cadastrar)
-        self.bt_pesquisar    = Button(self.frame, text='pesquisar', width=15, command=self.Pesquisar)
+        self.lb_telaPricipal = ttk.Label(self.frame, text='tela principal', foreground='blue')
+        self.bt_cadastrar    = ttk.Button(self.frame, text='cadastrar', width=15, command=self.cadastrar)
+        self.bt_pesquisar    = ttk.Button(self.frame, text='pesquisar', width=15, command=self.Pesquisar)
         
         self.lb_telaPricipal.grid(row=0)
         self.bt_cadastrar.grid(row=1)
@@ -33,7 +35,7 @@ class Menu(Tk):
         self.xDados = [True, False]
 
         # linha entre o frame menu e a frame..
-        self.risco = Label(self,text='|\n'*16, fg='darkgray', width=1, height=15).pack(side=LEFT, anchor=CENTER)
+        self.risco = ttk.Label(self,text='|\n'*16, foreground='darkgray', width=1).pack(side=LEFT, anchor=CENTER)
 
 
 

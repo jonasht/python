@@ -1,8 +1,10 @@
-from tkinter import *
+from tkinter import ttk
+import tkinter as tk
+from tkinter.constants import END
 from registradora import *
 
 
-class FrameDados(Frame):
+class FrameDados(ttk.Frame):
     def __init__(self, container):
         super().__init__(container)
         
@@ -10,23 +12,23 @@ class FrameDados(Frame):
         # labels titulo, id
         # self.lb_titulo = Label(self, text='pesquisar por Id')
 
-        self.lb_id = Label(self, text='Id:', width=10)
+        self.lb_id = ttk.Label(self, text='Id:', width=10)
 
         # entrada id
-        self.etd_id = Entry(self)
+        self.etd_id = ttk.Entry(self)
         self.etd_id.bind('<Return>', self.onReturn)
 
         # botao pesquisar
-        self.bt_pesquisar = Button(self, text='Pesquisar', width=10, command=self.mostrar_info)
+        self.bt_pesquisar = ttk.Button(self, text='Pesquisar', width=10, command=self.mostrar_info)
 
         # label aviso
-        self.lb_aviso = Label(self, text='')
+        self.lb_aviso = ttk.Label(self, text='')
 
         # informacoes
-        self.lb_idMostrar = Label(self, text=' ')
-        self.lb_nome = Label(self, text=' ')
-        self.lb_idade = Label(self, text=' ')
-        self.lb_sexo = Label(self, text=' ')
+        self.lb_idMostrar = ttk.Label(self, text=' ')
+        self.lb_nome = ttk.Label(self, text=' ')
+        self.lb_idade = ttk.Label(self, text=' ')
+        self.lb_sexo = ttk.Label(self, text=' ')
 
         # self.lb_titulo.grid(row=0, column=1,columnspan=2, sticky='news')
         self.lb_id.grid(row=1, column=0)
@@ -83,7 +85,7 @@ class FrameDados(Frame):
         else:
             self.lb_aviso.config(text='por favor, digite algum Id', fg='red')
 
-class Dados(Tk):
+class Dados(tk.Tk):
     def __init__(self):
         super().__init__()
         self.geometry('407x200+651+300')

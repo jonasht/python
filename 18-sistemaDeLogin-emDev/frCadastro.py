@@ -1,39 +1,42 @@
-from tkinter import *
+import tkinter as tk
+from tkinter import ttk
+from tkinter.constants import END, RIGHT
+
 import uteis as u
 
 
 
 
-class FrCadastro(Frame):
+class FrCadastro(ttk.Frame):
     def __init__(self, parent, controller):
-        Frame.__init__(self, parent)
+        ttk.Frame.__init__(self, parent)
         self.controller = controller
         
         # botao voltar
-        self.bt_voltar = Button(self, text='Voltar', command=self.voltar)
+        self.bt_voltar = ttk.Button(self, text='Voltar', command=self.voltar)
         self.bt_voltar.pack(side=RIGHT, anchor='nw')
 
 
-        self.lbfr_principal = LabelFrame(self, text='Cadastrar nova conta')
+        self.lbfr_principal = ttk.LabelFrame(self, text='Cadastrar nova conta')
         
-        self.lb_nome = Label(self.lbfr_principal, text='Nome:')
-        self.etd_nome = Entry(self.lbfr_principal)
+        self.lb_nome = ttk.Label(self.lbfr_principal, text='Nome:')
+        self.etd_nome = ttk.Entry(self.lbfr_principal)
 
-        self.lb_sobrenome = Label(self.lbfr_principal, text='sobrenome:')
-        self.etd_sobrenome = Entry(self.lbfr_principal)
+        self.lb_sobrenome = ttk.Label(self.lbfr_principal, text='sobrenome:')
+        self.etd_sobrenome = ttk.Entry(self.lbfr_principal)
 
-        self.lb_login = Label(self.lbfr_principal, text='Login:')
-        self.etd_login = Entry(self.lbfr_principal)
+        self.lb_login = ttk.Label(self.lbfr_principal, text='Login:')
+        self.etd_login = ttk.Entry(self.lbfr_principal)
 
-        self.lb_senha = Label(self.lbfr_principal, text='Senha:')
-        self.etd_senha = Entry(self.lbfr_principal, show='*')
-        self.ckbt_senha = Checkbutton(self.lbfr_principal, command=self.mostrar_senha, text='')
+        self.lb_senha = ttk.Label(self.lbfr_principal, text='Senha:')
+        self.etd_senha = ttk.Entry(self.lbfr_principal, show='*')
+        self.ckbt_senha = ttk.Checkbutton(self.lbfr_principal, command=self.mostrar_senha, text='')
 
-        self.lb_reSenha = Label(self.lbfr_principal, text='repetir Senha:')
-        self.etd_reSenha = Entry(self.lbfr_principal, show='*') 
+        self.lb_reSenha = ttk.Label(self.lbfr_principal, text='repetir Senha:')
+        self.etd_reSenha = ttk.Entry(self.lbfr_principal, show='*') 
 
-        self.lb_email = Label(self.lbfr_principal, text='Email:')
-        self.etd_email = Entry(self.lbfr_principal)
+        self.lb_email = ttk.Label(self.lbfr_principal, text='Email:')
+        self.etd_email = ttk.Entry(self.lbfr_principal)
 
         self.lb_nome.grid(row=0, column=0)
         self.etd_nome.grid(row=0, column=1)
@@ -54,8 +57,8 @@ class FrCadastro(Frame):
         self.lb_email.grid(row=5, column=0)
         self.etd_email.grid(row=5, column=1)
 
-        self.bt_limpar = Button(self.lbfr_principal, text='Limpar', command=self.limpar)
-        self.bt_cadastrar = Button(self.lbfr_principal, text='Cadastrar', command=self.cadastrar)
+        self.bt_limpar = ttk.Button(self.lbfr_principal, text='Limpar', command=self.limpar)
+        self.bt_cadastrar = ttk.Button(self.lbfr_principal, text='Cadastrar', command=self.cadastrar)
 
         self.bt_limpar.grid(row=6, column=0)
         self.bt_cadastrar.grid(row=6, column=1)
@@ -64,7 +67,7 @@ class FrCadastro(Frame):
 
 
         # label aviso =-=-=-=-=-=-=-=-=-=-=-=-=
-        self.lb_aviso = Label(self, text='')
+        self.lb_aviso = ttk.Label(self, text='')
         self.lb_aviso.pack()
 
     def mostrar_senha(self):
@@ -121,7 +124,7 @@ class FrCadastro(Frame):
         self.controller.show_frame('FrLogin')
 
 if __name__ == '__main__':
-    root = Tk()
+    root = tk.Tk()
     root.geometry('500x500')
     frame = FrCadastro(root, None)
     frame.pack()

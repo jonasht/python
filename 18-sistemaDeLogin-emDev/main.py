@@ -1,5 +1,7 @@
 from tkinter import *                
 from tkinter import font as tkfont  
+from tkinter import ttk
+import tkinter as tk
 from frAcesso import FrAcesso
 from frLogin import FrLogin
 from frCadastro import FrCadastro
@@ -11,8 +13,16 @@ class Principal(Tk):
         Tk.__init__(self, *args, **kwargs)
 
         self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
+        # Create a style
+        style = ttk.Style(self)
 
-        container = Frame(self)
+        # Import the tcl file
+        self.tk.call("source", "forest-dark.tcl")
+
+        # Set the theme with the theme_use method
+        style.theme_use("forest-dark")
+
+        container = ttk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
@@ -27,7 +37,7 @@ class Principal(Tk):
 
         self.show_frame('FrLogin') 
         
-        
+
 
     def show_frame(self, page_name, op=None):
         if page_name == 'FrAcesso':
@@ -45,6 +55,6 @@ class Principal(Tk):
 
 if __name__ == "__main__":
     root = Principal()
-    root.geometry('400x300')
+    root.geometry('500x300')
     root.mainloop()
     

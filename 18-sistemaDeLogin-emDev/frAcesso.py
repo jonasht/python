@@ -28,7 +28,7 @@ class FrAcesso(Frame):
         self.bt_editar = ttk.Button(self.fr_msg, text='Editar', command=self.editar)
 
         
-        self.lb_login = Label(self, text='')
+        self.lb_login = ttk.Label(self, text='')
         self.lb_login.pack()
         self.lb_msg.grid(row=0, column=1)
 

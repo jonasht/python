@@ -12,6 +12,8 @@ class Principal(Tk):
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
 
+        self.login = ''
+
         self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
         # Create a style
         style = ttk.Style(self)
@@ -36,14 +38,17 @@ class Principal(Tk):
             frame.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame('FrLogin') 
-        
 
 
-    def show_frame(self, page_name, op=None):
+    def set_login(self, login):
+        self.login = login
+    def show_frame(self, page_name):
         if page_name == 'FrAcesso':
             frame = self.frames[page_name]
-            # FrAcesso.set_login(login='jonas')
+            
+            print('login main:', self.login)
             frame.tkraise()
+            FrAcesso.set_login(self, self.login)
 
         else:
             

@@ -99,17 +99,17 @@ class FrCadastro(ttk.Frame):
                 if senha and resenha:
                     if senha == resenha:
                         u.add_data(nome=nome, sobrenome=sobrenome, login=login, senha=senha, email=email)
-                        self.lb_aviso.config(text='Cadastro Feito com sucesso', fg='green')
+                        self.lb_aviso.config(text='Cadastro Feito com sucesso', foreground='green')
                         print(nome, sobrenome, login, senha, resenha, email)
                     else:
-                        self.lb_aviso.config(text='senhas precisam ser iguais', fg='red')
+                        self.lb_aviso.config(text='senhas precisam ser iguais', foreground='red')
                         
                 else:
-                    self.lb_aviso.config(text='as duas senhas sao obrigatorias', fg='red')
+                    self.lb_aviso.config(text='as duas senhas sao obrigatorias', foreground='red')
             else:
-                self.lb_aviso.config(text='login ja existente', fg='red')       
+                self.lb_aviso.config(text='login ja existente', foreground='red')       
         else:
-            self.lb_aviso.config(text='campo login eh obrigatorio', fg='red')
+            self.lb_aviso.config(text='campo login eh obrigatorio', foreground='red')
 
         
     def limpar(self):

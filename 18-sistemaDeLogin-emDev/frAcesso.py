@@ -13,14 +13,17 @@ class FrAcesso(Frame):
         self.txt_estahAtivo = [True, False]
         self.controller = controller
         self.login = ''
-        # self.login = 'jonas'
         
 
         self.bt_logout = ttk.Button(self, text='log out', command=self.logout)
-        self.bt_logout.pack()
+        self.bt_logout.pack(side=RIGHT)
         
         self.fr_msg = ttk.Frame(self)
         self.lb_msg = ttk.Label(self.fr_msg, text='mensagem:')
+        
+        self.lb_login = ttk.Label(self.fr_msg, text='')
+        self.lb_login.grid()
+        
         
         self.txt_msg = Text(self.fr_msg, width=30, height=10)
 
@@ -28,8 +31,6 @@ class FrAcesso(Frame):
         self.bt_editar = ttk.Button(self.fr_msg, text='Editar', command=self.editar)
 
         
-        self.lb_login = ttk.Label(self, text='')
-        self.lb_login.pack()
         self.lb_msg.grid(row=0, column=1)
 
         self.txt_msg.grid(row=1)
@@ -48,7 +49,10 @@ class FrAcesso(Frame):
         
     def set_login(self, login):
         self.login = login
-        self.lb_login.config(text='login: '+self.login)
+        msg = f'bem vindo {self.login}'
+        self.lb_login.config(text=msg)
+        
+        
         
     def get_login(self):
         return self.login

@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter.constants import END
 from frAcesso import FrAcesso
 import uteis as u
 from colorama.ansi import Fore
@@ -35,6 +36,11 @@ class FrLogin(ttk.Frame):
         self.lb_aviso = ttk.Label(self, text='')
         self.lb_aviso.pack()
  
+        self.etd_login.focus()
+        # configuracoes default
+        self.etd_login.insert(0, 'jonas')
+        self.etd_senha.insert(0, '123')
+
     def acessar(self):
         login = self.etd_login.get()
         senha = self.etd_senha.get()
@@ -52,9 +58,11 @@ class FrLogin(ttk.Frame):
 
         if senhaDoSistema and senhaDoSistema == senha:
             print(Fore.GREEN+'acesso permitido', Fore.RESET)
+            self.controller.set_login(login)
             self.controller.show_frame('FrAcesso')
-            # FrAcesso.set_login(login=login)
-            FrAcesso.set_login(self.controller, login)
+            
+            # compartilhando login com a classe pai
+            
         else:
             print(Fore.RED+'acesso negado', Fore.RESET)
             self.lb_aviso.config(text='senha ou login invalido')

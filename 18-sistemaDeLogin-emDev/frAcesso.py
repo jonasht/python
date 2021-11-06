@@ -1,4 +1,3 @@
-from os import stat
 from tkinter import *
 import tkinter as tk
 from tkinter import ttk
@@ -18,12 +17,12 @@ class FrAcesso(Frame):
         self.bt_logout = ttk.Button(self, text='log out', command=self.logout)
         self.bt_logout.pack(side=RIGHT)
         
+        
+        self.lb_login = ttk.Label(self, text='login:')
+        self.lb_login.pack(side=LEFT)
+        
         self.fr_msg = ttk.Frame(self)
         self.lb_msg = ttk.Label(self.fr_msg, text='mensagem:')
-        
-        self.lb_login = ttk.Label(self.fr_msg, text='')
-        self.lb_login.grid()
-        
         
         self.txt_msg = Text(self.fr_msg, width=30, height=10)
 
@@ -50,7 +49,7 @@ class FrAcesso(Frame):
     def set_login(self, login):
         self.login = login
         msg = f'bem vindo {self.login}'
-        self.lb_login.config(text=msg)
+        # self.lb_login.config(text=msg)
         
         
         

@@ -1,109 +1,115 @@
 
 from tkinter import ttk
 import tkinter as tk
-from tkinter.constants import BOTH, DISABLED, END, EW, LEFT, NORMAL, RIGHT
+from tkinter.constants import BOTH, DISABLED, END, EW, LEFT, N, NO, NORMAL, NS, RIGHT, VERTICAL
+
+from colorama.ansi import Fore
 import func_produtos as funcP
+ 
 
 
 
-class FrPesquisarCliente(ttk.Frame):
+class FrPesquisarProduto(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
         # guardando id
-        self.id = ''
+        self.codigo = ''
 
-        # definindo frames =-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        self.fr_direita = ttk.Frame(self)
-        self.fr_esquerdo = ttk.Frame(self)
+        # definindo frames =-=-=-=-=-=-=-=-=-=-=-=-=-=-= 
+        self.lbfr_produto = ttk.LabelFrame(self, text='Produto')
+        self.fr_baixo = ttk.Frame(self)
 
-        self.frame = ttk.Frame(self.fr_esquerdo)
-        self.lbfr = ttk.LabelFrame(self.frame, text='Pesquisar')
+        self.fr_cima_p1 = ttk.Frame(self.lbfr_produto)
+        self.fr_cima_p2 = ttk.Frame(self.lbfr_produto)
+
+
+        self.lbfr = ttk.LabelFrame(self.fr_baixo, text='Pesquisar')
         
-        self.lb_pesquisar = ttk.Label(self.lbfr, text='id/nome:')
+        self.lb_pesquisar = ttk.Label(self.lbfr, text='Nome:')
         self.lb_pesquisar.grid(row=0, column=0)
         
         self.etd_pesquisar = ttk.Entry(self.lbfr)
         self.etd_pesquisar.grid(row=0, column=1, sticky=EW)
         
 
-        self.lb_id = ttk.Label(self.fr_direita, text='ID:')
-        self.lb_nome = ttk.Label(self.fr_direita, text='Nome:')
-        self.lb_cpf = ttk.Label(self.fr_direita, text='CPF:')
-        self.lb_uf = ttk.Label(self.fr_direita, text='UF:')
-        self.lb_cidade = ttk.Label(self.fr_direita, text='Cidade:')
-        self.lb_rua = ttk.Label(self.fr_direita, text='Rua:')
-        self.lb_numero = ttk.Label(self.fr_direita, text='Numero:')
-        self.lb_fone = ttk.Label(self.fr_direita, text='Fone:')
-        self.lb_email = ttk.Label(self.fr_direita, text='E-mail:')
+        self.lb_codigo = ttk.Label(self.fr_cima_p1, text='Codigo:')
+        self.lb_nome = ttk.Label(self.fr_cima_p1, text='Nome:')
+        self.lb_marca = ttk.Label(self.fr_cima_p1, text='Marca:')
+        self.lb_qtd = ttk.Label(self.fr_cima_p1, text='Quantidade:')
+        self.lb_preco = ttk.Label(self.fr_cima_p1, text='Preço:')
+        self.lb_descricao = ttk.Label(self.fr_cima_p2, text='Descriação:')
         
         
         
-        self.lb_idInfo = ttk.Label(self.fr_direita, text='')
-        self.etd_nome = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_cpf = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_uf = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_cidade = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_rua = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_numero = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_fone = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_email = ttk.Entry(self.fr_direita, foreground='black')
-        
-        
-        self.bt_editar = ttk.Button(self.fr_direita, text='Editar', command=self.editar_dados)
+        self.lb_codigoInfo = ttk.Label(self.fr_cima_p1, text='', background='lightgray', width=20)
 
+        # self.etd_codigo = ttk.Entry(self.fr_cima_p1, foreground='black')
+        self.etd_nome = ttk.Entry(self.fr_cima_p1, foreground='black')
+        self.etd_marca = ttk.Entry(self.fr_cima_p1, foreground='black')
+        self.etd_qtd = ttk.Entry(self.fr_cima_p1, foreground='black')
+        self.etd_preco = ttk.Entry(self.fr_cima_p1, foreground='black')
+        
+        self.txt_descricao = tk.Text(self.fr_cima_p2, width=50, height=10)
+        
+        self.bt_editar = ttk.Button(self.lbfr_produto, text='Editar', command=self.editar_dados)
 
+        self.lb_codigo.grid(row=0, column=0)
         self.lb_nome.grid(row=1, column=0)
-        self.lb_cpf.grid(row=2, column=0)
-        self.lb_uf.grid(row=3, column=0)
-        self.lb_cidade.grid(row=4, column=0)
-        self.lb_rua.grid(row=5, column=0)
-        self.lb_numero.grid(row=6, column=0)
-        self.lb_fone.grid(row=7, column=0)
-        self.lb_email.grid(row=8, column=0)
+        self.lb_marca.grid(row=2, column=0)
+        self.lb_qtd.grid(row=3, column=0)
+        self.lb_preco.grid(row=4, column=0)
+        self.lb_descricao.grid(row=0, column=2)
 
-        
-        self.lb_idInfo.grid(row=0, column=1)
+        self.lb_codigoInfo.grid(row=0, column=1, padx=5, pady=2)
+        self.etd_nome.grid(row=1, column=1, padx=5, pady=2)
+        self.etd_marca.grid(row=2, column=1, padx=5, pady=2)
+        self.etd_qtd.grid(row=3, column=1, padx=5, pady=2)
+        self.etd_preco.grid(row=4, column=1, padx=5, pady=2)
+        self.txt_descricao.grid(row=1, column=2, padx=5, pady=2)
 
         
         # colocando botao editar
-        self.bt_editar.grid(row=8, columnspan=2, sticky=EW)
+        self.bt_editar.grid(row=8, columnspan=2, sticky=EW, padx=5, pady=5)
 
-        self.etd_nome.grid(row=1, column=1)
-        self.etd_cpf.grid(row=2, column=1)
-        self.etd_uf.grid(row=3, column=1)
-        self.etd_cidade.grid(row=4, column=1)
-        self.etd_rua.grid(row=5, column=1)
-        self.etd_numero.grid(row=6, column=1)
-        self.etd_fone.grid(row=7, column=1)
-        self.etd_email.grid(row=8, column=1)
-                
+
 
 
         # Treeview =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         # definindo colunas
-        self.colunas = ['cod', 'nome', 'marca']
-        self.treev = ttk.Treeview(self.fr_esquerdo, columns=self.colunas, show='headings' )
+        self.colunas = ['cod', 'nome', 'marca', 'qtd', 'preco']
+        self.treev = ttk.Treeview(self.fr_baixo, columns=self.colunas, show='headings' )
 
         # definindo heading
-        self.treev.heading('cod', text='Cod')
+        self.treev.heading('cod', text='ID')
         self.treev.heading('nome', text='Nome')
-        self.treev.heading('cpf', text='Marca')
+        self.treev.heading('marca', text='Marca')
+        self.treev.heading('qtd', text='Quantidade')
+        self.treev.heading('preco', text='R$')
+
 
         # definindo tamanho da coluna
-        self.treev.column('cod', width=10)
-        self.treev.column('nome', width=150)
-        self.treev.column('marca', width=50)
+        self.treev.column('cod', width=25)
+        self.treev.column('nome', width=200)
+        self.treev.column('marca', width=200)
+        self.treev.column('qtd', width=95)
+        self.treev.column('preco', width=95)
 
-
-        self.treev.grid(row=1, column=0, columnspan=3)
-        self.lbfr.grid(row=0, column=0)
+        self.scroll = ttk.Scrollbar(self.fr_baixo, orient=VERTICAL, command=self.treev.yview)
+        self.treev.grid(row=1, column=0, columnspan=1)
+        self.scroll.grid(row=1, column=1, sticky=NS, rowspan=1)
+        #  
+        self.lbfr.grid(row=0, column=0, sticky=EW)
         
 
-        self.frame.grid(row=0, column=0)
         # colocando frames 
-        self.fr_esquerdo.pack(side=LEFT, fill=BOTH)
-        self.fr_direita.pack(side=RIGHT, fill=BOTH)
+        
+        self.lbfr_produto.pack()
+        self.fr_cima_p1.grid(row=0,column=0)
+        self.fr_cima_p2.grid(row=0,column=1)
+        
+
+        self.fr_baixo.pack()
         
         
         self.etd_pesquisar.bind('<KeyRelease>', self.digitar_evento)
@@ -114,80 +120,80 @@ class FrPesquisarCliente(ttk.Frame):
         self.etds_disabled()
         
 
-  
-    def etds_normal(self):
-            # self.etd_id.config(state=NORMAL)
-            self.etd_nome.config(state=NORMAL)
-            self.etd_cpf.config(state=NORMAL)
-            self.etd_uf.config(state=NORMAL)
-            self.etd_cidade.config(state=NORMAL)
-            self.etd_rua.config(state=NORMAL)
-            self.etd_numero.configure(state=NORMAL)
-            self.etd_fone.config(state=NORMAL)
-            self.etd_email.config(state=NORMAL)        
+    def atualizar(self): 
+        # so um teste 
+        self.deletar_tree()
+        self.mostrar_tree()
     
+    
+    def etds_normal(self):
+            # self.etd_codigo.config(state=NORMAL)
+            self.etd_nome.config(state=NORMAL)
+            self.etd_marca.config(state=NORMAL)
+            self.etd_qtd.config(state=NORMAL)
+            self.etd_preco.config(state=NORMAL)
+            self.txt_descricao.config(state=NORMAL, background='white')
+            
+            
     def etds_disabled(self):
-            # self.etd_id.config(state=DISABLED)
+
+            # self.etd_codigo.config(state=DISABLED)
             self.etd_nome.config(state=DISABLED)
-            self.etd_cpf.config(state=DISABLED)
-            self.etd_uf.config(state=DISABLED)
-            self.etd_cidade.config(state=DISABLED)
-            self.etd_rua.config(state=DISABLED)
-            self.etd_numero.config(state=DISABLED)
-            self.etd_fone.config(state=DISABLED)
-            self.etd_email.config(state=DISABLED)        
+            self.etd_marca.config(state=DISABLED)
+            self.etd_qtd.config(state=DISABLED)
+            self.etd_preco.config(state=DISABLED)
+            self.txt_descricao.config(state=DISABLED, background='lightgray')
+            
+            # mudar botao para editar
+            self.bt_editar.config(text='Editar')
             
     def editar_dados(self):
-        if self.id != '':
+        if self.codigo != '':
 
             if str(self.etd_nome['state']) == NORMAL:
-                # id = self.etd_id.get()
-                nome = self.etd_nome.get()
-                cpf = self.etd_cpf.get()
-                uf = self.etd_uf.get()
-                cidade = self.etd_cidade.get()
-                rua = self.etd_rua.get()
-                numero = self.etd_numero.get()
-                fone = self.etd_fone.get()
-                email = self.etd_email.get()
+                codigo = self.codigo
+                nome =self.etd_nome.get()
+                marca =self.etd_marca.get()
+                qtd =self.etd_qtd.get()
+                preco =self.etd_preco.get()
+                txt = self.txt_descricao.get("1.0", END)
                 
                 # update dados =-=-=-=-=-=-=-=-=-=-=-=-=
-                print('id:', self.id)
+
+                print('codigo:', codigo)
                 print('nome:', nome)
-                print('cpf:', cpf)
-                print('uf:', uf)
-                print('cidade:', cidade)
-                print('rua:', rua)
-                print('fone:', fone)
-                print('email:', email)
+                print('marca:', marca)
+                print('qtd:', qtd)
+                print('preco:', preco)
+                print('descricao:', txt)
                 
-                # funcC.update_(id=self.id, nome=nome, cpf=cpf,
-                #               uf=uf, cidade=cidade,
-                #               rua=rua, numero=)
+                funcP.update_(codigo=codigo, nome=nome,
+                              marca=marca, quantidade=qtd,
+                              preco=preco, descricao=txt)
                 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
                 
                 self.etds_disabled()  
                 self.bt_editar.config(text='Editar')
 
+                self.deletar_tree()
+                self.mostrar_tree()
             else:
                 self.bt_editar.config(text='OK')
                 self.etds_normal()
 
     
     def deletar_dados(self):
-        # self.etd_id.delete(0, END)
+
+        # self.etd_codigo.delete(0, END)
         self.etd_nome.delete(0, END)
-        self.etd_cpf.delete(0, END)
-        self.etd_uf.delete(0, END)
-        self.etd_cidade.delete(0, END)
-        self.etd_rua.delete(0, END)
-        self.etd_numero.delete(0, END)
-        self.etd_fone.delete(0, END)
-        self.etd_email.delete(0, END)
+        self.etd_marca.delete(0, END)
+        self.etd_qtd.delete(0, END)
+        self.etd_preco.delete(0, END)
+        self.txt_descricao.delete('1.0', END)
     
     def inserir_dados(self):
         # pegando dados
-        dados = funcC.pesquisar(self.id)
+        dados = funcP.pesquisar(self.codigo)
         print(dados)
         dados = dados[0]
 
@@ -196,27 +202,26 @@ class FrPesquisarCliente(ttk.Frame):
 
         self.deletar_dados()
         
-        self.lb_idInfo.config(text=dados[0])
-        # self.etd_id.insert(END, dados[0])
-        self.etd_nome.insert(END, dados[1])
-        self.etd_cpf.insert(END, dados[2])
-        self.etd_uf.insert(END, dados[4])
-        self.etd_cidade.insert(END, dados[5])
-        self.etd_rua.insert(END, dados[6])
-        self.etd_numero.insert(END, dados[7])
-        self.etd_fone.insert(END, dados[8])
-        self.etd_email.insert(END, dados[6])
+        self.lb_codigoInfo.config(text=dados[0])
 
+
+
+        self.etd_nome.insert(END, dados[1])
+        self.etd_marca.insert(END, dados[2])
+        self.etd_qtd.insert(END, dados[3])
+        self.etd_preco.insert(END, dados[4])
+        self.txt_descricao.insert(END, dados[5])
 
         self.etds_disabled()
+        
     def item_selected(self, event):
         for selected_item in self.treev.selection():
             item = self.treev.item(selected_item)
             record = item['values']
-            # show a message
+
             print(record)
             
-            self.id = record[0]
+            self.codigo = record[0]
             self.inserir_dados()
         
     def digitar_evento(self, event):
@@ -231,16 +236,18 @@ class FrPesquisarCliente(ttk.Frame):
     def deletar_tree(self):
         # deletar toda a tree view
         self.treev.delete(*self.treev.get_children()) 
+        
     def mostrar_tree(self, palavras=''):
 
-        dados = funcC.get_()
+        dados = funcP.get_()
         print(dados)
         print('\n')
 
         dadosTree = list()
         for d in dados:
-            # print(d[:5])
+            # dadosTree.append(d[:4])
             dadosTree.append(d[:5])
+            
             
             print('tree', dadosTree)
         
@@ -258,7 +265,7 @@ class FrPesquisarCliente(ttk.Frame):
 
 if __name__ == '__main__':
     root = tk.Tk()
-    frame = FrPesquisarCliente(root)
+    frame = FrPesquisarProduto(root)
     frame.pack()
     root.geometry('1000x500')
     root.mainloop()

@@ -1,51 +1,62 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter.constants import BOTH, LEFT
+from tkinter.constants import BOTH, LEFT, TOP
 from frameCadastroCliente import FrameCadastroCliente
-from frameVenda import FrameVenda
+
 from frameCadastroProduto import FrameProduto
 from framePesquisarProduto import FrPesquisarProduto
 from FramePesquisarClientes import FrPesquisarCliente
+from FrameVenda import FrVenda
 
 class Principal(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
 
-        self.geometry('1000x600')
+        self.geometry('1280x1024')
         self.frameBotoes = ttk.Frame(self)
-        
+        # theme =-=-===---====--==--=-=-====--=-=-=-======--====-=-==-=-=== == === === == ===
+        # Create a style
+        self.style = ttk.Style(self)
+
+        # Import the tcl file
+        self.tk.call("source", "forest-light.tcl")
+
+        # Set the theme with the theme_use method
+        self.style.theme_use("forest-light")
+
         # label frame venda =============================================================
         self.lbfr_venda = ttk.LabelFrame(self.frameBotoes, text='Venda')
-        self.btVenda = ttk.Button(self.lbfr_venda, width=10, text='Venda')
-        self.bt_entregas = ttk.Button(self.lbfr_venda, text='Entregas', width=10)
-        self.btVenda.grid(row=0)
-        self.bt_entregas.grid(row=1)
-        self.lbfr_venda.grid(row=0)
+        self.btVenda = ttk.Button(self.lbfr_venda, width=15, text='Venda', command=self.show_fr_venda)
+        self.bt_entregas = ttk.Button(self.lbfr_venda, width=15,text='Entregas')
+        self.btVenda.grid(row=0, padx=10, pady=5)
+        self.bt_entregas.grid(row=1, padx=10, pady=5)
+        self.lbfr_venda.grid(row=0, padx=10, pady=5)
         
         # label frame produto =============================================================
         self.lbfr_produto = ttk.LabelFrame(self.frameBotoes, text='Produto')
-        self.bt_cadastrarProduto = ttk.Button(self.lbfr_produto, width=10, text='Cadastrar', command=self.show_fr_CadastrarProduto)
-        self.bt_pesquisarProduto = ttk.Button(self.lbfr_produto, width=10, text='Pesquisar', command=self.show_fr_pesquisarProduto)
+        self.bt_cadastrarProduto = ttk.Button(self.lbfr_produto, width=15, text='Cadastrar', command=self.show_fr_CadastrarProduto)
+        self.bt_pesquisarProduto = ttk.Button(self.lbfr_produto, width=15, text='Pesquisar', command=self.show_fr_pesquisarProduto)
 
-        self.bt_cadastrarProduto.grid(row=0)
-        self.bt_pesquisarProduto.grid(row=1)
-        self.lbfr_produto.grid(row=1)
+        self.bt_cadastrarProduto.grid(row=0, padx=10, pady=5)
+        self.bt_pesquisarProduto.grid(row=1, padx=10, pady=5)
+        self.lbfr_produto.grid(row=1, padx=10, pady=5)
 
         # label frame cliente =============================================================
         self.lbfr_cliente = ttk.LabelFrame(self.frameBotoes, text='Clientes')
-        self.bt_cadastrarCliente = ttk.Button(self.lbfr_cliente, text='Cadastrar', width=10, command=self.show_fr_CadstroCliente)
-        self.bt_pesquisarCliente = ttk.Button(self.lbfr_cliente, text='Pesquisar', width=10, command=self.show_fr_pesquisarCliente)
+        self.bt_cadastrarCliente = ttk.Button(self.lbfr_cliente, text='Cadastrar', width=15, command=self.show_fr_CadstroCliente)
+        self.bt_pesquisarCliente = ttk.Button(self.lbfr_cliente, text='Pesquisar', width=15, command=self.show_fr_pesquisarCliente)
 
-        self.bt_cadastrarCliente.grid(row=0)
-        self.bt_pesquisarCliente.grid(row=1)
-        self.lbfr_cliente.grid(row=2)
+        self.bt_cadastrarCliente.grid(row=0, padx=10, pady=5)
+        self.bt_pesquisarCliente.grid(row=1, padx=10, pady=5)
+        self.lbfr_cliente.grid(row=2, padx=10, pady=5)
         
-        self.btFaturamento = ttk.Button(self.frameBotoes,width=10, text='Faturamento')
+        # faturamento ===-==-===-===-==-===-===-==-===-===-==-===-===-==-===-===-==-===-===-==-===
+        self.btFaturamento = ttk.Button(self.frameBotoes, width=15, text='Faturamento')
         
 
-        self.btFaturamento.grid(row=3)
+        self.btFaturamento.grid(row=3, padx=10, pady=5)
         
-        self.frameBotoes.pack(side=LEFT, fill=BOTH)
+        self.frameBotoes.pack(side=LEFT, fill=BOTH, padx=10, pady=2)
         
 
         # =================================================================
@@ -54,34 +65,44 @@ class Principal(tk.Tk):
         self.frameCadastroCliente = FrameCadastroCliente(self.frameDireita)
         self.framePesquisarProduto = FrPesquisarProduto(self.frameDireita)
         self.framePesquisarCliente = FrPesquisarCliente(self.frameDireita)
-
+        self.frameVenda = FrVenda(self.frameDireita)
+        
         self.frameDireita.pack(side=LEFT, fill=BOTH)
+
     
     def apagar_frames(self):
         self.frameCadastroCliente.forget()
         self.frameCadastroProduto.forget()
         self.framePesquisarProduto.forget()
         self.framePesquisarCliente.forget()
-        
+        self.frameVenda.forget()
+
+    def show_fr_venda(self):
+        self.apagar_frames()
+        self.frameVenda.pack(side=TOP)
+
     def show_fr_CadastrarProduto(self):
         self.apagar_frames()
-        self.frameCadastroProduto.pack()
+        self.frameCadastroProduto.reset_campoCadastro()
+        self.frameCadastroProduto.lb_aviso.config(text='')
+        self.frameCadastroProduto.pack(side=TOP)
+        
         
     def show_fr_CadstroCliente(self):
         self.apagar_frames()
-        self.frameCadastroCliente.pack()
+        self.frameCadastroCliente.pack(side=TOP)
+
     def show_fr_pesquisarProduto(self):
-        self.apagar_frames()
-        
-        self.framePesquisarProduto.pack()
+        self.apagar_frames() 
+        self.framePesquisarProduto.atualizar()
+        self.framePesquisarProduto.pack(side=TOP)
         
     def show_fr_pesquisarCliente(self):
         self.apagar_frames()
-        
-        self.framePesquisarCliente.pack()
-        
+        self.framePesquisarCliente.pack(side=TOP)
         
         
         
 root = Principal()
+
 root.mainloop()

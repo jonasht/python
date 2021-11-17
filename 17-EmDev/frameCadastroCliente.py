@@ -1,41 +1,46 @@
-from tkinter import *
+from tkinter import ttk
+import tkinter as tk
+from tkinter.constants import END, W, EW
 import func_clientes as fc
 
-class FrameCadastroCliente(Frame):
+
+class FrameCadastroCliente(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.lbfr_cadastrarCliente = LabelFrame(self, text='Cadastrar Cliente')
+        self.lbfr_cadastrarCliente = ttk.LabelFrame(self, text='Cadastrar Cliente')
 
-        self.lb_nome = Label(self.lbfr_cadastrarCliente, text='Nome:')
-        self.etd_nome = Entry(self.lbfr_cadastrarCliente)
+        self.lb_nome = ttk.Label(self.lbfr_cadastrarCliente, text='Nome:')
+        self.etd_nome = ttk.Entry(self.lbfr_cadastrarCliente)
         
-        self.lb_cpf = Label(self.lbfr_cadastrarCliente, text='CPF:')
-        self.etd_cpf = Entry(self.lbfr_cadastrarCliente)
+        self.lb_cpf = ttk.Label(self.lbfr_cadastrarCliente, text='CPF:')
+        self.etd_cpf = ttk.Entry(self.lbfr_cadastrarCliente)
         
-        self.lb_uf = Label(self.lbfr_cadastrarCliente, text='UF:')
-        self.etd_uf = Entry(self.lbfr_cadastrarCliente)
+        self.lb_uf = ttk.Label(self.lbfr_cadastrarCliente, text='UF:')
+        self.etd_uf = ttk.Entry(self.lbfr_cadastrarCliente)
 
-        self.lb_cidade = Label(self.lbfr_cadastrarCliente, text='Cidade:')
-        self.etd_cidade = Entry(self.lbfr_cadastrarCliente)
+        self.lb_cidade = ttk.Label(self.lbfr_cadastrarCliente, text='Cidade:')
+        self.etd_cidade = ttk.Entry(self.lbfr_cadastrarCliente)
         
-        self.lb_rua = Label(self.lbfr_cadastrarCliente, text='Rua:')
-        self.etd_rua = Entry(self.lbfr_cadastrarCliente)
+        self.lb_rua = ttk.Label(self.lbfr_cadastrarCliente, text='Rua:')
+        self.etd_rua = ttk.Entry(self.lbfr_cadastrarCliente)
         
-        self.lb_numeroCasa = Label(self.lbfr_cadastrarCliente, text='Numero:')
-        self.etd_numeroCasa = Entry(self.lbfr_cadastrarCliente)
+        self.lb_numeroCasa = ttk.Label(self.lbfr_cadastrarCliente, text='Numero:')
+        self.etd_numeroCasa = ttk.Entry(self.lbfr_cadastrarCliente)
         
-        self.lb_telefone = Label(self.lbfr_cadastrarCliente, text='Telefone:')
-        self.etd_telefone  = Entry(self.lbfr_cadastrarCliente)
+        self.lb_telefone = ttk.Label(self.lbfr_cadastrarCliente, text='Telefone:')
+        self.etd_telefone  = ttk.Entry(self.lbfr_cadastrarCliente)
         
-        self.lb_email = Label(self.lbfr_cadastrarCliente, text='Email:')
-        self.etd_email = Entry(self.lbfr_cadastrarCliente)
+        self.lb_email = ttk.Label(self.lbfr_cadastrarCliente, text='Email:')
+        self.etd_email = ttk.Entry(self.lbfr_cadastrarCliente)
         
-        self.bt_cadastrar = Button(self.lbfr_cadastrarCliente, text='Cadastrar', command=self.cadastrar)
-        self.bt_reset = Button(self.lbfr_cadastrarCliente, text='Resetar', command=self.resetar)
+        self.fr_bts = ttk.Frame(self)
+        
+        self.bt_cadastrar = ttk.Button(self.fr_bts, text='Cadastrar', command=self.cadastrar)
+        self.bt_reset = ttk.Button(self.fr_bts, text='Resetar', command=self.resetar)
 
         # label aviso
-        self.lb_aviso = Label(self, text='')
+        self.lb_aviso = ttk.Label(self, text='')
 
         # -------------------------------------------------
         self.lb_nome.grid(row=0, column=0)
@@ -62,11 +67,12 @@ class FrameCadastroCliente(Frame):
         self.lb_email.grid(row=7, column=0)
         self.etd_email.grid(row=7, column=1)
 
-        self.bt_cadastrar.grid(row=8, column=1)
+        self.bt_cadastrar.grid(row=8, column=1, columnspan=2, sticky=EW)
         self.bt_reset.grid(row=8, column=0)
         
         # colocando labelFrame
         self.lbfr_cadastrarCliente.pack()
+        self.fr_bts.pack()
         self.lb_aviso.pack()
         
         # focar no nome
@@ -92,9 +98,9 @@ class FrameCadastroCliente(Frame):
         if nome != '':
             fc.add_(nome, cpf, uf, cidade, rua, numero, telefone, email)
             self.resetar()
-            self.lb_aviso.config(text='cadastro feito com sucesso', fg='green')
+            self.lb_aviso.config(text='cadastro feito com sucesso', foreground='green')
         else:
-            self.lb_aviso.config(text='campo nome obrigatorio', fg='red')
+            self.lb_aviso.config(text='campo nome obrigatorio', foreground='red')
             
     def resetar(self):
         self.etd_nome.delete(0, END)
@@ -109,7 +115,7 @@ class FrameCadastroCliente(Frame):
         self.etd_nome.focus()
         
 if __name__ == '__main__':
-    root = Tk()
+    root = tk.Tk()
     frame = FrameCadastroCliente(root)
     frame.pack()
     root.geometry('600x500')

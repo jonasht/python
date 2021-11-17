@@ -8,7 +8,7 @@ import func_produtos as fp
 class FrameProduto(Frame):
     def __init__(self, parent):
         super().__init__(parent)
-        lb_titulo = Label(self, text='Cadastro de Produto').pack()
+        self.lbfr = LabelFrame(self, text='Cadastro de Produto')
         self.frBaixo = Frame(self)
 
         self.bt_cadastrar = Button(self.frBaixo, text='Cadastrar', command=self.cadastrar)
@@ -17,7 +17,7 @@ class FrameProduto(Frame):
         self.bt_resetar.pack(side=LEFT)
         
         # frame cadastro =====================================
-        self.frCadastro = Frame(self)
+        self.frCadastro = Frame(self.lbfr)
         self.frDados = Frame(self.frCadastro)
         self.frDescricao = Frame(self.frCadastro)
         
@@ -54,6 +54,7 @@ class FrameProduto(Frame):
         self.frDescricao.grid()
 
         self.frCadastro.pack()
+        self.lbfr.pack()
         self.frBaixo.pack()
 
         
@@ -62,8 +63,9 @@ class FrameProduto(Frame):
         self.etd_nome.focus()
         
         # label aviso
-        self.lb_aviso = Label(self, text='isso eh uma aviso', foreground='red')
+        self.lb_aviso = Label(self, text=' ', foreground='red')
         self.lb_aviso.pack()
+        
     def cadastrar(self):
         print('cadastrar')
         nome = self.etd_nome.get()

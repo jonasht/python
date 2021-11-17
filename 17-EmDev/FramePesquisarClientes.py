@@ -1,5 +1,5 @@
 
-from tkinter import Label, ttk
+from tkinter import Frame, Label, ttk
 import tkinter as tk
 from tkinter.constants import BOTH, DISABLED, END, EW, LEFT, NORMAL, RIGHT, W
 import func_clientes as funcC
@@ -14,71 +14,76 @@ class FrPesquisarCliente(ttk.Frame):
         self.nome = ''
         self.id = ''
 
-        # definindo frames =-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        self.fr_direita = ttk.Frame(self)
+        # definindo frames =-=-=-=-=-=-=-=-=-=-=-=-=-=-= 
+        self.lbfr_cliente = ttk.LabelFrame(self, text='Cliente')
+        self.fr_cliente_p1 = ttk.Frame(self.lbfr_cliente)
+        self.fr_cliente_p2 = ttk.Frame(self.lbfr_cliente)
+
         self.fr_esquerdo = ttk.Frame(self)
 
-        self.frame = ttk.Frame(self.fr_esquerdo)
-        self.lbfr = ttk.LabelFrame(self.frame, text='Pesquisar')
+        self.lbfr = ttk.LabelFrame(self.fr_esquerdo, text='Pesquisar')
         
-        self.lb_pesquisar = ttk.Label(self.lbfr, text='id/nome:')
+        self.lb_pesquisar = ttk.Label(self.lbfr, text='Nome:')
         self.lb_pesquisar.grid(row=0, column=0)
         
         self.etd_pesquisar = ttk.Entry(self.lbfr)
         self.etd_pesquisar.grid(row=0, column=1, sticky=EW)
         
 
-        self.lb_id = ttk.Label(self.fr_direita, text='ID:')
-        self.lb_nome = ttk.Label(self.fr_direita, text='Nome:')
-        self.lb_cpf = ttk.Label(self.fr_direita, text='CPF:')
-        self.lb_uf = ttk.Label(self.fr_direita, text='UF:')
-        self.lb_cidade = ttk.Label(self.fr_direita, text='Cidade:')
-        self.lb_rua = ttk.Label(self.fr_direita, text='Rua:')
-        self.lb_numero = ttk.Label(self.fr_direita, text='Numero:')
-        self.lb_fone = ttk.Label(self.fr_direita, text='Fone:')
-        self.lb_email = ttk.Label(self.fr_direita, text='E-mail:')
+        self.lb_id = ttk.Label(self.fr_cliente_p1, text='ID:')
+        self.lb_nome = ttk.Label(self.fr_cliente_p1, text='Nome:')
+        self.lb_cpf = ttk.Label(self.fr_cliente_p1, text='CPF:')
+        self.lb_uf = ttk.Label(self.fr_cliente_p1, text='UF:')
+        self.lb_cidade = ttk.Label(self.fr_cliente_p1, text='Cidade:')
+        
+        self.lb_rua = ttk.Label(self.fr_cliente_p2, text='Rua:')
+        self.lb_numero = ttk.Label(self.fr_cliente_p2, text='Numero:')
+        self.lb_fone = ttk.Label(self.fr_cliente_p2, text='Fone:')
+        self.lb_email = ttk.Label(self.fr_cliente_p2, text='E-mail:')
         
         
         
-        self.lb_idInfo = ttk.Label(self.fr_direita, text='')
-        self.etd_nome = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_cpf = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_uf = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_cidade = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_rua = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_numero = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_fone = ttk.Entry(self.fr_direita, foreground='black')
-        self.etd_email = ttk.Entry(self.fr_direita, foreground='black')
+        self.lb_idInfo = ttk.Label(self.fr_cliente_p1, text='')
+        self.etd_nome = ttk.Entry(self.fr_cliente_p1, foreground='black')
+        self.etd_cpf = ttk.Entry(self.fr_cliente_p1, foreground='black')
+        self.etd_uf = ttk.Entry(self.fr_cliente_p1, foreground='black')
+        self.etd_cidade = ttk.Entry(self.fr_cliente_p1, foreground='black')
+        
+        self.etd_rua = ttk.Entry(self.fr_cliente_p2, foreground='black')
+        self.etd_numero = ttk.Entry(self.fr_cliente_p2, foreground='black')
+        self.etd_fone = ttk.Entry(self.fr_cliente_p2, foreground='black')
+        self.etd_email = ttk.Entry(self.fr_cliente_p2, foreground='black')
         
         
-        self.bt_editar = ttk.Button(self.fr_direita, text='Editar', command=self.editar_dados)
+        self.bt_editar = ttk.Button(self.lbfr_cliente, text='Editar', command=self.editar_dados)
+
+        self.lb_id.grid(row=0, column=0, padx=5, pady=2)
+        self.lb_nome.grid(row=1, column=0, padx=5, pady=2)
+        self.lb_cpf.grid(row=2, column=0, padx=5, pady=2)
+        self.lb_uf.grid(row=3, column=0, padx=5, pady=2)
+        self.lb_cidade.grid(row=4, column=0, padx=5, pady=2)
+        
+        self.lb_rua.grid(row=1, column=0, padx=5, pady=2)
+        self.lb_numero.grid(row=2, column=0, padx=5, pady=2)
+        self.lb_fone.grid(row=3, column=0, padx=5, pady=2)
+        self.lb_email.grid(row=4, column=0, padx=5, pady=2)
+
+        
 
 
-        self.lb_nome.grid(row=1, column=0)
-        self.lb_cpf.grid(row=2, column=0)
-        self.lb_uf.grid(row=3, column=0)
-        self.lb_cidade.grid(row=4, column=0)
-        self.lb_rua.grid(row=5, column=0)
-        self.lb_numero.grid(row=6, column=0)
-        self.lb_fone.grid(row=7, column=0)
-        self.lb_email.grid(row=8, column=0)
-
+        self.lb_idInfo.grid(row=0, column=1, padx=5, pady=2)
+        self.etd_nome.grid(row=1, column=1, padx=5, pady=2)
+        self.etd_cpf.grid(row=2, column=1, padx=5, pady=2)
+        self.etd_uf.grid(row=3, column=1, padx=5, pady=2)
+        self.etd_cidade.grid(row=4, column=1, padx=5, pady=2)
         
-        self.lb_idInfo.grid(row=0, column=1)
-
-        
-        # colocando botao editar
-        self.bt_editar.grid(row=8, columnspan=2, sticky=EW)
-
-        self.etd_nome.grid(row=1, column=1)
-        self.etd_cpf.grid(row=2, column=1)
-        self.etd_uf.grid(row=3, column=1)
-        self.etd_cidade.grid(row=4, column=1)
-        self.etd_rua.grid(row=5, column=1)
-        self.etd_numero.grid(row=6, column=1)
-        self.etd_fone.grid(row=7, column=1)
-        self.etd_email.grid(row=8, column=1)
+        self.etd_rua.grid(row=1, column=1, padx=5, pady=2)
+        self.etd_numero.grid(row=2, column=1, padx=5, pady=2)
+        self.etd_fone.grid(row=3, column=1, padx=5, pady=2)
+        self.etd_email.grid(row=4, column=1, padx=5, pady=2)
                 
+        # colocando botao editar
+        self.bt_editar.grid(row=9, columnspan=2, sticky=EW)
 
 
         # Treeview =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -103,10 +108,13 @@ class FrPesquisarCliente(ttk.Frame):
         self.lbfr.grid(row=0, column=0)
         
 
-        self.frame.grid(row=0, column=0)
+
         # colocando frames 
-        self.fr_esquerdo.pack(side=LEFT, fill=BOTH)
-        self.fr_direita.pack(side=RIGHT, fill=BOTH)
+        self.lbfr_cliente.pack(fill=BOTH)
+        self.fr_cliente_p1.grid(row=0, column=0)
+        self.fr_cliente_p2.grid(row=0, column=1)
+        
+        self.fr_esquerdo.pack(fill=BOTH)
         
         
         self.etd_pesquisar.bind('<KeyRelease>', self.digitar_evento)
@@ -138,7 +146,10 @@ class FrPesquisarCliente(ttk.Frame):
             self.etd_rua.config(state=DISABLED)
             self.etd_numero.config(state=DISABLED)
             self.etd_fone.config(state=DISABLED)
-            self.etd_email.config(state=DISABLED)        
+            self.etd_email.config(state=DISABLED)     
+            
+            # mudando botao editar para editar
+            self.bt_editar.config(text='Editar')   
             
     def editar_dados(self):
         if self.id != '':
@@ -161,17 +172,21 @@ class FrPesquisarCliente(ttk.Frame):
                 print('uf:', uf)
                 print('cidade:', cidade)
                 print('rua:', rua)
+                print('numero:', numero)
                 print('fone:', fone)
                 print('email:', email)
                 
-                # funcC.update_(id=self.id, nome=nome, cpf=cpf,
-                #               uf=uf, cidade=cidade,
-                #               rua=rua, numero=)
+                funcC.update_(id=self.id, nome=nome, cpf=cpf,
+                              uf=uf, cidade=cidade,
+                              rua=rua, numero=numero,
+                              telefone=fone, email=email)
                 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
                 
                 self.etds_disabled()  
                 self.bt_editar.config(text='Editar')
 
+                self.deletar_tree()
+                self.mostrar_tree()
             else:
                 self.bt_editar.config(text='OK')
                 self.etds_normal()
@@ -200,15 +215,14 @@ class FrPesquisarCliente(ttk.Frame):
         self.deletar_dados()
         
         self.lb_idInfo.config(text=dados[0])
-        # self.etd_id.insert(END, dados[0])
         self.etd_nome.insert(END, dados[1])
         self.etd_cpf.insert(END, dados[2])
-        self.etd_uf.insert(END, dados[4])
-        self.etd_cidade.insert(END, dados[5])
-        self.etd_rua.insert(END, dados[6])
-        self.etd_numero.insert(END, dados[7])
-        self.etd_fone.insert(END, dados[8])
-        self.etd_email.insert(END, dados[6])
+        self.etd_uf.insert(END, dados[3])
+        self.etd_cidade.insert(END, dados[4])
+        self.etd_rua.insert(END, dados[5])
+        self.etd_numero.insert(END, dados[6])
+        self.etd_fone.insert(END, dados[7])
+        self.etd_email.insert(END, dados[8])
 
 
         self.etds_disabled()

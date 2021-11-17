@@ -41,6 +41,7 @@ class Principal(tk.Tk):
         
     def mostrar_dados(self, dados):
         print('dados main:', dados)
+        self.fr2.inserir(dados)
     # def show_frame(self, page_name):
     #     '''Show a frame for the given page name'''
     #     frame = self.frames[page_name]

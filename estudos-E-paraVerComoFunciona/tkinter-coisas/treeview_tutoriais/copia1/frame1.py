@@ -1,6 +1,6 @@
 
 import tkinter as tk
-from tkinter import ttk
+from tkinter import Button, Entry, ttk
 from tkinter.constants import NSEW, VERTICAL
 from tkinter.messagebox import showinfo
 
@@ -10,8 +10,13 @@ class Fr1(ttk.Frame):
         ttk.Frame.__init__(self, parent)
         self.controller = controller
 
-
-
+        self.lb_pesquisar = ttk.Label(self, text='pesquisar:')
+        self.etd_pesquisar = ttk.Entry(self)
+        self.bt_pesquisar = ttk.Button(self, text='pesquisar')
+        self.lb_pesquisar.grid()
+        self.etd_pesquisar.grid()
+        self.bt_pesquisar.grid()
+        
         self.tree = self.create_tree_widget()
 
     def create_tree_widget(self):

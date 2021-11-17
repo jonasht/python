@@ -105,7 +105,7 @@ class Interface(Frame):
         self.frame_conta.pack()
         self.frameBAIXO.pack(fill=BOTH)
         
-        self.lb_aviso = Label(self.frame_principal, text='aviso---')
+        self.lb_aviso = Label(self.frame_principal, text='')
         self.lb_aviso.pack()
         
         self.frame_principal.pack()

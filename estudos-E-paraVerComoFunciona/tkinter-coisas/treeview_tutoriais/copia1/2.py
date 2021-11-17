@@ -6,7 +6,7 @@ def Scankey(event):
 	val = event.widget.get()
 	print(val)
 	
-	
+
 	if val == '':
 		data = list
 	else:
@@ -22,7 +22,7 @@ def Scankey(event):
 def Update(data):
 	
 
-	listbox.delete(0, END)
+	listbox.delete(0, 'end')
 
 	# put new data
 	for item in data:

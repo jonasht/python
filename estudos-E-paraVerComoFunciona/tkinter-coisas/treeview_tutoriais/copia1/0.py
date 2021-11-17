@@ -1,6 +1,14 @@
+'''
+Created on Mar 21, 2016
 
-import tkinter as Tkinter
-import tkinter.ttk as ttk
+@author: Bill Begueradj
+'''
+try:
+    import Tkinter
+    import ttk
+except ImportError:  # Python 3
+    import tkinter as Tkinter
+    import tkinter.ttk as ttk
 
 
 class Begueradj(Tkinter.Frame):

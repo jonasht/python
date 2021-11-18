@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import Button, ttk
 from tkinter.constants import BOTH, LEFT, TOP
 from frameCadastroCliente import FrameCadastroCliente
 
@@ -23,14 +23,17 @@ class Principal(tk.Tk):
 
         # Set the theme with the theme_use method
         self.style.theme_use("forest-light")
-
+        # botao HOME ======================================================================
+        self.bt_home = ttk.Button(self.frameBotoes, text='HOME', width=15)
+        self.bt_home.grid(row=0, column=0)
+        
         # label frame venda =============================================================
         self.lbfr_venda = ttk.LabelFrame(self.frameBotoes, text='Venda')
         self.btVenda = ttk.Button(self.lbfr_venda, width=15, text='Venda', command=self.show_fr_venda)
         self.bt_entregas = ttk.Button(self.lbfr_venda, width=15,text='Entregas')
         self.btVenda.grid(row=0, padx=10, pady=5)
         self.bt_entregas.grid(row=1, padx=10, pady=5)
-        self.lbfr_venda.grid(row=0, padx=10, pady=5)
+        self.lbfr_venda.grid(row=1, padx=10, pady=5)
         
         # label frame produto =============================================================
         self.lbfr_produto = ttk.LabelFrame(self.frameBotoes, text='Produto')
@@ -39,7 +42,7 @@ class Principal(tk.Tk):
 
         self.bt_cadastrarProduto.grid(row=0, padx=10, pady=5)
         self.bt_pesquisarProduto.grid(row=1, padx=10, pady=5)
-        self.lbfr_produto.grid(row=1, padx=10, pady=5)
+        self.lbfr_produto.grid(row=2, padx=10, pady=5)
 
         # label frame cliente =============================================================
         self.lbfr_cliente = ttk.LabelFrame(self.frameBotoes, text='Clientes')
@@ -48,13 +51,13 @@ class Principal(tk.Tk):
 
         self.bt_cadastrarCliente.grid(row=0, padx=10, pady=5)
         self.bt_pesquisarCliente.grid(row=1, padx=10, pady=5)
-        self.lbfr_cliente.grid(row=2, padx=10, pady=5)
+        self.lbfr_cliente.grid(row=3, padx=10, pady=5)
         
         # faturamento ===-==-===-===-==-===-===-==-===-===-==-===-===-==-===-===-==-===-===-==-===
-        self.btFaturamento = ttk.Button(self.frameBotoes, width=15, text='Faturamento')
+        self.bt_faturamento = ttk.Button(self.frameBotoes, width=15, text='Faturamento')
         
 
-        self.btFaturamento.grid(row=3, padx=10, pady=5)
+        self.bt_faturamento.grid(row=4, padx=10, pady=5)
         
         self.frameBotoes.pack(side=LEFT, fill=BOTH, padx=10, pady=2)
         
@@ -69,7 +72,6 @@ class Principal(tk.Tk):
         
         self.frameDireita.pack(side=LEFT, fill=BOTH)
 
-    
     def apagar_frames(self):
         self.frameCadastroCliente.forget()
         self.frameCadastroProduto.forget()
@@ -90,6 +92,8 @@ class Principal(tk.Tk):
         
     def show_fr_CadstroCliente(self):
         self.apagar_frames()
+        self.frameCadastroCliente.lb_aviso.config(text='')
+        self.frameCadastroCliente.resetar()
         self.frameCadastroCliente.pack(side=TOP)
 
     def show_fr_pesquisarProduto(self):
@@ -99,6 +103,7 @@ class Principal(tk.Tk):
         
     def show_fr_pesquisarCliente(self):
         self.apagar_frames()
+        self.framePesquisarCliente.atualizar()
         self.framePesquisarCliente.pack(side=TOP)
         
         

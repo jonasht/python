@@ -124,7 +124,9 @@ class FrPesquisarCliente(ttk.Frame):
         # desativando entradas/entry 
         self.etds_disabled()
         
-
+    def atualizar(self):
+        self.deletar_tree()
+        self.mostrar_tree()
   
     def etds_normal(self):
             # self.etd_id.config(state=NORMAL)

@@ -43,29 +43,29 @@ class FrameCadastroCliente(ttk.Frame):
         self.lb_aviso = ttk.Label(self, text='')
 
         # -------------------------------------------------
-        self.lb_nome.grid(row=0, column=0)
-        self.etd_nome.grid(row=0, column=1)
+        self.lb_nome.grid(row=0, column=0, padx=5, pady=2)
+        self.etd_nome.grid(row=0, column=1, padx=5, pady=2)
         
-        self.lb_cpf.grid(row=1, column=0)
-        self.etd_cpf.grid(row=1, column=1)
+        self.lb_cpf.grid(row=1, column=0, padx=5, pady=2)
+        self.etd_cpf.grid(row=1, column=1, padx=5, pady=2)
         
-        self.lb_uf.grid(row=2, column=0)
-        self.etd_uf.grid(row=2, column=1)
+        self.lb_uf.grid(row=2, column=0, padx=5, pady=2)
+        self.etd_uf.grid(row=2, column=1, padx=5, pady=2)
 
-        self.lb_cidade.grid(row=3, column=0)
-        self.etd_cidade.grid(row=3, column=1)
+        self.lb_cidade.grid(row=3, column=0, padx=5, pady=2)
+        self.etd_cidade.grid(row=3, column=1, padx=5, pady=2)
 
-        self.lb_rua.grid(row=4, column=0)
-        self.etd_rua.grid(row=4, column=1)
+        self.lb_rua.grid(row=4, column=0, padx=5, pady=2)
+        self.etd_rua.grid(row=4, column=1, padx=5, pady=2)
         
-        self.lb_numeroCasa.grid(row=5, column=0)
-        self.etd_numeroCasa.grid(row=5, column=1)
+        self.lb_numeroCasa.grid(row=5, column=0, padx=5, pady=2)
+        self.etd_numeroCasa.grid(row=5, column=1, padx=5, pady=2)
 
-        self.lb_telefone.grid(row=6, column=0)
-        self.etd_telefone .grid(row=6, column=1)
+        self.lb_telefone.grid(row=6, column=0, padx=5, pady=2)
+        self.etd_telefone .grid(row=6, column=1, padx=5, pady=2)
 
-        self.lb_email.grid(row=7, column=0)
-        self.etd_email.grid(row=7, column=1)
+        self.lb_email.grid(row=7, column=0, padx=5, pady=2)
+        self.etd_email.grid(row=7, column=1, padx=5, pady=2)
 
         self.bt_cadastrar.grid(row=8, column=1, columnspan=2, sticky=EW)
         self.bt_reset.grid(row=8, column=0)

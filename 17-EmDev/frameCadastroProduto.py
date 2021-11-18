@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter.constants import END, RIGHT, LEFT
+from tkinter.constants import BOTH, END, RIGHT, LEFT
 
 from tkinter.ttk import *
 import func_produtos as fp
@@ -13,8 +13,8 @@ class FrameProduto(Frame):
 
         self.bt_cadastrar = Button(self.frBaixo, text='Cadastrar', command=self.cadastrar)
         self.bt_resetar = Button(self.frBaixo, text='Resetar')
-        self.bt_cadastrar.pack(side=RIGHT)
-        self.bt_resetar.pack(side=LEFT)
+        self.bt_cadastrar.pack(side=RIGHT, fill=BOTH, expand=True, padx=1, pady=2)
+        self.bt_resetar.pack(side=LEFT, fill=BOTH, expand=True, padx=1, pady=2)
         
         # frame cadastro =====================================
         self.frCadastro = Frame(self.lbfr)
@@ -31,14 +31,14 @@ class FrameProduto(Frame):
         self.etd_preco = Entry(self.frDados)
 
         # colocando dados 
-        self.lb_nome.grid(row=0,column=0)
-        self.etd_nome.grid(row=0,column=1)
-        self.lb_marca.grid(row=1,column=0)
-        self.etd_marca.grid(row=1,column=1)
-        self.lb_qtd.grid(row=2,column=0)
-        self.etd_qtd.grid(row= 2,column=1)
-        self.lb_preco.grid(row= 3,column=0)
-        self.etd_preco.grid(row=3 ,column=1)
+        self.lb_nome.grid(row=0, column=0, padx=5, pady=2)
+        self.etd_nome.grid(row=0, column=1, padx=5, pady=2)
+        self.lb_marca.grid(row=1, column=0, padx=5, pady=2)
+        self.etd_marca.grid(row=1, column=1, padx=5, pady=2)
+        self.lb_qtd.grid(row=2, column=0, padx=5, pady=2)
+        self.etd_qtd.grid(row= 2, column=1, padx=5, pady=2)
+        self.lb_preco.grid(row= 3, column=0, padx=5, pady=2)
+        self.etd_preco.grid(row=3 , column=1, padx=5, pady=2)
         
         # colocando frame dados
         self.frDados.grid()
@@ -46,8 +46,8 @@ class FrameProduto(Frame):
         # frame descricao
         self.lb_descricao = Label(self.frDescricao, text='Descricao:')
         self.text_descricao = tk.Text(self.frDescricao, width=50, height=10)
-        self.lb_descricao.grid(row= 5,column=2)
-        self.text_descricao.grid(row=6 ,column=2)
+        self.lb_descricao.grid(row= 5,column=2, padx=5, pady=2)
+        self.text_descricao.grid(row=6 ,column=2, padx=10, pady=5)
         
         
         # colocando todos as fremes principais
@@ -55,7 +55,7 @@ class FrameProduto(Frame):
 
         self.frCadastro.pack()
         self.lbfr.pack()
-        self.frBaixo.pack()
+        self.frBaixo.pack(fill=BOTH, expand=True)
 
         
         

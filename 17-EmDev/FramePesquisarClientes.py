@@ -43,7 +43,7 @@ class FrPesquisarCliente(ttk.Frame):
         
         
         
-        self.lb_idInfo = ttk.Label(self.fr_cliente_p1, text='')
+        self.lb_idInfo = ttk.Label(self.fr_cliente_p1, text='', background='red')
         self.etd_nome = ttk.Entry(self.fr_cliente_p1, foreground='black')
         self.etd_cpf = ttk.Entry(self.fr_cliente_p1, foreground='black')
         self.etd_uf = ttk.Entry(self.fr_cliente_p1, foreground='black')

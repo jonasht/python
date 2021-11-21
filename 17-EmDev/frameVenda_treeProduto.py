@@ -1,28 +1,12 @@
-
 from tkinter import ttk
 import tkinter as tk
-from tkinter.constants import BOTH, DISABLED, END, EW, LEFT, N, NO, NORMAL, NS, RIGHT, VERTICAL
-
-from colorama.ansi import Fore
+from tkinter.constants import END, EW, NS, VERTICAL
 import func_produtos as funcP
 
 
-
-
-class FrVenda(ttk.Frame):
+class Fr_treeProduto(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
-
-        # guardando id
-        self.codigo = ''
-
-        # definindo frames =-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=- 
-        self.fr_esquerdo = ttk.Frame(self)
-        
- 
-
-        
-        # notebook produto =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
         
         self.fr_pesProduto = ttk.Frame(self)
@@ -62,7 +46,7 @@ class FrVenda(ttk.Frame):
 
         self.fr_pesProduto.grid(row=0, column=0)
         # colocando frames 
-        self.fr_esquerdo.grid()
+
 
         
         self.etd_pesquisar.bind('<KeyRelease>', self.digitar_evento)
@@ -154,10 +138,11 @@ class FrVenda(ttk.Frame):
             for d in dadosTree:
                 self.tree_produto.insert('', END, values=d)
 
-
 if __name__ == '__main__':
     root = tk.Tk()
-    frame = FrVenda(root)
+    frame = Fr_treeProduto(root)
     frame.pack()
-    root.geometry('1200x800')
+
+    root.geometry('500x500')
+
     root.mainloop()

@@ -5,9 +5,9 @@ import func_produtos as funcP
 
 
 class Fr_treeProduto(ttk.Frame):
-    def __init__(self, parent):
+    def __init__(self, parent, con):
         super().__init__(parent)
-
+        self.con = con
         
         self.fr_pesProduto = ttk.Frame(self)
         self.lbfr = ttk.LabelFrame(self, text='Pesquisar')
@@ -56,8 +56,7 @@ class Fr_treeProduto(ttk.Frame):
 
 
   
-      
-            
+
 
     def editar_dados(self) -> None:
         print(self.codigo)
@@ -88,6 +87,10 @@ class Fr_treeProduto(ttk.Frame):
         dados = funcP.pesquisar(self.codigo)
         print(dados)
         dados = dados[0]
+
+        # mandar dados para o pai 
+        self.con.inserir_produto(dados)
+        
 
 
 

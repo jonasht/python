@@ -2,10 +2,13 @@ from tkinter import ttk
 import tkinter as tk
 from tkinter.constants import END
 import func_clientes as funcC
-class Fr_vendaCliente(ttk.Frame):
-    def __init__(self, parent):
-        super().__init__(parent)
 
+
+
+class Fr_treeCliente(ttk.Frame):
+    def __init__(self, parent, con):
+        super().__init__(parent)
+        self.con = con
         self.lbfr_pesqCliente = ttk.Labelframe(self, text='Pesquisar')
         self.etd_pesqCliente = ttk.Entry(self.lbfr_pesqCliente)
         # Treeview cliente =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -31,17 +34,10 @@ class Fr_vendaCliente(ttk.Frame):
         
 
 
-
-        
-        
         self.etd_pesqCliente.bind('<KeyRelease>', self.digitar_evento)
         self.treev.bind('<<TreeviewSelect>>', self.item_selected)
         self.mostrar_tree()
         
-
-        
-
-
  
 
     def inserir_dados(self):
@@ -50,6 +46,8 @@ class Fr_vendaCliente(ttk.Frame):
         print(dados)
         dados = dados[0]
 
+        # mandar os dados para o pai
+        self.con.inserir_cliente(dados)
        
     def item_selected(self, event):
         for selected_item in self.treev.selection():

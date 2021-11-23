@@ -5,155 +5,38 @@ from tkinter.constants import BOTH, DISABLED, END, EW, LEFT, N, NO, NORMAL, NS, 
 
 from colorama.ansi import Fore
 import func_produtos as funcP
-
-
-
+from frameVenda_treeProduto import Fr_treeProduto
+from frameVenda_treeCliente import Fr_treeCliente
+from frameVenda_lbCliente import Fr_lbCliente
 
 class FrVenda(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
+        self.dados_produto = ''
+        self.dados_cliente = ''
 
-        # guardando id
-        self.codigo = ''
+        self.nt = ttk.Notebook(self)
 
-        # definindo frames =-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=- 
-        self.fr_esquerdo = ttk.Frame(self)
-        
- 
+        self.fr_treeProduto = Fr_treeProduto(self.nt, self)
+        self.fr_treeCliente = Fr_treeCliente(self.nt, self)
 
-        
-        # notebook produto =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        self.nt.add(self.fr_treeProduto, text='Produto')
+        self.nt.add(self.fr_treeCliente, text='Cliente')
+        self.nt.grid()
 
-        
-        self.fr_pesProduto = ttk.Frame(self)
-        self.lbfr = ttk.LabelFrame(self, text='Pesquisar')
-        
-        self.lb_pesquisar = ttk.Label(self.lbfr, text='nome:')
-        self.lb_pesquisar.grid(row=0, column=0)
-        
-        self.etd_pesquisar = ttk.Entry(self.lbfr)
-        self.etd_pesquisar.grid(row=0, column=1, sticky=EW)
-        
+        # chamando frame cliente
+        self.fr_lbCliente = Fr_lbCliente(self)
+        self.fr_lbCliente.grid()
+    
+    def inserir_produto(self, dados):
+        print('produto:', dados)
 
-        
-        # Treeview produto ------------------------------------
-        # definindo colunas
-        self.colunas = ['cod', 'nome', 'marca', 'qtd']
-        self.tree_produto = ttk.Treeview(self, columns=self.colunas, show='headings' )
-
-        # definindo heading
-        self.tree_produto.heading('cod', text='ID')
-        self.tree_produto.heading('nome', text='Nome')
-        self.tree_produto.heading('marca', text='Marca')
-        self.tree_produto.heading('qtd', text='Quantidade')
-
-        # definindo tamanho da coluna
-        self.tree_produto.column('cod', width=20)
-        self.tree_produto.column('nome', width=150)
-        self.tree_produto.column('marca', width=100)
-        self.tree_produto.column('qtd', width=100)
-
-        self.scroll = ttk.Scrollbar(self, orient=VERTICAL, command=self.tree_produto.yview)
-        self.tree_produto.grid(row=1, column=0, columnspan=1)
-        self.scroll.grid(row=1, column=1, rowspan=1, sticky=NS)
-        self.lbfr.grid(row=0, column=0)
-        
-        
-
-        self.fr_pesProduto.grid(row=0, column=0)
-        # colocando frames 
-        self.fr_esquerdo.grid()
-
-        
-        self.etd_pesquisar.bind('<KeyRelease>', self.digitar_evento)
-        self.tree_produto.bind('<<TreeviewSelect>>', self.item_selected)
-        self.mostrar_tree()
-        
-
+    def inserir_cliente(self, dados):
+        print('clientes:', dados)
+        self.fr_lbCliente.inserir_dados(dados)
+        self.dados_cliente = dados
 
   
-      
-            
-
-    def editar_dados(self) -> None:
-        print(self.codigo)
-        if self.codigo != '':
-
-
-            codigo = self.codigo
-
-            qtd =self.etd_qtd.get()
-            preco =self.etd_preco.get()
-            
-            # add dados =-=-=-=-=-=-=-=-=-=-=-=-=
-            print('codigo:', codigo)
-            # print('nome:', nome)
-            # print('marca:', marca)
-            print('qtd:', qtd)
-            print('preco:', preco)
-
-
-            self.deletar_tree()
-            self.mostrar_tree()
-
-
-    
-
-    def inserir_dados(self):
-        # pegando dados
-        dados = funcP.pesquisar(self.codigo)
-        print(dados)
-        dados = dados[0]
-
-
-
-
-        
-    def item_selected(self, event):
-        for selected_item in self.tree_produto.selection():
-            item = self.tree_produto.item(selected_item)
-            record = item['values']
-
-            print(record)
-            
-            self.codigo = record[0]
-            self.inserir_dados()
-        
-    def digitar_evento(self, event):
-        variavel = event.widget.get()
-        print(variavel)
-        # deletar tree view
-        self.deletar_tree()
-
-        # mostrar treeview com a palavra digitada
-        self.mostrar_tree(palavras=variavel)
-        
-    def deletar_tree(self):
-        # deletar toda a tree view
-        self.tree_produto.delete(*self.tree_produto.get_children()) 
-    def mostrar_tree(self, palavras=''):
-
-        dados = funcP.get_()
-        print(dados)
-        print('\n')
-
-        dadosTree = list()
-        for d in dados:
-            dadosTree.append(d[:4])
-            
-            print('tree', dadosTree)
-        
-        print(dadosTree)
-        
-        if palavras != '':
-            for d in dadosTree:
-                # print(d)
-                if palavras.lower() in d[1].lower():
-                    self.tree_produto.insert('', END, values=d)
-        else:
-            for d in dadosTree:
-                self.tree_produto.insert('', END, values=d)
-
 
 if __name__ == '__main__':
     root = tk.Tk()

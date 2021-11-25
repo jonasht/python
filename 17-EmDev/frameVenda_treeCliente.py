@@ -1,6 +1,7 @@
 from tkinter import ttk
 import tkinter as tk
 from tkinter.constants import END
+from frameVenda_lbCliente import Fr_lbCliente
 import func_clientes as funcC
 
 
@@ -102,7 +103,7 @@ class Fr_treeCliente(ttk.Frame):
 
 if __name__ == '__main__':
     root = tk.Tk()
-    frame = Fr_vendaCliente(root)
+    frame = Fr_lbCliente(root)
     frame.pack()
     root.geometry('500x500')
     root.mainloop()

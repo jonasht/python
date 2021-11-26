@@ -1,6 +1,7 @@
 from tkinter import ttk
 import tkinter as tk
 from tkinter.constants import END, EW, NS, VERTICAL
+from typing import Text
 
 
 
@@ -14,7 +15,7 @@ class Fr_treeVenda(ttk.Frame):
         # Treeview produto ------------------------------------
         # definindo colunas
         self.colunas = ['cod', 'nome', 'marca', 'preco', 'x', 'total']
-        self.tree_venda = ttk.Treeview(self, columns=self.colunas, show='headings' )
+        self.tree_venda = ttk.Treeview(self, columns=self.colunas, show='headings', height=30)
 
         # definindo heading
         self.tree_venda.heading('cod', text='ID')
@@ -29,7 +30,7 @@ class Fr_treeVenda(ttk.Frame):
         self.tree_venda.column('nome', width=150)
         self.tree_venda.column('marca', width=100)
         self.tree_venda.column('preco', width=100)
-        self.tree_venda.column('x', width=100)
+        self.tree_venda.column('x', width=50)
         self.tree_venda.column('total', width=100)
         
         
@@ -39,18 +40,16 @@ class Fr_treeVenda(ttk.Frame):
         self.tree_venda.grid(row=1, column=0, columnspan=1)
         self.scroll.grid(row=1, column=1, rowspan=1, sticky=NS)
 
+        # total de tudo 
+        self.fr_total = ttk.Frame(self)
+        self.total = 0
+        self.lb_total = ttk.Label(self.fr_total, text='Total:')
+        self.lb_totalInfo = ttk.Label(self.fr_total, text='----')
         
-        
+        self.lb_total.grid(row=0, column=0)
+        self.lb_totalInfo.grid(row=0, column=1)
 
-
-        
-        # self.etd_pesquisar.bind('<KeyRelease>', self.digitar_evento)
-        # self.tree_venda.bind('<<TreeviewSelect>>', self.item_selected)
-        # self.mostrar_tree()
-        
-
-
-  
+        self.fr_total.grid(row=2, column=0)
 
 
     def editar_dados(self) -> None:
@@ -75,22 +74,7 @@ class Fr_treeVenda(ttk.Frame):
             self.mostrar_tree()
 
 
-    
-
-    # def inserir_dados(self):
-    #     # pegando dados
-    #     dados = funcP.pesquisar(self.codigo)
-    #     print(dados)
-    #     dados = dados[0]
-
-    #     # mandar dados para o pai 
-    #     self.con.inserir_produto(dados)
-        
-
-
-
-
-        
+ 
     def item_selected(self, event):
         for selected_item in self.tree_venda.selection():
             item = self.tree_venda.item(selected_item)
@@ -113,40 +97,21 @@ class Fr_treeVenda(ttk.Frame):
     def deletar_tree(self):
         # deletar toda a tree view
         self.tree_venda.delete(*self.tree_venda.get_children()) 
+    def adicionar(self, d):
+        self.total = float(self.total) + float(d[5])
+        self.tree_venda.insert('', END, values=d)
         
-    # def mostrar_tree(self, palavras=''):
-
-    #     # dados = funcP.get_()
-    #     # print(dados)
-    #     print('\n')
-
-    #     dadosTree = list()
-    #     for d in dados:
-    #         dadosTree.append(d[:4])
-            
-    #         print('tree', dadosTree)
-        
-    #     print(dadosTree)
-        
-    #     if palavras != '':
-    #         for d in dadosTree:
-    #             # print(d)
-    #             if palavras.lower() in d[1].lower():
-    #                 self.tree_venda.insert('', END, values=d)
-    #     else:
-    #         for d in dadosTree:
-    #             self.tree_venda.insert('', END, values=d)
-
-    def adicionar(self, dados):
-        
-        print('inserindo dados:', dados)
-        # self.tree_venda.insert('', END, values=dados)
-            
+        self.lb_totalInfo.config(text=self.total)
 if __name__ == '__main__':
     root = tk.Tk()
     frame  = Fr_treeVenda(root)
     frame.pack()
-
-    root.geometry('500x500')
+    d = [1, 'celular', 'sony', 2000.0, 1, 2000.0]
+    frame.adicionar(d)
+    
+    d = [1, 'celular', 'sony', 1000.0, 2, 2000.0]
+    frame.adicionar(d)
+    
+    root.geometry('800x800')
 
     root.mainloop()

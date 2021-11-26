@@ -7,6 +7,9 @@ from frameCadastroProduto import FrameProduto
 from framePesquisarProduto import FrPesquisarProduto
 from FramePesquisarClientes import FrPesquisarCliente
 from FrameVenda import FrVenda
+from frameHome import Fr_home
+
+
 
 class Principal(tk.Tk):
     def __init__(self):
@@ -24,8 +27,9 @@ class Principal(tk.Tk):
         # Set the theme with the theme_use method
         self.style.theme_use("forest-light")
         # botao HOME ======================================================================
-        self.bt_home = ttk.Button(self.frameBotoes, text='HOME', width=15)
+        self.bt_home = ttk.Button(self.frameBotoes, text='HOME', width=15, command=self.show_fr_Home)
         self.bt_home.grid(row=0, column=0)
+        
         
         # label frame venda =============================================================
         self.lbfr_venda = ttk.LabelFrame(self.frameBotoes, text='Venda')
@@ -69,7 +73,7 @@ class Principal(tk.Tk):
         self.framePesquisarProduto = FrPesquisarProduto(self.frameDireita)
         self.framePesquisarCliente = FrPesquisarCliente(self.frameDireita)
         self.frameVenda = FrVenda(self.frameDireita)
-        
+        self.frameHome = Fr_home(self.frameDireita)
         self.frameDireita.pack(side=LEFT, fill=BOTH)
 
     def apagar_frames(self):
@@ -78,6 +82,11 @@ class Principal(tk.Tk):
         self.framePesquisarProduto.forget()
         self.framePesquisarCliente.forget()
         self.frameVenda.forget()
+        self.frameHome.forget()
+    
+    def show_fr_Home(self):
+        self.apagar_frames()
+        self.frameHome.pack(side=TOP)
 
     def show_fr_venda(self):
         self.apagar_frames()

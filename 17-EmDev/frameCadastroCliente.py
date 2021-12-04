@@ -1,6 +1,6 @@
-from tkinter import ttk
+from tkinter import Pack, ttk
 import tkinter as tk
-from tkinter.constants import END, W, EW
+from tkinter.constants import BOTH, END, LEFT, RIGHT, W, EW
 import func_clientes as fc
 
 
@@ -37,7 +37,7 @@ class FrameCadastroCliente(ttk.Frame):
         self.fr_bts = ttk.Frame(self)
         
         self.bt_cadastrar = ttk.Button(self.fr_bts, text='Cadastrar', command=self.cadastrar)
-        self.bt_reset = ttk.Button(self.fr_bts, text='Resetar', command=self.resetar)
+        self.bt_resetar = ttk.Button(self.fr_bts, text='Resetar', command=self.resetar)
 
         # label aviso
         self.lb_aviso = ttk.Label(self, text='')
@@ -67,19 +67,20 @@ class FrameCadastroCliente(ttk.Frame):
         self.lb_email.grid(row=7, column=0, padx=5, pady=2)
         self.etd_email.grid(row=7, column=1, padx=5, pady=2)
 
-        self.bt_cadastrar.grid(row=8, column=1, columnspan=2, sticky=EW)
-        self.bt_reset.grid(row=8, column=0)
+        self.bt_cadastrar.pack(side=RIGHT, fill=BOTH, expand=True, padx=1, pady=2)
+        self.bt_resetar.pack(side=LEFT, fill=BOTH, expand=True, padx=1, pady=2)
         
         # colocando labelFrame
         self.lbfr_cadastrarCliente.pack()
-        self.fr_bts.pack()
+        self.fr_bts.pack(fill=BOTH, expand=True)
         self.lb_aviso.pack()
+        
+        
         
         # focar no nome
         self.etd_nome.focus()
 
     def cadastrar(self):
-        print('cadastrar')
         nome = self.etd_nome.get()
         cpf = self.etd_cpf.get()
         uf = self.etd_uf.get()
@@ -90,10 +91,10 @@ class FrameCadastroCliente(ttk.Frame):
         email = self.etd_email.get()
 
 
-        print('dados:')
-        print('nome:', nome, 'cpf:', cpf )
-        print('uf:', uf, 'cidade:', cidade, 'rua:', rua, numero)
-        print('fone:', telefone, 'email:', email)
+        # print('dados:')
+        # print('nome:', nome, 'cpf:', cpf )
+        # print('uf:', uf, 'cidade:', cidade, 'rua:', rua, numero)
+        # print('fone:', telefone, 'email:', email)
         
         if nome != '':
             fc.add_(nome, cpf, uf, cidade, rua, numero, telefone, email)

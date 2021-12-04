@@ -1,6 +1,6 @@
 from tkinter import ttk
 import tkinter as tk
-from tkinter.constants import END
+from tkinter.constants import END, EW
 from frameVenda_lbCliente import Fr_lbCliente
 import func_clientes as funcC
 
@@ -11,11 +11,11 @@ class Fr_treeCliente(ttk.Frame):
         super().__init__(parent)
         self.con = con
         self.lbfr_pesqCliente = ttk.Labelframe(self, text='Pesquisar')
-        self.etd_pesqCliente = ttk.Entry(self.lbfr_pesqCliente)
+        self.etd_pesquisar = ttk.Entry(self.lbfr_pesqCliente)
         # Treeview cliente =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         # definindo colunas
         self.colunas = ['id', 'nome', 'cpf', 'uf', 'cidade']
-        self.treev = ttk.Treeview(self, columns=self.colunas, show='headings' )
+        self.treev = ttk.Treeview(self, columns=self.colunas, show='headings')
 
         # definindo heading
         self.treev.heading('id', text='ID')
@@ -27,15 +27,17 @@ class Fr_treeCliente(ttk.Frame):
         # definindo tamanho da coluna
         self.treev.column('id', width=10)
         self.treev.column('nome', width=150)
+        self.treev.column('cpf', width=150)
         self.treev.column('uf', width=50)
         self.treev.column('cidade', width=100)
 
-        self.treev.grid(row=1, column=0, columnspan=3)
-        self.lbfr_pesqCliente.grid(row=0, column=0)
+        self.etd_pesquisar.grid(row=0, column=0, padx=5, pady=2)
+        self.treev.grid(row=1, column=0, padx=5, pady=2)
+        self.lbfr_pesqCliente.grid(row=0, column=0, sticky=EW, padx=5, pady=2)
         
 
 
-        self.etd_pesqCliente.bind('<KeyRelease>', self.digitar_evento)
+        self.etd_pesquisar.bind('<KeyRelease>', self.digitar_evento)
         self.treev.bind('<<TreeviewSelect>>', self.item_selected)
         self.mostrar_tree()
         
@@ -97,13 +99,9 @@ class Fr_treeCliente(ttk.Frame):
             for d in dadosTree:
                 self.treev.insert('', END, values=d)
 
-
-
-
-
 if __name__ == '__main__':
     root = tk.Tk()
-    frame = Fr_lbCliente(root)
+    frame = Fr_treeCliente(root, root)
     frame.pack()
     root.geometry('500x500')
     root.mainloop()

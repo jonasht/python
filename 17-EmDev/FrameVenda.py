@@ -1,6 +1,6 @@
 from tkinter import ttk
 import tkinter as tk
-from tkinter.constants import BOTH, DISABLED, END, EW, LEFT, N, NO, NORMAL, NS, RIGHT, VERTICAL
+from tkinter.constants import BOTH, BOTTOM, DISABLED, E, END, EW, LEFT, N, NO, NORMAL, NS, NSEW, RIGHT, TOP, VERTICAL, W
 
 from colorama.ansi import Fore
 import func_produtos as funcP
@@ -10,7 +10,7 @@ from frameVenda_lbCliente import Fr_lbCliente
 from frameVenda_lbProduto import Fr_lbProduto
 from frameVenda_treeVenda import Fr_treeVenda
 from frameVenda_frFinalizacao import Fr_finalizacao
-from frameHome import Fr_home
+
 
 
 class FrVenda(ttk.Frame):
@@ -19,58 +19,76 @@ class FrVenda(ttk.Frame):
         self.dados_produto = ''
         self.dados_cliente = ''
         
+        # fazendo frame posicao Cima e Baixo =-=-=-=-=-=-=-=-=
+        self.fr_cima = ttk.Frame(self)
+        self.fr_baixo = ttk.Frame(self)
         
-        self.nt = ttk.Notebook(self)
+        self.nt = ttk.Notebook(self.fr_cima)
 
         self.fr_treeProduto = Fr_treeProduto(self.nt, self)
         self.fr_treeCliente = Fr_treeCliente(self.nt, self)
 
         self.nt.add(self.fr_treeProduto, text='Produto')
         self.nt.add(self.fr_treeCliente, text='Cliente')
+        
 
+        
         # chamando frame cliente
-        self.fr_lbCliente = Fr_lbCliente(self)
+        self.fr_lbCliente = Fr_lbCliente(self.fr_baixo)
         
         # chamando frame produto
-        self.fr_produtoInfo = ttk.Frame(self)
+        self.fr_produtoInfo = ttk.Frame(self.fr_baixo)
         self.fr_lbProduto = Fr_lbProduto(self.fr_produtoInfo)
 
         self.lb_qtd_prod = ttk.Label(self.fr_produtoInfo, text='quantidade:')
         self.etd_qtd_prod = ttk.Entry(self.fr_produtoInfo)
-        self.lb_preco_prod = ttk.Label(self.fr_produtoInfo, text='R$')
-        self.lb_preco_prodInfo = ttk.Label(self.fr_produtoInfo, text='---')
-        self.bt_prod = ttk.Button(self.fr_produtoInfo, text='add >>> ', command=self.inserir_treeVenda)
+        self.lb_preco_prod = ttk.Label(self.fr_produtoInfo, text='R$', foreground='green')
+        self.lb_preco_prodInfo = ttk.Label(self.fr_produtoInfo, text='')
+        self.bt_prod = ttk.Button(self.fr_produtoInfo, text='Adicionar', command=self.inserir_treeVenda)
         
-        self.fr_lbProduto.grid(row=0, column=0, columnspan=2)
-        self.lb_preco_prod.grid(row=1, column=0)
-        self.lb_preco_prodInfo.grid(row=1, column=1)        
-        self.lb_qtd_prod.grid(row=2, column=0)
-        self.etd_qtd_prod.grid(row=2, column=1)
+        self.bt_prod.grid(row=0, column=0, columnspan=2, sticky=EW, padx=5, pady=2)
+        self.lb_preco_prod.grid(row=1, column=0, padx=5, pady=2)
+        self.lb_preco_prodInfo.grid(row=1, column=1, padx=5, pady=2)
+        self.lb_qtd_prod.grid(row=2, column=0, padx=5, pady=2)
+        self.etd_qtd_prod.grid(row=2, column=1, padx=5, pady=2)
+        self.fr_lbProduto.grid(row=3, column=0, columnspan=2, sticky=NSEW, padx=5, pady=2)
 
-        self.bt_prod.grid(row=3, column=0, columnspan=2)
 
         # chamando a tree da venda 
-        self.fr_treeVenda = Fr_treeVenda(self)
+        self.fr_treeVenda = Fr_treeVenda(self.fr_cima)
         
-        self.fr_daFinalizacao = ttk.Frame(self)
-        self.fr_finalizacao = Fr_finalizacao(self.fr_daFinalizacao)
-        self.bt_finalizar = ttk.Button(self.fr_daFinalizacao, text='Finalizar')
+        self.fr_daFinalizacao = ttk.Frame(self.fr_baixo)
+        self.fr_finalizacao = Fr_finalizacao(self.fr_daFinalizacao, self)
+        # self.bt_finalizar = ttk.Button(self.fr_daFinalizacao, text='Finalizar')
         self.fr_finalizacao.grid(row=0, column=0)
-        self.bt_finalizar.grid(row=1, column=0)
+        # self.bt_finalizar.grid(row=1, column=0)
 
-        # colocando as frames principais
-        self.nt.grid(row=0, column=0)
-        self.fr_produtoInfo.grid(row=0, column=1)
-        self.fr_lbCliente.grid(row=1, column=0)
-        self.fr_daFinalizacao.grid(row=1, column=1)
-        self.fr_treeVenda.grid(row=0, column=2, rowspan=2)
+
+        # colocando as frames principais =-=-=-=-=-=-=-=-=-=
+        self.nt.grid(row=0, column=0, padx=5, pady=2)
+        self.fr_treeVenda.grid(row=0, column=1, padx=5, pady=2)
+
+        self.fr_lbCliente.grid(row=1, column=0, padx=5, pady=2, sticky=NSEW)
+        self.fr_produtoInfo.grid(row=1, column=1, padx=5, pady=2, sticky=NSEW)
+        self.fr_daFinalizacao.grid(row=1, column=2, padx=5, pady=2, sticky=NSEW)
         
+        self.fr_cima.pack(side=TOP, anchor=W)
+        self.fr_baixo.pack(side=BOTTOM, anchor=W)
         
         # teclas eventos |=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|
         self.etd_qtd_prod.bind('<KeyRelease>', self.evento_somar)
         
         # desativando entrada de quantidade
         self.etd_qtd_prod.config(state=DISABLED)
+
+        
+        
+    def apagar_tudo(self):
+        self.fr_lbCliente.deletar_dados()
+        self.fr_lbProduto.deletar_dados()
+        self.fr_treeVenda.deletar_tree()
+        self.lb_preco_prod.config(text='')
+        self.etd_qtd_prod.delete(0, END)
         
     def evento_somar(self, event):
         # serve para somar a entrada do valor quando colocado (tempo real)

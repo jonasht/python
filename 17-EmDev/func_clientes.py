@@ -35,7 +35,6 @@ def show():
     cursor.execute("""
                    SELECT * FROM clientes
                    """) 
-    print(cursor.fetchall())   
     banco.commit()
     banco.close()
 
@@ -95,10 +94,8 @@ def update_(id, nome, cpf, uf, cidade, rua, numero, telefone, email):
 if __name__ == "__main__":
     pass
     # fazendo testes
-    print(pesquisar(4))
     update_(id=4, nome='Daniel de souza', cpf=12345678941, uf='sp',
             cidade='mogi guacu', rua='daniel das ruas', numero='166', 
             telefone='0193833332566', email='daniel.souza@email.com' )
 
-    print(pesquisar(4))
     

@@ -12,7 +12,6 @@ def show():
     cursor.execute("""
                    SELECT * FROM produtos
                    """)
-    print(cursor.fetchall())
 
     banco.commit()
     banco.close()

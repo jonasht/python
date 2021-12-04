@@ -4,10 +4,9 @@ from tkinter.constants import END, EW, NS, VERTICAL
 import func_produtos as funcP
 
 
-class Fr_treeProduto(ttk.Frame):
-    def __init__(self, parent, con):
+class Fr_entrega(ttk.Frame):
+    def __init__(self, parent):
         super().__init__(parent)
-        self.con = con
         
         self.fr_pesProduto = ttk.Frame(self)
         self.lbfr = ttk.LabelFrame(self, text='Pesquisar')
@@ -21,20 +20,18 @@ class Fr_treeProduto(ttk.Frame):
         # Treeview produto ------------------------------------
         # definindo colunas
         self.fr_tree = ttk.Frame(self)
-        self.colunas = ['cod', 'nome', 'marca', 'qtd']
+        self.colunas = ['id', 'nome', 'entregafeita']
         self.tree_produto = ttk.Treeview(self.fr_tree, columns=self.colunas, show='headings' )
 
         # definindo heading
-        self.tree_produto.heading('cod', text='ID')
+        self.tree_produto.heading('id', text='ID')
         self.tree_produto.heading('nome', text='Nome')
-        self.tree_produto.heading('marca', text='Marca')
-        self.tree_produto.heading('qtd', text='Quantidade')
+        self.tree_produto.heading('entregafeita', text='entrega feita')
 
         # definindo tamanho da coluna
-        self.tree_produto.column('cod', width=30)
-        self.tree_produto.column('nome', width=180)
-        self.tree_produto.column('marca', width=150)
-        self.tree_produto.column('qtd', width=100)
+        self.tree_produto.column('id', width=50)
+        self.tree_produto.column('nome', width=200)
+        self.tree_produto.column('entregafeita', width=150)
 
         self.scroll = ttk.Scrollbar(self.fr_tree, orient=VERTICAL, command=self.tree_produto.yview)
         
@@ -48,16 +45,20 @@ class Fr_treeProduto(ttk.Frame):
         
 
         self.fr_pesProduto.grid(row=0, column=0)
+        # colocando frames 
+
 
         
         self.etd_pesquisar.bind('<KeyRelease>', self.digitar_evento)
         self.tree_produto.bind('<<TreeviewSelect>>', self.item_selected)
         self.mostrar_tree()
         
+
+
   
 
+
     def editar_dados(self) -> None:
-        print(self.codigo)
         if self.codigo != '':
 
 
@@ -111,31 +112,32 @@ class Fr_treeProduto(ttk.Frame):
         # deletar toda a tree view
         self.tree_produto.delete(*self.tree_produto.get_children()) 
     def mostrar_tree(self, palavras=''):
+        pass
+    
+        # dados = funcP.get_()
+        # print(dados)
+        # print('\n')
 
-        dados = funcP.get_()
-        print(dados)
-        print('\n')
-
-        dadosTree = list()
-        for d in dados:
-            dadosTree.append(d[:4])
+        # dadosTree = list()
+        # for d in dados:
+        #     dadosTree.append(d[:4])
             
-            print('tree', dadosTree)
+        #     print('tree', dadosTree)
         
-        print(dadosTree)
+        # print(dadosTree)
         
-        if palavras != '':
-            for d in dadosTree:
-                # print(d)
-                if palavras.lower() in d[1].lower():
-                    self.tree_produto.insert('', END, values=d)
-        else:
-            for d in dadosTree:
-                self.tree_produto.insert('', END, values=d)
+        # if palavras != '':
+        #     for d in dadosTree:
+        #         # print(d)
+        #         if palavras.lower() in d[1].lower():
+        #             self.tree_produto.insert('', END, values=d)
+        # else:
+        #     for d in dadosTree:
+        #         self.tree_produto.insert('', END, values=d)
 
 if __name__ == '__main__':
     root = tk.Tk()
-    frame = Fr_treeProduto(root, root)
+    frame = Fr_entrega(root, root)
     frame.pack()
 
     root.geometry('500x500')

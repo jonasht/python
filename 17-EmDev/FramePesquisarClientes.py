@@ -1,7 +1,7 @@
 
-from tkinter import Frame, Label, ttk
+from tkinter import ttk
 import tkinter as tk
-from tkinter.constants import BOTH, DISABLED, END, EW, LEFT, NORMAL, RIGHT, W
+from tkinter.constants import BOTH, DISABLED, END, EW, NORMAL
 import func_clientes as funcC
 
 
@@ -43,7 +43,7 @@ class FrPesquisarCliente(ttk.Frame):
         
         
         
-        self.lb_idInfo = ttk.Label(self.fr_cliente_p1, text='', background='red')
+        self.lb_idInfo = ttk.Label(self.fr_cliente_p1, text='')
         self.etd_nome = ttk.Entry(self.fr_cliente_p1, foreground='black')
         self.etd_cpf = ttk.Entry(self.fr_cliente_p1, foreground='black')
         self.etd_uf = ttk.Entry(self.fr_cliente_p1, foreground='black')
@@ -105,14 +105,14 @@ class FrPesquisarCliente(ttk.Frame):
         self.treev.column('cidade', width=100)
 
         self.treev.grid(row=1, column=0, columnspan=3)
-        self.lbfr.grid(row=0, column=0)
+        self.lbfr.grid(row=0, column=0, sticky=EW)
         
 
 
         # colocando frames 
-        self.lbfr_cliente.pack(fill=BOTH)
-        self.fr_cliente_p1.grid(row=0, column=0)
-        self.fr_cliente_p2.grid(row=0, column=1)
+        self.lbfr_cliente.pack(fill=BOTH, padx=5, pady=2)
+        self.fr_cliente_p1.grid(row=0, column=0, sticky=EW, padx=5, pady=2)
+        self.fr_cliente_p2.grid(row=0, column=1, sticky=EW, padx=5, pady=2)
         
         self.fr_esquerdo.pack(fill=BOTH)
         
@@ -168,15 +168,15 @@ class FrPesquisarCliente(ttk.Frame):
                 email = self.etd_email.get()
                 
                 # update dados =-=-=-=-=-=-=-=-=-=-=-=-=
-                print('id:', self.id)
-                print('nome:', nome)
-                print('cpf:', cpf)
-                print('uf:', uf)
-                print('cidade:', cidade)
-                print('rua:', rua)
-                print('numero:', numero)
-                print('fone:', fone)
-                print('email:', email)
+                # print('id:', self.id)
+                # print('nome:', nome)
+                # print('cpf:', cpf)
+                # print('uf:', uf)
+                # print('cidade:', cidade)
+                # print('rua:', rua)
+                # print('numero:', numero)
+                # print('fone:', fone)
+                # print('email:', email)
                 
                 funcC.update_(id=self.id, nome=nome, cpf=cpf,
                               uf=uf, cidade=cidade,
@@ -261,13 +261,10 @@ class FrPesquisarCliente(ttk.Frame):
             # print(d[:5])
             dadosTree.append(d[:5])
             
-            print('tree', dadosTree)
         
-        print(dadosTree)
         
         if palavras != '':
             for d in dadosTree:
-                # print(d)
                 if palavras.lower() in d[1].lower():
                     self.treev.insert('', END, values=d)
         else:

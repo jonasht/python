@@ -9,13 +9,10 @@ class Fr_treeVenda(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
-        
-
-        
         # Treeview produto ------------------------------------
         # definindo colunas
         self.colunas = ['cod', 'nome', 'marca', 'preco', 'x', 'total']
-        self.tree_venda = ttk.Treeview(self, columns=self.colunas, show='headings', height=30)
+        self.tree_venda = ttk.Treeview(self, columns=self.colunas, show='headings')
 
         # definindo heading
         self.tree_venda.heading('cod', text='ID')
@@ -27,14 +24,12 @@ class Fr_treeVenda(ttk.Frame):
 
         # definindo tamanho da coluna
         self.tree_venda.column('cod', width=20)
-        self.tree_venda.column('nome', width=150)
-        self.tree_venda.column('marca', width=100)
+        self.tree_venda.column('nome', width=125)
+        self.tree_venda.column('marca', width=90)
         self.tree_venda.column('preco', width=100)
-        self.tree_venda.column('x', width=50)
+        self.tree_venda.column('x', width=40)
         self.tree_venda.column('total', width=100)
         
-        
-
 
         self.scroll = ttk.Scrollbar(self, orient=VERTICAL, command=self.tree_venda.yview)
         self.tree_venda.grid(row=1, column=0, columnspan=1)
@@ -101,7 +96,8 @@ class Fr_treeVenda(ttk.Frame):
         self.total = float(self.total) + float(d[5])
         self.tree_venda.insert('', END, values=d)
         
-        self.lb_totalInfo.config(text=self.total)
+        self.lb_totalInfo.config(text=f'{self.total:.2f}')
+        
 if __name__ == '__main__':
     root = tk.Tk()
     frame  = Fr_treeVenda(root)

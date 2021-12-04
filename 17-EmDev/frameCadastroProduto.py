@@ -67,7 +67,7 @@ class FrameProduto(Frame):
         self.lb_aviso.pack()
         
     def cadastrar(self):
-        print('cadastrar')
+    
         nome = self.etd_nome.get()
         marca = self.etd_marca.get()
         qtd = self.etd_qtd.get()
@@ -88,7 +88,6 @@ class FrameProduto(Frame):
             preco = float(preco)
             
 
-            print(nome, marca, qtd, preco, qtd, descricao)
             # u.cadastrar_produto(nome=nome, preco=preco, quantidade=qtd, tamanho=tamanho, cor=cor)
             fp.add_(nome=nome, marca=marca, quantidade=qtd, preco=preco, descricao=descricao)
             

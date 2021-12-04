@@ -38,7 +38,7 @@ class Fr_lbProduto(ttk.Frame):
         self.lb_marcaInfo.grid(row=2, column=1)
         self.lb_qtdInfo.grid(row=3, column=1)
         self.lb_precoInfo.grid(row=4, column=1)
-        self.lb_descricaoInfo.grid(row=6, column=1)
+        self.lb_descricaoInfo.grid(row=7, column=1)
         
         self.fr1.grid(row=0, column=0)
         self.fr2.grid(row=0, column=1)

@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Button, ttk
+from tkinter import ttk
 from tkinter.constants import BOTH, LEFT, TOP
 from frameCadastroCliente import FrameCadastroCliente
 
@@ -8,23 +8,24 @@ from framePesquisarProduto import FrPesquisarProduto
 from FramePesquisarClientes import FrPesquisarCliente
 from FrameVenda import FrVenda
 from frameHome import Fr_home
-
+from frameEntrega import Fr_entrega
+from frameFaturamento import Fr_faturamento
 
 
 class Principal(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
 
-        self.geometry('1280x1024')
         self.frameBotoes = ttk.Frame(self)
+        
         # theme =-=-===---====--==--=-=-====--=-=-=-======--====-=-==-=-=== == === === == ===
-        # Create a style
+        # criando style
         self.style = ttk.Style(self)
 
-        # Import the tcl file
+        # chamando arquivo tcl 
         self.tk.call("source", "forest-light.tcl")
 
-        # Set the theme with the theme_use method
+        # chamando o tema
         self.style.theme_use("forest-light")
         # botao HOME ======================================================================
         self.bt_home = ttk.Button(self.frameBotoes, text='HOME', width=15, command=self.show_fr_Home)
@@ -34,7 +35,8 @@ class Principal(tk.Tk):
         # label frame venda =============================================================
         self.lbfr_venda = ttk.LabelFrame(self.frameBotoes, text='Venda')
         self.btVenda = ttk.Button(self.lbfr_venda, width=15, text='Venda', command=self.show_fr_venda)
-        self.bt_entregas = ttk.Button(self.lbfr_venda, width=15,text='Entregas')
+        self.bt_entregas = ttk.Button(self.lbfr_venda, width=15,text='Entregas', command=self.show_fr_entrega)
+
         self.btVenda.grid(row=0, padx=10, pady=5)
         self.bt_entregas.grid(row=1, padx=10, pady=5)
         self.lbfr_venda.grid(row=1, padx=10, pady=5)
@@ -58,7 +60,7 @@ class Principal(tk.Tk):
         self.lbfr_cliente.grid(row=3, padx=10, pady=5)
         
         # faturamento ===-==-===-===-==-===-===-==-===-===-==-===-===-==-===-===-==-===-===-==-===
-        self.bt_faturamento = ttk.Button(self.frameBotoes, width=15, text='Faturamento')
+        self.bt_faturamento = ttk.Button(self.frameBotoes, width=15, text='Faturamento', command=self.show_fr_faturamento)
         
 
         self.bt_faturamento.grid(row=4, padx=10, pady=5)
@@ -74,7 +76,13 @@ class Principal(tk.Tk):
         self.framePesquisarCliente = FrPesquisarCliente(self.frameDireita)
         self.frameVenda = FrVenda(self.frameDireita)
         self.frameHome = Fr_home(self.frameDireita)
+        self.frameEntraga = Fr_entrega(self.frameDireita)
+        self.frameFaturamento = Fr_faturamento(self.frameDireita)
+
         self.frameDireita.pack(side=LEFT, fill=BOTH)
+        
+        # mostrar frame home
+        self.show_fr_Home()
 
     def apagar_frames(self):
         self.frameCadastroCliente.forget()
@@ -83,7 +91,21 @@ class Principal(tk.Tk):
         self.framePesquisarCliente.forget()
         self.frameVenda.forget()
         self.frameHome.forget()
-    
+        self.frameEntraga.forget()
+        
+        # removendo frame faturamento
+        self.frameFaturamento.forget()
+        self.frameFaturamento.lbfr.forget()
+        
+    def show_fr_faturamento(self):
+        self.apagar_frames()
+        self.frameFaturamento.pack()
+        self.frameFaturamento.lbfr.pack()
+
+    def show_fr_entrega(self):
+        self.apagar_frames()
+        self.frameEntraga.pack(side=TOP)
+        
     def show_fr_Home(self):
         self.apagar_frames()
         self.frameHome.pack(side=TOP)
@@ -117,7 +139,19 @@ class Principal(tk.Tk):
         
         
         
-        
-root = Principal()
+def main():
 
-root.mainloop()
+    root = Principal()
+
+    root.geometry('1280x1024')
+    root.title('Sistema de Venda')
+    root.mainloop()
+
+if __name__ == '__main__':
+    main()
+
+
+
+
+
+

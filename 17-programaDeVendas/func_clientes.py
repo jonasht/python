@@ -1,6 +1,5 @@
-
 import sqlite3
-
+from validate_docbr import CPF
 
 def add_(nome, cpf, uf, cidade, rua, numero, telefone, email):
     nome = nome.title()
@@ -18,6 +17,7 @@ def add_(nome, cpf, uf, cidade, rua, numero, telefone, email):
 
     banco.commit()
     banco.close()
+    
 def get_():
     banco = sqlite3.connect('bancoDeDados.db')
     cursor = banco.cursor()       
@@ -90,12 +90,12 @@ def update_(id, nome, cpf, uf, cidade, rua, numero, telefone, email):
 
     banco.commit()
     banco.close()
-
-if __name__ == "__main__":
-    pass
-    # fazendo testes
-    update_(id=4, nome='Daniel de souza', cpf=12345678941, uf='sp',
-            cidade='mogi guacu', rua='daniel das ruas', numero='166', 
-            telefone='0193833332566', email='daniel.souza@email.com' )
-
     
+    
+def gerar_cpf(mask=False) -> str:
+    cpf = CPF()
+    return cpf.generate(mask)
+
+if __name__ == '__main__':
+    print(gerar_cpf())
+    print(gerar_cpf(True))

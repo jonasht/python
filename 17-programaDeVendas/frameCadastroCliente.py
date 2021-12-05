@@ -2,7 +2,7 @@ from tkinter import Pack, ttk
 import tkinter as tk
 from tkinter.constants import BOTH, END, LEFT, RIGHT, W, EW
 import func_clientes as fc
-
+from validate_docbr import CPF
 
 class FrameCadastroCliente(ttk.Frame):
     def __init__(self, parent):
@@ -95,14 +95,18 @@ class FrameCadastroCliente(ttk.Frame):
         # print('nome:', nome, 'cpf:', cpf )
         # print('uf:', uf, 'cidade:', cidade, 'rua:', rua, numero)
         # print('fone:', telefone, 'email:', email)
-        
-        if nome != '':
-            fc.add_(nome, cpf, uf, cidade, rua, numero, telefone, email)
-            self.resetar()
-            self.lb_aviso.config(text='cadastro feito com sucesso', foreground='green')
-        else:
-            self.lb_aviso.config(text='campo nome obrigatorio', foreground='red')
+        v_cpf = CPF()
+        if cpf == '' or v_cpf.validate(cpf):
             
+            if nome != '':
+                fc.add_(nome, cpf, uf, cidade, rua, numero, telefone, email)
+                self.resetar()
+                self.lb_aviso.config(text='cadastro feito com sucesso', foreground='green')
+            else:
+                self.lb_aviso.config(text='campo nome obrigatorio', foreground='red')
+        else:
+            self.lb_aviso.config(text='CPF invalido', foreground='red')
+
     def resetar(self):
         self.etd_nome.delete(0, END)
         self.etd_cpf.delete(0, END)

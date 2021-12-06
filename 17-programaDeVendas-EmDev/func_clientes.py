@@ -24,6 +24,7 @@ def get_():
     cursor.execute("""
                    SELECT * FROM clientes
                    """) 
+    
     retornar = cursor.fetchall()
     banco.commit()
     banco.close()    

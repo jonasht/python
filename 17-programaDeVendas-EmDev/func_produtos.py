@@ -1,9 +1,6 @@
 import sqlite3
 from colorama.ansi import Fore
 
-from coisasAntigas.uteis import mostrar_produtos
-
-
 
 def show():
     banco = sqlite3.connect('bancoDeDados.db')
@@ -89,6 +86,4 @@ def pesquisar(opcao):
 
 
 if __name__ == '__main__':
-    mostrar_produtos()
-    update_(codigo=8, nome='chinelo', marca='rabs', quantidade=5, preco=10, descricao='algo' )
-    mostrar_produtos()
+    pass

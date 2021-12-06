@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter.constants import BOTH, BOTTOM, DISABLED, E, END, EW, LEFT, N, NO, NORMAL, NS, NSEW, RIGHT, TOP, VERTICAL, W
 
 from colorama.ansi import Fore
-import func_produtos as funcP
+
 from frameVenda_treeProduto import Fr_treeProduto
 from frameVenda_treeCliente import Fr_treeCliente
 from frameVenda_lbCliente import Fr_lbCliente
@@ -133,11 +133,12 @@ class FrVenda(ttk.Frame):
             ds = [self.dados_produto[0],
                 self.dados_produto[1],
                 self.dados_produto[2],
-                self.dados_produto[3],
+                self.dados_produto[4],
                 self.etd_qtd_prod.get(),
                 self.lb_preco_prodInfo['text']]
 
             print('tree venda:', ds)
+            # print('preco inicial:', self.dados_produto[4])
             self.fr_treeVenda.adicionar(ds)
             
 if __name__ == '__main__':

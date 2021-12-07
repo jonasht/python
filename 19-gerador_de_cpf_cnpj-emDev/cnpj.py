@@ -1,5 +1,5 @@
 from tkinter import ttk
-from tkinter.constants import END
+from tkinter.constants import CENTER, END, EW
 from validate_docbr import CNPJ
 
 class Fr_cnpj(ttk.Frame):
@@ -12,17 +12,17 @@ class Fr_cnpj(ttk.Frame):
 
 
         #  cnpj ===================================================
-        self.lbfr_cnpj = ttk.Labelframe(self, text='gerar CNPJ')
-        self.etd_cnpj = ttk.Entry(self.lbfr_cnpj)
-        self.bt_cnpj = ttk.Button(self.lbfr_cnpj, text='Gerar', command=self.gerar)
-        self.chbt_cnpj = ttk.Checkbutton(self.lbfr_cnpj, text='mask', command=self.chbt_Evento)
+        self.lbfr = ttk.Labelframe(self, text='CNPJ')
+        self.etd_cnpj = ttk.Entry(self.lbfr)
+        self.bt_cnpj = ttk.Button(self.lbfr, text='Gerar', command=self.gerar)
+        self.chbt_cnpj = ttk.Checkbutton(self.lbfr, text='mask', command=self.chbt_Evento)
 
         self.etd_cnpj.grid(row=0, column=0, padx=2, pady=5)
         self.bt_cnpj.grid(row=0, column=1, padx=2, pady=5)
         self.chbt_cnpj.grid(row=0, column=2, padx=2, pady=5)
 
         
-        self.lbfr_cnpj.grid(row=1, pady=10)
+        self.lbfr.pack()
 
         # gerando =-=-
         self.gerar()

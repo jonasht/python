@@ -1,4 +1,4 @@
-from tkinter import *                
+            
 from tkinter import font as tkfont  
 from tkinter import ttk
 import tkinter as tk
@@ -7,10 +7,11 @@ from frLogin import FrLogin
 from frCadastro import FrCadastro
 
 
-class Principal(Tk):
+class Principal(tk.Tk):
     
-    def __init__(self, *args, **kwargs):
-        Tk.__init__(self, *args, **kwargs)
+    def __init__(self):
+        super().__init__()
+        self.geometry('400x400')
 
         self.login = ''
 
@@ -19,47 +20,48 @@ class Principal(Tk):
         style = ttk.Style(self)
 
         # Import the tcl file
-        self.tk.call("source", "forest-dark.tcl")
+        self.tk.call("source", "forest-light.tcl")
 
         # Set the theme with the theme_use method
-        style.theme_use("forest-dark")
+        style.theme_use("forest-light")
 
         container = ttk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
-        self.frames = {}
-        for F in (FrLogin, FrAcesso, FrCadastro):
-            page_name = F.__name__
-            frame = F(parent=container, controller=self)
-            self.frames[page_name] = frame
 
-            frame.grid(row=0, column=0, sticky="nsew")
+        self.fr_login = FrLogin(container, self)
+        self.fr_acesso = FrAcesso(container, self)
+        self.fr_cadastro = FrCadastro(container, self)
 
-        self.show_frame('FrLogin') 
+        self.fr_login.grid(row=0, column=0, sticky="nsew")
+        self.fr_acesso.grid(row=0, column=0, sticky="nsew")
+        self.fr_cadastro.grid(row=0, column=0, sticky="nsew")
 
-
+        # mostrar primeira frame (login)
+        self.show_login()
+        
     def set_login(self, login):
         self.login = login
-    def show_frame(self, page_name):
-        if page_name == 'FrAcesso':
-            frame = self.frames[page_name]
-            
-            print('login main:', self.login)
-            frame.tkraise()
-            FrAcesso.set_login(self, self.login)
+        
+    def show_acesso(self, login):
+        # mostrar frame acesso
+        self.fr_acesso.tkraise()
+        self.fr_acesso.start(login)
+        
+    def show_login(self):    
+        # mostrar frame login
+        self.fr_login.tkraise()
+        
+    def show_cadastro(self):
+        # mostrar frame cadastro
+        self.fr_cadastro.tkraise()
 
-        else:
-            
-            frame = self.frames[page_name]
-            frame.tkraise()
 
-    
-
-
-if __name__ == "__main__":
+def main():
     root = Principal()
-    root.geometry('500x300')
     root.mainloop()
-    
+        
+if __name__ == "__main__":
+    main()

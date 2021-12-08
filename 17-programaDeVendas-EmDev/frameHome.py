@@ -1,4 +1,4 @@
-from tkinter import Label, ttk
+from tkinter import ttk
 import tkinter as tk
 
 from PIL import Image, ImageTk
@@ -9,17 +9,16 @@ class Fr_home(ttk.Frame):
         super().__init__(parent)
         
         self.lb = ttk.Label(self, text='Bem Vindo')
-        self.lb.pack()
+        self.lb.grid(row=0, column=0)
 
-        self.lb_img = Label(self)
+        
+        self.img = ImageTk.PhotoImage(Image.open("./img/bike_mania.png"), size='10x10')
 
-        # self.lb_img['image'] = ImageTk.PhotoImage(Image.open('./img/bike_mania.png'))
-        self.lb_img.config(image=ImageTk.PhotoImage(Image.open('./img/bike_mania.png')))
+        #Displaying it
+        self.lb_img = ttk.Label(self, image=self.img).grid(row=1, column=0)        
+        
 
-        self.lb_img.pack()
 
-        python_image = tk.PhotoImage(file='./img/bike_mania.png')
-        ttk.Label(self, image=python_image).pack()
 if __name__ == '__main__':
     root = tk.Tk()
     root.geometry('1200x800')

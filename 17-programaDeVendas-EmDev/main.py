@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter.constants import BOTH, LEFT, TOP
+from tkinter.constants import BOTH, LEFT, TOP, Y
 from frameCadastroCliente import FrameCadastroCliente
 
 from frameCadastroProduto import FrameProduto
@@ -79,7 +79,7 @@ class Principal(tk.Tk):
         self.frameEntraga = Fr_entrega(self.frameDireita)
         self.frameFaturamento = Fr_faturamento(self.frameDireita)
 
-        self.frameDireita.pack(side=LEFT, fill=BOTH)
+        self.frameDireita.pack(side=LEFT, fill=Y)
         
         # mostrar frame home
         self.show_fr_Home()
@@ -104,38 +104,38 @@ class Principal(tk.Tk):
 
     def show_fr_entrega(self):
         self.apagar_frames()
-        self.frameEntraga.pack(side=TOP)
+        self.frameEntraga.pack(side=TOP, fill=Y)
         
     def show_fr_Home(self):
         self.apagar_frames()
-        self.frameHome.pack(side=TOP)
+        self.frameHome.pack(side=TOP, fill=Y)
 
     def show_fr_venda(self):
         self.apagar_frames()
-        self.frameVenda.pack(side=TOP)
+        self.frameVenda.pack(side=TOP, fill=Y)
 
     def show_fr_CadastrarProduto(self):
         self.apagar_frames()
         self.frameCadastroProduto.reset_campoCadastro()
         self.frameCadastroProduto.lb_aviso.config(text='')
-        self.frameCadastroProduto.pack(side=TOP)
+        self.frameCadastroProduto.pack(side=TOP, fill=Y)
         
         
     def show_fr_CadstroCliente(self):
         self.apagar_frames()
         self.frameCadastroCliente.lb_aviso.config(text='')
         self.frameCadastroCliente.resetar()
-        self.frameCadastroCliente.pack(side=TOP)
+        self.frameCadastroCliente.pack(side=TOP, fill=Y)
 
     def show_fr_pesquisarProduto(self):
         self.apagar_frames() 
         self.framePesquisarProduto.atualizar()
-        self.framePesquisarProduto.pack(side=TOP)
+        self.framePesquisarProduto.pack(side=TOP, fill=Y)
         
     def show_fr_pesquisarCliente(self):
         self.apagar_frames()
         self.framePesquisarCliente.atualizar()
-        self.framePesquisarCliente.pack(side=TOP)
+        self.framePesquisarCliente.pack(side=TOP, fill=Y)
         
         
         

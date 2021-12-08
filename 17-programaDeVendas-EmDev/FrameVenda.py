@@ -12,7 +12,6 @@ from frameVenda_treeVenda import Fr_treeVenda
 from frameVenda_frFinalizacao import Fr_finalizacao
 
 
-
 class FrVenda(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
@@ -123,6 +122,7 @@ class FrVenda(ttk.Frame):
         self.etd_qtd_prod.delete(0, END)
         self.etd_qtd_prod.insert(END, 1)
 
+        
     def inserir_cliente(self, dados):
         print('clientes:', dados)
         self.fr_lbCliente.inserir_dados(dados)
@@ -136,11 +136,10 @@ class FrVenda(ttk.Frame):
                 self.dados_produto[4],
                 self.etd_qtd_prod.get(),
                 self.lb_preco_prodInfo['text']]
-
             print('tree venda:', ds)
-            # print('preco inicial:', self.dados_produto[4])
             self.fr_treeVenda.adicionar(ds)
-            
+        
+        
 if __name__ == '__main__':
     root = tk.Tk()
     frame = FrVenda(root)

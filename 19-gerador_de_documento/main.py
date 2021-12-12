@@ -1,23 +1,40 @@
 import tkinter as tk
-from tkinter.constants import EW, Y
-from cnpj import Fr_cnpj
-from cpf import Fr_cpf
-from fr_cnh import Fr_cnh
+from tkinter import ttk
+from tkinter.constants import EW, LEFT, RIGHT, Y
+
+from validate_docbr.CNH import CNH
+from frames.cnpj import Fr_CNPJ
+from frames.cpf import Fr_cpf
+from frames.cnh import Fr_CNH
+from frames.cns import Fr_CNS
+from frames.pis import Fr_PIS
 
 class GeradorMain(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.geometry('500x200')
+        self.geometry('550x300')
         self.title('gerador de documentos')
+        self.fr_left = ttk.Frame(self)
+        self.fr_right = ttk.Frame(self)
         
-        fr_cpf = Fr_cpf(self)
-        fr_cnpj = Fr_cnpj(self)
-        fr_cnh = Fr_cnh(self)
+        self.fr_cpf = Fr_cpf(self.fr_left)
+        self.fr_cnpj = Fr_CNPJ(self.fr_left)
+        self.fr_cnh = Fr_CNH(self.fr_left)
+        
+        self.fr_cns = Fr_CNS(self.fr_right)
+        self.fr_pis = Fr_PIS(self.fr_right)
+        
 
+        self.fr_cpf.pack(fill=Y)
+        self.fr_cnpj.pack(fill=Y)
+        self.fr_cnh.pack(fill=Y)
         
-        fr_cpf.pack(fill=Y)
-        fr_cnpj.pack(fill=Y)
-        fr_cnh.pack(fill=Y)
+        self.fr_cns.pack(fill=Y)
+        self.fr_pis.pack(fill=Y)      
+        
+        # colocando frames
+        self.fr_left.pack(side=LEFT, padx=20)
+        self.fr_right.pack(side=RIGHT, padx=20) 
         
 def main():
     GeradorMain().mainloop()

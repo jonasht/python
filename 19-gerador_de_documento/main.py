@@ -12,8 +12,15 @@ from frames.pis import Fr_PIS
 class GeradorMain(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.geometry('550x300')
+        self.geometry('670x400')
         self.title('gerador de documentos')
+
+        # definindo thema =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        self.style = ttk.Style(self)
+        self.tk.call('source', './forest-ttk-theme/forest-light.tcl')
+        self.style.theme_use('forest-light')
+
+        # definindo frames left right =-=-=-=-=-=-=-=-=-=-=-=-=
         self.fr_left = ttk.Frame(self)
         self.fr_right = ttk.Frame(self)
         

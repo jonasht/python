@@ -23,11 +23,12 @@ class Principal(tk.Tk):
         self.style = ttk.Style(self)
 
         # chamando arquivo tcl 
-        self.tk.call("source", './forest_ttk_theme/forest-light.tcl')
+        self.tk.call('source', './forest_ttk_theme/forest-light.tcl')
         
 
         # chamando o tema
-        self.style.theme_use("forest-light")
+        # self.style.theme_use('forest-light')e
+        self.style.theme_use('forest-light')
         
         # botao HOME ======================================================================
         self.bt_home = ttk.Button(self.frameBotoes, text='HOME', width=15, command=self.show_fr_Home)

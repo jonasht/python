@@ -1,20 +1,20 @@
 from tkinter import ttk
-from tkinter.constants import END, EW
-from validate_docbr import CNH
+from tkinter.constants import CENTER, END, EW
+from validate_docbr import CPF
 
-class Fr_cnh(ttk.Frame):
+class Fr_cpf(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.cnh = CNH()
-        self.cnh_num = ''
+        self.cpf = CPF()
+        self.cpf_num = ''
 
 
-        #   cnh =================================================
-        self.lbfr = ttk.Labelframe(self, text='CNH')
+        #   cpf =================================================
+        self.lbfr = ttk.Labelframe(self, text='CPF')
         self.etd = ttk.Entry(self.lbfr)
         self.bt_gerar = ttk.Button(self.lbfr, text='Gerar', command=self.gerar)
-        self.chbt_mask = ttk.Checkbutton(self.lbfr, text='mark', command=self.chbt_Evento)
+        self.chbt_mask = ttk.Checkbutton(self.lbfr, text='mask', command=self.chbt_Evento)
 
         self.etd.grid(row=0, column=0, padx=2, pady=5)
         self.bt_gerar.grid(row=0, column=1, padx=2, pady=5)
@@ -29,8 +29,8 @@ class Fr_cnh(ttk.Frame):
     def gerar(self):
         if 'selected' not in self.chbt_mask.state():
             self.etd.delete(0, END)
-            self.cnh_num = self.cnh.generate()
-            self.etd.insert(0, self.cnh_num)
+            self.cpf_num = self.cpf.generate()
+            self.etd.insert(0, self.cpf_num)
         else:
             self.chbt_Evento()
 
@@ -38,8 +38,8 @@ class Fr_cnh(ttk.Frame):
     def chbt_Evento(self):
         if 'selected' in self.chbt_mask.state():
             self.etd.delete(0, END)
-            self.etd.insert(0, self.cnh.mask(self.cnh_num))
+            self.etd.insert(0, self.cpf.mask(self.cpf_num))
         else:
             self.etd.delete(0, END)
-            self.etd.insert(0, self.cnh_num)
+            self.etd.insert(0, self.cpf_num)
 

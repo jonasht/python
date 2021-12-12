@@ -15,7 +15,7 @@ class Fr_cpf(ttk.Frame):
         self.lbfr = ttk.Labelframe(self, text='CPF')
         self.etd = ttk.Entry(self.lbfr)
         self.bt_gerar = ttk.Button(self.lbfr, text='Gerar', command=self.gerar)
-        self.chbt_mask = ttk.Checkbutton(self.lbfr, text='mark', command=self.chbt_Evento)
+        self.chbt_mask = ttk.Checkbutton(self.lbfr, text='mask', command=self.chbt_Evento)
         self.bt_copy = ttk.Button(self.lbfr, text='Copiar', command=self.copiar)
         self.etd.grid(row=0, column=0, padx=2, pady=5, columnspan=2)
         self.bt_gerar.grid(row=1, column=1, padx=2, pady=5)

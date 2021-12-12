@@ -1,13 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter.constants import EW, LEFT, RIGHT, Y
-
-from validate_docbr.CNH import CNH
+from tkinter.constants import LEFT, RIGHT, Y
 from frames.cnpj import Fr_CNPJ
 from frames.cpf import Fr_cpf
 from frames.cnh import Fr_CNH
 from frames.cns import Fr_CNS
 from frames.pis import Fr_PIS
+
+
 
 class GeradorMain(tk.Tk):
     def __init__(self):
@@ -42,7 +42,8 @@ class GeradorMain(tk.Tk):
         # colocando frames
         self.fr_left.pack(side=LEFT, padx=20)
         self.fr_right.pack(side=RIGHT, padx=20) 
-        
+
+#? colocar esse jeito de main eh regra 
 def main():
     GeradorMain().mainloop()
     

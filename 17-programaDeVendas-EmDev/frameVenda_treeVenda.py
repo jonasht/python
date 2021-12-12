@@ -1,7 +1,7 @@
 from tkinter import ttk
 import tkinter as tk
 from tkinter.constants import END, EW, NS, VERTICAL
-from typing import Text
+
 
 
 

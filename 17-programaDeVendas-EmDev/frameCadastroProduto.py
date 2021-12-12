@@ -2,7 +2,8 @@ import tkinter as tk
 from tkinter.constants import BOTH, END, RIGHT, LEFT
 
 from tkinter.ttk import *
-import func_produtos as fp
+# import func_produtos as fp
+import func.produtos as fp
 
 
 class FrameProduto(Frame):

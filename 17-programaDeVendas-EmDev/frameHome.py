@@ -12,9 +12,8 @@ class Fr_home(ttk.Frame):
         self.lb.grid(row=0, column=0)
 
         
-        self.img = ImageTk.PhotoImage(Image.open("./img/bike_mania.png"), size='10x10')
+        self.img = ImageTk.PhotoImage(Image.open('./img/Crystal_icon-icons.com_3.png'), size='10x10')
 
-        #Displaying it
         self.lb_img = ttk.Label(self, image=self.img).grid(row=1, column=0)        
         
 

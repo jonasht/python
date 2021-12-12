@@ -1,7 +1,9 @@
-from tkinter import Pack, ttk
+from tkinter import ttk
 import tkinter as tk
 from tkinter.constants import BOTH, END, LEFT, RIGHT, W, EW
-import func_clientes as fc
+# import func_clientes as fc
+import func.clientes as fc
+
 from validate_docbr import CPF
 
 class FrameCadastroCliente(ttk.Frame):

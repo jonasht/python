@@ -1,6 +1,6 @@
 import tkinter as tk
-from tkinter import ttk
-from tkinter.constants import BOTH, LEFT, TOP, Y
+from tkinter import Toplevel, ttk
+from tkinter.constants import BOTH, CENTER, EW, LEFT, RIGHT, TOP, W, Y
 from frameCadastroCliente import FrameCadastroCliente
 
 from frameCadastroProduto import FrameProduto
@@ -79,7 +79,7 @@ class Principal(tk.Tk):
         self.frameEntraga = Fr_entrega(self.frameDireita)
         self.frameFaturamento = Fr_faturamento(self.frameDireita)
 
-        self.frameDireita.pack(side=LEFT, fill=Y)
+        self.frameDireita.pack(side=TOP, fill=BOTH, anchor=CENTER)
         
         # mostrar frame home
         self.show_fr_Home()
@@ -108,7 +108,7 @@ class Principal(tk.Tk):
         
     def show_fr_Home(self):
         self.apagar_frames()
-        self.frameHome.pack(side=TOP, fill=Y)
+        self.frameHome.pack()
 
     def show_fr_venda(self):
         self.apagar_frames()

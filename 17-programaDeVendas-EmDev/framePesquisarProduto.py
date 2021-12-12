@@ -4,7 +4,8 @@ import tkinter as tk
 from tkinter.constants import BOTH, DISABLED, END, EW, LEFT, N, NO, NORMAL, NS, RIGHT, VERTICAL
 
 from colorama.ansi import Fore
-import func_produtos as funcP
+# import func_produtos as funcP
+import func.produtos as funcP
  
 
 

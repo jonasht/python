@@ -2,7 +2,8 @@ from tkinter import ttk
 import tkinter as tk
 from tkinter.constants import END, EW
 from frameVenda_lbCliente import Fr_lbCliente
-import func_clientes as funcC
+# import func_clientes as funcC
+import func.clientes as funcC
 
 
 

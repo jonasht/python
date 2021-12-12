@@ -1,7 +1,8 @@
 from tkinter import ttk
 import tkinter as tk
 from tkinter.constants import END, EW, NS, VERTICAL
-import func_produtos as funcP
+# import func_produtos as funcP
+import func.produtos as funcP
 
 
 class Fr_treeProduto(ttk.Frame):

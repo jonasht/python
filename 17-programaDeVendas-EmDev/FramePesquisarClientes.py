@@ -2,7 +2,9 @@
 from tkinter import ttk
 import tkinter as tk
 from tkinter.constants import BOTH, DISABLED, END, EW, NORMAL
-import func_clientes as funcC
+# import func_clientes as funcC
+import func.clientes as funcC
+
 
 
 

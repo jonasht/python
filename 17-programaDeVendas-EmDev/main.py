@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Toplevel, ttk
+from tkinter import ttk
 from tkinter.constants import BOTH, CENTER, EW, LEFT, RIGHT, TOP, W, Y
 from frames.frameCadastroCliente import FrameCadastroCliente
 
@@ -18,7 +18,7 @@ class Principal(tk.Tk):
 
         self.frameBotoes = ttk.Frame(self)
         
-        # theme =-=-===---====--==--=-=-====--=-=-=-======--====-=-==-=-=== == === === == ===
+        # theme =-=-====-=-====-=-====-=-====-=-====-=-====-=-====-=-
         # criando style
         self.style = ttk.Style(self)
 

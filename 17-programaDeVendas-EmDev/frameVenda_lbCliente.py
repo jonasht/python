@@ -60,7 +60,7 @@ class Fr_lbCliente(ttk.Frame):
 
     def inserir_dados(self, dados):
         # dados = dados[0]
-        print(dados)
+        # print(dados)
         
         id = dados[0]
         nome = dados[1]
@@ -106,9 +106,6 @@ class Fr_lbCliente(ttk.Frame):
         
         
 if __name__ == '__main__':
-    print('=-=-=-=-=-=-=-=-=-=-=-=-=')
-    print('so um teste')
-    print('=-=-=-=-=-=-=-=-=-=-=-=-=')
     dados = (5, 'Henrique', '522', 'SP', 'CAMPINAS', 
              'Carlos De Andrades', '896', '1938363132', 
              'henrique@outlook.com.br')    

@@ -4,7 +4,7 @@ from tkinter.constants import BOTH, BOTTOM, DISABLED, E, END, EW, LEFT, N, NO, N
 
 from colorama.ansi import Fore
 
-# from frames_Venda.frameVenda_treeProduto import Fr_treeProduto
+from frameVenda_treeProduto import Fr_treeProduto
 from frameVenda_treeProduto import Fr_treeProduto
 
 from frameVenda_treeCliente import Fr_treeCliente

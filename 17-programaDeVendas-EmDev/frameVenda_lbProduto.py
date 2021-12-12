@@ -53,12 +53,12 @@ class Fr_lbProduto(ttk.Frame):
         preco = dados[4]
         descricao = dados[5]
         
-        print('id:', id)
-        print('nome:', nome)
-        print('marca:', marca)
-        print('qtd:', qtd)
-        print('preco:', preco)
-        print('descricao:', descricao)
+        # print('id:', id)
+        # print('nome:', nome)
+        # print('marca:', marca)
+        # print('qtd:', qtd)
+        # print('preco:', preco)
+        # print('descricao:', descricao)
 
         self.lb_idInfo.config(text=id)
         self.lb_nomeInfo.config(text=nome)
@@ -80,7 +80,7 @@ class Fr_lbProduto(ttk.Frame):
 
 if __name__ == '__main__':
     
-    print('so um teste')
+    # print('so um teste')
 
     root = tk.Tk()
     root.geometry('500x500')

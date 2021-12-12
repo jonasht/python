@@ -160,12 +160,12 @@ class FrPesquisarProduto(ttk.Frame):
                 
                 # update dados =-=-=-=-=-=-=-=-=-=-=-=-=
 
-                print('codigo:', codigo)
-                print('nome:', nome)
-                print('marca:', marca)
-                print('qtd:', qtd)
-                print('preco:', preco)
-                print('descricao:', txt)
+                # print('codigo:', codigo)
+                # print('nome:', nome)
+                # print('marca:', marca)
+                # print('qtd:', qtd)
+                # print('preco:', preco)
+                # print('descricao:', txt)
                 
                 funcP.update_(codigo=codigo, nome=nome,
                               marca=marca, quantidade=qtd,
@@ -194,7 +194,7 @@ class FrPesquisarProduto(ttk.Frame):
     def inserir_dados(self):
         # pegando dados
         dados = funcP.pesquisar(self.codigo)
-        print(dados)
+        # print(dados)
         dados = dados[0]
 
         # ativando entradas
@@ -219,14 +219,14 @@ class FrPesquisarProduto(ttk.Frame):
             item = self.treev.item(selected_item)
             record = item['values']
 
-            print(record)
+            # print(record)
             
             self.codigo = record[0]
             self.inserir_dados()
         
     def digitar_evento(self, event):
         variavel = event.widget.get()
-        print(variavel)
+        # print(variavel)
         # deletar tree view
         self.deletar_tree()
 
@@ -240,8 +240,8 @@ class FrPesquisarProduto(ttk.Frame):
     def mostrar_tree(self, palavras=''):
 
         dados = funcP.get_()
-        print(dados)
-        print('\n')
+        # print(dados)
+        # print('\n')
 
         dadosTree = list()
         for d in dados:
@@ -249,9 +249,9 @@ class FrPesquisarProduto(ttk.Frame):
             dadosTree.append(d[:5])
             
             
-            print('tree', dadosTree)
+        #     print('tree', dadosTree)
         
-        print(dadosTree)
+        # print(dadosTree)
         
         if palavras != '':
             for d in dadosTree:

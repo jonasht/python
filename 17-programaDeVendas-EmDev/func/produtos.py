@@ -34,7 +34,7 @@ def add_(nome, marca, quantidade, preco, descricao):
                    """, (nome, marca, quantidade, preco, descricao))  
     banco.commit()
     banco.close()
-    print(f'{Fore.GREEN} {nome} {marca} {quantidade} {preco} {descricao}\ncadastro feito com sucesso{Fore.RESET}')
+    # print(f'{Fore.GREEN} {nome} {marca} {quantidade} {preco} {descricao}\ncadastro feito com sucesso{Fore.RESET}')
     
 def update_(codigo, nome, marca, quantidade, preco, descricao):
     '''

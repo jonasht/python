@@ -4,7 +4,9 @@ from tkinter.constants import BOTH, BOTTOM, DISABLED, E, END, EW, LEFT, N, NO, N
 
 from colorama.ansi import Fore
 
+# from frames_Venda.frameVenda_treeProduto import Fr_treeProduto
 from frameVenda_treeProduto import Fr_treeProduto
+
 from frameVenda_treeCliente import Fr_treeCliente
 from frameVenda_lbCliente import Fr_lbCliente
 from frameVenda_lbProduto import Fr_lbProduto
@@ -93,8 +95,7 @@ class FrVenda(ttk.Frame):
         # serve para somar a entrada do valor quando colocado (tempo real)
         valor_etd = self.etd_qtd_prod.get()
         if not valor_etd:
-            print('nenhum valor')
-
+            
             self.lb_valor.config(text=f'{self.dados_produto[4]:.2f}')
 
             
@@ -109,10 +110,10 @@ class FrVenda(ttk.Frame):
             print('por favor digite apenas numeros')
             
     def inserir_produto(self, dados):
-        print('produto:', dados)
+        # print('produto:', dados)
         self.fr_lbProduto.inserir_dados(dados)
         
-        print('dados', dados[4])
+        # print('dados', dados[4])
         self.lb_preco_prodInfo.config(text=f'{dados[4]:.2f}')
         
         self.dados_produto = dados
@@ -124,7 +125,7 @@ class FrVenda(ttk.Frame):
 
         
     def inserir_cliente(self, dados):
-        print('clientes:', dados)
+        # print('clientes:', dados)
         self.fr_lbCliente.inserir_dados(dados)
         self.dados_cliente = dados
 
@@ -136,7 +137,7 @@ class FrVenda(ttk.Frame):
                 self.dados_produto[4],
                 self.etd_qtd_prod.get(),
                 self.lb_preco_prodInfo['text']]
-            print('tree venda:', ds)
+            # print('tree venda:', ds)
             self.fr_treeVenda.adicionar(ds)
         
         

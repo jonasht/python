@@ -47,7 +47,7 @@ class Fr_treeCliente(ttk.Frame):
     def inserir_dados(self):
         # pegando dados
         dados = funcC.pesquisar(self.id)
-        print(dados)
+        # print(dados)
         dados = dados[0]
 
         # mandar os dados para o pai
@@ -57,15 +57,15 @@ class Fr_treeCliente(ttk.Frame):
         for selected_item in self.treev.selection():
             item = self.treev.item(selected_item)
             record = item['values']
-            # show a message
-            print(record)
+
+            # print(record)
             
             self.id = record[0]
             self.inserir_dados()
         
     def digitar_evento(self, event):
         variavel = event.widget.get()
-        print(variavel)
+        # print(variavel)
         # deletar tree view
         self.deletar_tree()
 
@@ -79,17 +79,17 @@ class Fr_treeCliente(ttk.Frame):
     def mostrar_tree(self, palavras=''):
 
         dados = funcC.get_()
-        print(dados)
-        print('\n')
+        # print(dados)
+        # print('\n')
 
         dadosTree = list()
         for d in dados:
             # print(d[:5])
             dadosTree.append(d[:5])
             
-            print('tree', dadosTree)
+            # print('tree', dadosTree)
         
-        print(dadosTree)
+        # print(dadosTree)
         
         if palavras != '':
             for d in dadosTree:

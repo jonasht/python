@@ -58,7 +58,7 @@ class Fr_treeProduto(ttk.Frame):
   
 
     def editar_dados(self) -> None:
-        print(self.codigo)
+        # print(self.codigo)
         if self.codigo != '':
 
 
@@ -68,11 +68,11 @@ class Fr_treeProduto(ttk.Frame):
             preco =self.etd_preco.get()
             
             # add dados =-=-=-=-=-=-=-=-=-=-=-=-=
-            print('codigo:', codigo)
+            # print('codigo:', codigo)
             # print('nome:', nome)
             # print('marca:', marca)
-            print('qtd:', qtd)
-            print('preco:', preco)
+            # print('qtd:', qtd)
+            # print('preco:', preco)
 
 
             self.deletar_tree()
@@ -82,7 +82,7 @@ class Fr_treeProduto(ttk.Frame):
     def inserir_dados(self):
         # pegando dados
         dados = funcP.pesquisar(self.codigo)
-        print(dados)
+        # print(dados)
         dados = dados[0]
 
         # mandar dados para o pai 
@@ -94,14 +94,14 @@ class Fr_treeProduto(ttk.Frame):
             item = self.tree_produto.item(selected_item)
             record = item['values']
 
-            print(record)
+            # print(record)
             
             self.codigo = record[0]
             self.inserir_dados()
         
     def digitar_evento(self, event):
         variavel = event.widget.get()
-        print(variavel)
+        # print(variavel)
         # deletar tree view
         self.deletar_tree()
 
@@ -114,16 +114,16 @@ class Fr_treeProduto(ttk.Frame):
     def mostrar_tree(self, palavras=''):
 
         dados = funcP.get_()
-        print(dados)
-        print('\n')
+        # print(dados)
+        # print('\n')
 
         dadosTree = list()
         for d in dados:
             dadosTree.append(d[:4])
             
-            print('tree', dadosTree)
+        #     print('tree', dadosTree)
         
-        print(dadosTree)
+        # print(dadosTree)
         
         if palavras != '':
             for d in dadosTree:

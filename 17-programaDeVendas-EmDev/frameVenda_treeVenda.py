@@ -48,7 +48,7 @@ class Fr_treeVenda(ttk.Frame):
 
 
     def editar_dados(self) -> None:
-        print(self.codigo)
+        # print(self.codigo)
         if self.codigo != '':
 
 
@@ -58,11 +58,11 @@ class Fr_treeVenda(ttk.Frame):
             preco =self.etd_preco.get()
             
             # add dados =-=-=-=-=-=-=-=-=-=-=-=-=
-            print('codigo:', codigo)
-            # print('nome:', nome)
-            # print('marca:', marca)
-            print('qtd:', qtd)
-            print('preco:', preco)
+            # print('codigo:', codigo)
+            # # print('nome:', nome)
+            # # print('marca:', marca)
+            # print('qtd:', qtd)
+            # print('preco:', preco)
 
 
             self.deletar_tree()
@@ -75,14 +75,14 @@ class Fr_treeVenda(ttk.Frame):
             item = self.tree_venda.item(selected_item)
             record = item['values']
 
-            print(record)
+            # print(record)
             
             self.codigo = record[0]
             self.inserir_dados()
         
     def digitar_evento(self, event):
         variavel = event.widget.get()
-        print(variavel)
+        # print(variavel)
         # deletar tree view
         self.deletar_tree()
 

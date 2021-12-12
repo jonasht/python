@@ -1,15 +1,15 @@
 import tkinter as tk
 from tkinter import Toplevel, ttk
 from tkinter.constants import BOTH, CENTER, EW, LEFT, RIGHT, TOP, W, Y
-from frameCadastroCliente import FrameCadastroCliente
+from frames.frameCadastroCliente import FrameCadastroCliente
 
-from frameCadastroProduto import FrameProduto
-from framePesquisarProduto import FrPesquisarProduto
-from FramePesquisarClientes import FrPesquisarCliente
+from frames.frameCadastroProduto import FrameProduto
+from frames.framePesquisarProduto import FrPesquisarProduto
+from frames.FramePesquisarClientes import FrPesquisarCliente
 from FrameVenda import FrVenda
-from frameHome import Fr_home
-from frameEntrega import Fr_entrega
-from frameFaturamento import Fr_faturamento
+from frames.frameHome import Fr_home
+from frames.frameEntrega import Fr_entrega
+from frames.frameFaturamento import Fr_faturamento
 
 
 class Principal(tk.Tk):
@@ -23,10 +23,12 @@ class Principal(tk.Tk):
         self.style = ttk.Style(self)
 
         # chamando arquivo tcl 
-        self.tk.call("source", "forest-light.tcl")
+        self.tk.call("source", './forest_ttk_theme/forest-light.tcl')
+        
 
         # chamando o tema
         self.style.theme_use("forest-light")
+        
         # botao HOME ======================================================================
         self.bt_home = ttk.Button(self.frameBotoes, text='HOME', width=15, command=self.show_fr_Home)
         self.bt_home.grid(row=0, column=0)

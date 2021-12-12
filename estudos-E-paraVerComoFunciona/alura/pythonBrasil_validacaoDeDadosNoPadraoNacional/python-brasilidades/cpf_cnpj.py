@@ -1,6 +1,52 @@
 from validate_docbr import CPF, CNPJ
 
+class Documento:
 
+    @staticmethod
+    def cria_documento(documento):
+        if len(documento) == 11:
+            return DocCpf(documento)
+        elif len (documento) == 14:
+            return DocCnpj(documento)
+        else:
+            raise ValueError('quantidade de digitos esta incorreto')
+
+class DocCpf:
+    def __init__(self, documento) -> None:
+        if self.valida(documento):
+            self.documento = documento
+        else:
+            raise ValueError('cpf invalido')
+
+    def __str__(self) -> str:
+        return self.format()
+
+    def valida(self, documento):
+        validador = CPF()
+        return validador.validate(documento)
+    
+    def format(self):
+        mascara = CPF()
+        return mascara.mask(self.documento)
+    
+class DocCnpj:
+    def __init__(self, documento) -> None:
+        if self.valida(documento):
+            self.documento = documento
+        else:
+            raise ValueError('cnpj invalido')
+    
+    def __str__(self):
+        return self.format()
+        
+    def valida(self, documento):
+        mascara = CNPJ()
+        return mascara.validate(documento)
+    
+    def format(self):
+        mascara = CNPJ()
+        return mascara.mask(self.documento)
+    
 class CpfCnpj:
     def __init__(self, documento, tipo_documento) -> None:
         self.tipo_documento = tipo_documento

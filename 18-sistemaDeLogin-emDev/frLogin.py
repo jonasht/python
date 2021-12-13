@@ -1,16 +1,27 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter.constants import END, EW, X
-from frAcesso import FrAcesso
+
 import uteis as u
 from colorama.ansi import Fore
+from PIL import Image, ImageTk
+
 
 class FrLogin(ttk.Frame):
     def __init__(self, parent, controller):
         
         super().__init__(parent)
         self.controller = controller
-
+        
+        # colocando imagem na tela =-=-=-=-=-=-=
+        image = Image.open('./img/yellowdiamond.png')
+        width = 132
+        height = 142
+        resize_image = image.resize((width, height))
+        self.img = ImageTk.PhotoImage(resize_image)
+        self.lb_img = ttk.Label(self, image=self.img).pack()
+        
+        
         self.lbfr_meio = ttk.LabelFrame(self, text='Login')
         
         self.lb_login = ttk.Label(self.lbfr_meio, text='login:')

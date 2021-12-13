@@ -12,18 +12,17 @@ class Principal(tk.Tk):
     def __init__(self):
         super().__init__()
         self.geometry('400x400')
-
+        
         self.login = ''
 
         self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
-        # Create a style
+        
+        
+        # definindo style
         style = ttk.Style(self)
-
-        # Import the tcl file
-        self.tk.call("source", "forest-light.tcl")
-
-        # Set the theme with the theme_use method
+        self.tk.call('source', './forest_ttk_theme/forest-light.tcl')
         style.theme_use("forest-light")
+
 
         container = ttk.Frame(self)
         container.pack(side="top", fill="both", expand=True)

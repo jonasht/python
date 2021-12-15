@@ -13,5 +13,5 @@ class App(Tk):
 def main():
     root = App()
     root.mainloop()
-        
-main()
+if __name__ == '__main__':
+    main()

@@ -37,8 +37,12 @@ class Fr_finalizacao(ttk.Frame):
         
     
     def finalizar_evento(self):
+        self.etd_cpf.delete(0, END)
+        self.chbt_cpf.state(['!selected'])
+        self.chbt_entrega.state(['!selected'])
+        print(self.chbt_cpf.state())
         self.con.apagar_tudo()
-        
+   
 if __name__ == '__main__':
     root = tk.Tk()
     frame = Fr_finalizacao(root, root)

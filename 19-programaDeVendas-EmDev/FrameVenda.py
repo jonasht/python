@@ -91,6 +91,7 @@ class FrVenda(ttk.Frame):
         self.lb_preco_prod.config(text='')
         self.etd_qtd_prod.delete(0, END)
         
+        
     def evento_somar(self, event):
         # serve para somar a entrada do valor quando colocado (tempo real)
         valor_etd = self.etd_qtd_prod.get()

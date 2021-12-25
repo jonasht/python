@@ -22,29 +22,44 @@ class App(Tk):
         
         self.lb_aviso.grid()
 
-    def avisar(self, aviso):
+    def avisar(self, aviso=''):
         self.lb_aviso.config(text=aviso, foreground='red')
         
     def evento_decimal(self, num):
-        self.fr_binario.inserir(num)
-        self.fr_octal.inserir(num)
-        self.fr_hexadecimal.inserir(num)
-    
+        try:
+            self.avisar()
+            self.fr_binario.inserir(num)
+            self.fr_octal.inserir(num)
+            self.fr_hexadecimal.inserir(num)
+        except:
+            self.avisar('erro de digitaçao em decimal')
+
     def evento_binario(self, num):
-        self.fr_decimal.inserir(num)
-        self.fr_octal.inserir(num)
-        self.fr_hexadecimal.inserir(num)
-        
+        try:
+            self.avisar()
+            self.fr_decimal.inserir(num)
+            self.fr_octal.inserir(num)
+            self.fr_hexadecimal.inserir(num)
+        except:
+            self.avisar('erro de digitaçao em binario')
+            
     def evento_octal(self, num):
-        self.fr_decimal.inserir(num)
-        self.fr_hexadecimal.inserir(num)
-        self.fr_binario.inserir(num)
-    
+        try:
+            self.avisar()
+            self.fr_decimal.inserir(num)
+            self.fr_hexadecimal.inserir(num)
+            self.fr_binario.inserir(num)
+        except:
+            self.avisar('erro de digitaçao em octal')
+            
     def evento_hexadecimal(self, num):
-        self.fr_decimal.inserir(num)
-        self.fr_binario.inserir(num)
-        self.fr_octal.inserir(num)
-        
+        try:
+            self.fr_decimal.inserir(num)
+            self.fr_binario.inserir(num)
+            self.fr_octal.inserir(num)
+        except:
+            self.avisar('erro de digitaçao em hexadecimal')
+            
 def main():
     app = App()
     app.mainloop()

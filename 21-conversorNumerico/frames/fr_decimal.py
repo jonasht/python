@@ -28,7 +28,7 @@ class Fr_decimal(ttk.Frame):
         self.con.evento_decimal(numero)
     
     def inserir(self, num):
-        if num:
+        if num: 
             num = to_dec(num)
             num = int(num)
             self.etd.delete(0, END)

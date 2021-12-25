@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter.constants import BOTH, CENTER, EW, LEFT, RIGHT, TOP, W, Y
+from tkinter.constants import BOTH, CENTER, DISABLED, EW, LEFT, RIGHT, TOP, W, Y
 from frames.frameCadastroCliente import FrameCadastroCliente
 
 from frames.frameCadastroProduto import FrameProduto
@@ -86,6 +86,11 @@ class Principal(tk.Tk):
         
         # mostrar frame home
         self.show_fr_Home()
+
+        # desativando botoes em dev
+        self.bt_faturamento.config(state=DISABLED)
+        self.bt_entregas.config(state=DISABLED)
+        
 
     def apagar_frames(self):
         self.frameCadastroCliente.forget()

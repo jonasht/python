@@ -7,8 +7,11 @@ from frames.fr_hexadecimal import Fr_hexadecimal
 class App(Tk):
     def __init__(self):
         super().__init__()
-        self.lb_aviso = ttk.Label(text='')
+        style = ttk.Style(self)
+        self.tk.call('source', './forest_ttk_theme/forest-dark.tcl')
+        style.theme_use("forest-dark")
 
+        self.lb_aviso = ttk.Label(text='')
         self.fr_decimal = Fr_decimal(self, self)
         self.fr_binario = Fr_binario(self, self)
         self.fr_octal = Fr_octal(self, self)

@@ -2,7 +2,7 @@ from tkinter import ttk, Tk
 from tkinter.constants import END, EW
 import pyperclip as pc 
 
-from uteis import to_dec
+from frames.uteis import to_dec
 
 class Fr_hexadecimal(ttk.Frame):
     def __init__(self, parent, con):

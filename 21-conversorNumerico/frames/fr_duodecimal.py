@@ -2,14 +2,14 @@ from tkinter import ttk, Tk
 from tkinter.constants import END, EW
 import pyperclip as pc 
 
-from uteis import to_dec, dec_to_base
+from frames.uteis import to_dec, dec_to_base
 
-class Fr_hexadecimal(ttk.Frame):
+class Fr_duodecimal(ttk.Frame):
     def __init__(self, parent, con):
         super().__init__(parent)
         self.con = con
         
-        self.lbfr = ttk.LabelFrame(self, text='hexadecimal')
+        self.lbfr = ttk.LabelFrame(self, text='duodecimal')
         self.bt_copiar = ttk.Button(self.lbfr, text='Copiar', command=self.copiar)
         self.etd = ttk.Entry(self.lbfr, width=30)
         self.bt_colar = ttk.Button(self.lbfr, text='Colar', command=self.colar)
@@ -23,13 +23,14 @@ class Fr_hexadecimal(ttk.Frame):
 
     def evento(self, event):
         numero = self.etd.get()
-        
-        # numero = '0x'+numero if numero else ''
+
+        numero = str(int(numero, 12)) if numero else ''
         self.con.evento_duodecimal(numero)
         
     def inserir(self, num):
         if num:
-            num = to_dec(num, 12)
+            num = to_dec(num)
+
             num = int(num)
             num = dec_to_base(num, 12)
             self.etd.delete(0, END)
@@ -44,3 +45,10 @@ class Fr_hexadecimal(ttk.Frame):
         self.etd.delete(0, END)
         self.etd.insert(END, pc.paste())
         self.evento(None)
+        
+if __name__ == '__main__':
+    app = Tk()
+    fr = Fr_duodecimal(app, None)
+    fr.inserir(10)
+    fr.pack()
+    app.mainloop()

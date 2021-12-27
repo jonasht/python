@@ -13,17 +13,13 @@ def dec_to_base(num, base):  #base maxima - 36
 
 
 
-def to_dec(num, base=None):
-    base = str(base)
-
+def to_dec(num):
     if '0b' in num:
         return int(num, 2)
     elif '0o' in num:
         return int(num, 8)
     elif '0x' in num:
         return int(num, 16)
-    elif base == '12':
-        return int(num, 12)
     else:
         return num
 
@@ -48,4 +44,4 @@ if __name__ == '__main__':
     
     varduo = dec_to_base(var, 12)
     print('duodecimal:', varduo)
-    print('convertido:', to_dec(varduo, 12))
+    print('convertido:', int(varduo, 12))

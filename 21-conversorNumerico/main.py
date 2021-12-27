@@ -24,8 +24,8 @@ class App(Tk):
         self.fr_decimal.grid(padx=6, pady=3)
         self.fr_binario.grid(padx=6, pady=3)
         self.fr_octal.grid(padx=6, pady=3)
-        self.fr_hexadecimal.grid(padx=6, pady=3)
         self.fr_duodecimal.grid(padx=6, pady=3)
+        self.fr_hexadecimal.grid(padx=6, pady=3)
         
         self.lb_aviso.grid()
 

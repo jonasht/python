@@ -40,8 +40,10 @@ class Fr_decimal(ttk.Frame):
         pc.copy(self.etd.get())
 
     def colar(self):
+        self.etd.delete(0, END)
         self.etd.insert(END, pc.paste())
-
+        self.evento(None)
+        
 if __name__ == '__main__':
     root = Tk()
     fr = Fr_decimal(root, None)

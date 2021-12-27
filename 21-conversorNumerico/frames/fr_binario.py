@@ -41,4 +41,6 @@ class Fr_binario(ttk.Frame):
         pc.copy(self.etd.get())
     
     def colar(self):
+        self.etd.delete(0, END)
         self.etd.insert(END, pc.paste())
+        self.evento(None)

@@ -2,7 +2,7 @@ from tkinter import ttk, Tk
 from tkinter.constants import END, EW
 import pyperclip as pc 
 
-from uteis import to_dec
+from uteis import to_dec, dec_to_base
 
 class Fr_hexadecimal(ttk.Frame):
     def __init__(self, parent, con):
@@ -24,14 +24,14 @@ class Fr_hexadecimal(ttk.Frame):
     def evento(self, event):
         numero = self.etd.get()
         
-        numero = '0x'+numero if numero else ''
-        self.con.evento_hexadecimal(numero)
+        # numero = '0x'+numero if numero else ''
+        self.con.evento_duodecimal(numero)
         
     def inserir(self, num):
         if num:
-            num = to_dec(num)
+            num = to_dec(num, 12)
             num = int(num)
-            num = f'{num:x}'
+            num = dec_to_base(num, 12)
             self.etd.delete(0, END)
             self.etd.insert(END, num)
         else:

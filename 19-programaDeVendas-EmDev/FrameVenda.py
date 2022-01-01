@@ -82,12 +82,24 @@ class FrVenda(ttk.Frame):
         # desativando entrada de quantidade
         self.etd_qtd_prod.config(state=DISABLED)
 
-        
+    def get_itemsTreeVenda(self):
+        return self.fr_treeVenda.get_items()
         
     def apagar_tudo(self):
+        self.fr_treeProduto.etd_pesquisar.delete(0, END)
+        self.fr_treeCliente.etd_pesquisar.delete(0, END)
+        self.fr_treeProduto.mostrar_tree()
+        self.fr_treeCliente.mostrar_tree()
+        
+
         self.fr_lbCliente.deletar_dados()
+        
         self.fr_lbProduto.deletar_dados()
+        
         self.fr_treeVenda.deletar_tree()
+        self.fr_treeVenda.total = 0
+        self.fr_treeVenda.lb_totalInfo.config(text='')
+        
         self.lb_preco_prod.config(text='')
         self.etd_qtd_prod.delete(0, END)
         
@@ -107,7 +119,7 @@ class FrVenda(ttk.Frame):
             self.lb_preco_prodInfo.config(text=f'{preco_final:.2f}')
 
         else:
-            # digete apenas numeros
+            # digite apenas numeros
             print('por favor digite apenas numeros')
             
     def inserir_produto(self, dados):
@@ -140,7 +152,11 @@ class FrVenda(ttk.Frame):
                 self.lb_preco_prodInfo['text']]
             # print('tree venda:', ds)
             self.fr_treeVenda.adicionar(ds)
-        
+    
+    def get_totalTreeVenda(self):
+        # pega o total de tudo do tree venda
+        return self.fr_treeVenda.total
+
         
 if __name__ == '__main__':
     root = tk.Tk()

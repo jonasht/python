@@ -92,11 +92,18 @@ class Fr_treeVenda(ttk.Frame):
     def deletar_tree(self):
         # deletar toda a tree view
         self.tree_venda.delete(*self.tree_venda.get_children()) 
+        
     def adicionar(self, d):
         self.total = float(self.total) + float(d[5])
         self.tree_venda.insert('', END, values=d)
         
         self.lb_totalInfo.config(text=f'{self.total:.2f}')
+        
+    def get_items(self) -> list:
+        listas = []
+        for line in self.tree_venda.get_children():
+            listas.append(self.tree_venda.item(line)['values'])
+        return listas
         
 if __name__ == '__main__':
     root = tk.Tk()
@@ -105,9 +112,15 @@ if __name__ == '__main__':
     d = [1, 'celular', 'sony', 2000.0, 1, 2000.0]
     frame.adicionar(d)
     
-    d = [1, 'celular', 'sony', 1000.0, 2, 2000.0]
+    d = [2, 'celular', 'sony', 1000.0, 2, 2000.0]
     frame.adicionar(d)
-    
+    print(frame.get_items())
+    # print(frame.tree_venda.get_children())
+    # for line in frame.tree_venda.get_children():
+    #     print(frame.tree_venda.item(line)['values'])
+        # for value in frame.tree_venda.item(line)['values']:
+        #     print(value)
+
     root.geometry('800x800')
 
     root.mainloop()

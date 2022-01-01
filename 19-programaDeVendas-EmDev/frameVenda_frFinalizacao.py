@@ -1,6 +1,8 @@
 from tkinter import ttk
 import tkinter as tk
 from tkinter.constants import DISABLED, END, EW, NORMAL
+from func.venda import add_venda, add_entregas
+
 
 
 class Fr_finalizacao(ttk.Frame):
@@ -35,18 +37,27 @@ class Fr_finalizacao(ttk.Frame):
             self.etd_cpf.config(state=DISABLED)
 
         
-    
     def finalizar_evento(self):
+
+        # gravar dados
+
+        # pegar items/produtos de fr tree venda 
+        print('produtos vendidos:', self.con.get_itemsTreeVenda())
+        print('dados cliente:', self.con.dados_cliente)
+
+        print('total:', self.con.get_totalTreeVenda())
+
+        
+        print('===========================================================')
+
         self.etd_cpf.delete(0, END)
         self.chbt_cpf.state(['!selected'])
         self.chbt_entrega.state(['!selected'])
-        print(self.chbt_cpf.state())
         self.con.apagar_tudo()
-   
+                    
 if __name__ == '__main__':
     root = tk.Tk()
     frame = Fr_finalizacao(root, root)
-    
     frame.pack()
     root.geometry('500x500')
     root.mainloop()

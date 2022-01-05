@@ -41,13 +41,17 @@ class Fr_finalizacao(ttk.Frame):
 
         # gravar dados
 
-        # pegar items/produtos de fr tree venda 
-        print('produtos vendidos:', self.con.get_itemsTreeVenda())
-        print('dados cliente:', self.con.dados_cliente)
-
-        print('total:', self.con.get_totalTreeVenda())
-
+        # pegar items/produtos p registrar a venda 
+        dados_produto = self.con.get_itemsTreeVenda()
+        dados_cliente = self.con.dados_cliente
+        total = self.con.get_totalTreeVenda()
         
+        # adicionando no banco de dados a venda 
+        add_venda(
+            dados_cliente=dados_cliente,
+            dados_produto=dados_produto
+            total=total
+        )
         print('===========================================================')
 
         self.etd_cpf.delete(0, END)

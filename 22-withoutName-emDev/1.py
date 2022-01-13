@@ -37,6 +37,17 @@ class Fcards:
 
         return alternativas
 
+    def set_resposta(self, resposta):
+        print('=-'*30+'=')
+        pergunta = self.perguntasShuffle[0]
+        print('r:', pergunta)
+        
+        if perguntasDic[pergunta] == resposta:
+            return True
+        else:
+            return False
+
+
 
         
 if __name__ == '__main__':
@@ -45,5 +56,14 @@ if __name__ == '__main__':
     print('perguntas embara:', fcards.perguntasShuffle)
     print(fcards.get_pergunta())
     
-    print(fcards.get_alternativa())
+    alternativas = fcards.get_alternativa()
+    print('=-'*30+'=')
     
+    for i, alternativa in enumerate(alternativas):
+        print(f'{i}:{alternativa}')
+
+    print('=-'*30+'=')
+        
+    r = int(input(': '))
+    
+    print(fcards.set_resposta(alternativas[r]))

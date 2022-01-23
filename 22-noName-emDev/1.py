@@ -5,10 +5,10 @@ perguntasDic = {
     '1+3':'4',
     '1+4':'5',
     '1+5':'6',
+    '1+6':'7',
+    '1+7':'8',
+    '1+8':'9'
 }
-    # '1+6':'7',
-    # '1+7':'8',
-    # '1+8':'9'
 
 
 class Fcards:
@@ -43,27 +43,49 @@ class Fcards:
         print('r:', pergunta)
         
         if perguntasDic[pergunta] == resposta:
+            del(self.perguntasShuffle[0])
             return True
         else:
+            r = self.perguntasShuffle.pop(0)
+            self.perguntasShuffle.append(r)
             return False
 
+    def working(self) -> bool:
+        return True if self.perguntasShuffle else False
+
 
 
         
-if __name__ == '__main__':
+if __name__ == '__main__': # fazendo testes
+    from colorama.ansi import Fore
+    from os import system
+    
     fcards = Fcards(perguntasDic=perguntasDic)
     fcards.start()
-    print('perguntas embara:', fcards.perguntasShuffle)
-    print(fcards.get_pergunta())
-    
-    alternativas = fcards.get_alternativa()
-    print('=-'*30+'=')
-    
-    for i, alternativa in enumerate(alternativas):
-        print(f'{i}:{alternativa}')
-
-    print('=-'*30+'=')
+    def l(): # p deixar bonito
+        print('=-'*30+'=')
         
-    r = int(input(': '))
+    while fcards.working():
+        
+        l()
+        print(fcards.get_pergunta())
+        alternativas = fcards.get_alternativa()
+        print(Fore.BLUE+'opções:'+Fore.RESET)
+        for i, alternativa in enumerate(alternativas):
+            print(f'{Fore.BLUE}{i}: {Fore.RESET}{alternativa}')
+
+            
+        r = input(': ')
+        if r == 's':
+            break
+        r = int(r)
+        system('clear')
+        if r > 2 or r < 0:
+            print(Fore.RED+'error, somente 0 1 2 sao aceitos'+Fore.RESET)
+        else:
+            print('correto' 
+                  if fcards.set_resposta(alternativas[r])
+                  else 'incorreto')
+        
+
     
-    print(fcards.set_resposta(alternativas[r]))

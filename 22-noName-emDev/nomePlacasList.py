@@ -51,6 +51,8 @@ nomePlaca = {
     'R-39': 'Circulação exclusiva de caminhão',
     'R-40': 'Trânsito proibido a carros de mão'}
 
-from colorama.ansi import Fore
-for k, i in nomePlaca.items():
-    print(f'{Fore.GREEN+k}:{Fore.BLUE+i+Fore.RESET}')
+if __name__ == '__main__':
+    from colorama.ansi import Fore
+    
+    for k, i in nomePlaca.items():
+        print(f'{Fore.GREEN+k}:{Fore.BLUE+i+Fore.RESET}')

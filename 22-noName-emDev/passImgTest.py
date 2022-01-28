@@ -22,11 +22,15 @@ class Fr(ttk.Frame):
         self.img.grid(row=0, column=0, sticky=EW, columnspan=1)
 
     def mostrar(self, c):
-        load = Image.open(c)
-        resize_img = load.resize((200, 200))
-        render = ImageTk.PhotoImage(resize_img)
-        self.img.config(image=render)
-
+        self.load = Image.open(c)
+        self.resize_img = self.load.resize((200, 200))
+        
+        self.render = ImageTk.PhotoImage(self.resize_img)
+        
+        # self.img.config(self, image=self.render)
+        self.img.image = self.render
+        # img.place(x=0, y=0)
+        # self.img.grid(row=0, column=0, sticky=EW, columnspan=1)
 
 
 
@@ -59,4 +63,4 @@ if __name__ == '__main__':
     app = App()
     app.geometry('500x500')
     app.mainloop()
-    print(placaList)
+    # print(placaList)

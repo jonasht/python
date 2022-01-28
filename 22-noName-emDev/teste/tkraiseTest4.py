@@ -1,5 +1,4 @@
-from cgitb import text
-from tkinter import LEFT, NSEW, RIGHT, Tk, ttk
+from tkinter import LEFT, NSEW, RIGHT, Label, Tk, ttk
 from random import randint
 
 
@@ -50,11 +49,17 @@ class App(Tk):
         self.bt2.pack(side=RIGHT)
         
         self.mostrar('fr1')
+        
+        # lb info
+        self.lb_info = ttk.Label(self, text='-=-')
+        self.lb_info.pack()
     def mostrar(self, fr_name):
         self.frs[fr_name].tkraise()
 
 
     def to_right(self):
+        self.lb_info.config(text=f'ctd: {self.contador}')
+        
         if self.contador < (len(self.frs_namelist)-1):
             self.contador += 1
         else:
@@ -65,8 +70,12 @@ class App(Tk):
 
     
     def to_left(self):
-                
-        self.contador -= 1
+        self.lb_info.config(text=f'ctd: {self.contador}')
+        if self.contador > 0:
+            self.contador -= 1
+        else:
+            self.contador = 0
+
         name = self.frs_namelist[self.contador]
         self.mostrar(name)
 

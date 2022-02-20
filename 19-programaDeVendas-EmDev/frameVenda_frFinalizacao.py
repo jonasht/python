@@ -52,7 +52,6 @@ class Fr_finalizacao(ttk.Frame):
             dados_produto=dados_produto
             total=total
         )
-        print('===========================================================')
 
         self.etd_cpf.delete(0, END)
         self.chbt_cpf.state(['!selected'])

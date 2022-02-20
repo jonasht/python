@@ -79,4 +79,3 @@ def filtrar(chave, valor):
 
     return chave, valor, erro, frase
 
-# print(separarNumero('52x78xxx'))

@@ -32,8 +32,11 @@ def insert_1var(conta):
 def get_vars(conta) -> list:
     vars = list()
     for c in conta:
-        if c.isalpha():
+        # print(c)
+        if c.isalpha() or c == '=':
             vars.append(c)
+            # print(c, vars)
+    # print(vars)
     return vars
 
 def separar_linhas(conta):
@@ -42,24 +45,32 @@ def separar_linhas(conta):
         conta.remove('')
     return conta
         
-def arrumar(conta, vars=vars_conta):
-    print('=-=-= Arrumar =-=-=')
-    print('conta:', conta, 'v:', vars)
+def arrumar(conta, vars):
+    a = list()
+    b = 0
+
     for var in vars:
+        
         conta = conta.split(var)
-        print(conta)
-        # conta = str(conta)
+        # print(conta)
+        # conta.remove("''")
+        if var != '=':
+            a.append(conta.pop(0))
+        else:
+            conta = ''.join(conta)
 
-        # conta = remove_dirty(conta)
-
-    # conta = conta.split('  ')
-    # b = list()
-    # b.append(int(conta.pop()))
-    # a = conta.pop()
-
-    # a = a.split(' ')
-    # a = list(map(int, a))
-    # return a, b
+            b = conta
+            
+        conta = ''.join(conta)
+            
+        # print('a', a, 'conta:', conta)
+        
+    # print('='*30)
+    
+    # print('a:', a, 'b:', b)
+    a = list(map(int, a))
+    b = int(b)
+    return a, b
     
 def calcular(conta):
     # removendo espaços
@@ -80,32 +91,31 @@ def calcular(conta):
     print('vars:', vars)
     # conta_c = conta.copy()
     # print('c', conta_c)
-    # A = list()
-    # B = list()
+    A = list()
+    B = list()
+
     for l in conta:
         print(l)
-        # 
-        # a_inho, b_inho = arrumar(l)
-        arrumar(l)
-        # print(a_inho, b_inho, 'tipo:', type(a_inho[0]), type(b_inho[0]))
-        # A.append(a_inho)
-        # B.append(b_inho)
+        a, b = arrumar(l, vars)
+        A.append(a)
+        B.append(b)
+    
+    A = np.array(A)
+    B = np.array(B)
 
-    # print(a_inho)
-    # print(b_inho)
-    # A = np.array(A)
-    # B = np.array(B)
-    # print(A, B)
+    print('A:', A, 'B:', B)
+    conta = np.linalg.solve(A, B)
+    print(conta)
+    vars = vars[:-1]
+    solve = dict()
+    for v, c in zip(vars, conta):
+        solve[v] = c
 
-    # solucao = np.linalg.solve(A, B)
-    # retornar = dict()
-    # for v, s in zip(vars, solucao):
-    #     retornar[v] = s[0]
-    # return retornar
+    print(solve)
 
 if __name__ == '__main__':
     # conta3x3 = '''2x+6y-2z=24\n4x+5y-4z=24\n6x+5y-4z=28\n'''
-    conta3x3 = '''
+    conta3x3v1 = '''
     2x+y+z=8\n
     x+y+4z=15\n
     3x+2y+0z=9\n
@@ -113,6 +123,20 @@ if __name__ == '__main__':
     
     conta3x3_v2 = '1x+2y-3z=1\n3x-1y+2z=0\n2x+1y+1z=2\n\n'
     
+    conta3x3v3 = '''
+    x+0y+0z=3
+    0x+y+0z=2
+    0x+0y+z=1
+    '''
+    
+    # colocar essa conta como exemplo do programa
+
+    conta3x3v4 = '''
+    x-3y+5z=1
+    x+2y+z=12
+    2x-y+3z=10
+    '''
     # print(calcular(conta3x3))
-    calcular(conta3x3)
+    calcular(conta3x3v3)
+    calcular(conta3x3v4)
     # print(insert_1var('2x+y+1z=8'))

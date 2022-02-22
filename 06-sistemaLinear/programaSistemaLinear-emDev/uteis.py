@@ -1,6 +1,8 @@
 import numpy as np
 conta = '2x-32y3z=20'
 vars_conta = ['x', 'y', 'z', '=']
+import exemplo as ex
+
 
 def remove_dirty(conta):
     vars_toRemove = ['[', ']', ',', '\'']
@@ -48,7 +50,6 @@ def separar_linhas(conta):
 def arrumar(conta, vars):
     a = list()
     b = 0
-
     for var in vars:
         
         conta = conta.split(var)
@@ -105,13 +106,14 @@ def calcular(conta):
 
     print('A:', A, 'B:', B)
     conta = np.linalg.solve(A, B)
-    print(conta)
+    # print(conta)
     vars = vars[:-1]
     solve = dict()
     for v, c in zip(vars, conta):
         solve[v] = c
 
-    print(solve)
+    # print(solve)
+    return solve
 
 if __name__ == '__main__':
     # conta3x3 = '''2x+6y-2z=24\n4x+5y-4z=24\n6x+5y-4z=28\n'''
@@ -137,6 +139,8 @@ if __name__ == '__main__':
     2x-y+3z=10
     '''
     # print(calcular(conta3x3))
-    calcular(conta3x3v3)
-    calcular(conta3x3v4)
+    # calcular(conta3x3v3)
+    # calcular(conta3x3v4)
+    
     # print(insert_1var('2x+y+1z=8'))
+    print(calcular(ex.conta5x5))

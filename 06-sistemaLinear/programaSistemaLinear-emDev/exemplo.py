@@ -6,16 +6,26 @@
 # '''
 
 conta2x2 = '''
-x+2y=5
-3x-5y=4
+ x  2y = 5
+3x -5y = 4
 '''
-conta3x3 = '''x-3y+5z=1\nx+2y+z=12\n2x-y+3z=10\n'''
+conta3x3 = '''
+ x -3y 5z = 1
+ x  2y  z = 12
+2x -y  3z = 10
+'''
 
-conta4x4 = '''
+conta4x4v2 = '''
 4x+2y+z+2t=3
 3x-3y-z-t=2
 3x+5y+z+t=0
 x-y-z+4t=-2
+'''
+conta4x4 = '''
+2x  y  z  w = 1
+ x 2y  z  w = 2
+ x  y 2z  w = 3
+ x  y  z 2w = 4
 '''
 conta3x4 = '''
 y+z+w=0

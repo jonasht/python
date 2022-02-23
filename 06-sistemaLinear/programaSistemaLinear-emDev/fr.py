@@ -10,13 +10,15 @@ class Fr(ttk.Frame):
         self.con = con
         
         self.fr_left = ttk.Frame(self)
-        self.txt = Text(self.fr_left, width=50, height=15)
+        self.txt = Text(self.fr_left, width=40, height=10)
+        self.txt.config(font='Arial 15 bold')
         self.bt_calcular = ttk.Button(self.fr_left, text='Calcular', 
                              command=self.calcular_evento)
+        
         self.bt_limpar = ttk.Button(self.fr_left, text='Limpar', command=self.delete_evento)
         self.txt.grid(row=0, column=0, sticky=NSEW, columnspan=2)
-        self.bt_calcular.grid(row=1, column=1, sticky=NSEW)
-        self.bt_limpar.grid(row=1, column=0, sticky=NSEW)
+        self.bt_calcular.grid(row=1, column=1, sticky=NSEW, padx=5, pady=5)
+        self.bt_limpar.grid(row=1, column=0, sticky=NSEW, padx=5, pady=5)
 
         # self.txt.insert(1.0, conta3x3)
         self.lb_solucao = ttk.Label(self, text='', foreground='green')
@@ -36,10 +38,11 @@ class Fr(ttk.Frame):
         self.lbfr.grid(row=0, column=1, padx=12)
         self.lb_solucao.grid(row=1, column=0, columnspan=3)
         
+        self.lb_solucao.config(font='Arial 15 bold')
         
     def delete_evento(self):
         self.txt.delete(1.0, END)
-        
+        self.lb_solucao.config(text='')
     def bt_2x2evento(self):
         self.delete_evento()
         self.txt.insert(1.0, ex.conta2x2)
@@ -59,6 +62,7 @@ class Fr(ttk.Frame):
         solve = u.calcular(conta)
         print(solve)
         lb_solve = ''
+        
         for c, v in solve.items():
             print(c, v)
             lb_solve += f'{c.upper()} = {v}\n'
@@ -68,16 +72,5 @@ class Fr(ttk.Frame):
 
 
 if __name__ == '__main__':
-    root = Tk()
-        
-    fr = Fr(root, root)
-    fr.grid()
-    
-    def tecla_q(event):
-        from sys import exit
-        exit()
-
-    
-    root.bind('q', tecla_q)
-    root.geometry('800x500')
-    root.mainloop()
+    from main import main
+    main()

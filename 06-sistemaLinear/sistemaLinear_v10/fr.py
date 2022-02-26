@@ -11,7 +11,7 @@ class Fr(ttk.Frame):
         
         self.fr_left = ttk.Frame(self)
         self.txt = Text(self.fr_left, width=40, height=10)
-        self.txt.config(font='Arial 15 bold')
+        self.txt.config(font='helvetica 15 bold')
         self.bt_calcular = ttk.Button(self.fr_left, text='Calcular', 
                              command=self.calcular_evento)
         
@@ -26,6 +26,7 @@ class Fr(ttk.Frame):
         
         # label frame
         self.lbfr = ttk.Labelframe(self, text='exemplo')
+
         self.bt_e2x2 = ttk.Button(self.lbfr, text='2x2', command=self.bt_2x2evento)
         self.bt_e3x3 = ttk.Button(self.lbfr, text='3x3', command=self.bt_3x3evento)
         self.bt_e4x4 = ttk.Button(self.lbfr, text='4x4', command=self.bt_4x4evento)
@@ -38,11 +39,12 @@ class Fr(ttk.Frame):
         self.lbfr.grid(row=0, column=1, padx=12)
         self.lb_solucao.grid(row=1, column=0, columnspan=3)
         
-        self.lb_solucao.config(font='Arial 15 bold')
+        self.lb_solucao.config(font='helvetica 15 bold')
         
     def delete_evento(self):
         self.txt.delete(1.0, END)
         self.lb_solucao.config(text='')
+        
     def bt_2x2evento(self):
         self.delete_evento()
         self.txt.insert(1.0, ex.conta2x2)

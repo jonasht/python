@@ -1,31 +1,36 @@
-
 from tkinter import *
-from tkinter import ttk
-from colorama.ansi import Fore 
 
-cores = [
-    Fore.BLUE,
-    Fore.GREEN,
-    Fore.RED,
-    Fore.YELLOW,
-    Fore.WHITE, 
-    Fore.CYAN,
-    Fore.LIGHTMAGENTA_EX
-]
-def colorir(word):
-    w_return = ''
-    for c, w in zip(cores, word):
-        w_return += c+w
-    print(w_return)
-    return w_return
+def onclick():
+   pass
+t= '''algo eu
+algo algo 
+ estou escrevendo algo
+eu estou escrevendo algo 
+eu estou escrevendo algo
+eu estou escrevendo algo
+eu estou escrevendo algo
+eu estou escrevendo algo
+eu estou escrevendo algo
+eu estou escrevendo algo
+eu estou escrevendo algo
+eu estou escrevendo algo
+eu estou escrevendo algo
+eu estou escrevendo algo
+eu estou escrevendo algo 
+eu estou escrevendo algo
+eu estou escrevendo algo
 
-teste = colorir('teste')
+'''
 root = Tk()
-root.geometry('500x500')
-lb = ttk.Label(root, text=teste)
-lb.pack()
-lb2 = Label(root, text=teste)
-lb2.pack()
+text = Text(root)
+# text.insert(INSERT, "Hello.....")
+# text.insert(END, "Bye Bye.....")
+text.insert(END, t)
+text.pack()
 
+text.tag_add("algo", "1.0", "1.4")
+# text.tag_add("algo", END)
+text.tag_add("1", "1.8", "2.13")
+text.tag_config("algo", background="yellow", foreground="blue")
+text.tag_config("1", background="black", foreground="green")
 root.mainloop()
-# it doesnt work

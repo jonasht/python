@@ -21,15 +21,16 @@ def formatar(num, conta) -> dict:
 
     print(conta)
     vars = get_vars(conta)
+    vars.remove('=')
     for i, v in enumerate(vars):
         p1 = conta.find(v)
         p2 = p1 +1
         # print('i', 'v', 'p1 p2')
         # print(i, v, p1, p2)
         d = {
-            'nome':v+str(num),
-            'p1':p1,
-            'p2':p2,
+            'nome':v+str(num+1),
+            'p1': str(num+1)+'.'+str(p1),
+            'p2':str(num+1)+'.'+str(p2),
             'fg':cores[i]
         }
         formatado.append(d)
@@ -45,4 +46,4 @@ if __name__ == '__main__':
     for i, c in enumerate(conta):
         formatado.append(formatar(i, c))
     print()
-    print(formatado)
+    print(formatado[0][0])

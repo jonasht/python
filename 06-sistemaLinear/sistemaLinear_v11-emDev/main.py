@@ -1,7 +1,7 @@
 from tkinter import Tk, ttk
 from fr import Fr
 from sys import exit
-
+    
 
 class app(Tk):
     def __init__(self):

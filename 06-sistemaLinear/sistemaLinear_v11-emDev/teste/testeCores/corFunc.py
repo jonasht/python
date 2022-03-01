@@ -21,9 +21,14 @@ def formatar(num, conta) -> dict:
 
     print(conta)
     vars = get_vars(conta)
-    vars.remove('=')
+    if '=' in vars:
+        vars.remove('=')
     for i, v in enumerate(vars):
-        p1 = conta.find(v)
+        p1 = conta.find(vars[i])
+        
+        vars.pop(p1)
+        
+
         p2 = p1 +1
         # print('i', 'v', 'p1 p2')
         # print(i, v, p1, p2)
@@ -39,11 +44,4 @@ def formatar(num, conta) -> dict:
 
     return formatado
 if __name__ == '__main__':
-    conta2x2 = 'x2y=5\n3x-5y=4'
-    conta = conta2x2.split('\n')
-    print(conta)
-    formatado = list()
-    for i, c in enumerate(conta):
-        formatado.append(formatar(i, c))
-    print()
-    print(formatado[0][0])
+    print(get_vars('xxx'))

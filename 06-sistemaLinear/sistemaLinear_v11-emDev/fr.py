@@ -1,8 +1,9 @@
-from re import S
-from tkinter import BOTTOM, END, LEFT, N, NSEW, RIGHT, Tk, ttk, Text
+
+from tkinter import ttk
+from tkinter import *
 import uteis as u
 import exemplo as ex
-
+from corFunc import formatar
 
 class Fr(ttk.Frame):
     def __init__(self, parent, con):
@@ -27,10 +28,12 @@ class Fr(ttk.Frame):
         # label frame
         self.lbfr = ttk.Labelframe(self, text='exemplo')
 
+        self.bt_e1x1 = ttk.Button(self.lbfr, text='1x1', command=self.bt_1x1evento)
         self.bt_e2x2 = ttk.Button(self.lbfr, text='2x2', command=self.bt_2x2evento)
         self.bt_e3x3 = ttk.Button(self.lbfr, text='3x3', command=self.bt_3x3evento)
         self.bt_e4x4 = ttk.Button(self.lbfr, text='4x4', command=self.bt_4x4evento)
         
+        self.bt_e1x1.grid(padx=8, pady=6)
         self.bt_e2x2.grid(padx=8, pady=6)
         self.bt_e3x3.grid(padx=8, pady=6)
         self.bt_e4x4.grid(padx=8, pady=6)
@@ -39,34 +42,63 @@ class Fr(ttk.Frame):
         self.lbfr.grid(row=0, column=1, padx=12)
         self.lb_solucao.grid(row=1, column=0, columnspan=3)
         
-        self.lb_solucao.config(font='helvetica 15 bold')
+        self.lb_solucao.config(font='arial 15 bold')
         
+        self.txt.bind('<KeyRelease>', self.txt_event)
+
+
+    def txt_event(self, event):
+
+        if self.txt.get(1.0, END):
+            self.put_color()
+            # text
+    def put_color(self):
+        conta = self.txt.get('1.0', END)
+        conta = conta.split('\n')
+        formatado = list()
+
+        # pegando informacoes 
+        for i, c in enumerate(conta):
+            formatado.append(formatar(i, c)) 
+            
+        # colocando  
+        for f1 in formatado:
+            for f in f1:
+                self.txt.tag_add(f['nome'], f['p1'], f['p2'])
+                self.txt.tag_config(f['nome'], foreground=f['fg'])   
+
     def delete_evento(self):
         self.txt.delete(1.0, END)
         self.lb_solucao.config(text='')
         
+    def bt_1x1evento(self):
+        self.delete_evento()
+        self.txt.insert(1.0, ex.conta1x1)
+        self.put_color()
+        
     def bt_2x2evento(self):
         self.delete_evento()
         self.txt.insert(1.0, ex.conta2x2)
+        self.put_color()
+        
         
     def bt_3x3evento(self):
         self.delete_evento()
         self.txt.insert(1.0, ex.conta3x3)
+        self.put_color()
+        
         
     def bt_4x4evento(self):
         self.delete_evento()
         self.txt.insert(1.0, ex.conta4x4) 
-        # self.txt.insert(1.0, ex.conta5x5) 
+        self.put_color()
         
     def calcular_evento(self):
         conta = self.txt.get(1.0, END)
-        print(conta)
         solve = u.calcular(conta)
-        print(solve)
         lb_solve = ''
         
         for c, v in solve.items():
-            print(c, v)
             lb_solve += f'{c.upper()} = {v}\n'
         
         self.lb_solucao.config(text=lb_solve)

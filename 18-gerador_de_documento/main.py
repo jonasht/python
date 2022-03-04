@@ -40,7 +40,6 @@ class GeradorMain(tk.Tk):
         self.fr_cns.grid(row=0, column=1)
         self.fr_pis.grid(row=1, column=1)
         
-        self.fr_cpf.etd.config(font='arial 15 bold')
 
 #? colocar esse jeito de main eh regra 
 def main():

@@ -10,8 +10,8 @@ conta1x1 = '''
 '''
 
 conta2x2 = '''
- x  2y = 5
-3x -5y = 4
+ x  2y = 35
+3x -5y = -5
 '''
 conta3x3 = '''
  x -3y 5z = 1
@@ -26,10 +26,10 @@ conta4x4v2 = '''
 x-y-z+4t=-2
 '''
 conta4x4 = '''
-2x  y  z  w = 1
- x 2y  z  w = 2
- x  y 2z  w = 3
- x  y  z 2w = 4
+2x  y  z  w = 5
+ x 2y  z  w = 10
+ x  y 2z  w = 7
+ x  y  z 2w = 8
 '''
 conta3x4 = '''
 y+z+w=0

@@ -14,8 +14,8 @@ class app(Tk):
         self.fr = Fr(self, self)
 
         self.bind('q', self.tecla_q)
-        self.geometry('800x500')
-        # self.mainloop()
+        self.geometry('800x665')
+  
         self.fr.grid()
     
     def tecla_q(self, event):

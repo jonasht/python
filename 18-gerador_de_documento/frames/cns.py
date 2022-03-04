@@ -12,7 +12,7 @@ class Fr_CNS(ttk.Frame):
 
 
         #   CNS =================================================
-        self.lbfr = ttk.Labelframe(self, text='CNS')
+        self.lbfr = ttk.Labelframe(self, text='CNS', border=10)
         self.etd = ttk.Entry(self.lbfr)
         self.bt_gerar = ttk.Button(self.lbfr, text='Gerar', command=self.gerar)
         self.chbt_mask = ttk.Checkbutton(self.lbfr, text='mask', command=self.chbt_Evento)
@@ -31,11 +31,10 @@ class Fr_CNS(ttk.Frame):
         self.chbt_mask.state(['!alternate'])
         
     def gerar(self):
-        if 'selected' not in self.chbt_mask.state():
-            self.etd.delete(0, END)
-            self.CNS_num = self.CNS.generate()
-            self.etd.insert(0, self.CNS_num)
-        else:
+        self.etd.delete(0, END)
+        self.CNS_num = self.CNS.generate()
+        self.etd.insert(0, self.CNS_num)
+        if 'selected' in self.chbt_mask.state():
             self.chbt_Evento()
 
     def copiar(self):

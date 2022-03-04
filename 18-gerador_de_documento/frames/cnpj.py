@@ -12,7 +12,7 @@ class Fr_CNPJ(ttk.Frame):
 
 
         #   CNPJ =================================================
-        self.lbfr = ttk.Labelframe(self, text='CNPJ')
+        self.lbfr = ttk.Labelframe(self, text='CNPJ', border=10)
         self.etd = ttk.Entry(self.lbfr)
         self.bt_gerar = ttk.Button(self.lbfr, text='Gerar', command=self.gerar)
         self.chbt_mask = ttk.Checkbutton(self.lbfr, text='mask', command=self.chbt_Evento)
@@ -31,11 +31,10 @@ class Fr_CNPJ(ttk.Frame):
         self.chbt_mask.state(['!alternate'])
         
     def gerar(self):
-        if 'selected' not in self.chbt_mask.state():
-            self.etd.delete(0, END)
-            self.CNPJ_num = self.CNPJ.generate()
-            self.etd.insert(0, self.CNPJ_num)
-        else:
+        self.etd.delete(0, END)
+        self.CNPJ_num = self.CNPJ.generate()
+        self.etd.insert(0, self.CNPJ_num)
+        if 'selected' in self.chbt_mask.state():
             self.chbt_Evento()
 
     def copiar(self):
@@ -49,3 +48,9 @@ class Fr_CNPJ(ttk.Frame):
             self.etd.delete(0, END)
             self.etd.insert(0, self.CNPJ_num)
 
+if __name__ == '__main__':
+    from tkinter import *
+    app = Tk()
+    Fr_CNPJ(app).pack()
+
+    app.mainloop()

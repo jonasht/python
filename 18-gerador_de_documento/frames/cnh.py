@@ -1,4 +1,4 @@
-from tkinter import ttk
+from tkinter import ttk, Tk
 from tkinter.constants import END
 from validate_docbr import CNH
 import pyperclip as pc
@@ -12,7 +12,7 @@ class Fr_CNH(ttk.Frame):
 
 
         #   CNH =================================================
-        self.lbfr = ttk.Labelframe(self, text='CNH')
+        self.lbfr = ttk.Labelframe(self, text='CNH', border=10)
         self.etd = ttk.Entry(self.lbfr)
         self.bt_gerar = ttk.Button(self.lbfr, text='Gerar', command=self.gerar)
         self.chbt_mask = ttk.Checkbutton(self.lbfr, text='mask', command=self.chbt_Evento)
@@ -31,17 +31,17 @@ class Fr_CNH(ttk.Frame):
         self.chbt_mask.state(['!alternate'])
         
     def gerar(self):
-        if 'selected' not in self.chbt_mask.state():
-            self.etd.delete(0, END)
-            self.CNH_num = self.CNH.generate()
-            self.etd.insert(0, self.CNH_num)
-        else:
+        self.etd.delete(0, END)
+        self.CNH_num = self.CNH.generate()
+        self.etd.insert(0, self.CNH_num)
+        if 'selected' in self.chbt_mask.state():
             self.chbt_Evento()
 
     def copiar(self):
         pc.copy(self.etd.get())
 
     def chbt_Evento(self):
+        
         if 'selected' in self.chbt_mask.state():
             self.etd.delete(0, END)
             self.etd.insert(0, self.CNH.mask(self.CNH_num))
@@ -49,3 +49,7 @@ class Fr_CNH(ttk.Frame):
             self.etd.delete(0, END)
             self.etd.insert(0, self.CNH_num)
 
+if __name__ == '__main__':
+    app = Tk()
+    fr = Fr_CNH(app).pack()
+    app.mainloop()

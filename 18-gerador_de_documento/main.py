@@ -1,5 +1,7 @@
 import tkinter as tk
+from tkinter import *
 from tkinter import ttk
+from tkinter import font
 from tkinter.constants import LEFT, RIGHT, Y
 from frames.cnpj import Fr_CNPJ
 from frames.cpf import Fr_cpf
@@ -24,24 +26,21 @@ class GeradorMain(tk.Tk):
         self.fr_left = ttk.Frame(self)
         self.fr_right = ttk.Frame(self)
         
-        self.fr_cpf = Fr_cpf(self.fr_left)
-        self.fr_cnpj = Fr_CNPJ(self.fr_left)
-        self.fr_cnh = Fr_CNH(self.fr_left)
+        self.fr_cpf = Fr_cpf(self)
+        self.fr_cnpj = Fr_CNPJ(self)
+        self.fr_cnh = Fr_CNH(self)
         
-        self.fr_cns = Fr_CNS(self.fr_right)
-        self.fr_pis = Fr_PIS(self.fr_right)
+        self.fr_cns = Fr_CNS(self)
+        self.fr_pis = Fr_PIS(self)
         
 
-        self.fr_cpf.pack(fill=Y)
-        self.fr_cnpj.pack(fill=Y)
-        self.fr_cnh.pack(fill=Y)
+        self.fr_cpf.grid(row=0, column=0, padx=10)
+        self.fr_cnpj.grid(row=1, column=0)
+        self.fr_cnh.grid(row=2, column=0)
+        self.fr_cns.grid(row=0, column=1)
+        self.fr_pis.grid(row=1, column=1)
         
-        self.fr_cns.pack(fill=Y)
-        self.fr_pis.pack(fill=Y)      
-        
-        # colocando frames
-        self.fr_left.pack(side=LEFT, padx=20)
-        self.fr_right.pack(side=RIGHT, padx=20) 
+        self.fr_cpf.etd.config(font='arial 15 bold')
 
 #? colocar esse jeito de main eh regra 
 def main():

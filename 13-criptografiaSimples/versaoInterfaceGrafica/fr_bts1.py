@@ -1,7 +1,8 @@
 from tkinter import *
 from tkinter import ttk
+import pyperclip as pc
 
-class Fr_btsCrip(ttk.Frame):
+class Fr_bts1(ttk.Frame):
     def __init__(self, parent, con):
         super().__init__(parent)
         self.con = con
@@ -22,9 +23,14 @@ class Fr_btsCrip(ttk.Frame):
         self.con.criptar()
         
     def copiar(self):
-        pass
+        txt = self.con.txt1.get(1.0, END)
+        pc.copy(txt)
+    
     def colar(self):
-        pass
+        txt = pc.paste()
+        self.con.del_txt1()
+        self.con.txt1.insert(END, txt)
+
     def deletar(self):
         self.con.del_txt1()
 

@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+import pyperclip as pc
 
 class Fr_key(ttk.Frame):
     def __init__(self, parent, con):
@@ -28,10 +29,16 @@ class Fr_key(ttk.Frame):
     def deletar(self):
         # self.con.del_etd()
         self.etd.delete(0, END)
+        
     def copiar(self):
-        pass
+        pc.copy(self.etd.get())
+
     def colar(self):
-        pass
+        txt = pc.paste()
+        self.deletar()
+        self.etd.insert(0, txt)
+
+
 
 
 if __name__ == '__main__':

@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import ttk
+import pyperclip as pc
+
 
 class Fr_bts2(ttk.Frame):
     def __init__(self, parent, con):
@@ -19,11 +21,16 @@ class Fr_bts2(ttk.Frame):
 
     def Descriptografar(self):
         self.con.descriptar()
-        
+
     def copiar(self):
-        pass
+        txt = self.con.txt1.get(1.0, END)
+        pc.copy(txt)
+
+        
     def colar(self):
-        pass
+        txt = pc.paste()
+        self.con.del_txt2()
+        self.con.txt2.insert(END, txt)
     def deletar(self):
         self.con.del_txt2()
 
@@ -40,7 +47,7 @@ if __name__ == '__main__':
     # Set the theme with the theme_use method
     style.theme_use("forest-dark")
 
-    fr = Fr_btsCrip(app, app)
+    fr = Fr_bts2(app, app)
     fr.grid(sticky=NSEW)
     fr.config(border=20)
     fr.bt_cri.config(width=30)

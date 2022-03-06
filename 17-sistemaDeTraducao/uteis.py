@@ -34,7 +34,7 @@ def traduzir(texto, src, dest):
     dest = PARA qual idioma serah traduzido
     '''
     translator = Translator()
-    resultado = translator.translate(texto, src=src, dest=dest)
+    resultado = translator.translate(text=texto, src=src, dest=dest)
 
     # print(resultado.text)
     return resultado.text

@@ -6,7 +6,7 @@ class App(Tk):
     def __init__(self):
         super().__init__()
         self.title('Tradutor')
-        self.geometry('1310x550')
+        self.geometry('1310x590')
         self.style = ttk.Style(self)
         self.tk.call('source', './theme/forest-dark.tcl')
         self.style.theme_use('forest-dark')

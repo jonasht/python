@@ -21,6 +21,10 @@ class GeradorMain(tk.Tk):
         self.style = ttk.Style(self)
         self.tk.call('source', './forest-ttk-theme/forest-light.tcl')
         self.style.theme_use('forest-light')
+        
+        # lb tituo 
+        self.lb_titulo = ttk.Label(self, text='Gerador de documentos')
+        self.lb_titulo.configure(font='times 15 bold', foreground='dark gray')
 
         # definindo frames left right =-=-=-=-=-=-=-=-=-=-=-=-=
         self.fr_left = ttk.Frame(self)
@@ -39,6 +43,7 @@ class GeradorMain(tk.Tk):
         self.fr_cnh.grid(row=2, column=0)
         self.fr_cns.grid(row=0, column=1)
         self.fr_pis.grid(row=1, column=1)
+        self.lb_titulo.grid(row=2, column=1)
         
 
 #? colocar esse jeito de main eh regra 

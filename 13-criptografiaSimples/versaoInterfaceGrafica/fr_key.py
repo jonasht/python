@@ -5,7 +5,7 @@ import pyperclip as pc
 class Fr_key(ttk.Frame):
     def __init__(self, parent, con):
         super().__init__(parent)
-
+        self.con = con
         
         self.lb_key = ttk.Label(self, text='key:')
         self.etd = ttk.Entry(self)
@@ -15,7 +15,7 @@ class Fr_key(ttk.Frame):
         self.bt_copy = ttk.Button(self, text='Copiar', command=self.copiar)
         
         self.cbt_value = BooleanVar()
-        self.cbt = ttk.Checkbutton(self, text='Colorir', variable=self.cbt_value)
+        self.cbt = ttk.Checkbutton(self, text='Colorir', variable=self.cbt_value, command=self.cbt_evento)
 
 
         self.lb_key.grid(row=0, column=0, padx=3, pady=3)
@@ -25,6 +25,10 @@ class Fr_key(ttk.Frame):
         
         self.bt_copy.grid(row=1, column=0, ipadx=90, columnspan=2, sticky=NSEW, padx=3, pady=3)
         self.bt_del.grid(row=1, column=2, columnspan=2, sticky=NSEW, padx=3, pady=3)
+        
+    def cbt_evento(self):
+        self.con.put_color1(None)
+        self.con.put_color2(None)
         
     def deletar(self):
         # self.con.del_etd()

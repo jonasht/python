@@ -4,12 +4,10 @@ from cryptography.fernet import Fernet
 def criptar(msg):
 
     key = Fernet.generate_key()
-    # print('key')
 
     f = Fernet(key)
     
     token = f.encrypt(msg.encode())
-    # print('token:', token)
     
     # convertendo para string
     key = key.decode('utf-8')
@@ -32,7 +30,8 @@ def descriptar(key, t):
     
     
 
-
-key = 'qy2OA1nnLPzM0Uj3Qyg5qdY8Nn7hzUVOWXliHmsDvms='
-msg = 'gAAAAABiI9KBWEVn9aZlGx7lQvx-xmSFs5uLMU6KTU7ACmpUPIVD99NVMVKwzykwOJ8hloHG2T1jBIRCfVRRImFxhEgK6XwL5A=='
-print(descriptar(key, msg))
+if __name__ == '__main__':
+        
+    key = 'qy2OA1nnLPzM0Uj3Qyg5qdY8Nn7hzUVOWXliHmsDvms='
+    msg = 'gAAAAABiI9KBWEVn9aZlGx7lQvx-xmSFs5uLMU6KTU7ACmpUPIVD99NVMVKwzykwOJ8hloHG2T1jBIRCfVRRImFxhEgK6XwL5A=='
+    print(descriptar(key, msg))

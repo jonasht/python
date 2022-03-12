@@ -27,8 +27,7 @@ class Fr_key(ttk.Frame):
         self.bt_del.grid(row=1, column=2, columnspan=2, sticky=NSEW, padx=3, pady=3)
         
     def cbt_evento(self):
-        self.con.put_color1(None)
-        self.con.put_color2(None)
+        self.con.put_color(None)
         
     def deletar(self):
         # self.con.del_etd()

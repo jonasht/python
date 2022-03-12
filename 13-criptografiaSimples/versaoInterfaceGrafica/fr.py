@@ -39,67 +39,54 @@ class Fr(ttk.Frame):
         self.txt2.grid(row=1, column=2)
         self.fr_bts2.grid(row=2, column=2, sticky=NSEW, columnspan=3)
         self.fr_bts2.bt_cri.config(width=62)
-        self.txt1.bind('<KeyRelease>', self.put_color1)
-        self.txt2.bind('<KeyRelease>', self.put_color2)
-
-    def put_color1(self, event):
         
-        if self.fr_key.cbt_value.get():
-            conta = self.txt1.get('1.0', END)
-            conta = conta.split('\n')
-            self.formatado = list()
+        self.txt1.bind('<KeyRelease>', self.put_color)
+        self.txt2.bind('<KeyRelease>', self.put_color)
 
-            # pegando informacoes 
-            for i, c in enumerate(conta):
-                self.formatado.append(formatar(i, c)) 
-                
+        
+    def put_color(self, event):
+        
+        # txt1 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        conta = self.txt1.get('1.0', END)
+        conta = conta.split('\n')
+        self.formatado = list()
+
+        # pegando informacoes 
+        for i, c in enumerate(conta):
+            self.formatado.append(formatar(i, c)) 
+            
+        if self.fr_key.cbt_value.get():
             # colocando  
             for f1 in self.formatado:
                 for f in f1:
                     self.txt1.tag_add(f['nome'], f['p1'], f['p2'])
                     self.txt1.tag_config(f['nome'], foreground=f['fg'])   
         else:
-            # self.txt1.insert(END, self.txt1_string)
-            conta = self.txt1.get('1.0', END)
-            conta = conta.split('\n')
-            self.formatado = list()
-
-            # pegando informacoes 
-            for i, c in enumerate(conta):
-                self.formatado.append(formatar(i, c)) 
                 
             # colocando  
             for f1 in self.formatado:
                 for f in f1:
                     self.txt1.tag_add(f['nome'], f['p1'], f['p2'])
                     self.txt1.tag_config(f['nome'], foreground='white') 
-            
-
-    def put_color2(self, event):
         
-        if self.fr_key.cbt_value.get():
-            conta = self.txt2.get('1.0', END)
-            conta = conta.split('\n')
-            self.formatado = list()
 
-            # pegando informacoes 
-            for i, c in enumerate(conta):
-                self.formatado.append(formatar(i, c)) 
+        
+        # txt2 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        conta = self.txt2.get('1.0', END)
+        conta = conta.split('\n')
+        self.formatado = list()
+
+        # pegando informacoes 
+        for i, c in enumerate(conta):
+            self.formatado.append(formatar(i, c)) 
                 
+        if self.fr_key.cbt_value.get():
             # colocando  
             for f1 in self.formatado:
                 for f in f1:
                     self.txt2.tag_add(f['nome'], f['p1'], f['p2'])
                     self.txt2.tag_config(f['nome'], foreground=f['fg'])   
         else:
-            # self.txt2.insert(END, self.txt2_string)
-            conta = self.txt2.get('1.0', END)
-            conta = conta.split('\n')
-            self.formatado = list()
-
-            # pegando informacoes 
-            for i, c in enumerate(conta):
-                self.formatado.append(formatar(i, c)) 
                 
             # colocando  
             for f1 in self.formatado:
@@ -107,27 +94,23 @@ class Fr(ttk.Frame):
                     self.txt2.tag_add(f['nome'], f['p1'], f['p2'])
                     self.txt2.tag_config(f['nome'], foreground='white')   
             
+            
+
 
     def criptar(self):
         txt = self.txt1.get(1.0, END)
         self.txt1_string = txt
 
-        print(txt)
         key, token = u.criptar(txt)
-        print(key)
-        print(token)
 
         self.del_txt2()
         self.txt2.insert(END, token)
-        # self.del_etd()
+
         self.txt2_string = token
 
-        # self.key_etd.insert(0, key)
-        # self.fr_key.etd.delete(0, END)
+        self.fr_key.etd.delete(0, END)
         self.fr_key.etd.insert(0, key)
         
-        # self.put_color1()
-        # self.put_color2()
 
 
     def del_etd(self):
@@ -146,14 +129,6 @@ class Fr(ttk.Frame):
         self.txt2_string = txt
 
         key = self.fr_key.etd.get()
-        print()
-        print('key:', key)
-        print('key tipo:', type(key))
-        print('txt:', txt)
-        print('txt tipo:', type(txt))
-
- 
-        print(txt, '\n', type(txt))
 
         txt = u.descriptar(key, txt)
 

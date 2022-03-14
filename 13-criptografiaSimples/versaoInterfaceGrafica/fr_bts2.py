@@ -8,7 +8,7 @@ class Fr_bts2(ttk.Frame):
         super().__init__(parent)
         self.con = con
 
-        self.bt_cri = ttk.Button(self, text='Desriptografar', command=self.Descriptografar)
+        self.bt_cri = ttk.Button(self, text='Descriptografar', command=self.Descriptografar)
         self.bt_copy = ttk.Button(self, text='Copiar', command=self.copiar)
         self.bt_paste = ttk.Button(self, text='Colar', command=self.colar)
 

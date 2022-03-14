@@ -58,7 +58,7 @@ class Scroll(ttk.Scrollbar):
         self.txt.config(xscrollcommand=self.s2.set)
 
         self.scbar.grid(row=1, column=1, sticky=NS)
-        self.s2.grid(row=2, column=0, sticky=EW)
+        # self.s2.grid(row=2, column=0, sticky=EW)
 
         self.txt.insert(END, text_char)
 root = Tk()
@@ -75,3 +75,4 @@ root.geometry('1000x1000')
 
 root.bind('q', exit)
 root.mainloop()
+

@@ -11,12 +11,15 @@ class Fr(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.txt1_string = ''
-        self.txt2_string = ''
+
         
         self.txt1 = Text(self)
         self.txt2 = Text(self)
-        
+        self.scbar1 = ttk.Scrollbar(self, orient=VERTICAL, command=self.txt1.yview)
+        self.scbar2 = ttk.Scrollbar(self, orient=VERTICAL, command=self.txt2.yview)
+        self.txt1.config(yscrollcommand=self.scbar1.set)
+        self.txt2.config(yscrollcommand=self.scbar2.set)
+
         # chamando frames
         self.fr_bts1 = Fr_bts1(self, self)
         self.fr_bts2 = Fr_bts2(self, self)
@@ -26,58 +29,98 @@ class Fr(ttk.Frame):
         # separetor
         self.spt = ttk.Separator(self, orient=VERTICAL)
 
-        self.txt1.grid(row=1, column=0)
-        self.fr_bts1.grid(row=2, column=0, sticky=NSEW, columnspan=3)
+        self.txt1.grid(row=1, column=1)
+        self.fr_bts1.grid(row=2, column=1, sticky=NSEW, columnspan=3)
         self.fr_bts1.bt_cri.config(width=62)
         
         # key
-        self.fr_key.grid(row=0, column=2)
+        self.fr_key.grid(row=0, column=3)
         self.fr_key.etd.config(width=50)
 
-        self.spt.grid(row=0, column=1, padx=5, pady=5, sticky=NS, rowspan=3)
+        self.spt.grid(row=0, column=2, padx=5, pady=5, sticky=NS, rowspan=3)
         
-        self.txt2.grid(row=1, column=2)
-        self.fr_bts2.grid(row=2, column=2, sticky=NSEW, columnspan=3)
+        self.txt2.grid(row=1, column=3)
+        self.fr_bts2.grid(row=2, column=3, sticky=NSEW, columnspan=3)
         self.fr_bts2.bt_cri.config(width=62)
         
+        # colocando scroll bar
+        self.scbar1.grid(row=1, column=0, sticky=NS)
+        self.scbar2.grid(row=1, column=4, sticky=NS)
         self.txt1.bind('<KeyRelease>', self.put_color)
         self.txt2.bind('<KeyRelease>', self.put_color)
 
+        so_umTeste = '''
+        asfasfasdf
+        asfasfasdf
+        asfasfasdf
+        asfasfasdf
+        asfasfasdf
+        asfasfasdf
+        asfasfasdf
+        asfasfasdf
+        asfasfasdf
+        asfasfasdf
+        asfasfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfas\nfasdf
+        asfasfasdf
+        asfasfasdf
+        '''
+        self.txt1.insert(END, so_umTeste)
         
     def put_color(self, event):
         
-        # txt1 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        conta = self.txt1.get('1.0', END)
-        conta = conta.split('\n')
+        # txt =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        txt = self.txt1.get('1.0', END)
+        txt = txt.split('\n')
         self.formatado = list()
 
+
         # pegando informacoes 
-        for i, c in enumerate(conta):
+        for i, c in enumerate(txt):
             self.formatado.append(formatar(i, c)) 
-            
+                
         if self.fr_key.cbt_value.get():
             # colocando  
             for f1 in self.formatado:
                 for f in f1:
                     self.txt1.tag_add(f['nome'], f['p1'], f['p2'])
                     self.txt1.tag_config(f['nome'], foreground=f['fg'])   
+                    
         else:
-                
-            # colocando  
+            # tirando a cor
             for f1 in self.formatado:
                 for f in f1:
                     self.txt1.tag_add(f['nome'], f['p1'], f['p2'])
                     self.txt1.tag_config(f['nome'], foreground='white') 
-        
+
 
         
         # txt2 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        conta = self.txt2.get('1.0', END)
-        conta = conta.split('\n')
+        txt = self.txt2.get('1.0', END)
+        txt = txt.split('\n')
         self.formatado = list()
 
         # pegando informacoes 
-        for i, c in enumerate(conta):
+        for i, c in enumerate(txt):
             self.formatado.append(formatar(i, c)) 
                 
         if self.fr_key.cbt_value.get():
@@ -86,15 +129,14 @@ class Fr(ttk.Frame):
                 for f in f1:
                     self.txt2.tag_add(f['nome'], f['p1'], f['p2'])
                     self.txt2.tag_config(f['nome'], foreground=f['fg'])   
-        else:
-                
-            # colocando  
-            for f1 in self.formatado:
-                for f in f1:
-                    self.txt2.tag_add(f['nome'], f['p1'], f['p2'])
-                    self.txt2.tag_config(f['nome'], foreground='white')   
+        else:       
+                # colocando  
+                for f1 in self.formatado:
+                    for f in f1:
+                        self.txt2.tag_add(f['nome'], f['p1'], f['p2'])
+                        self.txt2.tag_config(f['nome'], foreground='white')   
             
-            
+        # self.formatado_old = self.formatado.copy
 
 
     def criptar(self):

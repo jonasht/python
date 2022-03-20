@@ -49,42 +49,7 @@ class Fr(ttk.Frame):
         self.txt1.bind('<KeyRelease>', self.put_color)
         self.txt2.bind('<KeyRelease>', self.put_color)
 
-        so_umTeste = '''
-        asfasfasdf
-        asfasfasdf
-        asfasfasdf
-        asfasfasdf
-        asfasfasdf
-        asfasfasdf
-        asfasfasdf
-        asfasfasdf
-        asfasfasdf
-        asfasfasdf
-        asfasfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfas\nfasdf
-        asfasfasdf
-        asfasfasdf
-        '''
-        self.txt1.insert(END, so_umTeste)
+      
         
     def put_color(self, event):
         

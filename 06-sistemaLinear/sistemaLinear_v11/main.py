@@ -13,14 +13,11 @@ class app(Tk):
         style.theme_use("forest-dark")
         self.fr = Fr(self, self)
 
-        self.bind('q', self.tecla_q)
+        # self.bind('q', exit)
         self.geometry('800x665')
   
         self.fr.grid()
     
-    def tecla_q(self, event):
-        from sys import exit
-        exit()
 def main():
     root = app()
     root.mainloop()

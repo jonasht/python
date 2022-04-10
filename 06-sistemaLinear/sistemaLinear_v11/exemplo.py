@@ -10,13 +10,13 @@ conta1x1 = '''
 '''
 
 conta2x2 = '''
- x  2y = 35
+  x  2y = 35
 3x -5y = -5
 '''
 conta3x3 = '''
- x -3y 5z = 1
- x  2y  z = 12
-2x -y  3z = 10
+  x -3y 5z = 1
+  x  2y   z = 12
+2x  -y  3z = 10
 '''
 
 conta4x4v2 = '''

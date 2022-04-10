@@ -1,0 +1,2 @@
+eu estou escrevendo uma frase aqui
+para o python ler

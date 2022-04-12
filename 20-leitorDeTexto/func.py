@@ -9,4 +9,5 @@ def read(txt:list):
         frase = gtts.gTTS(linha, lang='pt-br')
         frase.save('frase.mp3')
         playsound('./frase.mp3')
+        playsound('./musica.mp3')
 

@@ -1,4 +1,4 @@
-# Bad Apple
+# Bad Apple :apple:
 para poder instalar use
 
 pip install -r requirements.txt

@@ -33,4 +33,5 @@ def main():
         print(f'frame:{i}|{frames_size}')
         
 
-main()
+if __name__ == '__main__':
+    main()

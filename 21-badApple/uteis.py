@@ -7,7 +7,7 @@ def str_ToList(lista):
     # print(type(lista), lista)
     return lista
 
-def read(path='./frames0.txt') -> list:    
+def read(path='./assets/frames0.txt') -> list:    
     frame = ''
     with open(path, 'r') as arq:
         frames = arq.read()

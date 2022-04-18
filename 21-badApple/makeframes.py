@@ -1,10 +1,11 @@
 from multiprocessing.pool import ThreadPool
 from multiprocessing import cpu_count
 from typing import Tuple
-import time
+
 
 import cv2
 import tqdm
+from colorama import Back
 
 from uteis import save
 
@@ -18,7 +19,8 @@ def draw_frame(frame_information: Tuple[int, cv2.VideoCapture]):
     for this_y in range(y):
         for this_x in range(x):
             # pixel = '@' if frame[this_y, this_x].all() == 0 else ' '
-            pixel = '0' if frame[this_y, this_x].all() == 0 else ' '
+            # pixel = '0' if frame[this_y, this_x].all() == 0 else ' '
+            pixel = '0' if frame[this_y, this_x].all() == 0 else f'{Back.GREEN} {Back.RESET}'
             frame_str += pixel
             
             pixel_row += 1
@@ -67,4 +69,4 @@ if __name__ == '__main__':
     for _, frame in frames:
         prints.append(frame)
         
-    save(prints, 'frames0_teste.txt')
+    save(prints, 'framesVerde.txt')

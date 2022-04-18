@@ -28,9 +28,11 @@ def main():
         if sleep_time > 0:
             
             # print(f'{Fore.GREEN}{frame}')
-            print(frame)
+            # print(frame)
+            print(f'{frame}{frame[1-i]}frame:{i}|{frames_size}')
+            print(f'{frame[1-i]}frame:{i}|{frames_size}')
             sleep(sleep_time)
-        print(f'frame:{i}|{frames_size}')
+        # print(f'frame:{i}|{frames_size}')
         
 
 if __name__ == '__main__':

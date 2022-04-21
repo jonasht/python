@@ -8,6 +8,7 @@ import tqdm
 from colorama import Back
 
 from uteis import save
+import uteis as u
 
 def draw_frame(frame_information: Tuple[int, cv2.VideoCapture]):
     order, frame = frame_information
@@ -19,8 +20,8 @@ def draw_frame(frame_information: Tuple[int, cv2.VideoCapture]):
     for this_y in range(y):
         for this_x in range(x):
             # pixel = '@' if frame[this_y, this_x].all() == 0 else ' '
-            # pixel = '0' if frame[this_y, this_x].all() == 0 else ' '
-            pixel = '0' if frame[this_y, this_x].all() == 0 else f'{Back.GREEN} {Back.RESET}'
+            pixel = '0' if frame[this_y, this_x].all() == 0 else ' '
+
             frame_str += pixel
             
             pixel_row += 1
@@ -69,4 +70,7 @@ if __name__ == '__main__':
     for _, frame in frames:
         prints.append(frame)
         
-    save(prints, 'framesVerde.txt')
+    # save(prints, 'framesVerde.txt')
+    # salvando em binario
+    u.dumb(prints, './assets/frame0.txt')
+    print('funcionou 1')

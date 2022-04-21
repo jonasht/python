@@ -1,16 +1,12 @@
 from time import sleep, time
 from os import system
 import playsound
-from uteis import read, str_ToList
+import uteis as u
 from colorama import Fore
 
 
 def main():
-    
-    
-    frames = read()
-    frames = str_ToList(frames)
-
+    frames = u.load('./assets/frames0.txt')
 
     FPS = 30
     skip_ticks = 1/(FPS*1.0)
@@ -26,13 +22,10 @@ def main():
         sleep_time = next_snap - time()
         
         if sleep_time > 0:
-            
-            # print(f'{Fore.GREEN}{frame}')
             # print(frame)
-            print(f'{frame}{frame[1-i]}frame:{i}|{frames_size}')
-            print(f'{frame[1-i]}frame:{i}|{frames_size}')
+            print(f'{frame}frame:{i}|{frames_size}', end='')
             sleep(sleep_time)
-        # print(f'frame:{i}|{frames_size}')
+
         
 
 if __name__ == '__main__':

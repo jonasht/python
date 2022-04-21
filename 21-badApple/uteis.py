@@ -1,3 +1,5 @@
+import pickle
+from colorama import Back
 
 def str_ToList(lista):
     lista = lista.strip('[]')
@@ -7,7 +9,7 @@ def str_ToList(lista):
     # print(type(lista), lista)
     return lista
 
-def read(path='./assets/frames0.txt') -> list:    
+def read(path='./assets/framesb.txt') -> list:    
     frame = ''
     with open(path, 'r') as arq:
         frames = arq.read()
@@ -18,5 +20,15 @@ def save(string, nameArq):
     string = str(string)
     with open(nameArq, 'w') as arq:
         arq.write(string)
-        
 
+def dumb(frames, path='framesB.txt'):
+    with open(path, 'wb') as arq:
+        pickle.dump(frames, arq)
+
+def load(path='framesB.txt'):
+    with open(path, 'rb') as arq:
+        frames = pickle.load(arq)
+        return frames
+
+if __name__=='__main__':
+    pass

@@ -6,7 +6,8 @@ from colorama import Fore
 
 
 def main():
-    frames = u.load('./assets/frames0.txt')
+    # frames = u.load('./assets/frames0.txt')
+    frames = u.load1('./assets/frames0.txt')
 
     FPS = 30
     skip_ticks = 1/(FPS*1.0)

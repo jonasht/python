@@ -7,7 +7,6 @@ import cv2
 import tqdm
 from colorama import Back
 
-from uteis import save
 import uteis as u
 
 def draw_frame(frame_information: Tuple[int, cv2.VideoCapture]):
@@ -72,5 +71,5 @@ if __name__ == '__main__':
     # save(prints, 'framesVerde.txt')
     # salvando em binario
     for i, print in enumerate(prints):
-        u.dumb(print, f'./assets/frames/frame{i}')
+        u.dumb(print, f'./assets/frames/{i}')
     print('funcionou')

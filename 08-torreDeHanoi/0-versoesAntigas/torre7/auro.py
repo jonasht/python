@@ -104,7 +104,7 @@ if __name__ == '__main__':
         sleep(tempo)
         a.mostrar()
 
-    a = auro(50, 11, ' ')
+    a = auroGame(50, 11, ' ')
     a.mostrar()
 
     # definindo o objeto ou nome para movimentar

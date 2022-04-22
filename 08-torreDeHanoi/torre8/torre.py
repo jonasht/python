@@ -153,27 +153,22 @@ def mostrar(tempo=.1):
    # fazendo a frame
    for chars in backend.desenho:
       for char in chars:
-            # if char == '1':
             match char:
                case '1':
                   frame += f'{red}{red}'
-            # elif char == '2':
                case '2':
                   frame += f'{green}{green}'
-            # elif char == '3':
                case '3':
                   frame += f'{yellow}{yellow}'
-            # elif char == '4':
                case '4':
                   frame += f'{blue}{blue}'
-            # else:
                case _:
                   frame += f'  '
       frame += '\n'
       
    print(frame[:-1])
    print(' '*15+'=-'*50 + '=')
-   print('\t\t\t\t\t\t\ttorre de hanoi')
+   print('\t\t\t\t\t\t\tTorre de Hanoi')
    sleep(tempo)
 
 # chamando o auro game

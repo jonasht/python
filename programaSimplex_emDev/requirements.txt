@@ -1,0 +1,4 @@
+lippy==0.0.4
+numpy==1.22.4
+prettytable==3.3.0
+wcwidth==0.2.5

@@ -1,4 +1,4 @@
-from tkinter import END, Tk, ttk
+from tkinter import END, EW, Tk, ttk
 import lippy 
 
 
@@ -50,7 +50,8 @@ class Fr1(ttk.Frame):
         self.lbEg3 = ttk.Label(self.fr_meio, text='=')
         self.etdEg3 = ttk.Entry(self.fr_meio)
         # botao
-        self.bt_solve = ttk.Button(self, text='calcular', command=self.to_solve)
+        self.bt_solve = ttk.Button(self, text='solve', command=self.to_solve)
+        self.bt_default = ttk.Button(self, text='default', command=self.put_default)
         # label solve =-=-=-=-=-=-=
         self.lb_solve = ttk.Label(self, text='')
 
@@ -92,13 +93,14 @@ class Fr1(ttk.Frame):
         self.lbEg3.grid(row=3, column=7)
         self.etdEg3.grid(row=3, column=8)
         
-        self.fr_cima.grid()
-        self.fr_meio.grid()
+        self.fr_cima.grid(row=0, pady=6)
+        self.fr_meio.grid(row=1)
         # colocando botao solve
-        self.bt_solve.grid()
-        self.lb_solve.config(text='resultado')
+        self.bt_solve.grid(row=3, column=0, sticky=EW, padx=2)
+        self.bt_default.grid(row=3, column=1, sticky=EW, padx=2)
+
         self.lb_solve.grid()
-        self.put_default()
+        
     def put_default(self):
         self.etd1x.insert(END, 6)
         self.etd2x.insert(END, 6)
@@ -164,5 +166,5 @@ if __name__ == '__main__':
     root.title('simplex')
     fr = Fr1(root)
     fr.pack()
-    root.geometry('700x500')
+    root.geometry('800x500')
     root.mainloop()

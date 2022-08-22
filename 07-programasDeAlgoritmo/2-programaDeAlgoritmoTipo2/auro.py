@@ -128,12 +128,12 @@ class auroGame:
         
         # fazendo de outro jeito
         
-        screen = ''
-        for line in self.desenho:
-            screen += ''.join(line) + '\n'
+        # screen = ''
+        # for line in self.desenho:
+        #     screen += ''.join(line) + '\n'
         
-        # monstrando desenho na tela
-        print(screen)
+        # monstrando desenho na tela e montando tela
+        print(''.join(list(map(lambda l: ''.join(l)+'\n', self.desenho))))
             
 
     

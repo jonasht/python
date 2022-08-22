@@ -121,11 +121,21 @@ class auroGame:
     # mostrar desenho 
     def mostrar(self):
         system('clear')
-        for chars in self.desenho:
-            for char in chars:
-                print(f'{char}', end='')
-            print()
+        # for chars in self.desenho:
+        #     for char in chars:
+        #         print(f'{char}', end='')
+        #     print()
+        
+        # fazendo de outro jeito
+        
+        screen = ''
+        for line in self.desenho:
+            screen += ''.join(line) + '\n'
+        
+        # monstrando desenho na tela
+        print(screen)
             
+
     
     # apagar desenho 
     def apagar(self, x, y, qtdCasas):
@@ -149,7 +159,7 @@ class auroGame:
 if __name__ == '__main__':
     fim = '\033[0m'
     black = '\033[40m ' + fim  
-    red = '\033[41m '  + fim
+    red = '\033[41m.'  + fim
     green = '\033[42m ' + fim
     yellow = '\033[43m ' + fim
     blue = '\033[44m ' + fim 

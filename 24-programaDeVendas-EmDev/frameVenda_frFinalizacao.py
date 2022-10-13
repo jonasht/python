@@ -49,7 +49,7 @@ class Fr_finalizacao(ttk.Frame):
         # adicionando no banco de dados a venda 
         add_venda(
             dados_cliente=dados_cliente,
-            dados_produto=dados_produto
+            dados_produto=dados_produto,
             total=total
         )
 

@@ -9,7 +9,7 @@ class Fr(ttk.Frame):
         
         self.fr_up = ttk.Frame()
         self.texto = ttk.Label(self.fr_up, text='Clique no botão para atualizar as cotações de moedas')
-        self.botao = ttk.Button(self.fr_up, text='Atualizar', command=self.pegar_cotacoes)
+        self.botao = ttk.Button(self.fr_up, text='Atualizar', command=self.get_cotacao)
         self.texto.grid(row=0)
         self.botao.grid(row=1, sticky=EW)
 
@@ -48,8 +48,8 @@ class Fr(ttk.Frame):
         self.fr_up.grid()
         self.fr_ct.grid(pady=10)
 
-        self.pegar_cotacoes()
-    def pegar_cotacoes(self) -> None:
+        self.get_cotacao()
+    def get_cotacao(self) -> None:
         requisicao = requests.get('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL')
 
         requisicao_dic = requisicao.json()
@@ -67,6 +67,7 @@ def main():
     
     janela = Tk()
     fr = Fr(janela)
+    janela.resizable(width=False, height=False)
     fr.grid()
     janela.title('Cotação de Moedas')
 

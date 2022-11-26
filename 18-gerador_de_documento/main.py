@@ -14,8 +14,8 @@ from frames.pis import Fr_PIS
 class GeradorMain(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.geometry('670x400')
-        self.title('gerador de documentos')
+        self.geometry('690x400')
+        self.title('Gerador de Documentos')
 
         # definindo thema =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         self.style = ttk.Style(self)
@@ -23,7 +23,7 @@ class GeradorMain(tk.Tk):
         self.style.theme_use('forest-light')
         
         # lb tituo 
-        self.lb_titulo = ttk.Label(self, text='Gerador de documentos')
+        self.lb_titulo = ttk.Label(self, text='Gerador de documentos\naperte q para sair')
         self.lb_titulo.configure(font='times 15 bold', foreground='dark gray')
 
         # definindo frames left right =-=-=-=-=-=-=-=-=-=-=-=-=
@@ -45,10 +45,13 @@ class GeradorMain(tk.Tk):
         self.fr_pis.grid(row=1, column=1)
         self.lb_titulo.grid(row=2, column=1)
         
+        self.bind('q', lambda x: self.destroy())
+        
 
 #? colocar esse jeito de main eh regra 
 def main():
-    GeradorMain().mainloop()
+    root = GeradorMain()
+    root.mainloop()
     
 if __name__ == '__main__':
     main()

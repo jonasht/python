@@ -1,4 +1,4 @@
-from tkinter import ttk, Tk
+from tkinter import ttk, Tk, END, EW
 from frames.fr_decimal import Fr_decimal
 from frames.fr_binario import Fr_binario
 from frames.fr_octal import Fr_octal
@@ -15,12 +15,15 @@ class App(Tk):
 
         # chamando frames = 1-self eh parent, 2-self eh controller 
         self.lb_aviso = ttk.Label(text='')
+        
+        self.lb_apagarTudo = ttk.Button(self, text='Apagar tudo', command=self.apagarTudo)
         self.fr_decimal = Fr_decimal(self, self)
         self.fr_binario = Fr_binario(self, self)
         self.fr_octal = Fr_octal(self, self)
         self.fr_hexadecimal = Fr_hexadecimal(self, self)
         self.fr_duodecimal = Fr_duodecimal(self, self)
 
+        self.lb_apagarTudo.grid(pady=6, padx=6, sticky=EW)
         self.fr_decimal.grid(padx=6, pady=3)
         self.fr_binario.grid(padx=6, pady=3)
         self.fr_octal.grid(padx=6, pady=3)
@@ -28,6 +31,20 @@ class App(Tk):
         self.fr_hexadecimal.grid(padx=6, pady=3)
         
         self.lb_aviso.grid()
+
+        # aperte q para fechar a tela
+        # self.bind('q', lambda event: self.destroy())
+    
+        
+    def apagarTudo(self):
+        self.fr_decimal.etd.delete(0, END)
+        self.fr_binario.etd.delete(0, END)
+        self.fr_octal.etd.delete(0, END)
+        self.fr_duodecimal.etd.delete(0, END)
+        self.fr_hexadecimal.etd.delete(0, END)
+
+
+
 
     def avisar(self, aviso=''):
         self.lb_aviso.config(text=aviso, foreground='red')
@@ -84,6 +101,7 @@ class App(Tk):
             
 def main():
     app = App()
+    # app.geometry('500x700')
     app.mainloop()
 
 if __name__ == '__main__':

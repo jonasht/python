@@ -9,7 +9,7 @@ def dec_to_base(num, base):  #base maxima - 36
         num //= base
     base_num = base_num[::-1] 
      
-    return base_num
+    return base_num if base_num != '' else 0
 
 
 

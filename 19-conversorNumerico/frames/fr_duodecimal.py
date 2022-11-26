@@ -3,6 +3,7 @@ from tkinter.constants import END, EW
 import pyperclip as pc 
 
 from frames.uteis import to_dec, dec_to_base
+# from uteis import to_dec, dec_to_base
 
 class Fr_duodecimal(ttk.Frame):
     def __init__(self, parent, con):
@@ -49,6 +50,6 @@ class Fr_duodecimal(ttk.Frame):
 if __name__ == '__main__':
     app = Tk()
     fr = Fr_duodecimal(app, None)
-    fr.inserir(10)
+    fr.inserir('0')
     fr.pack()
     app.mainloop()

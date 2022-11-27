@@ -1,3 +1,4 @@
+# import prints
 import keyboard
 from os import system
 
@@ -28,6 +29,9 @@ picss = list(list(bgWhite+'  ' + f for i in range(tamanhaDeX+ 1))for ii in range
 
 corDeLapis = green
 corDePrint = bgWhite
+
+
+
 def mostrar():
     global x
     global y

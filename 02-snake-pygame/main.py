@@ -38,8 +38,10 @@ while 1:
     clock.tick(10)
     
     for event in pygame.event.get():
-        if event.type == QUIT:
+        if event.type == QUIT or event.type == 771 or event.type == 768:
             pygame.quit()
+        
+ 
 
         if event.type == KEYDOWN:
             if event.key == K_UP:

@@ -45,23 +45,26 @@ class Fr_key(ttk.Frame):
 
 
 if __name__ == '__main__':
-    app = Tk()
+    from main import main
+    main()
+    # fazendo test
+    # app = Tk()
 
 
-    # Create a style
-    style = ttk.Style(app)
+    # # Create a style
+    # style = ttk.Style(app)
 
-    # Import the tcl file
-    app.tk.call('source', './forest_ttk_theme/forest-dark.tcl')
+    # # Import the tcl file
+    # app.tk.call('source', './forest_ttk_theme/forest-dark.tcl')
 
-    # Set the theme with the theme_use method
-    style.theme_use("forest-dark")
+    # # Set the theme with the theme_use method
+    # style.theme_use("forest-dark")
 
-    fr = Fr_key(app, app)
-    fr.grid(sticky=NSEW)
-    fr.config(border=20)
-    fr.etd.config(width=30)
-    from sys import exit
-    app.bind('q', exit)
+    # fr = Fr_key(app, app)
+    # fr.grid(sticky=NSEW)
+    # fr.config(border=20)
+    # fr.etd.config(width=30)
+    # from sys import exit
+    # app.bind('q', exit)
 
-    app.mainloop()
+    # app.mainloop()

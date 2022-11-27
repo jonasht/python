@@ -42,4 +42,9 @@ def formatar(line, conta) -> list:
 
 
 if __name__ == '__main__':
-    formatar(line=0, conta='33xcx8x=safsafsfasfasfsf')
+
+    from main import main
+    main()
+    
+    # fazendo teste
+    # formatar(line=0, conta='33xcx8x=safsafsfasfasfsf')

@@ -1,8 +1,9 @@
-from tkinter import *
-from tkinter import ttk
-from frames.fr_bts1 import Fr_bts1
-from frames.fr_bts2 import Fr_bts2
-from frames.fr_key import Fr_key
+# from tkinter import *
+from tkinter import ttk, Tk, Text
+from tkinter import VERTICAL, NSEW, NS, END
+from .fr_bts1 import Fr_bts1
+from .fr_bts2 import Fr_bts2
+from .fr_key import Fr_key
 import uteis as u
 from func.corFunc import formatar
 
@@ -15,7 +16,6 @@ class Fr(ttk.Frame):
         
         self.txt1 = Text(self)
         self.txt2 = Text(self)
-        
         self.scbar1 = ttk.Scrollbar(self, orient=VERTICAL, command=self.txt1.yview)
         self.scbar2 = ttk.Scrollbar(self, orient=VERTICAL, command=self.txt2.yview)
         self.txt1.config(yscrollcommand=self.scbar1.set)
@@ -146,20 +146,5 @@ class Fr(ttk.Frame):
 
 
 if __name__ == '__main__':
-    app = Tk()
-
-
-    # Create a style
-    style = ttk.Style(app)
-
-    # Import the tcl file
-    app.tk.call('source', './forest_ttk_theme/forest-dark.tcl')
-
-    # Set the theme with the theme_use method
-    style.theme_use("forest-dark")
-
-    Fr(app).pack()
-    from sys import exit
-    # app.bind('q', exit)
-
-    app.mainloop()
+    from main import main
+    main()    

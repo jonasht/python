@@ -63,9 +63,13 @@ class Interface(ttk.Frame):
             self.lb_faltaNum.config(text=n, foreground='red')
             
 if __name__ == '__main__':
-    root = tk.Tk()
-    root.geometry('400x300')
+    from main import main
+    main()
+    
+    # fazendo teste
+    # root = tk.Tk()
+    # root.geometry('400x300')
 
-    frame = Interface(root)
-    frame.pack()
-    root.mainloop()
+    # frame = Interface(root)
+    # frame.pack()
+    # root.mainloop()

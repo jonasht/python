@@ -1,44 +1,45 @@
-import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, Tk
 from tkinter.constants import BOTTOM
 from frame import Interface
 from conta import Conta
 
 
 
-class Principal(tk.Tk):
+class Principal(Tk):
     def __init__(self):
         super().__init__()
+        self.title('Contador de Flashcard')
         self.conta = Conta()
         self.frame = Interface(self)
         self.frame.pack()
 
         # teclas de numeros (de cima do teclado)
-        self.bind('1', self.botao1)
-        self.bind('2', self.botao2)
-        self.bind('3', self.botao3)
-        self.bind('4', self.botao4)
-        self.bind('5', self.botao5)
-        self.bind('6', self.botao6)
-        self.bind('7', self.botao7)
-        self.bind('8', self.botao8)
-        self.bind('9', self.botao9)
+        self.bind('1', self.key_1)
+        self.bind('2', self.key_2)
+        self.bind('3', self.key_3)
+        self.bind('4', self.key_4)
+        self.bind('5', self.key_5)
+        self.bind('6', self.key_6)
+        self.bind('7', self.key_7)
+        self.bind('8', self.key_8)
+        self.bind('9', self.key_9)
         
         # teclado numPad / teclado do lado do teclado
-        self.bind('<KP_1>', self.teclaNum1)
-        self.bind('<KP_2>', self.teclaNum2)
-        self.bind('<KP_3>', self.teclaNum3)
-        self.bind('<KP_4>', self.teclaNum4)
-        self.bind('<KP_5>', self.teclaNum5)
-        self.bind('<KP_6>', self.teclaNum6)
-        self.bind('<KP_7>', self.teclaNum7)
-        self.bind('<KP_8>', self.teclaNum8)
-        self.bind('<KP_9>', self.teclaNum9)
+        self.bind('<KP_1>', self.key_Num1)
+        self.bind('<KP_2>', self.key_Num2)
+        self.bind('<KP_3>', self.key_Num3)
+        self.bind('<KP_4>', self.key_Num4)
+        self.bind('<KP_5>', self.key_Num5)
+        self.bind('<KP_6>', self.key_Num6)
+        self.bind('<KP_7>', self.key_Num7)
+        self.bind('<KP_8>', self.key_Num8)
+        self.bind('<KP_9>', self.key_Num9)
         
         
+        # tecla enter e tecla enter 
+        self.bind('<Return>', self.key_enter)
         # tecla enter e tecla enter NumPad
-        self.bind('<Return>', self.teclaEnter)
-        self.bind('<KP_Enter>', self.teclaNumEnter)
+        self.bind('<KP_Enter>', self.key_NumEnter)
         # ====================================
 
         # tecla q para sair
@@ -55,164 +56,164 @@ class Principal(tk.Tk):
         self.bind('<Control_R>'+'<BackSpace>', self.tecla_ctrl_backspace)
         
         
-        # self.posicaofileira[0] = True
-        self.posicaofileira = [True, False]
-        self.mostrarFileira()
-        self.mostrar()
+        # self.rowPosition[0] = True
+        self.rowPosition = [True, False]
+        self.showRow()
+        self.show()
 
 
-        label_tuto = ttk.Label(self, text='ctrl + backspace para apagar', foreground='gray')
+        label_tuto = ttk.Label(self, text='ctrl + backspace p/ apagar tudo\nq para sair', foreground='gray')
         label_tuto.pack(side=BOTTOM)
         
-    def botao1(self, event):
-        if self.posicaofileira[0]:
+    def key_1(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(1)
         else:
             self.conta.somarComecar(1)
-        self.mostrar()
+        self.show()
         
-    def botao2(self, event):
-        if self.posicaofileira[0]:
+    def key_2(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(2)
         else:
             self.conta.somarComecar(2)
-        self.mostrar()
+        self.show()
         
-    def botao3(self, event):
-        if self.posicaofileira[0]:
+    def key_3(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(3)
         else:
             self.conta.somarComecar(3)
-        self.mostrar()
+        self.show()
         
-    def botao4(self, event):
-        if self.posicaofileira[0]:
+    def key_4(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(4)
         else:
             self.conta.somarComecar(4)
-        self.mostrar()
+        self.show()
         
-    def botao5(self, event):
-        if self.posicaofileira[0]:
+    def key_5(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(5)
         else:
             self.conta.somarComecar(5)
-        self.mostrar()
+        self.show()
         
-    def botao6(self, event):
-        if self.posicaofileira[0]:
+    def key_6(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(6)
         else:
             self.conta.somarComecar(6)
-        self.mostrar()
+        self.show()
         
-    def botao7(self, event):
-        if self.posicaofileira[0]:
+    def key_7(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(7)
         else:
             self.conta.somarComecar(7)
-        self.mostrar()
+        self.show()
         
-    def botao8(self, event):
-        if self.posicaofileira[0]:
+    def key_8(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(8)
         else:
             self.conta.somarComecar(8)
-        self.mostrar()
+        self.show()
         
-    def botao9(self, event):
-        if self.posicaofileira[0]:
+    def key_9(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(9)
         else:
             self.conta.somarComecar(9)
-        self.mostrar()
+        self.show()
     
     # funcoes das teclado numerica NumPad/ teclas numericas do lado do teclado
-    def teclaNum1(self, event):
-        if self.posicaofileira[0]:
+    def key_Num1(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(1)
         else:
             self.conta.somarComecar(1)
-        self.mostrar()
+        self.show()
 
-    def teclaNum2(self, event):
-        if self.posicaofileira[0]:
+    def key_Num2(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(2)
         else:
             self.conta.somarComecar(2)
-        self.mostrar()
+        self.show()
 
-    def teclaNum3(self, event):
-        if self.posicaofileira[0]:
+    def key_Num3(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(3)
         else:
             self.conta.somarComecar(3)
-        self.mostrar()
+        self.show()
 
-    def teclaNum4(self, event):
-        if self.posicaofileira[0]:
+    def key_Num4(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(4)
         else:
             self.conta.somarComecar(4)
-        self.mostrar()
+        self.show()
 
-    def teclaNum5(self, event):
-        if self.posicaofileira[0]:
+    def key_Num5(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(5)
         else:
             self.conta.somarComecar(5)
-        self.mostrar()
+        self.show()
 
 
-    def teclaNum6(self, event):
-        if self.posicaofileira[0]:
+    def key_Num6(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(6)
         else:
             self.conta.somarComecar(6)
-        self.mostrar()
+        self.show()
 
-    def teclaNum7(self, event):
-        if self.posicaofileira[0]:
+    def key_Num7(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(7)
         else:
             self.conta.somarComecar(7)
-        self.mostrar()
+        self.show()
 
-    def teclaNum8(self, event):
-        if self.posicaofileira[0]:
+    def key_Num8(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(8)
         else:
             self.conta.somarComecar(8)
-        self.mostrar()
+        self.show()
 
-    def teclaNum9(self, event):
-        if self.posicaofileira[0]:
+    def key_Num9(self, event):
+        if self.rowPosition[0]:
             self.conta.somarRecomecar(9)
         else:
             self.conta.somarComecar(9)
-        self.mostrar()
+        self.show()
 
         
-    def teclaEnter(self, event):
-        self.posicaofileira.reverse()
+    def key_enter(self, event):
+        self.rowPosition.reverse()
         print('enter apertado')
-        self.mostrarFileira()
+        self.showRow()
         
-    def teclaNumEnter(self, event):
-        self.posicaofileira.reverse()
+    def key_NumEnter(self, event):
+        self.rowPosition.reverse()
         print('enter apertado')
-        self.mostrarFileira()
+        self.showRow()
     
     
     def teclaUp(self, event=None):
         print('up')
-        self.posicaofileira.reverse()
-        self.mostrarFileira()
+        self.rowPosition.reverse()
+        self.showRow()
         
     def teclaDown(self, event=None):
         print('down')
-        self.posicaofileira.reverse()
-        self.mostrarFileira()
+        self.rowPosition.reverse()
+        self.showRow()
 
     # tecla q para sair        
     def teclaQ(self, event):
@@ -221,41 +222,40 @@ class Principal(tk.Tk):
     # tecla ctrl + backspace para apagar tudo
     def tecla_ctrl_backspace(self, event):
         
-        print('tecla ctrl apertada')
         self.conta.recomecar.clear()
         self.conta.comecar.clear()
-        if not(self.posicaofileira[0]):
+        if not(self.rowPosition[0]):
             self.teclaUp()
         
-        self.mostrar()
+        self.show()
         
     # backspace/apagar ultimo item de lista
     def apagar(self, event):
-        if self.posicaofileira[0] and self.conta.recomecar:
+        if self.rowPosition[0] and self.conta.recomecar:
             del(self.conta.recomecar[-1])
-        if self.posicaofileira[1] and self.conta.comecar:
+        if self.rowPosition[1] and self.conta.comecar:
             del(self.conta.comecar[-1])
         
-        self.mostrar()
+        self.show()
         
         
-    # mudar rows da frames ...
-    def mostrarFileira(self):
-        if self.posicaofileira[0]:
+    # show rows frames 
+    def showRow(self):
+        if self.rowPosition[0]:
             self.frame.lb2.config(background='lightgray')
             self.frame.lb_numero2.config(background='lightgray')
             
             self.frame.lb1.config(background='gray')
             self.frame.lb_numero1.config(background='gray')
 
-        if self.posicaofileira[1]:
+        if self.rowPosition[1]:
             self.frame.lb1.config(background='lightgray')
             self.frame.lb_numero1.config(background='lightgray')    
                     
             self.frame.lb2.config(background='gray')
             self.frame.lb_numero2.config(background='gray')
             
-    def mostrar(self):
+    def show(self):
         self.frame.atualizarTotal(self.conta.get_total())
         self.frame.atualizarRecomecar(self.conta.get_totalRecomecar())
         self.frame.atualizarComecar(self.conta.get_totalComecar())
@@ -266,7 +266,10 @@ class Principal(tk.Tk):
         self.frame.lb_lista2.config(text=self.conta.get_comecar())
 
         
-if __name__ == '__main__':
+def main():
     root = Principal()
     root.geometry('300x300')
     root.mainloop()
+    
+if __name__ == '__main__':
+    main()

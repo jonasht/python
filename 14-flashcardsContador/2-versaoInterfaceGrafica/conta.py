@@ -27,3 +27,8 @@ class Conta:
         return sum(self.recomecar) + sum(self.comecar)
     def get_restanteDeCartas(self):
         return self.qtdCartas - self.get_total() 
+    
+
+if __name__ == '__main__':
+    from main import main
+    main()

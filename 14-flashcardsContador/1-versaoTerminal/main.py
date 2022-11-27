@@ -1,5 +1,8 @@
 from os import system
 from time import sleep
+
+
+
 class Soma:
     
     def __init__(self):

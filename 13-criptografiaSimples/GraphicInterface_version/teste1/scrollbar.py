@@ -2,47 +2,11 @@ from cgitb import text
 from tkinter import *
 from tkinter import ttk
 from turtle import title
+from sys import exit
+from test_util import text_char
 
-text_char = '''
-ashfçsafjasd
-sfsdfads
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsd
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-fsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-fsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsd
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
-sdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\nsdfsd\n
 
-'''
-class Scroll(ttk.Scrollbar):
+class Text_scroll(ttk.Scrollbar):
     def __init__(self, parent):
         super().__init__(parent)
 
@@ -58,21 +22,33 @@ class Scroll(ttk.Scrollbar):
         self.txt.config(xscrollcommand=self.s2.set)
 
         self.scbar.grid(row=1, column=1, sticky=NS)
-        # self.s2.grid(row=2, column=0, sticky=EW)
 
-        self.txt.insert(END, text_char)
-root = Tk()
-Scroll(root).pack()
-root.tk.call('source', './forest_ttk_theme/forest-dark.tcl')
-style = ttk.Style(root)
 
-    # Set the theme with the theme_use method
-style.theme_use("forest-dark")
+        
+def main():
+    root = Tk()
+    fr1 = ttk.Frame(root)
+    fr2 = ttk.Frame(root)
 
-from sys import exit
+    scroll1 = Text_scroll(fr1)
+    scroll2 = Text_scroll(fr2)
+    
+    scroll1.grid()
+    scroll2.grid()
+    scroll1.txt.insert(END, text_char)
+    scroll2.txt.insert(END, text_char)
+    
+    fr1.grid(row=1, column=0)
+    fr2.grid(row=1, column=1)
 
-root.geometry('1000x1000')
+    root.tk.call('source', './forest_ttk_theme/forest-dark.tcl')
+    style = ttk.Style(root)
 
-root.bind('q', exit)
-root.mainloop()
+    style.theme_use('forest-dark')
 
+
+    root.mainloop()
+
+
+if __name__ == '__main__':
+    main()

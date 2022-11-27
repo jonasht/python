@@ -15,6 +15,7 @@ class Fr(ttk.Frame):
         
         self.txt1 = Text(self)
         self.txt2 = Text(self)
+        
         self.scbar1 = ttk.Scrollbar(self, orient=VERTICAL, command=self.txt1.yview)
         self.scbar2 = ttk.Scrollbar(self, orient=VERTICAL, command=self.txt2.yview)
         self.txt1.config(yscrollcommand=self.scbar1.set)

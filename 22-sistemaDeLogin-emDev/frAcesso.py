@@ -52,26 +52,25 @@ class FrAcesso(ttk.Frame):
         msg = data['frase']
         # print('mensagem de texto:', msg)
         
+        
+        self.txt_msg.config(state=NORMAL)
         if msg:
             self.txt_msg.insert(END, msg)
-            self.txt_msg.config(state=DISABLED, bg='gray')
+        else:
+            self.limpar_txt()    
+            
+        self.txt_msg.config(state=DISABLED, bg='gray')
         
-    # def start(self, login):
-    #     self.login = login
-    #     msg_login = f'bem vindo {self.login}'
-    #     self.lb_login.config(text=msg_login)
         
-    #     msg = u.get_msg(self.login)
-    #     print('mensagem de texto:', msg)
-    #     self.txt_msg.insert(END, msg)
-    #     self.txt_msg.config(state=DISABLED)
+
         
         
 
     def logout(self):
         # self.controller.show_frame('FrLogin')
-        self.controller.show_login()
+        self.txt_msg.config(state=NORMAL)
         self.limpar_txt()
+        self.controller.show_login()
 
     def editar(self):
 
@@ -90,16 +89,16 @@ class FrAcesso(ttk.Frame):
         msg_data = u.get_dataById(self.id)['frase']
         msg = self.txt_msg.get('1.0', END)
 
-        print('msg1:', msg_data)
-        print('msg2:', msg)
+        # print('msg1:', msg_data)
+        # print('msg2:', msg)
                 
-        print('msg1:', list(msg_data))
-        print('msg2:', list(msg))
-        print('msg2:', list(msg[:-1]))
+        # print('msg1:', list(msg_data))
+        # print('msg2:', list(msg))
+        # print('msg2:', list(msg[:-1]))
         
-        print(msg_data==msg[:-1])
+        # print(msg_data==msg[:-1])
 
-        if msg_data != msg[:-1]:
+        if not msg_data or msg_data != msg[:-1]:
             print('entrou')
             u.update_msg(self.id, msg)
 

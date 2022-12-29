@@ -11,9 +11,8 @@ class Principal(tk.Tk):
     
     def __init__(self):
         super().__init__()
-        self.geometry('400x400')
+        self.geometry('450x450')
         
-        self.login = ''
 
         self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
         
@@ -41,8 +40,7 @@ class Principal(tk.Tk):
         # mostrar primeira frame (login)
         self.show_login()
         
-    def set_login(self, login):
-        self.login = login
+
         
     def show_acesso(self, id):
         # mostrar frame acesso

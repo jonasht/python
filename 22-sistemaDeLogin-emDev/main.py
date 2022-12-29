@@ -5,6 +5,8 @@ import tkinter as tk
 from frAcesso import FrAcesso
 from frLogin import FrLogin
 from frCadastro import FrCadastro
+from uteis import init_db
+
 
 
 class Principal(tk.Tk):
@@ -61,4 +63,5 @@ def main():
     root.mainloop()
         
 if __name__ == "__main__":
+    init_db()
     main()

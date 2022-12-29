@@ -1,6 +1,36 @@
 import sqlite3 as sql
 
 
+def init_db():
+    try:
+        dados = sql.connect('db.sqlite')
+
+        cursor = dados.cursor()
+
+        cursor.execute("""
+                        CREATE TABLE Conta (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            nome TEXT,
+                            sobrenome TEXT,
+                            login TEXT,
+                            senha TEXT, 
+                            email TEXT,
+                            frase TEXT
+                        );
+                    """)
+
+
+        dados.commit()
+        dados.close()
+    except:
+        print('ja existe')
+    else:
+        add_data(nome='admin', sobrenome='', login='admin', senha='123', email='')
+        add_data('jonas', 'jones', 'jonas', '123', 'jonas@email.com' )
+  
+    print('funcionando normalmente')
+
+
 def add_data(nome, sobrenome, login, senha, email):
     banco = sql.connect('db.sqlite')
 

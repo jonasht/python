@@ -89,15 +89,6 @@ class FrAcesso(ttk.Frame):
         msg_data = u.get_dataById(self.id)['frase']
         msg = self.txt_msg.get('1.0', END)
 
-        # print('msg1:', msg_data)
-        # print('msg2:', msg)
-                
-        # print('msg1:', list(msg_data))
-        # print('msg2:', list(msg))
-        # print('msg2:', list(msg[:-1]))
-        
-        # print(msg_data==msg[:-1])
-
         if not msg_data or msg_data != msg[:-1]:
             print('entrou')
             u.update_msg(self.id, msg)

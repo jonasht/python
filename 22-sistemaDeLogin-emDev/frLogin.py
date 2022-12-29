@@ -35,7 +35,7 @@ class FrLogin(ttk.Frame):
         self.lb_senha.grid(row=1, column=0, pady=5)
         self.etd_senha.grid(row=1, column=1, pady=5, padx=5)
 
-        self.bt_limpar = ttk.Button(self.lbfr_meio, text='Limpar')
+        self.bt_limpar = ttk.Button(self.lbfr_meio, text='Limpar', command=self.clean)
         self.bt_entrar = ttk.Button(self.lbfr_meio, text='Entrar', command=self.acessar)
         self.bt_limpar.grid(row=2, column=0, padx=3, pady=4, sticky=EW)
         self.bt_entrar.grid(row=2, column=1, padx=3, pady=4, sticky=EW)
@@ -50,9 +50,7 @@ class FrLogin(ttk.Frame):
  
         self.etd_login.focus()
         
-        # configuracoes default
-        self.etd_login.insert(0, 'jonas')
-        self.etd_senha.insert(0, '123')
+
 
     def acessar(self):
         login = self.etd_login.get()
@@ -81,7 +79,10 @@ class FrLogin(ttk.Frame):
             print(Fore.RED+'acesso negado', Fore.RESET)
             self.lb_aviso.config(text='senha ou login invalido')
     
-
+    def clean(self):
+        self.etd_login.delete(0, END)
+        self.etd_senha.delete(0, END)
+        self.etd_login.focus()
         
 if __name__ == '__main__':
     import main

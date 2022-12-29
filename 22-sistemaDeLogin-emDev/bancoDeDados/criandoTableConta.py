@@ -1,11 +1,11 @@
 import sqlite3 as sql 
 
-dados = sql.connect('db.db')
+dados = sql.connect('db.sqlite')
 
 cursor = dados.cursor()
 
 cursor.execute("""
-                CREATE TABLE conta (
+                CREATE TABLE Conta (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     nome TEXT,
                     sobrenome TEXT,
@@ -15,6 +15,7 @@ cursor.execute("""
                     frase TEXT
                 );
                """)
+
 
 dados.commit()
 dados.close()

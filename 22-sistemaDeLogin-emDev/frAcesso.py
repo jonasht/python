@@ -10,8 +10,7 @@ class FrAcesso(ttk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
-        self.login = ''
-        
+
         # frames =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         self.fr_esquerdo = ttk.Frame(self)
         self.fr_direito = ttk.Frame(self)
@@ -39,16 +38,33 @@ class FrAcesso(ttk.Frame):
 
     def limpar_txt(self):
         self.txt_msg.delete('1.0', END)
+    
+    
+    def display(self, id):
+        self.id = id
+        data = u.get_dataById(id)
         
-    def start(self, login):
-        self.login = login
-        msg_login = f'bem vindo {self.login}'
+
+        msg_login = f'bem vindo {data["nome"]}'
+        
         self.lb_login.config(text=msg_login)
         
-        msg = u.get_msg(self.login)
-        print('mensagem de texto:', msg)
-        self.txt_msg.insert(END, msg)
-        self.txt_msg.config(state=DISABLED)
+        msg = data['frase']
+        # print('mensagem de texto:', msg)
+        
+        if msg:
+            self.txt_msg.insert(END, msg)
+            self.txt_msg.config(state=DISABLED, bg='gray')
+        
+    # def start(self, login):
+    #     self.login = login
+    #     msg_login = f'bem vindo {self.login}'
+    #     self.lb_login.config(text=msg_login)
+        
+    #     msg = u.get_msg(self.login)
+    #     print('mensagem de texto:', msg)
+    #     self.txt_msg.insert(END, msg)
+    #     self.txt_msg.config(state=DISABLED)
         
         
 
@@ -59,30 +75,51 @@ class FrAcesso(ttk.Frame):
 
     def editar(self):
 
+
         if self.txt_msg['state'] != 'normal':
-            print(Fore.GREEN, 'ativo', Fore.RESET)
-            u.update_msg(self.login, self.txt_msg.get('1.0', END))
             self.txt_msg.config(state=NORMAL)
             self.bt_editar.config(text='OK')
+            
+            self.txt_msg.config(bg='white')
         else:
-            msg = u.get_msg(self.login)
-            self.txt_msg.insert(END, msg)
             self.txt_msg.config(state=DISABLED)
             self.bt_editar.config(text='Editar')
-            
-            print(Fore.RED, 'nao ativo', Fore.RESET)
 
+            self.txt_msg.config(bg='gray')
 
-    def testar(self):
-        print('teste')
-        self.txt_msg.config(state=DISABLED)
+        msg_data = u.get_dataById(self.id)['frase']
+        msg = self.txt_msg.get('1.0', END)
+
+        print('msg1:', msg_data)
+        print('msg2:', msg)
+                
+        print('msg1:', list(msg_data))
+        print('msg2:', list(msg))
+        print('msg2:', list(msg[:-1]))
+        
+        print(msg_data==msg[:-1])
+
+        if msg_data != msg[:-1]:
+            print('entrou')
+            u.update_msg(self.id, msg)
+
+        
+       
+
+    def insert_inTxt(self, msg):
+        self.limpar_txt()
+        self.txt_msg.insert(END, msg)
+
 
 
 if __name__ == '__main__':
+    # u.update_msg(1, 'esta é uma mensagem')
     root = tk.Tk()
 
     fr = FrAcesso(parent=root, controller=None)
-    fr.set_login('jonas')
+
+    fr.display(1)
+    
     fr.pack()
     root.geometry('400x300')
     root.mainloop()

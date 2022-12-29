@@ -1,9 +1,8 @@
-from os import getsid
 import sqlite3 as sql
-from sqlite3.dbapi2 import Cursor
+
 
 def add_data(nome, sobrenome, login, senha, email):
-    banco = sql.connect('db.db')
+    banco = sql.connect('db.sqlite')
 
     cursor = banco.cursor()
     
@@ -15,11 +14,11 @@ def add_data(nome, sobrenome, login, senha, email):
     banco.close()
 
 def get_senha(login):
-    banco = sql.connect('db.db')
+    banco = sql.connect('db.sqlite')
 
     cursor = banco.cursor()
 
-    cursor.execute('SELECT senha FROM conta WHERE login = ?', (login,) )
+    cursor.execute('SELECT senha FROM Conta WHERE login = ?', (login,) )
     retornar = cursor.fetchall()
     banco.commit()
     banco.close()
@@ -31,11 +30,11 @@ def get_senha(login):
 
 def login_in_data(login):
     # retorna true se tem, false se nao tem
-    banco = sql.connect('db.db')
+    banco = sql.connect('db.sqlite')
 
     cursor = banco.cursor()
 
-    cursor.execute('SELECT login FROM conta WHERE login = ?', (login,) )
+    cursor.execute('SELECT login FROM Conta WHERE login = ?', (login,) )
     retornar = cursor.fetchall()
     banco.commit()
     banco.close()
@@ -43,25 +42,73 @@ def login_in_data(login):
     print(retornar)
     
     return True if retornar else False
-def update_msg(login, msg):
-    banco = sql.connect('db.db')
+
+
+# get id 
+def get_id(login) -> int:
+    banco = sql.connect('db.sqlite')
+
+    cursor = banco.cursor()
+
+    cursor.execute("""
+                   SELECT id FROM Conta where login = ?
+                   """, (login, ))
+    
+    retornar  = cursor.fetchall()
+    banco.commit()
+    banco.close()
+    
+
+    retornar = retornar[0][0]
+    return retornar
+    
+def get_dataById(id) -> dict:
+    banco = sql.connect('db.sqlite')
+
+    cursor = banco.cursor()
+
+    cursor.execute("""
+                   SELECT * FROM Conta where id = ?
+                   """, (id, ))
+    retornar  = cursor.fetchall()
+    banco.commit()
+    banco.close()
+    
+    retornar = retornar[0]
+    retornar = dict(
+        id=retornar[0],
+        nome=retornar[1],
+        sobrenome=retornar[2],
+        login=retornar[3],
+        senha=retornar[4],
+        email=retornar[5],
+        frase=retornar[6])
+
+    
+    return retornar
+
+
+def update_msg(id, msg):
+    banco = sql.connect('db.sqlite')
     cursor = banco.cursor()
 
     cursor.execute('''
-                   UPDATE conta
+                   UPDATE Conta
                    SET frase = ?
-                   WHERE login = ?
+                   WHERE id = ?
 
-                   ''', (msg, login))
+                   ''', (msg, id))
     
     banco.commit()
     banco.close()
+    
+    
 def get_msg(login):
-    banco = sql.connect('db.db')
+    banco = sql.connect('db.sqlite')
 
     cursor = banco.cursor()
 
-    cursor.execute('SELECT frase FROM conta WHERE login = ?', (login, ))
+    cursor.execute('SELECT frase FROM Conta WHERE login = ?', (login, ))
     retornar = cursor.fetchall()
     banco.commit()
     banco.close()
@@ -71,7 +118,7 @@ def get_msg(login):
 
 
 def mostrar():
-    banco = sql.connect('db.db')
+    banco = sql.connect('db.sqlite')
 
     cursor = banco.cursor()
 
@@ -83,14 +130,16 @@ def mostrar():
 
 
 if __name__ == '__main__':
-    mostrar()
-    # add_data(nome='jonas3', sobrenome='teixeira', login='jonas3', senha='123', email='jonas@email.com')
-    mostrar()
-    print()
-    # get_senha('jonas')
-    # print(login_in_data('jonas'))
-    # update_msg('jonas', 'esta eh uma mensagem')
-    # print('=-=-=-=')
-    # get_msg('jonas')
     # mostrar()
-    print(get_senha('as'))
+    # add_data(nome='rafael', sobrenome='rardes', login='rafael123', senha='123', email='jonas@email.com')
+    # mostrar()
+
+
+    frase='so um teste 4'
+    update_msg(1, frase)
+    
+    data = get_dataById(1)    
+    for k, v in data.items():
+        print(f'{k}: {v}')
+    print()
+    print(get_id('jonas'))

@@ -44,10 +44,10 @@ class Principal(tk.Tk):
     def set_login(self, login):
         self.login = login
         
-    def show_acesso(self, login):
+    def show_acesso(self, id):
         # mostrar frame acesso
         self.fr_acesso.tkraise()
-        self.fr_acesso.start(login)
+        self.fr_acesso.display(id)
         
     def show_login(self):    
         # mostrar frame login

@@ -73,7 +73,8 @@ class FrLogin(ttk.Frame):
         if senhaDoSistema and senhaDoSistema == senha:
             print(Fore.GREEN+'acesso permitido', Fore.RESET)
             # self.controller.set_login(login)
-            self.controller.show_acesso(login)
+            id = u.get_id(login)
+            self.controller.show_acesso(id)
 
             
         else:

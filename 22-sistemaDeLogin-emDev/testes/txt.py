@@ -1,5 +1,4 @@
 
-from os import stat, stat_result
 import tkinter as tk               
 from tkinter import font as tkfont  
 from tkinter import ttk

@@ -13,7 +13,7 @@ class Principal(tk.Tk):
     
     def __init__(self):
         super().__init__()
-        self.geometry('450x450')
+        self.geometry('800x800')
         
 
         self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
@@ -42,6 +42,10 @@ class Principal(tk.Tk):
         # mostrar primeira frame (login)
         self.show_login()
         
+        
+        # esc para sair/ esc to exit
+        self.bind('<Escape>', lambda x: self.destroy())
+        
 
         
     def show_acesso(self, id):
@@ -52,6 +56,7 @@ class Principal(tk.Tk):
     def show_login(self):    
         # mostrar frame login
         self.fr_login.tkraise()
+        self.fr_login.lb_aviso.config(text='')
         
     def show_cadastro(self):
         # mostrar frame cadastro
@@ -60,6 +65,7 @@ class Principal(tk.Tk):
 
 def main():
     root = Principal()
+    
     root.mainloop()
         
 if __name__ == "__main__":

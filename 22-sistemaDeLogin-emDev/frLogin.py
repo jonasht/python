@@ -39,15 +39,18 @@ class FrLogin(ttk.Frame):
         self.bt_entrar = ttk.Button(self.lbfr_meio, text='Entrar', command=self.acessar)
         self.bt_limpar.grid(row=2, column=0, padx=3, pady=4, sticky=EW)
         self.bt_entrar.grid(row=2, column=1, padx=3, pady=4, sticky=EW)
-
+        
+        self.lb_aviso = ttk.Label(self.lbfr_meio, text='')
+        self.lb_aviso.grid(row=3, columnspan=2)
+        
+        
         self.lbfr_meio.pack(padx=3, pady=6)
+        self.lbfr_meio.config(padding=40)
 
         self.bt_cadastrar = ttk.Button(self, text='Cadastrar', width=34, command=self.controller.show_cadastro)
         self.bt_cadastrar.pack()
 
-        self.lb_aviso = ttk.Label(self, text='')
-        self.lb_aviso.pack()
- 
+
         self.etd_login.focus()
         
 
@@ -56,13 +59,13 @@ class FrLogin(ttk.Frame):
         login = self.etd_login.get()
         senha = self.etd_senha.get()
 
-        if login == '':
-            self.lb_aviso.config(text='por favor insira o login')
-        elif senha == '':
-            self.lb_aviso.config(text='por favor insira o senha')
+        if not login:
+            self.lb_aviso.config(text='por favor insira o login', foreground='red')
+            
+        elif not senha:
+            self.lb_aviso.config(text='por favor insira o senha', foreground='red')
         
         
-        print(login, senha)
         
         senhaDoSistema = u.get_senha(login)
         print('senhaDoSistema:', senhaDoSistema)
@@ -75,9 +78,9 @@ class FrLogin(ttk.Frame):
             self.controller.show_acesso(id)
 
             
-        else:
+        elif login and senha:
             print(Fore.RED+'acesso negado', Fore.RESET)
-            self.lb_aviso.config(text='senha ou login invalido')
+            self.lb_aviso.config(text='senha ou login invalido', foreground='red')
     
     def clean(self):
         self.etd_login.delete(0, END)
@@ -87,6 +90,7 @@ class FrLogin(ttk.Frame):
 if __name__ == '__main__':
     import main
     main.main()
+    
     # root = tk.Tk()
     # frame = FrLogin(root, None)
     # root.geometry('500x500')

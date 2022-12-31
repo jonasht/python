@@ -26,9 +26,10 @@ def init_db():
         print('ja existe')
     else:
         add_data(nome='admin', sobrenome='', login='admin', senha='123', email='')
-        add_data('jonas', 'jones', 'jonas', '123', 'jonas@email.com' )
+        add_data('jonas', 'joson', 'jonas', '123', 'jonas@email.com' )
+        
   
-    print('funcionando normalmente')
+
 
 
 def add_data(nome, sobrenome, login, senha, email):

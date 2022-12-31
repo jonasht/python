@@ -2,9 +2,9 @@
 from tkinter import font as tkfont  
 from tkinter import ttk
 import tkinter as tk
-from frAcesso import FrAcesso
-from frLogin import FrLogin
-from frCadastro import FrCadastro
+from frames.frAcesso import FrAcesso
+from frames.frLogin import FrLogin
+from frames.frCadastro import FrCadastro
 from uteis import init_db
 
 

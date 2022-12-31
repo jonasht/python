@@ -47,8 +47,9 @@ class FrLogin(ttk.Frame):
         self.lbfr_meio.pack(padx=3, pady=6)
         self.lbfr_meio.config(padding=40)
 
-        self.bt_cadastrar = ttk.Button(self, text='Cadastrar', width=34, command=self.controller.show_cadastro)
-        self.bt_cadastrar.pack()
+        self.bt_cadastrar = ttk.Button(self, text='Cadastrar', width=44, command=self.controller.show_cadastro)
+        
+        self.bt_cadastrar.pack(pady=20)
 
 
         self.etd_login.focus()
@@ -90,6 +91,7 @@ class FrLogin(ttk.Frame):
 if __name__ == '__main__':
     import main
     main.main()
+    
     
     # root = tk.Tk()
     # frame = FrLogin(root, None)

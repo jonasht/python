@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import NE, NSEW, ttk
 from tkinter.constants import BOTH, DISABLED, END, EW, N, NORMAL, NW, RIGHT, LEFT, S, TOP, W, X, Y
 from colorama.ansi import Fore
 import uteis as u
@@ -12,26 +12,28 @@ class FrAcesso(ttk.Frame):
         self.controller = controller
 
         # frames =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        self.fr_esquerdo = ttk.Frame(self)
-        self.fr_direito = ttk.Frame(self)
+        self.fr_cima = ttk.Frame(self)
 
-        self.lb_login = ttk.Label(self.fr_direito, text='login:')
+        self.lb_login = ttk.Label(self.fr_cima, text='login:')
         
-        self.bt_logout = ttk.Button(self.fr_direito, text='log out', command=self.logout)
+        self.bt_logout = ttk.Button(self.fr_cima, text='log out', command=self.logout)
         self.lb_login.grid(row=0, column=0, padx=3, pady=6)
-        self.bt_logout.grid(row=1, column=0, sticky=EW, padx=3, pady=6)
+        self.bt_logout.grid(row=0, column=1, sticky=EW, padx=3, pady=6)
         
-        self.lbfr_msg = ttk.Labelframe(self.fr_esquerdo, text='Mensagem')
-        self.txt_msg = tk.Text(self.lbfr_msg, width=30, height=10)
+        self.lbfr_msg = ttk.Labelframe(self, text='Mensagem')
+        self.txt_msg = tk.Text(self.lbfr_msg)
         self.bt_editar = ttk.Button(self.lbfr_msg, text='Editar', command=self.editar)
 
-        self.txt_msg.grid(row=0, column=0, padx=7, pady=6)
-        self.bt_editar.grid(row=1, column=0, padx=3, pady=3, sticky=EW)
+        self.txt_msg.grid(row=0, padx=7, pady=6, sticky=NSEW)
+        self.bt_editar.grid(row=1, padx=3, pady=3, sticky=NSEW)
 
-        self.lbfr_msg.grid(row=0, column=0, padx=3, pady=6)
-        
-        self.fr_esquerdo.pack(side=LEFT, anchor=N)
-        self.fr_direito.pack(side=TOP)
+        # self.lbfr_msg.grid(row=1, column=0, padx=3, pady=6, sticky=EW, columnspan=2)
+        self.fr_cima.pack(anchor=NE, padx=12)
+
+        self.lbfr_msg.pack(anchor='center')
+        self.lbfr_msg.config(padding=3)
+
+
 
         
 
@@ -45,7 +47,7 @@ class FrAcesso(ttk.Frame):
         data = u.get_dataById(id)
         
 
-        msg_login = f'bem vindo {data["nome"]}'
+        msg_login = f'bem vindo {data["nome"].title()} {data["sobrenome"].title()}'
         
         self.lb_login.config(text=msg_login)
         
@@ -59,7 +61,7 @@ class FrAcesso(ttk.Frame):
         else:
             self.limpar_txt()    
             
-        self.txt_msg.config(state=DISABLED, bg='gray')
+        self.txt_msg.config(state=DISABLED, bg='lightgray')
         
         
 
@@ -84,7 +86,7 @@ class FrAcesso(ttk.Frame):
             self.txt_msg.config(state=DISABLED)
             self.bt_editar.config(text='Editar')
 
-            self.txt_msg.config(bg='gray')
+            self.txt_msg.config(bg='lightgray')
 
         msg_data = u.get_dataById(self.id)['frase']
         msg = self.txt_msg.get('1.0', END)
@@ -103,14 +105,21 @@ class FrAcesso(ttk.Frame):
 
 
 if __name__ == '__main__':
-    # u.update_msg(1, 'esta é uma mensagem')
-    root = tk.Tk()
 
-    fr = FrAcesso(parent=root, controller=None)
+    # root = tk.Tk()
 
-    fr.display(1)
+    # fr = FrAcesso(parent=root, controller=None)
+
+    # fr.display(1)
     
-    fr.pack()
-    root.geometry('400x300')
+    # fr.pack()
+    # root.geometry('800x800')
+    # root.mainloop()
+    import main
+    
+    root = main.Principal()
+    
+    root.show_acesso(2)
     root.mainloop()
+
     

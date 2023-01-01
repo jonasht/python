@@ -1,8 +1,9 @@
-from tkinter import CENTER, EW, LEFT, RIGHT, Tk, ttk
+from tkinter import CENTER, EW, LEFT, RIGHT, TOP, Tk, ttk
 from PIL import ImageTk, Image
 from tkinter.constants import BOTH
 from nomePlacasList import nomePlaca as placaList
 from readDir import read_dir
+
 
 class Fr(ttk.Frame):
     def __init__(self, parent, con):
@@ -27,8 +28,9 @@ class Fr(ttk.Frame):
         
         self.render = ImageTk.PhotoImage(self.resize_img)
         
-        # self.img.config(self, image=self.render)
-        self.img.image = self.render
+        self.img.config(image=self.render)
+        # self.img.image = self.render
+        
         # img.place(x=0, y=0)
         # self.img.grid(row=0, column=0, sticky=EW, columnspan=1)
 
@@ -46,19 +48,42 @@ class App(Tk):
         self.fr_img.pack()
 
         # botoes 
-        self.bt1 = ttk.Button(self, text='<<<')
+        self.bt1 = ttk.Button(self, text='<<<', command=self.toLeft)
         self.bt2 = ttk.Button(self, text='>>>', command=self.toRight)
         
         self.bt1.pack(side=LEFT)
         self.bt2.pack(side=RIGHT)        
     
+        # default
+        self.lb_contador = ttk.Label(self, text='')
+        self.lb_contador.pack(side=TOP)
+
+        self.lb_contador.config(text=f'c: {self.contador+1}/{len(self.dir_imgList)}')
+
+        # teste apagar depois
+        self.contador = 48
+    
     def toRight(self):
+        if not ((self.contador +1) == len(self.dir_imgList)):
+            self.contador += 1
+        
+        
         nome_dir = self.dir_imgList[self.contador]
         self.fr_img.mostrar(nome_dir)
-        print('nome_dir:', nome_dir)
-        self.contador += 1
+        
+        self.lb_contador.config(text=f'c: {self.contador+1}/{len(self.dir_imgList)}')
 
-    
+
+    def toLeft(self):
+        if self.contador != 0:
+            self.contador -= 1
+        nome_dir = self.dir_imgList[self.contador]
+        self.fr_img.mostrar(nome_dir)
+        
+        print('contador:', self.contador)
+
+        self.lb_contador.config(text=f'c: {self.contador+1}/{len(self.dir_imgList)}')
+
 if __name__ == '__main__':
     app = App()
     app.geometry('500x500')

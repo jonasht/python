@@ -1,4 +1,8 @@
 import os
+
+
+
+
 def read_dir() -> list:
     pasta = './placasDeTransito'
     caminhos = [os.path.join(pasta, nome) for nome in os.listdir(pasta)]

@@ -55,4 +55,5 @@ if __name__ == '__main__':
     from colorama.ansi import Fore
     
     for k, i in nomePlaca.items():
-        print(f'{Fore.GREEN+k}:{Fore.BLUE+i+Fore.RESET}')
+        print(f'{Fore.GREEN+(k):>11}: {Fore.BLUE+i+Fore.RESET}')
+        

@@ -1,4 +1,7 @@
 from random import shuffle, choice, sample
+
+
+
 perguntasDic = {
     '1+1':'2',
     '1+2':'3',
@@ -20,14 +23,17 @@ class Fcards:
 
         self.perguntasShuffle = self.perguntas
         
+        
     def start(self):
         shuffle(self.perguntasShuffle)
+
 
     def get_pergunta(self):
         # return choice(self.perguntasShuffle)
         return self.perguntasShuffle[0]
         
-    def get_alternativa(self):
+        
+    def get_alternativa(self) -> list:
         perguntaAtual = self.perguntasShuffle[0]
         resposta = self.perguntasDic[perguntaAtual]
 
@@ -37,13 +43,14 @@ class Fcards:
         shuffle(alternativas)
 
         return alternativas
+    
 
-    def set_resposta(self, resposta):
+    def set_resposta(self, resposta) -> bool:
         print('=-'*30+'=')
         pergunta = self.perguntasShuffle[0]
-        print('r:', pergunta)
-        
-        if perguntasDic[pergunta] == resposta:
+        print('resposta:', pergunta)
+
+        if self.perguntasDic[pergunta] == resposta:
             del(self.perguntasShuffle[0])
             return True
         else:
@@ -63,11 +70,12 @@ if __name__ == '__main__': # fazendo testes
     
     fcards = Fcards(perguntasDic=perguntasDic)
     fcards.start()
+    
     def l(): # p deixar bonito
         print('=-'*30+'=')
         
+
     while fcards.working():
-        
         l()
         print(fcards.get_pergunta())
         alternativas = fcards.get_alternativa()
@@ -81,8 +89,10 @@ if __name__ == '__main__': # fazendo testes
             break
         r = int(r)
         system('clear')
+        
         if r > 2 or r < 0:
             print(Fore.RED+'error, somente 0 1 2 sao aceitos'+Fore.RESET)
+
         else:
             print('correto' 
                   if fcards.set_resposta(alternativas[r])

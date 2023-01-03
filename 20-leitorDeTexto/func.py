@@ -7,7 +7,7 @@ def read(txt:list):
     
     for linha in txt:
         frase = gtts.gTTS(linha, lang='pt-br')
-        frase.save('frase.mp3')
-        playsound('./frase.mp3')
+        frase.save('audio.mp3')
+        playsound('./audio.mp3')
         # playsound('./musica.mp3')
 

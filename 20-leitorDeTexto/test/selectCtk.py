@@ -8,7 +8,7 @@ lista = dict_idioms.values()
 print(lista)
 # print(dict_idioms)
 lista = list(lista)
-lista = lista[:20]
+lista = lista
 root = CTk()
 root.geometry('500x500')
 
@@ -20,7 +20,7 @@ cb.grid()
 def t_event(event):
     print(cb_var.get())
 
-cb.set('teste 1')
+cb.set(lista[0])
 cb.grid()
 
 root.bind('t', t_event)

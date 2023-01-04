@@ -2,22 +2,20 @@ from tkinter import Tk, ttk
 import customtkinter as ctk
 
 
-class Fr_alternativas(ctk.CTkFrame):
+class Fr_alternativas(ttk.Frame):
     def __init__(self, parent, con):
         super().__init__(parent)
         self.con = con
+        self.width_bts=100
+        
+        self.bt0 = ttk.Button(self, text='', command=lambda:self.event(0))
+        self.bt1 = ttk.Button(self, text='', command=lambda:self.event(1))
+        self.bt2 = ttk.Button(self, text='', command=lambda:self.event(2))
+        self.bt0.configure(width=self.width_bts)
+        self.bt1.configure(width=self.width_bts)
+        self.bt2.configure(width=self.width_bts)
 
-        self.bt0 = ctk.CTkButton(self, text='bt 0', command=lambda:self.event(0))
-        self.bt1 = ctk.CTkButton(self, text='bt 1', command=lambda:self.event(1))
-        self.bt2 = ctk.CTkButton(self, text='bt 2', command=lambda:self.event(2))
-        # self.bt3 = ttk.Button(self, text='bt 3', command=lambda:self.event(3))
-        
-        
-        
-        # self.bt0.grid(row=1, column=0)
-        # self.bt1.grid(row=2, column=0)
-        # self.bt2.grid(row=1, column=1)
-        # self.bt3.grid(row=2, column=1)
+
         self.bt0.grid(pady=10)
         self.bt1.grid(pady=10)
         self.bt2.grid(pady=10)
@@ -35,7 +33,7 @@ class Fr_alternativas(ctk.CTkFrame):
 
 if __name__ == '__main__':
     root = Tk()
-    root.geometry('500x500')
+    root.geometry('1000x500')
     frame = Fr_alternativas(root, root)
     frame.pack()
     

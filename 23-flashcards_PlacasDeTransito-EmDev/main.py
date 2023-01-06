@@ -1,4 +1,5 @@
-from tkinter import CENTER, TOP, Tk, ttk
+from tkinter import CENTER, TOP, Tk
+import ttkbootstrap as ttk 
 from fr_play import Fr_play
 
 

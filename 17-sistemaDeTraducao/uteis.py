@@ -33,7 +33,11 @@ def traduzir(texto, src, dest):
     src = DE qual idioma serah traduzido
     dest = PARA qual idioma serah traduzido
     '''
-    translator = Translator()
+    translator = Translator(service_urls=[
+      'translate.google.com',
+      'translate.google.com.br',
+    ])
+    
     resultado = translator.translate(text=texto, src=src, dest=dest)
 
     # print(resultado.text)

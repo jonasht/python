@@ -1,48 +1,45 @@
-from tkinter import *
+from tkinter import Tk
+import ttkbootstrap as ttk 
+from ttkbootstrap.constants import * 
+from utils import get_configGeometry
 from frameStart import FrameStart
 from frameMenu import FrameMenu
 
-class Principal(Tk):
 
-    def __init__(self, *args, **kwargs):
-        Tk.__init__(self, *args, **kwargs)
+
+class Principal(Tk):
+    def __init__(self):
+        super().__init__()
         self.frameStart_on = False
-        container = Frame(self)
+        container = ttk.Frame(self)
 
         
         self.title('FTabuada v5')
-        self.geometry('500x400')
         
-    
+        
+        self.lb_aviso = ttk.Label(self, text='q p/ sair', bootstyle=WARNING)
+        self.bt_voltar = ttk.Button(self, text='Voltar', bootstyle=OUTLINE,  command=lambda: self.show_frame('FrameMenu'))
 
-        
-        # botoes do topo da tela ====================================
-        self.frameVoltarSair = Frame(self)
-        
-        self.bt_voltar = Button(self.frameVoltarSair, 
-                                text='Voltar', width=15, font='arial 20 bold', 
-                                command=lambda: self.show_frame('FrameMenu')
-                                )
-        self.bt_sair = Button(self.frameVoltarSair, 
-                              text='Fechar X', width=20, 
-                              font='arial 20 bold',
-                              command=exit
-                              )
 
-        self.bt_voltar.pack(side=RIGHT)
-        self.bt_sair.pack(side=LEFT)
 
-        self.frameVoltarSair.pack(side=TOP) 
+        container.pack(expand=True)
+
+        self.bt_voltar.pack(side=BOTTOM, fill=X)
+        self.lb_aviso.pack(side=BOTTOM, anchor=SE)
+
+
+     
         
-        container.pack()
         
         self.frames = {}
+        
         for F in (FrameStart, FrameMenu):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
-            frame.grid(row=0, column=0, sticky="nsew")
-
+            
+            frame.grid(row=0, column=0, sticky=NSEW)
+            
 
         self.show_frame('FrameMenu')
         
@@ -75,6 +72,8 @@ class Principal(Tk):
         self.bind('<BackSpace>', self.teclaBackSpace)
         self.bind('q', self.tecla_q)
         self.bind('<Escape>', self.teclaESCape)
+        
+        
     def teclaEnter(self, event):
         if not(self.frameStart_on):
             self.show_frame('FrameStart')
@@ -85,53 +84,74 @@ class Principal(Tk):
             
     def tecla_q(self, event):
         exit()
+        
     def teclaESCape(self, event):
         if self.frameStart_on:
             self.show_frame('FrameMenu')
         else:
             exit()
+            
     def tecla1(self, event):
         if self.frameStart_on:
             self.frames['FrameStart'].tecla1(None)
         else:
-            self.frames['FrameMenu'].rbt1.select()
+            self.frames['FrameMenu'].var_1.set(not(self.frames['FrameMenu'].var_1.get()))
+            
+            
     def tecla2(self, event):
         if self.frameStart_on:
             self.frames['FrameStart'].tecla2(None)
         else:
-            self.frames['FrameMenu'].rbt2.select()
+            self.frames['FrameMenu'].var_2.set(not(self.frames['FrameMenu'].var_2.get()))
+            
     def tecla3(self, event):
         if self.frameStart_on:
             self.frames['FrameStart'].tecla3(None)
         else:
-            self.frames['FrameMenu'].rbt3.select()            
+            self.frames['FrameMenu'].var_3.set(not(self.frames['FrameMenu'].var_3.get()))            
 
     def tecla4(self, event):
-        self.frames['FrameMenu'].rbt4.select()            
+        self.frames['FrameMenu'].var_4.set(not(self.frames['FrameMenu'].var_4.get()))
+                    
     def tecla5(self, event):
-        self.frames['FrameMenu'].rbt5.select()            
+        self.frames['FrameMenu'].var_5.set(not(self.frames['FrameMenu'].var_5.get())) 
+                   
     def tecla6(self, event):
-        self.frames['FrameMenu'].rbt6.select()            
+        self.frames['FrameMenu'].var_6.set(not(self.frames['FrameMenu'].var_6.get())) 
+                   
     def tecla7(self, event):
-        self.frames['FrameMenu'].rbt7.select()            
+        self.frames['FrameMenu'].var_7.set(not(self.frames['FrameMenu'].var_7.get())) 
+                   
     def tecla8(self, event):
-        self.frames['FrameMenu'].rbt8.select()            
+        self.frames['FrameMenu'].var_8.set(not(self.frames['FrameMenu'].var_8.get()))  
+                  
     def tecla9(self, event):
-        self.frames['FrameMenu'].rbt9.select()            
+        self.frames['FrameMenu'].var_9.set(not(self.frames['FrameMenu'].var_9.get()))            
         
         
         
     def show_frame(self, nomeFrame):
-
-        frame = self.frames[nomeFrame]
-        frame.tkraise()
+        numbers = self.frames['FrameMenu'].get_numbers()
         
-        if nomeFrame == 'FrameStart':
+        print('numbers:', numbers)
+        
+        if nomeFrame == 'FrameStart' and numbers:
+            
+            frame = self.frames[nomeFrame]
+            frame.tkraise()
+            
+
             self.frameStart_on = True
-            frame.iniciar(self.frames['FrameMenu'].valor.get())
+            
+            frame.iniciar(self.frames['FrameMenu'].get_numbers())
+            
             self.bt_voltar.config(state=NORMAL)
 
         else:
+            frame = self.frames[nomeFrame]
+            frame.tkraise()
+            
+            
             self.frameStart_on = False
             self.bt_voltar.config(state=DISABLED)
 
@@ -140,6 +160,10 @@ class Principal(Tk):
             
 
 
-    
-root = Principal()
-root.mainloop()
+def main():    
+    root = Principal()
+    root.geometry(get_configGeometry(root, 1000, 800))
+    root.mainloop()
+
+if __name__ == '__main__':
+    main()

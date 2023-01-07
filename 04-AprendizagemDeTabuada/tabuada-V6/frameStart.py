@@ -1,38 +1,40 @@
 from tkinter import *
-from tkinter import ttk
+import ttkbootstrap as ttk
 from conta import ContaCards
 from random import shuffle, randint
 
 
-class FrameStart(Frame):
+class FrameStart(ttk.Frame):
         def __init__(self, parent, controller):
-                Frame.__init__(self, parent)
+                super().__init__(parent)
                 self.controller = controller
         
         
                 # label da conta ================================================
-                self.lb_conta = ttk.Label(self, text='=-=-=-=', width=5, foreground='red', font='arial 80 bold')
+                self.lb_conta = ttk.Label(self, text='', font='arial 220 bold')
 
                 # botoes de opcoes de questoes =====================================
-                self.bt0 = Button(self, text='', command=lambda: self.opcaoQuestao(1), font='arial 20 bold', width=5, borderwidth=2)
-                self.bt1 = Button(self, text='', command=lambda: self.opcaoQuestao(2), font='arial 20 bold', width=5, borderwidth=2)
-                self.bt2 = Button(self, text='', command=lambda: self.opcaoQuestao(3), font='arial 20 bold', width=5, borderwidth=2)
+                style = ttk.Style()
+                style.configure("TButton", font='arial 30 bold')
+                
+                self.bt0 = ttk.Button(self, text='', width=12, command=lambda: self.opcaoQuestao(1), style='TButton')
+                self.bt1 = ttk.Button(self, text='', width=12, command=lambda: self.opcaoQuestao(2), style='TButton')
+                self.bt2 = ttk.Button(self, text='', width=12, command=lambda: self.opcaoQuestao(3), style='TButton')
 
-                self.lb_doBt0 = ttk.Label(self, text='1', font='arial 20 bold', foreground='gray')
-                self.lb_doBt1 = ttk.Label(self, text='2', font='arial 20 bold', foreground='gray')
-                self.lb_doBt2 = ttk.Label(self, text='3', font='arial 20 bold', foreground='gray')
+                self.lb_doBt0 = ttk.Label(self, text='1', font='arial 8 bold', foreground='gray')
+                self.lb_doBt1 = ttk.Label(self, text='2', font='arial 8 bold', foreground='gray')
+                self.lb_doBt2 = ttk.Label(self, text='3', font='arial 8 bold', foreground='gray')
 
-                self.lb_validacao = ttk.Label(self, text='', width=5,
-                                          font='bold')
+                self.lb_validacao = ttk.Label(self, text='', width=5, font='bold')
                 
                 
-                self.lb_conta.grid(row=1, columnspan=3, sticky=W+E)
+                self.lb_conta.grid(row=0, column=0, columnspan=3)
 
                 
-                self.lb_validacao.grid(row=2, column=2, sticky=W+E)
-                self.bt0.grid(row=3, column=0,sticky=W+E)
-                self.bt1.grid(row=3, column=1,sticky=W+E)
-                self.bt2.grid(row=3, column=2,sticky=W+E)
+                self.lb_validacao.grid(row=2, column=2, sticky=EW)
+                self.bt0.grid(row=3, column=0, padx=1)
+                self.bt1.grid(row=3, column=1, padx=1)
+                self.bt2.grid(row=3, column=2, padx=1)
                 
                 self.lb_doBt0.grid(row=4, column=0)
                 self.lb_doBt1.grid(row=4, column=1)
@@ -49,7 +51,6 @@ class FrameStart(Frame):
                 
         def tecla1(self, event):
                 self.opcaoQuestao(1)
-                print('1')
                 
         def tecla2(self, event):
                 self.opcaoQuestao(2)
@@ -85,23 +86,23 @@ class FrameStart(Frame):
                    
         def opcaoQuestao(self, opcao=0):      
                 
-                if opcao == 1:
+                if opcao == 1: 
                         self.resposta(self.questao[0])
                 if opcao == 2:
                         self.resposta(self.questao[1])
                 if opcao == 3:
                         self.resposta(self.questao[2])
 
+
         def resposta(self, resultadoDado):
                 if self.resultado == resultadoDado:
-                        self.lb_validacao.config(text='correto',
-                                                 fg='green')
+                        self.lb_validacao.config(text='correto', bootstyle='success')
+                        
                         print(self.resultado, resultadoDado)
                         
                         self.conta.passar_vez(correto=True)
                 else:
-                        self.lb_validacao.config(text='incorreto',
-                                                 fg='red')
+                        self.lb_validacao.config(text='incorreto', bootstyle='danger')
                         print(self.resultado,resultadoDado)
                         
                         self.conta.passar_vez(correto=False)
@@ -126,10 +127,13 @@ class FrameStart(Frame):
                 
 
 if __name__ == '__main__':
-        import main
-        # root = Tk()
-        # frame = FrameStart(root, None)
-        # frame.pack()
-        # # frame.iniciar([8])
-        # frame.iniciar(6)
-        # root.mainloop()
+        from utils import get_configGeometry
+        root = Tk()
+        frame = FrameStart(root, None)
+        frame.pack()
+        # frame.iniciar([8])
+        root.geometry(get_configGeometry(root, 900, 500))
+        root.bind('q', lambda x: root.destroy())
+        
+        frame.iniciar(6)
+        root.mainloop()

@@ -1,9 +1,11 @@
-from tkinter import ttk, Tk
-from tkinter.constants import END, EW
+from tkinter import Tk
+import ttkbootstrap as ttk
+from ttkbootstrap.constants import *
 import pyperclip as pc 
 
-from frames.uteis import to_dec, dec_to_base
-# from uteis import to_dec, dec_to_base
+from frames.uteis import to_dec, dec_to_base, isDuodecimal
+
+
 
 class Fr_duodecimal(ttk.Frame):
     def __init__(self, parent, con):
@@ -12,7 +14,7 @@ class Fr_duodecimal(ttk.Frame):
         
         self.lbfr = ttk.LabelFrame(self, text='duodecimal')
         self.bt_copiar = ttk.Button(self.lbfr, text='Copiar', command=self.copiar)
-        self.etd = ttk.Entry(self.lbfr, width=30)
+        self.etd = ttk.Entry(self.lbfr, width=80)
         self.bt_colar = ttk.Button(self.lbfr, text='Colar', command=self.colar)
 
         self.etd.grid(row=0, column=0, columnspan=2, padx=6, pady=3)
@@ -24,12 +26,18 @@ class Fr_duodecimal(ttk.Frame):
 
     def evento(self, event):
         numero = self.etd.get()
-
-        numero = str(int(numero, 12)) if numero else ''
-        self.con.evento_duodecimal(numero)
+        if isDuodecimal(numero):
+            
+            numero = str(int(numero, 12)) if numero else ''
+            self.con.evento_duodecimal(numero)
+            self.etd.configure(bootstyle=PRIMARY)
+        else:
+            self.con.avisar('erro de digitaçao em duodecimal')
+            self.etd.configure(bootstyle=DANGER)
         
     def inserir(self, num):
         if num:
+
             num = to_dec(num)
 
             num = int(num)

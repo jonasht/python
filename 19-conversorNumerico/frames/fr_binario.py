@@ -1,5 +1,6 @@
-from tkinter import ttk, Tk
-from tkinter.constants import END, EW
+from tkinter import Tk
+import ttkbootstrap as ttk
+from ttkbootstrap.constants import *
 import pyperclip as pc 
 
 from frames.uteis import to_dec
@@ -11,7 +12,7 @@ class Fr_binario(ttk.Frame):
         
         self.lbfr = ttk.LabelFrame(self, text='binario')
         self.bt_copiar = ttk.Button(self.lbfr, text='Copiar', command=self.copiar)
-        self.etd = ttk.Entry(self.lbfr, width=30)
+        self.etd = ttk.Entry(self.lbfr, width=80)
         self.bt_colar = ttk.Button(self.lbfr, text='Colar', command=self.colar)
 
         self.etd.grid(row=0, column=0, columnspan=2, padx=6, pady=3)

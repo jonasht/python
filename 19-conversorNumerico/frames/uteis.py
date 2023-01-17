@@ -23,25 +23,36 @@ def to_dec(num):
     else:
         return num
 
+def isDuodecimal(nums: str) -> bool:
+    nums = nums.lower()
 
+    
+    #  se a lista nao tem 123456789ab, é duodec senao nao é duodec
+    r = list(filter(lambda n: not n.isnumeric() and n not in ['a', 'b'], nums))
+    return False if r else True 
 
 if __name__ == '__main__':
-    var = 10
-    print(var)
-    varbin = bin(var)
-    print(to_dec(varbin))
-    print()
+    # var = 10
+    # print(var)
+    # varbin = bin(var)
+    # print(to_dec(varbin))
+    # print()
 
-    varoct = oct(var)
-    print('oct:', varoct)
-    print('convertido:', to_dec(varoct))
-    print()
+    # varoct = oct(var)
+    # print('oct:', varoct)
+    # print('convertido:', to_dec(varoct))
+    # print()
 
-    varhex = hex(var)
-    print('hex:', varhex)
-    print('convertido:', to_dec(varhex))
-    print()
-    
+    # varhex = hex(var)
+    # print('hex:', varhex)
+    # print('convertido:', to_dec(varhex))
+    # print()
+    var=123
     varduo = dec_to_base(var, 12)
     print('duodecimal:', varduo)
     print('convertido:', int(varduo, 12))
+    print('convertido:', int('23a', 12))
+
+    
+    
+

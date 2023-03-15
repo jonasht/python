@@ -1,4 +1,4 @@
-from tkinter import Tk
+# from tkinter import Tk
 from ttkbootstrap import Window
 import ttkbootstrap as ttk 
 from ttkbootstrap.constants import *
@@ -88,6 +88,7 @@ def main():
     
     app = App()
     app.title('Paint canvas')
+    app.geometry('1200x900')
     app.mainloop()
 
 if __name__ == '__main__':

@@ -1,11 +1,12 @@
 from tkinter import Tk
+from ttkbootstrap import Window
 import ttkbootstrap as ttk 
 from ttkbootstrap.constants import *
 
 
 
 
-class App(Tk):
+class App(Window):
     def __init__(self):
         super().__init__()
 

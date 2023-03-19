@@ -1,4 +1,2 @@
-Pillow==9.4.0
 pyperclip==1.8.2
-ttkbootstrap==1.10.1
 validate-docbr==1.10.0

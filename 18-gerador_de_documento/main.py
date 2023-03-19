@@ -2,14 +2,14 @@ import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from ttkbootstrap import font, Window
 
-from frames.cnpj import Fr_CNPJ
-from frames.cpf import Fr_cpf
-from frames.cnh import Fr_CNH
-from frames.cns import Fr_CNS
-from frames.pis import Fr_PIS
-from frames.certidao import Fr_Certidao
-from frames.RENAVAM import Fr_RENAVAM
-from frames.tituloEleitoral import Fr_TituloEleitoral
+from labelframes.cnpj import Fr_CNPJ
+from labelframes.cpf import Fr_cpf
+from labelframes.cnh import Fr_CNH
+from labelframes.cns import Fr_CNS
+from labelframes.pis import Fr_PIS
+from labelframes.certidao import Fr_Certidao
+from labelframes.RENAVAM import Fr_RENAVAM
+from labelframes.tituloEleitoral import Fr_TituloEleitoral
 
 
 class GeradorMain(Window):

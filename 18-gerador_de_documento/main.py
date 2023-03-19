@@ -23,19 +23,16 @@ class GeradorMain(Window):
         self.lb_titulo = ttk.Label(self, text='Gerador de documentos | aperte q para sair')
         self.lb_titulo.configure(font='times 15 bold', foreground='dark gray')
 
-        # definindo frames left right =-=-=-=-=-=-=-=-=-=-=-=-=
-        self.fr_left = ttk.Frame(self)
-        self.fr_right = ttk.Frame(self)
-        
+        # botao gerar tudo 
+        self.bt_gerar = ttk.Button(self, text='gerar tudo', command=self.cmd_gerarTudo)
+
+        # definindo labelframes =-=-=-=-=-=-=-=-=-=-=-=-=
         self.fr_cpf = Fr_cpf(self)
         self.fr_cnpj = Fr_CNPJ(self)
         self.fr_cnh = Fr_CNH(self)
-        
         self.fr_cns = Fr_CNS(self)
         self.fr_pis = Fr_PIS(self)
-        
         self.fr_certidao = Fr_Certidao(self)
-
         self.fr_tituloEleitoral = Fr_TituloEleitoral(self)
         self.fr_renavam = Fr_RENAVAM(self)
         
@@ -51,10 +48,19 @@ class GeradorMain(Window):
         
         self.fr_tituloEleitoral.grid(row=1, column=2, padx=10, pady=7)
         self.fr_cnh.  grid(row=0, column=2, padx=10, pady=7)
-        self.lb_titulo.grid(row=3, column=0, columnspan=3)
+        self.lb_titulo.grid(row=3, column=0, columnspan=2)
+        self.bt_gerar.grid(row=3, column=2, sticky=EW, padx=10, pady=7)
         
-        self.bind('q', lambda x: self.quit())
-        
+        self.bind('q', lambda x: self.quit())padx=10, pady=7
+    def cmd_gerarTudo(self):
+        self.fr_cpf.gerar()
+        self.fr_cnpj.gerar()
+        self.fr_cnh.gerar()
+        self.fr_cns.gerar()
+        self.fr_pis.gerar()
+        self.fr_certidao.gerar()
+        self.fr_tituloEleitoral.gerar()
+        self.fr_renavam.gerar()
 
 #? colocar esse jeito de main eh regra 
 def main():

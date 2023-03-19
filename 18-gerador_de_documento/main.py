@@ -40,13 +40,13 @@ class GeradorMain(Window):
         self.fr_renavam = Fr_RENAVAM(self)
         
 
-        self.fr_cpf.  grid(row=0, column=0, padx=10, pady=7)
-        self.fr_cnpj. grid(row=1, column=0, padx=10, pady=7)
-        self.fr_cns.  grid(row=0, column=1, padx=10, pady=7)
-        self.fr_pis.  grid(row=1, column=1, padx=10, pady=7)
+        self.fr_cpf.  grid(row=0, column=0, padx=10, pady=4)
+        self.fr_cnpj. grid(row=1, column=0, padx=10, pady=4)
+        self.fr_cns.  grid(row=0, column=1, padx=10, pady=4)
+        self.fr_pis.  grid(row=1, column=1, padx=10, pady=4)
         
-        self.fr_certidao.  grid(row=2, column=0, padx=10, pady=7, columnspan=2)
-        self.fr_renavam.  grid(row=2, column=2, padx=10, pady=7)
+        self.fr_certidao.  grid(row=2, column=0, padx=10, pady=4, columnspan=2, sticky=EW)
+        self.fr_renavam.  grid(row=2, column=2, padx=10, pady=4)
 
         
         self.fr_tituloEleitoral.grid(row=1, column=2, padx=10, pady=7)

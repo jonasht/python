@@ -3,7 +3,7 @@ from ttkbootstrap.constants import *
 from validate_docbr import PIS
 import pyperclip as pc
 
-class Fr_PIS(ttk.Frame):
+class Fr_PIS(ttk.LabelFrame):
     def __init__(self, parent):
         super().__init__(parent)
 
@@ -12,17 +12,16 @@ class Fr_PIS(ttk.Frame):
         self.var = ttk.BooleanVar()
 
         #   PIS =================================================
-        self.lbfr = ttk.Labelframe(self, text='PIS', padding=20)
-        self.etd = ttk.Entry(self.lbfr)
-        self.bt_gerar = ttk.Button(self.lbfr, text='Gerar', command=self.gerar)
-        self.chbt_mask = ttk.Checkbutton(self.lbfr, text='mask', variable=self.var, command=self.chbt_Evento)
-        self.bt_copy = ttk.Button(self.lbfr, text='Copiar', command=self.copiar)
+        self.configure(text='PIS', padding=20)
+        self.etd = ttk.Entry(self)
+        self.bt_gerar = ttk.Button(self, text='Gerar', command=self.gerar)
+        self.chbt_mask = ttk.Checkbutton(self, text='mask', variable=self.var, command=self.chbt_Evento)
+        self.bt_copy = ttk.Button(self, text='Copiar', command=self.copiar)
         self.etd.grid(row=0, column=0, padx=2, pady=5, columnspan=2, sticky=EW)
         self.bt_gerar.grid(row=1, column=1, padx=2, pady=5, sticky=EW)
         self.chbt_mask.grid(row=1, column=2, padx=2, pady=5)
         self.bt_copy.grid(row=1, column=0, padx=2, pady=5, sticky=EW)
         
-        self.lbfr.pack()
         
         # gerando =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         self.gerar()

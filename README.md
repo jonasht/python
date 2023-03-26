@@ -1,4 +1,4 @@
-# esses codigos foram feitos, foram feitos para meu portfolio
+# esses codigos foram feitos para meu portfolio
 
 <hr>
 os codigos começaram a ser feitos quando eu comecei a aprender programar em python,

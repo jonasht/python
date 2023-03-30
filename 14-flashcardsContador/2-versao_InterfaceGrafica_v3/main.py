@@ -55,7 +55,6 @@ class Window(ttk.Window):
         self.bind('<Control_L>'+'<BackSpace>', self.tecla_ctrl_backspace)
         self.bind('<Control_R>'+'<BackSpace>', self.tecla_ctrl_backspace)
 
-        # self.rowPosition[0] = True
         self.rowPosition = [True, False]
         self.showRow()
         self.show()
@@ -75,7 +74,6 @@ class Window(ttk.Window):
     def open_topbar(self):
         self.toplevel = ttk.Toplevel(self)
         self.toplevel.geometry('500x400')
-        # q to exit
 
         self.lb_theme = ttk.tk.Label(self.toplevel, text="tema:")
 

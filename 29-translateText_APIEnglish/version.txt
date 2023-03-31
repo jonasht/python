@@ -1,1 +1,4 @@
-version first code
+author: jonasht
+version 1 first code
+version 2 adding chose file txt and save file (but Entry is not working yet)
+

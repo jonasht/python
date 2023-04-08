@@ -1,3 +1,6 @@
 author: jonasht
 version: 1.0 
 v2 - botoes colocar e apagar tudo
+v3 - abrir arquivos, mudar tema, tratamento de erros, 
+com verde para sucesso, e vermelho para error em tag no widget text
+

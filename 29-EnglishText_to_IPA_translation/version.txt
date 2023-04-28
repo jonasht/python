@@ -1,4 +1,4 @@
 author: jonasht
 version 1 first code
 version 2 adding chose file txt and save file (but Entry is not working yet)
-
+version 3 change grid to pack, fix bug geometry

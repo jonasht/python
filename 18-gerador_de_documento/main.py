@@ -51,7 +51,8 @@ class GeradorMain(Window):
         self.lb_titulo.grid(row=3, column=0, columnspan=2)
         self.bt_gerar.grid(row=3, column=2, sticky=EW, padx=10, pady=7)
         
-        self.bind('q', lambda x: self.quit())padx=10, pady=7
+        self.bind('q', lambda x: self.quit()) 
+        # padx=10, pady=7
     def cmd_gerarTudo(self):
         self.fr_cpf.gerar()
         self.fr_cnpj.gerar()
@@ -64,9 +65,10 @@ class GeradorMain(Window):
 
 #? colocar esse jeito de main eh regra 
 def main():
-    root = GeradorMain()
-    root.style.theme_use('darkly')
-    root.mainloop()
+    window = GeradorMain()
+    window.place_window_center()
+    window.style.theme_use('darkly')
+    window.mainloop()
     
 if __name__ == '__main__':
     main()

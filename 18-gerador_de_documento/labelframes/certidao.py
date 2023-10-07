@@ -16,9 +16,9 @@ class Fr_Certidao(ttk.LabelFrame):
         #   Certidao =================================================
         self.configure(text='Certidao', padding=20)
         self.etd = ttk.Entry(self, width=40)
-        self.bt_gerar = ttk.Button(self, text='Gerar', command=self.gerar)
-        self.chbt_mask = ttk.Checkbutton(self, text='mask', variable=self.var, command=self.chbt_Evento)
-        self.bt_copy = ttk.Button(self, text='Copiar', command=self.copiar)
+        self.bt_gerar = ttk.Button(self, text='Gerar',bootstyle=SUCCESS, command=self.gerar)
+        self.chbt_mask = ttk.Checkbutton(self, text='mask', variable=self.var, command=self.chbt_Evento, bootstyle="success-round-toggle")
+        self.bt_copy = ttk.Button(self, text='Copiar', bootstyle=INFO, command=self.copiar)
         
         self.etd.grid(row=0, column=0, padx=2, pady=5, columnspan=2, sticky=EW)
         self.bt_gerar.grid(row=1, column=1, padx=2, pady=5, sticky=EW)

@@ -77,6 +77,7 @@ def main():
     window.bind('<Escape>', lambda x: window.destroy())
     
     # grid()
+    
     window.geometry('600x500')
     window.title('Cotação de Moedas')
 

@@ -17,12 +17,12 @@ class Frame(ttk.Frame):
         self.line4 = ttk.Frame(self)
         
 
-        self.lb1 = ttk.Label(self.line1, text='english text:')
-        self.lb2 = ttk.Label(self.line1, text=':alphabet phonetic international')
+        self.lb1 = ttk.Label(self.line1, text='English Text:', font=('Arial', 16, 'bold'))
+        self.lb2 = ttk.Label(self.line1, text=':Alphabet Phonetic International', font=('Arial', 16, 'bold'))
         self.tt1 = ttk.Text(self.line2)
         self.tt2 = ttk.Text(self.line2)
         
-        self.bt_translate = ttk.Button(self.line3, text='Translate', padding=20)
+        self.bt_translate = ttk.Button(self.line3, text='Translate', bootstyle=SUCCESS, padding=20)
         self.bt_translate.configure(command=self.cmd_translate)
         self.lb1.config(bootstyle=INFO)
         self.lb2.config(bootstyle=INFO)        
@@ -30,7 +30,7 @@ class Frame(ttk.Frame):
         
         self.lb_file = ttk.Label(self.line4, text='file:')
         self.et_file = ttk.Entry(self.line4)
-        self.bt_file = ttk.Button(self.line4, text='Open file', command=self.cmd_open)
+        self.bt_file = ttk.Button(self.line4, text='Open file', bootstyle=INFO, command=self.cmd_open)
         
         self.lb_save = ttk.Label(self.line4, text='save:')
         self.et_save = ttk.Entry(self.line4)
@@ -94,7 +94,9 @@ class Frame(ttk.Frame):
 def main():
 
     window = ttk.Window()
-    window.style.theme_use('cyborg')
+    # window.style.theme_use('cyborg')
+    window.style.theme_use('darkly')
+    window.title('IPA Translation')
     # window.bind('q', lambda x: window.quit())
     window.bind('<Escape>', lambda x: window.quit())
     width = window.winfo_screenwidth()

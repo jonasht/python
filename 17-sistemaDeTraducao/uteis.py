@@ -1,5 +1,5 @@
-from googletrans import Translator
-from colorama.ansi import Fore
+from deep_translator import GoogleTranslator
+
 
 lang_values = {
     'af': 'africano',
@@ -27,23 +27,15 @@ def get_key(dic, value):
         if v == value:
             return k
         
-def traduzir(texto, src, dest):
+def traduzir(texto, src, target):
     '''
     texto = eh o texto para ser traduzido
     src = DE qual idioma serah traduzido
-    dest = PARA qual idioma serah traduzido
+    target = PARA qual idioma serah traduzido
     '''
-    translator = Translator(service_urls=[
-      'translate.google.com',
-      'translate.google.com.br',
-    ])
-    
-    resultado = translator.translate(text=texto, src=src, dest=dest)
-
-    # print(resultado.text)
-    return resultado.text
+    resultado = GoogleTranslator(source=src, target=target).translate(texto)
+    return resultado
 
 if __name__ == '__main__':
-    print(Fore.GREEN, end='')
-    print(traduzir(texto='ola mundo', src='pt', dest='en'))
-    print(Fore.RESET)
+    print(traduzir(texto='ola mundo', src='pt', target='en'))
+

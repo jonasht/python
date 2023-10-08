@@ -27,4 +27,6 @@ class Window(ttk.Window):
 if __name__ == '__main__':
     window = Window()
     window.style.theme_use('cyborg')
+    window.bind('<Escape>', lambda x: window.quit())
+    
     window.mainloop()

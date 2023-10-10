@@ -50,6 +50,7 @@ class Fr(ttk.Frame):
         self.txt1.bind('<KeyRelease>', self.put_color)
         self.txt2.bind('<KeyRelease>', self.put_color)
 
+        self.txt1.focus()
       
         
     def put_color(self, event):

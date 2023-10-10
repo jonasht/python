@@ -18,12 +18,15 @@ class App(Tk):
         Fr(self).pack()
         
         # aperte q para fechar a janela
-        self.bind('q', exit)
+        # self.bind('q', exit)
+        self.title('criptografia')
 
         
         
 def main():
     app = App()
+    app.bind('<Escape>', lambda x: app.quit())
+    
     app.mainloop()
 
     

@@ -1,8 +1,5 @@
-# from tkinter import ttk, Tk
-# from tkinter.constants import BOTTOM
 from frame import Interface
 from conta import Conta
-
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 
@@ -306,7 +303,7 @@ def main():
     window.geometry('600x350')
     window.resizable(False, False)
     window.mainloop()
-
+    
 
 if __name__ == '__main__':
     main()

@@ -1,9 +1,6 @@
-# from tkinter import Tk
 from ttkbootstrap import Window
 import ttkbootstrap as ttk 
 from ttkbootstrap.constants import *
-
-
 
 
 class App(Window):
@@ -88,8 +85,11 @@ def main():
     
     app = App()
     app.title('Paint canvas')
-    app.geometry('1200x900')
+    width = app.winfo_screenwidth()
+    height = app.winfo_screenheight()
+    app.geometry(f'{width}x{height}')
+    app.bind('<Escape>', lambda x: app.quit())
+    
     app.mainloop()
-
 if __name__ == '__main__':
     main()

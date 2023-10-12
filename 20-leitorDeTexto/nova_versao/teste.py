@@ -3,6 +3,8 @@ from ttkbootstrap.constants import *
 from PIL import Image, ImageTk
 
 window = ttk.Window()
+
+
 window.geometry('600x400')
 
 
@@ -18,7 +20,9 @@ photo_img = ImageTk.PhotoImage(image)
 bt.config(image=photo_img)
 bt.pack()
 
-
+print(window.style.theme_names())
 window.place_window_center()
 window.style.theme_use('cyborg')
 window.mainloop()
+
+

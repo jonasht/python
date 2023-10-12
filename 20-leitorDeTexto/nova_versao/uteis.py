@@ -1,13 +1,14 @@
 import gtts
 
 
+theme_names = ['cosmo', 'flatly', 'litera', 'minty', 
+               'lumen', 'sandstone', 'yeti', 'pulse', 
+               'united', 'morph', 'journal', 'darkly', 'superhero', 'solar', 'cyborg', 'vapor', 
+               'simplex', 'cerculean']
 
 def get_dict_idioms() -> dict:
     lang = gtts.lang.tts_langs()
 
-
-    
-    
     # invertando 
     lang = dict(zip(lang.values(), lang.keys()))
 
@@ -15,13 +16,20 @@ def get_dict_idioms() -> dict:
     lang['portugues Brasil'] = 'pt-br'
 
     return lang
+def write_theme(themeName=''):
+    file_name='./config.txt'
+    with open(file_name, 'w') as file:
+        file.write(themeName)
+
+def read_theme() -> str:
+    file_name='./config.txt'
+    with open(file_name, 'r') as file:
+        return file.read()
+    
+
 
 
 if __name__ == "__main__":
-    
-    langs = get_dict_idioms()
-    print(langs.keys())
-    print()
-    print(list(langs.keys()))
-
-    
+    # print(theme_names)
+    # print(list(lambda x: x.title(), theme_names))
+    print(list(map(lambda x: x.title(), theme_names)))

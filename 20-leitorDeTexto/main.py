@@ -1,3 +1,4 @@
+# version 2 
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from PIL import Image, ImageTk

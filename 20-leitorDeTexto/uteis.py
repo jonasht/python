@@ -1,10 +1,6 @@
 import gtts
 
 
-theme_names = ['cosmo', 'flatly', 'litera', 'minty', 
-               'lumen', 'sandstone', 'yeti', 'pulse', 
-               'united', 'morph', 'journal', 'darkly', 'superhero', 'solar', 'cyborg', 'vapor', 
-               'simplex', 'cerculean']
 
 def get_dict_idioms() -> dict:
     lang = gtts.lang.tts_langs()

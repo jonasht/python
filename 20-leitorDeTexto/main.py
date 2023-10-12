@@ -55,5 +55,9 @@ if __name__ == '__main__':
     root.bind('<Escape>', lambda x: root.destroy())
 
     fr.pack(anchor=CENTER, side=TOP)
-    root.geometry('1200x850')
+    # root.geometry('1200x850')
+    width = root.winfo_screenwidth()
+    height = root.winfo_screenheight()
+    root.geometry(f'{width}x{height}')
+    
     root.mainloop()

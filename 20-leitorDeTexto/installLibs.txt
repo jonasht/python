@@ -1,2 +1,5 @@
 =-= arch linux
 sudo pacman -S cairo pkgconf gobject-introspection gtk3
+
+=-= fedora linux
+sudo dnf install gobject-introspection-devel

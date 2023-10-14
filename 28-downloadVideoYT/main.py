@@ -5,30 +5,35 @@ from tkinter import filedialog
 from downloadVideo import download_yt
 import pyperclip as ppc
 import utils as u
+from PIL import Image, ImageTk
+ 
 
 class Root(Window):
     def __init__(self):
         super().__init__()
+        
         # put theme
         self.style.theme_use(u.get_configTheme())
 
-
         # frame botoes
-        self.fr_bts = ttk.Frame(self)
+        # self.fr_bts = ttk.Frame(self)
 
+        self.lb_title = ttk.Label(self, text='Put the Links for Downloading:', font=('15'))
         self.txt = ttk.Text(self, height=25) 
-        self.lb_title = ttk.Label(self, text='put the links for downloading:', font=('Arial', 20, 'bold'))
+        self.bt_delete = ttk.Button(self, text='Delete')
 
-        self.bt_paste = ttk.Button(self.fr_bts, text='Paste',  width=24, padding=45)
-        self.bt_download = ttk.Button(self.fr_bts, text='Download', width=20, padding=60)
-        self.bt_delete = ttk.Button(self.fr_bts, text='Delete', width=24, padding=45)
+        self.lb_lang = ttk.Label(self, text='Language:')
+        self.cb_lang = ttk.Combobox(self, )
+        self.bt_paste = ttk.Button(self, text='Paste')
+        self.bt_download = ttk.Button(self, text='Download')
 
+        # command button =-=-=-=-=-=-=
         self.bt_paste.configure(command=self.cmd_paste)
         self.bt_download.configure(command=self.cmd_download)
         self.bt_delete.configure(command=self.cmd_delete)
         
         
-        self.lb_aviso = ttk.Label(self, text='', font=('Arial', 15))
+        self.lb_aviso = ttk.Label(self, text='algo algo algo algo')
         self.lb_msg = ttk.Label(self, text='esc to exit', font=('Arial', 23, 'bold'))
 
         self.fr_file = ttk.Frame(self)
@@ -38,34 +43,37 @@ class Root(Window):
         
         self.bt_file.config(width=20)
         self.et_file.config(width=50)
+        
+        # button config
+        self.image = Image.open('./contexto.png')
+        self.image = self.image.resize((25, 25), Image.LANCZOS)
 
-        self.bt_config = ttk.Button(self, text='config', command=self.open_topbar)
+        self.imagetk = ImageTk.PhotoImage(self.image)
+        self.bt_config = ttk.Button(self, image=self.imagetk, command=self.open_topbar)
+
         
+
         self.lb_title.grid(row=0, column=0)
-        self.txt.grid(row=1, column=0, padx=20, pady=20, rowspan=2)
+        self.txt.grid(row=1, column=0, rowspan=3)
         
-        self.lb_msg.grid(row=2, column=1, padx=10)
-        self.lb_aviso.grid(row=3, column=0, columnspan=1)
+        self.bt_delete.grid(row=4, column=0, sticky=EW)
+        self.lb_aviso.grid(row=5, column=0, columnspan=1)
 
         # colocando botoes
-        self.bt_paste.grid(row=0, column=0, pady=10)
-        self.bt_download.grid(row=1, column=0, pady=10)
-        self.bt_delete.grid(row=2, column=0, pady=10)
-
-        self.fr_bts.grid(row=1, column=1, rowspan=1)
+        self.bt_paste.grid(row=1, column=1, pady=2)
+        self.bt_download.grid(row=2, column=1, pady=2)
+        self.lb_msg.grid(row=3, column=1, padx=10)
 
 
-        self.lb_file.grid(row=0, column=0, padx=6, pady=4)
-        self.et_file.grid(row=0, column=1, padx=6, pady=4)
-        self.bt_file.grid(row=0, column=2, padx=6, pady=4)
-        self.fr_file.grid(row=4, column=0, padx=6)
+
+        self.lb_file.grid(row=0, column=0)
+        self.et_file.grid(row=0, column=1)
+        self.bt_file.grid(row=0, column=2)
+        self.fr_file.grid(row=6, column=0)
         
-        self.bt_config.grid(row=4, column=1, sticky=EW, columnspan=1, padx=6)
+        self.bt_config.grid(row=4, column=1, sticky=E)
         
-        self.bt_paste.config(bootstyle=PRIMARY)
-        self.bt_download.config(bootstyle=SUCCESS)
-        self.bt_delete.config(bootstyle=DANGER)
-        self.bt_config.config(bootstyle=INFO)
+        self.bt_config.config(bootstyle=LINK)
         
     def change_theme(self, event):
         theme = self.cb.get()
@@ -75,20 +83,28 @@ class Root(Window):
         
     def open_topbar(self):
         self.toplevel = ttk.Toplevel(self)
-        self.toplevel.geometry('500x400')
+        self.toplevel.geometry('300x200')
 
-        self.lb_theme = ttk.tk.Label(self.toplevel, text="tema:")
+        self.fr_theme = ttk.Label(self.toplevel)
+
+        self.lb_theme = ttk.tk.Label(self.fr_theme, text='Theme:')
+
 
         cb_list = self.style.theme_names()
-        self.cb = ttk.Combobox(
-            self.toplevel, values=cb_list, bootstyle='success')
+        self.cb = ttk.Combobox( self.fr_theme, values=cb_list)
         self.cb.set(cb_list[cb_list.index(self.style.theme_use())])
 
+        self.bt_toplevel_exit = ttk.Button(self.toplevel, text='Exit')
 
-
-        self.lb_theme.pack()
-        self.cb.pack()
-
+        self.bt_toplevel_exit.config(command=lambda:self.toplevel.destroy())
+        self.bt_toplevel_exit.config(bootstyle=DANGER)
+        self.lb_theme.grid(row=0, column=0)
+        self.cb.grid(row=0, column=1)
+        self.fr_theme.pack(side=TOP)
+        self.bt_toplevel_exit.pack(side=BOTTOM, fill=BOTH)
+        
+        self.toplevel.bind('<Escape>', lambda x: self.toplevel.destroy())
+        
         self.cb.bind('<<ComboboxSelected>>', self.change_theme)
         
     def cmd_open(self):
@@ -172,6 +188,7 @@ def main():
     root = Root()
     root.title('download video youtube')
     root.place_window_center()
+    root.open_topbar()
     root.bind('<Escape>', lambda x: root.quit())
     root.mainloop()
 

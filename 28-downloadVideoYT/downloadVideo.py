@@ -17,3 +17,4 @@ def download_yt(link):
 if __name__ == '__main__':
     link = 'https://www.youtube.com/watch?v=vq8ve-5Gu3A'
     link = 'https://www.youtube.com/watch?v=WNeLUngb-Xg'
+    download_yt(link)

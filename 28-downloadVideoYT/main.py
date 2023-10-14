@@ -16,12 +16,12 @@ class Root(Window):
         # frame botoes
         self.fr_bts = ttk.Frame(self)
 
-        self.txt = ttk.Text(self, height=50) 
+        self.txt = ttk.Text(self, height=25) 
         self.lb_title = ttk.Label(self, text='put the links for downloading:', font=('Arial', 20, 'bold'))
 
-        self.bt_paste = ttk.Button(self.fr_bts, text='Paste',  width=24, padding=65)
-        self.bt_download = ttk.Button(self.fr_bts, text='Download', bootstyle=SUCCESS, width=20, padding=80)
-        self.bt_delete = ttk.Button(self.fr_bts, text='Delete', bootstyle=DANGER, width=24, padding=65)
+        self.bt_paste = ttk.Button(self.fr_bts, text='Paste',  width=24, padding=45)
+        self.bt_download = ttk.Button(self.fr_bts, text='Download', width=20, padding=60)
+        self.bt_delete = ttk.Button(self.fr_bts, text='Delete', width=24, padding=45)
 
         self.bt_paste.configure(command=self.cmd_paste)
         self.bt_download.configure(command=self.cmd_download)
@@ -61,8 +61,11 @@ class Root(Window):
         self.fr_file.grid(row=4, column=0, padx=6)
         
         self.bt_config.grid(row=4, column=1, sticky=EW, columnspan=1, padx=6)
-        # esc para sair
-        self.bind('<Escape>', lambda x: self.quit())
+        
+        self.bt_paste.config(bootstyle=PRIMARY)
+        self.bt_download.config(bootstyle=SUCCESS)
+        self.bt_delete.config(bootstyle=DANGER)
+        self.bt_config.config(bootstyle=INFO)
         
     def change_theme(self, event):
         theme = self.cb.get()
@@ -168,8 +171,8 @@ class Root(Window):
 def main():
     root = Root()
     root.title('download video youtube')
-
-    root.bind('q', lambda x: root.quit())
+    root.place_window_center()
+    root.bind('<Escape>', lambda x: root.quit())
     root.mainloop()
 
 if __name__ == '__main__':

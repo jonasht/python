@@ -18,12 +18,13 @@ class Root(Window):
         # frame botoes
         # self.fr_bts = ttk.Frame(self)
 
-        self.lb_title = ttk.Label(self, text='Put the Links for Downloading:', font=('15'))
+        self.lb_title = ttk.Label(self, text='Paste the Links for Downloading:', font=('15'))
         self.txt = ttk.Text(self, height=25) 
         self.bt_delete = ttk.Button(self, text='Delete')
 
         self.lb_lang = ttk.Label(self, text='Language:')
         self.cb_lang = ttk.Combobox(self, )
+        
         self.bt_paste = ttk.Button(self, text='Paste')
         self.bt_download = ttk.Button(self, text='Download')
 
@@ -36,13 +37,12 @@ class Root(Window):
         self.lb_aviso = ttk.Label(self, text='algo algo algo algo')
         self.lb_msg = ttk.Label(self, text='esc to exit', font=('Arial', 23, 'bold'))
 
-        self.fr_file = ttk.Frame(self)
-        self.lb_file = ttk.Label(self.fr_file, text='file:')
-        self.et_file = ttk.Entry(self.fr_file)
-        self.bt_file = ttk.Button(self.fr_file, text='Open file', command=self.cmd_open)
+        self.lb_file = ttk.Label(self, text='file:')
+        self.et_file = ttk.Entry(self)
+        self.bt_file = ttk.Button(self, text='Open file', command=self.cmd_open)
         
-        self.bt_file.config(width=20)
-        self.et_file.config(width=50)
+        # self.bt_file.config(width=20)
+        self.et_file.config(width=61)
         
         # button config
         self.image = Image.open('./contexto.png')
@@ -51,29 +51,32 @@ class Root(Window):
         self.imagetk = ImageTk.PhotoImage(self.image)
         self.bt_config = ttk.Button(self, image=self.imagetk, command=self.open_topbar)
 
+        # bootstyle buttons
+        self.bt_download.config(bootstyle=SUCCESS)
+        self.bt_delete.config(bootstyle=DANGER,)
         
 
-        self.lb_title.grid(row=0, column=0)
-        self.txt.grid(row=1, column=0, rowspan=3)
+        self.lb_title.grid(row=0, column=0, columnspan=2, sticky=W)
+        self.txt.grid(row=1, column=0, rowspan=3, columnspan=3)
         
-        self.bt_delete.grid(row=4, column=0, sticky=EW)
-        self.lb_aviso.grid(row=5, column=0, columnspan=1)
+        self.lb_lang.grid(row=0, column=2)
+        self.cb_lang.grid(row=0, column=3)
+        
+        self.bt_delete.grid(row=4, column=0, columnspan=3, sticky=EW)
+        self.lb_aviso.grid(row=5, column=0, columnspan=3)
 
         # colocando botoes
-        self.bt_paste.grid(row=1, column=1, pady=2)
-        self.bt_download.grid(row=2, column=1, pady=2)
-        self.lb_msg.grid(row=3, column=1, padx=10)
+        self.bt_paste.grid(row=1, column=3, sticky=NSEW)
+        self.bt_download.grid(row=2, column=3, rowspan=2, sticky=NSEW)
+        self.lb_msg.grid(row=4, column=3)
 
 
+        self.bt_config.grid(row=6, column=3, sticky=E)
 
-        self.lb_file.grid(row=0, column=0)
-        self.et_file.grid(row=0, column=1)
-        self.bt_file.grid(row=0, column=2)
-        self.fr_file.grid(row=6, column=0)
-        
-        self.bt_config.grid(row=4, column=1, sticky=E)
-        
-        self.bt_config.config(bootstyle=LINK)
+        self.lb_file.grid(row=6, column=0, sticky=E )
+        self.et_file.grid(row=6, column=1, sticky=EW)
+        self.bt_file.grid(row=6, column=2, sticky=EW)
+
         
     def change_theme(self, event):
         theme = self.cb.get()
@@ -84,6 +87,7 @@ class Root(Window):
     def open_topbar(self):
         self.toplevel = ttk.Toplevel(self)
         self.toplevel.geometry('300x200')
+        self.toplevel.title('config')
 
         self.fr_theme = ttk.Label(self.toplevel)
 
@@ -94,14 +98,14 @@ class Root(Window):
         self.cb = ttk.Combobox( self.fr_theme, values=cb_list)
         self.cb.set(cb_list[cb_list.index(self.style.theme_use())])
 
-        self.bt_toplevel_exit = ttk.Button(self.toplevel, text='Exit')
+        self.bt_toplevelQuit = ttk.Button(self.toplevel, text='Quit')
 
-        self.bt_toplevel_exit.config(command=lambda:self.toplevel.destroy())
-        self.bt_toplevel_exit.config(bootstyle=DANGER)
+        self.bt_toplevelQuit.config(command=lambda:self.toplevel.destroy())
+        self.bt_toplevelQuit.config(bootstyle=DANGER)
         self.lb_theme.grid(row=0, column=0)
         self.cb.grid(row=0, column=1)
         self.fr_theme.pack(side=TOP)
-        self.bt_toplevel_exit.pack(side=BOTTOM, fill=BOTH)
+        self.bt_toplevelQuit.pack(side=BOTTOM, fill=BOTH)
         
         self.toplevel.bind('<Escape>', lambda x: self.toplevel.destroy())
         
@@ -135,6 +139,7 @@ class Root(Window):
         self.txt.delete(1.0, END)
 
     def put_tags(self, error_lines):
+        pass
 
         lines = self.txt.get(1.0, END)
         lines = lines.split('\n')
@@ -162,33 +167,34 @@ class Root(Window):
         
         txt = self.txt.get(1.0, END)
         txt = txt.split('\n')
-        
+        print(txt)
+
         # remove all space ''
         while '' in txt: txt.remove('')
         
-        error_lines = list()
+        # error_lines = list()
         if txt:
       
             for i, t in enumerate(txt):
             
                     msg = download_yt(t)
-                    error_lines.append(msg)
+                    # error_lines.append(msg)
 
-            if msg:
-                self.lb_aviso.configure(text='download feito com sucesso', bootstyle=SUCCESS)
-            else:
-                self.lb_aviso.configure(text='ocorreu um erro', bootstyle=DANGER)
+        #     if msg:
+        #         self.lb_aviso.configure(text='download feito com sucesso', bootstyle=SUCCESS)
+        #     else:
+        #         self.lb_aviso.configure(text='ocorreu um erro', bootstyle=DANGER)
                 
         else:
             self.lb_aviso.configure(text='por favor coloque um link de video do youtube', bootstyle=WARNING)
 
         self.lb_aviso.configure(text='download feito com sucesso', bootstyle=SUCCESS)
-        self.put_tags(error_lines)
+        # self.put_tags(error_lines)
 def main():
     root = Root()
     root.title('download video youtube')
     root.place_window_center()
-    root.open_topbar()
+    # root.open_topbar()
     root.bind('<Escape>', lambda x: root.quit())
     root.mainloop()
 

@@ -22,7 +22,7 @@ class Fr_videos(ttk.Frame):
 
         self.title1 = ttk.Label(self, text='title:')
         self.title2 = ttk.Label(self, text=self.yt_title)
-        self.progressBar = ttk.Progressbar(self, length=400)
+        self.progressBar = ttk.Progressbar(self, length=200, maximum=100, mode=DETERMINATE, value=0)
         
 
 
@@ -37,14 +37,21 @@ class Fr_videos(ttk.Frame):
     def progress(self, stream, chunk, bytes_remaining):
         total_size = stream.filesize
         bytes_downloaded = total_size - bytes_remaining
-        percent = bytes_downloaded / total_size * 100
+        percent = int(bytes_downloaded / total_size * 100)
+
+        self.progressBar.config(value=percent)
+        self.progressBar.update()
+        
+        if percent == 100:
+            self.progressBar.config(bootstyle=SUCCESS,)
+            
 
         print(percent)
     def startDownload(self):
+        print('start download')
         video = self.yt.streams.get_highest_resolution()
         video.download()
         
-        print('start download')
         
 
         
@@ -52,12 +59,14 @@ if __name__ == '__main__':
     window = ttk.Window()
     # link = 'https://www.youtube.com/watch?v=_p2NvO6KrBs'
     link = 'https://www.youtube.com/watch?v=ZQ80_j3CXJQ'
-    
+    # link = 'https://www.youtube.com/watch?v=ytIZGsm1NXo'
     fr = Fr_videos(window, link)
     fr.pack()
     bt_download = ttk.Button(window, text='Download', bootstyle=SUCCESS, command=lambda: fr.startDownload())
     bt_download.pack()
     
+    bt_progress = ttk.Button(window, text='+10', command=lambda:fr.progressBar.step(10))
+    bt_progress.pack()
     window.bind('q', lambda x: window.quit())
     window.place_window_center()
     window.style.theme_use('cyborg')

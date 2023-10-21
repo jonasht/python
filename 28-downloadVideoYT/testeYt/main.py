@@ -8,7 +8,7 @@ from PIL import Image, ImageTk
 class Fr_videos(ttk.Frame):
     def __init__(self, parent, link) -> None:
         super().__init__(parent)
-        self.yt = YouTube(link)
+        self.yt = YouTube(link, on_progress_callback=self.progress)
         
         self.yt_title = self.yt.title
         util.download_image(thumbnail_url=self.yt.thumbnail_url, name=self.yt_title)
@@ -32,6 +32,14 @@ class Fr_videos(ttk.Frame):
         self.lb_image.grid(row=1, column=0, columnspan=2, sticky=W)
         self.progressBar.grid(row=2, column=0, columnspan=2)
 
+
+    # def progress(self, n1, n2, n3):
+    def progress(self, stream, chunk, bytes_remaining):
+        total_size = stream.filesize
+        bytes_downloaded = total_size - bytes_remaining
+        percent = bytes_downloaded / total_size * 100
+
+        print(percent)
     def startDownload(self):
         video = self.yt.streams.get_highest_resolution()
         video.download()
@@ -42,7 +50,9 @@ class Fr_videos(ttk.Frame):
         
 if __name__ == '__main__':
     window = ttk.Window()
-    link = 'https://www.youtube.com/watch?v=_p2NvO6KrBs'
+    # link = 'https://www.youtube.com/watch?v=_p2NvO6KrBs'
+    link = 'https://www.youtube.com/watch?v=ZQ80_j3CXJQ'
+    
     fr = Fr_videos(window, link)
     fr.pack()
     bt_download = ttk.Button(window, text='Download', bootstyle=SUCCESS, command=lambda: fr.startDownload())

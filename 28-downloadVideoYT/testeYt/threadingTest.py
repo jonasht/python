@@ -10,7 +10,7 @@ class Fr_ (ttk.Frame):
         
         
         self.lb_load = ttk.Label(self, text='')
-        self.progressbar = ttk.Progressbar(self, length=400, maximum=100, mode=DETERMINATE)
+        self.progressbar = ttk.Progressbar(self, length=200, maximum=100, mode=DETERMINATE)
 
         
         self.lb_load.grid(row=0, column=1)
@@ -26,7 +26,7 @@ class Fr_ (ttk.Frame):
         per = self.progressbar['value']
         if per >= 100:
             self.progressbar.config(bootstyle=SUCCESS,)
-            self.lb_load.config(text=f'100% completed', bootstyle=SUCCESS)
+            self.lb_load.config(text=f'completed', bootstyle=SUCCESS)
 
         # self.progressbar.config(value=100, bootstyle=SUCCESS)
         # self.progressbar.update()

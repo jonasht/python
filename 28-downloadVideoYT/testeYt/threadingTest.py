@@ -65,7 +65,6 @@ if __name__ == '__main__':
     
     
     window.style.theme_use('cyborg')
-    window.geometry('500x500')
     window.bind('q', lambda x: window.quit())
     window.bind('<Escape>', lambda x: window.quit())
 

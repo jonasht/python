@@ -9,7 +9,6 @@ from os import system
 from PIL import Image, ImageTk
 
 # =- delete all .mp4 and .jpg
-system('rm *.mp4')
 # system('rm video_image/*.jpg')
 
 
@@ -20,7 +19,7 @@ class Fr_videos(ttk.Frame):
         self.link = link
 
         self.yt_title = self.yt.title
-        util.download_image(thumbnail_url=self.yt.thumbnail_url, name=self.yt_title)
+        # util.download_image(thumbnail_url=self.yt.thumbnail_url, name=self.yt_title)
 
         self.image = Image.open(f'./video_image/{self.yt_title}.jpg')
         self.image = self.image.resize((180, 100), Image.LANCZOS)
@@ -33,17 +32,30 @@ class Fr_videos(ttk.Frame):
         self.progressBar = ttk.Progressbar(self, length=300, maximum=100, mode=DETERMINATE, value=0)
         
         # size_video = self.yt.streams.get_by_itag(17).filesize
-        size_highResolution = self.yt.streams.get_highest_resolution().filesize
-        size_highResolution = util.format_bytes(size_highResolution)
-        self.lb_size = ttk.Label(self, text=f'size:{size_highResolution}')
+        
+        self.var_cb = ttk.StringVar()
+        self.cb = ttk.Combobox(self,textvariable=self.var_cb,state=READONLY, bootstyle=SUCCESS,)
+        filesize_high = 31408912
+        filesize_high = util.format_bytes(filesize_high)
+        
+        filesize_low = 16608912
+        filesize_low = util.format_bytes(filesize_low)
+        self.cb_values = list()
+        self.cb_values.append(f'{filesize_high} high')
+        self.cb_values.append(f'{filesize_low} low')
+        
+        self.cb.config(values=self.cb_values)
+        self.cb.set(self.cb_values[0])
+        
+        self.lb_size = ttk.Label(self, text=f'size:{filesize_high}')
 
 
 
-        self.lb_image.grid(row=0, column=0, rowspan=2)
-        self.title2.grid(row=0, column=2)
-        self.lb_size.grid(row=0, column=3)
-
-        self.progressBar.grid(row=1, column=1, columnspan=2)
+        self.lb_image.grid(row=0, column=0, rowspan=4)
+        self.title2.grid(row=0, column=1)
+        # self.lb_size.grid(row=1, column=1)
+        self.cb.grid(row=1, column=1)
+        self.progressBar.grid(row=3, column=1, columnspan=2)
 
 
     def progress(self, stream, chunk, bytes_remaining):

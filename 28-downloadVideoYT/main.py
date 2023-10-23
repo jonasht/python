@@ -23,7 +23,7 @@ class Root(Window):
         self.bt_delete = ttk.Button(self, text='Delete')
 
         self.lb_lang = ttk.Label(self, text='Language:')
-        self.cb_lang = ttk.Combobox(self, )
+        self.cb_lang = ttk.Combobox(self, state=DISABLED)
         
         self.bt_paste = ttk.Button(self, text='Paste')
         self.bt_download = ttk.Button(self, text='Download')
@@ -34,7 +34,7 @@ class Root(Window):
         self.bt_delete.configure(command=self.cmd_delete)
         
         
-        self.lb_aviso = ttk.Label(self, text='algo algo algo algo')
+        self.lb_aviso = ttk.Label(self, text='')
         self.lb_msg = ttk.Label(self, text='esc to exit', font=('Arial', 23, 'bold'))
 
         self.lb_file = ttk.Label(self, text='file:')
@@ -49,7 +49,7 @@ class Root(Window):
         self.image = self.image.resize((25, 25), Image.LANCZOS)
 
         self.imagetk = ImageTk.PhotoImage(self.image)
-        self.bt_config = ttk.Button(self, image=self.imagetk, command=self.open_topbar)
+        self.bt_config = ttk.Button(self, image=self.imagetk, command=self.open_topbar, bootstyle=LINK)
 
         # bootstyle buttons
         self.bt_download.config(bootstyle=SUCCESS)

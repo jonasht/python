@@ -4,10 +4,17 @@
 
 class Languages:
     def __init__(self) -> None:
-        self.pt = dict(bt_1='botao um',
-                       lb_1='label um',
-                       lb_2='label dois')
-
+        self.pt = dict(lb_title='Cole os links para baixar:',
+                       bt_delete='Apagar',
+                       lb_lang='Idioma:',
+                       bt_paste='Colar',
+                       bt_download='Baixar',
+                       lb_msg='Esc p Sair',
+                       lb_file='arquivo:',
+                       bt_file='Abrir Arquivo',
+                       lb_theme='Tema:',
+                       toplevel_title='config',
+                       bt_toplevelQuit='Fechar')
                        
         self.en = dict(lb_title='Paste the Links for Downloading',
                        bt_delete='Delete',
@@ -64,12 +71,12 @@ class Languages:
         return self.lang_dict['bt_toplevelQuit']
 
     def set_lang(self, lang):
-        if lang == 'en':
+        if lang == 'en' or lang == 'english':
             self.lang_dict = self.en.copy()
-            self.language = 'en'
-        elif lang == 'pt':
+            self.language = 'english'
+        elif lang == 'pt' or lang == 'portuguese':
             self.lang_dict = self.pt.copy()
-            self.language = 'pt'
+            self.language = 'portuguese'
 
 if __name__ == '__main__':
     l = Languages()

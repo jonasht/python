@@ -6,27 +6,33 @@ from downloadVideo import download_yt
 import pyperclip as ppc
 import utils as u
 from PIL import Image, ImageTk
- 
+
+from lang import Languages 
 
 class Root(Window):
     def __init__(self):
         super().__init__()
-        
+        self.l = Languages()
         # put theme
         self.style.theme_use(u.get_configTheme())
 
         # frame botoes
         # self.fr_bts = ttk.Frame(self)
 
-        self.lb_title = ttk.Label(self, text='Paste the Links for Downloading:', font=('15'))
+        self.lb_title = ttk.Label(self, text=self.l.lb_title, font=('15'))
         self.txt = ttk.Text(self, height=25) 
-        self.bt_delete = ttk.Button(self, text='Delete')
+        self.bt_delete = ttk.Button(self, text=self.l.bt_delete)
 
-        self.lb_lang = ttk.Label(self, text='Language:')
-        self.cb_lang = ttk.Combobox(self, state=DISABLED)
+        self.lb_lang = ttk.Label(self, text=self.l.lb_lang)
+        self.var_cbLang = ttk.StringVar()
+        self.cb_lang = ttk.Combobox(self, state=READONLY, textvariable=self.var_cbLang, bootstyle=SUCCESS)
+        self.cb_lang.config(values=self.l.languages)
+        self.cb_lang.set(self.l.language)
+        self.cb_lang.bind('<<ComboboxSelected>>', self.change_lang)
         
-        self.bt_paste = ttk.Button(self, text='Paste')
-        self.bt_download = ttk.Button(self, text='Download')
+        
+        self.bt_paste = ttk.Button(self, text=self.l.bt_paste)
+        self.bt_download = ttk.Button(self, text=self.l.bt_download)
 
         # command button =-=-=-=-=-=-=
         self.bt_paste.configure(command=self.cmd_paste)
@@ -35,11 +41,11 @@ class Root(Window):
         
         
         self.lb_aviso = ttk.Label(self, text='')
-        self.lb_msg = ttk.Label(self, text='esc to exit', font=('Arial', 23, 'bold'))
+        self.lb_msg = ttk.Label(self, text=self.l.lb_msg, font=('Arial', 23, 'bold'))
 
-        self.lb_file = ttk.Label(self, text='file:')
+        self.lb_file = ttk.Label(self, text=self.l.lb_file)
         self.et_file = ttk.Entry(self)
-        self.bt_file = ttk.Button(self, text='Open file', command=self.cmd_open)
+        self.bt_file = ttk.Button(self, text=self.l.bt_file, command=self.cmd_open)
         
         # self.bt_file.config(width=20)
         self.et_file.config(width=61)
@@ -77,7 +83,29 @@ class Root(Window):
         self.et_file.grid(row=6, column=1, sticky=EW)
         self.bt_file.grid(row=6, column=2, sticky=EW)
 
+    # change languages portuguese and english
+    def change_lang(self, event):
+        lang = self.var_cbLang.get()
+        # if lang == 'english':
+            # self.l.set_lang('en')
+        # elif lang == 'portuguese':
+            # self.l.set_lang('pt')
+        # change language
+        self.l.set_lang(lang)
         
+        self.lb_title.config(text=self.l.lb_title)
+        self.bt_delete.config(text=self.l.bt_delete)
+        self.lb_lang.config(text=self.l.lb_lang)
+        self.bt_paste.config(text=self.l.bt_paste)
+        self.bt_download.config(text=self.l.bt_download)
+        self.lb_msg.config(text=self.l.lb_msg)
+        self.lb_file.config(text=self.l.lb_file)
+        self.bt_file.config(text=self.l.bt_file)
+        
+        # self.toplevel.title(self.l.toplevel_title)
+        # self.lb_theme = ttk.tk.Label(self.fr_theme, text=self.l.lb_theme)
+        # self.bt_toplevelQuit = ttk.Button(self.toplevel, text=self.l.bt_toplevelQuit)
+
     def change_theme(self, event):
         theme = self.cb.get()
         print(theme)
@@ -87,18 +115,18 @@ class Root(Window):
     def open_topbar(self):
         self.toplevel = ttk.Toplevel(self)
         self.toplevel.geometry('300x200')
-        self.toplevel.title('config')
+        self.toplevel.title(self.l.toplevel_title)
 
         self.fr_theme = ttk.Label(self.toplevel)
 
-        self.lb_theme = ttk.tk.Label(self.fr_theme, text='Theme:')
+        self.lb_theme = ttk.tk.Label(self.fr_theme, text=self.l.lb_theme)
 
 
         cb_list = self.style.theme_names()
-        self.cb = ttk.Combobox( self.fr_theme, values=cb_list)
+        self.cb = ttk.Combobox( self.fr_theme, values=cb_list, state=READONLY, bootstyle=SUCCESS)
         self.cb.set(cb_list[cb_list.index(self.style.theme_use())])
 
-        self.bt_toplevelQuit = ttk.Button(self.toplevel, text='Quit')
+        self.bt_toplevelQuit = ttk.Button(self.toplevel, text=self.l.bt_toplevelQuit)
 
         self.bt_toplevelQuit.config(command=lambda:self.toplevel.destroy())
         self.bt_toplevelQuit.config(bootstyle=DANGER)

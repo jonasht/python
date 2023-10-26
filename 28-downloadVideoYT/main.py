@@ -6,8 +6,10 @@ from downloadVideo import download_yt
 import pyperclip as ppc
 import utils as u
 from PIL import Image, ImageTk
-
+import time 
 from lang import Languages 
+from pytube import YouTube
+import threading
 
 class Root(Window):
     def __init__(self):
@@ -21,6 +23,8 @@ class Root(Window):
 
         self.lb_title = ttk.Label(self, text=self.l.lb_title, font=('15'))
         self.txt = ttk.Text(self, height=25) 
+        self.progressBar = ttk.Progressbar(self, length=300, maximum=100, mode=DETERMINATE, value=0)
+
         self.bt_delete = ttk.Button(self, text=self.l.bt_delete)
 
         self.lb_lang = ttk.Label(self, text=self.l.lb_lang)
@@ -68,8 +72,9 @@ class Root(Window):
         self.lb_lang.grid(row=0, column=2)
         self.cb_lang.grid(row=0, column=3)
         
-        self.bt_delete.grid(row=4, column=0, columnspan=3, sticky=EW)
-        self.lb_aviso.grid(row=5, column=0, columnspan=3)
+        self.progressBar.grid(row=4, column=0, columnspan=3, sticky=EW)
+        self.bt_delete.grid(row=5, column=0, columnspan=3, sticky=EW)
+        self.lb_aviso.grid(row=6, column=0, columnspan=3)
 
         # colocando botoes
         self.bt_paste.grid(row=1, column=3, sticky=NSEW)
@@ -77,11 +82,11 @@ class Root(Window):
         self.lb_msg.grid(row=4, column=3)
 
 
-        self.bt_config.grid(row=6, column=3, sticky=E)
+        self.bt_config.grid(row=7, column=3, sticky=E)
 
-        self.lb_file.grid(row=6, column=0, sticky=E )
-        self.et_file.grid(row=6, column=1, sticky=EW)
-        self.bt_file.grid(row=6, column=2, sticky=EW)
+        self.lb_file.grid(row=7, column=0, sticky=E )
+        self.et_file.grid(row=7, column=1, sticky=EW)
+        self.bt_file.grid(row=7, column=2, sticky=EW)
 
     # change languages portuguese and english
     def change_lang(self, event):
@@ -92,7 +97,7 @@ class Root(Window):
             # self.l.set_lang('pt')
         # change language
         self.l.set_lang(lang)
-        
+
         self.lb_title.config(text=self.l.lb_title)
         self.bt_delete.config(text=self.l.bt_delete)
         self.lb_lang.config(text=self.l.lb_lang)
@@ -161,7 +166,7 @@ class Root(Window):
         else:
             self.txt.insert(END, '\n'+paste+'\n')
             
-
+    
 
     def cmd_delete(self):
         self.txt.delete(1.0, END)
@@ -189,35 +194,68 @@ class Root(Window):
             else:
                 self.txt.tag_config(name, foreground='red')
                 
- 
+    def disabled(self):
+        self.bt_config.config(state=DISABLED)
+        self.bt_delete.config(state=DISABLED)
+        self.bt_download.config(state=DISABLED)
+        self.bt_file.config(state=DISABLED)
+        self.bt_paste.config(state=DISABLED)
+        self.txt.config(state=DISABLED)
+        self.et_file.config(state=DISABLED)
+        
+    def normal(self):
+        self.bt_config.config(state=NORMAL)
+        self.bt_delete.config(state=NORMAL)
+        self.bt_download.config(state=NORMAL)
+        self.bt_file.config(state=NORMAL)
+        self.bt_paste.config(state=NORMAL)
+        self.txt.config(state=NORMAL)
+        self.et_file.config(state=NORMAL)
+
     def cmd_download(self):
+        thread = threading.Thread(target=self.disabled)
+        thread.start()
+        th2 = threading.Thread(target=self.download)
+        th2.start()
+        
+    def download(self):
+
         self.lb_aviso.configure(text='download, wait', bootstyle=WARNING)
         
-        txt = self.txt.get(1.0, END)
-        txt = txt.split('\n')
-        print(txt)
+        self.links = self.txt.get(1.0, END)
+        self.links = self.links.split('\n')
+        # print(txt)
 
         # remove all space ''
-        while '' in txt: txt.remove('')
+        while '' in self.links: self.links.remove('')
         
-        # error_lines = list()
-        if txt:
-      
-            for i, t in enumerate(txt):
+        
+
+        for link in self.links:
+            yt = YouTube(link, on_progress_callback=self.loading)
+            video = yt.streams.get_highest_resolution()
+            video.download()
+
+        self.normal()
+        self.lb_aviso.config(bootstyle=SUCCESS, text='download completed')
+        
+    def loading(self, stream, chunk, bytes_remaining):
+        
+        total_size = stream.filesize
+        bytes_downloaded = total_size - bytes_remaining
+        percent = int(bytes_downloaded / total_size * 100)
+
+        self.progressBar.config(value=percent)
+        self.progressBar.update()
+        
+        if percent == 100:
+            self.progressBar.config(bootstyle=SUCCESS)
+            self.progressBar.update()
+            time.sleep(.1)
+            self.progressBar.config(bootstyle=WARNING, value=0)
+            self.progressBar.update()
             
-                    msg = download_yt(t)
-                    # error_lines.append(msg)
-
-        #     if msg:
-        #         self.lb_aviso.configure(text='download feito com sucesso', bootstyle=SUCCESS)
-        #     else:
-        #         self.lb_aviso.configure(text='ocorreu um erro', bootstyle=DANGER)
-                
-        else:
-            self.lb_aviso.configure(text='por favor coloque um link de video do youtube', bootstyle=WARNING)
-
-        self.lb_aviso.configure(text='download feito com sucesso', bootstyle=SUCCESS)
-        # self.put_tags(error_lines)
+        
 def main():
     root = Root()
     root.title('download video youtube')
@@ -225,7 +263,12 @@ def main():
     # root.open_topbar()
     root.bind('<Escape>', lambda x: root.quit())
     root.mainloop()
+    
+    
 
 if __name__ == '__main__':
+    # apagar todos os videos
+    import os
+    os.system('rm *.mp4')
     main()
     

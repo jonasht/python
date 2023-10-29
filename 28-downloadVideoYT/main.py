@@ -18,14 +18,18 @@ class Root(Window):
         # put theme
         self.style.theme_use(u.get_configTheme())
 
-        # frame botoes
-        # self.fr_bts = ttk.Frame(self)
-
-        self.lb_title = ttk.Label(self, text=self.l.lb_title, font=('15'))
-        self.txt = ttk.Text(self, height=25) 
-        self.progressBar = ttk.Progressbar(self, length=300, maximum=100, mode=DETERMINATE, value=0)
-
-        self.bt_delete = ttk.Button(self, text=self.l.bt_delete)
+        # frame center 
+        self.fr_center = ttk.Frame(self)
+        # frame delete and frame progressBar
+        self.fr_delete = ttk.Frame(self.fr_center)
+        self.fr_progressBar = ttk.Frame(self.fr_center)
+        
+        self.lb_title = ttk.Label(self.fr_center, text=self.l.lb_title, font=('15'))
+        self.txt = ttk.Text(self.fr_center, height=25) 
+        self.progressBar = ttk.Progressbar(self.fr_progressBar, length=300, maximum=100, mode=DETERMINATE, value=0)
+        self.lb_percent = ttk.Label(self.fr_progressBar, text=f'  0%')
+        
+        self.bt_delete = ttk.Button(self.fr_delete, text=self.l.bt_delete)
 
         self.lb_lang = ttk.Label(self, text=self.l.lb_lang)
         self.var_cbLang = ttk.StringVar()
@@ -35,8 +39,8 @@ class Root(Window):
         self.cb_lang.bind('<<ComboboxSelected>>', self.change_lang)
         
         
-        self.bt_paste = ttk.Button(self, text=self.l.bt_paste)
-        self.bt_download = ttk.Button(self, text=self.l.bt_download)
+        self.bt_paste = ttk.Button(self.fr_center, text=self.l.bt_paste)
+        self.bt_download = ttk.Button(self.fr_center, text=self.l.bt_download)
 
         # command button =-=-=-=-=-=-=
         self.bt_paste.configure(command=self.cmd_paste)
@@ -44,8 +48,8 @@ class Root(Window):
         self.bt_delete.configure(command=self.cmd_delete)
         
         
-        self.lb_aviso = ttk.Label(self, text='')
-        self.lb_msg = ttk.Label(self, text=self.l.lb_msg, font=('Arial', 23, 'bold'))
+        self.lb_aviso = ttk.Label(self.fr_center, text='')
+        self.lb_msg = ttk.Label(self.fr_center, text=self.l.lb_msg, font=('Arial', 23, 'bold'))
 
         self.lb_file = ttk.Label(self, text=self.l.lb_file)
         self.et_file = ttk.Entry(self)
@@ -72,8 +76,21 @@ class Root(Window):
         self.lb_lang.grid(row=0, column=2)
         self.cb_lang.grid(row=0, column=3)
         
-        self.progressBar.grid(row=4, column=0, columnspan=3, sticky=EW)
-        self.bt_delete.grid(row=5, column=0, columnspan=3, sticky=EW)
+        self.progressBar.grid(row=0, column=0, columnspan=3, sticky=EW)
+        self.lb_percent.grid(row=0, column=1)
+        self.fr_progressBar.grid(row=4, column=0, columnspan=3, sticky=NSEW)
+        
+        self.bt_delete.grid(row=0, column=0, sticky=EW)
+        self.fr_delete.grid(row=4, column=0, columnspan=3, sticky=NSEW)
+        
+        # sticky frames delete progressbar
+        self.fr_progressBar.columnconfigure(0, weight=1)
+        self.fr_progressBar.rowconfigure(0, weight=1)
+        self.fr_delete.columnconfigure(0, weight=1)
+        self.fr_delete.rowconfigure(0, weight=1)
+        self.fr_delete.tkraise()
+
+        
         self.lb_aviso.grid(row=6, column=0, columnspan=3)
 
         # colocando botoes
@@ -81,7 +98,7 @@ class Root(Window):
         self.bt_download.grid(row=2, column=3, rowspan=2, sticky=NSEW)
         self.lb_msg.grid(row=4, column=3)
 
-
+        self.fr_center.grid(row=1, column=0, columnspan=4)
         self.bt_config.grid(row=7, column=3, sticky=E)
 
         self.lb_file.grid(row=7, column=0, sticky=E )
@@ -213,11 +230,12 @@ class Root(Window):
         self.et_file.config(state=NORMAL)
 
     def cmd_download(self):
+        self.fr_progressBar.tkraise()
         thread = threading.Thread(target=self.disabled)
         thread.start()
         th2 = threading.Thread(target=self.download)
         th2.start()
-        
+
     def download(self):
 
         self.lb_aviso.configure(text='download, wait', bootstyle=WARNING)
@@ -229,6 +247,7 @@ class Root(Window):
         # remove all space ''
         while '' in self.links: self.links.remove('')
         
+        self.lb_percent.config(text=f'{str(0):>3}%{len(self.links)}')
         
 
         for link in self.links:
@@ -238,6 +257,7 @@ class Root(Window):
 
         self.normal()
         self.lb_aviso.config(bootstyle=SUCCESS, text='download completed')
+        self.fr_delete.tkraise()
         
     def loading(self, stream, chunk, bytes_remaining):
         
@@ -245,15 +265,20 @@ class Root(Window):
         bytes_downloaded = total_size - bytes_remaining
         percent = int(bytes_downloaded / total_size * 100)
 
+        self.lb_percent.config(text=f'{str(percent):>3}%')
         self.progressBar.config(value=percent)
         self.progressBar.update()
+        qtd_download = len(self.links)
         
         if percent == 100:
             self.progressBar.config(bootstyle=SUCCESS)
             self.progressBar.update()
-            time.sleep(.1)
+            self.lb_percent.config(text=f'{str(100):>3}%{qtd_download}', bootstyle=SUCCESS)
+
+            time.sleep(.5)
             self.progressBar.config(bootstyle=WARNING, value=0)
             self.progressBar.update()
+            self.lb_percent.config(text=f'{str(0):>3}%{qtd_download}', bootstyle=WARNING)
             
         
 def main():

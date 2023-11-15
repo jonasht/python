@@ -4,3 +4,5 @@ v2 - botoes colocar e apagar tudo
 v3 - abrir arquivos, mudar tema, tratamento de erros, 
 com verde para sucesso, e vermelho para error em tag no widget text
 v3.1 - arrumado bug para trocar de tema quando nao ha config
+v3.2 - arrumado bug de clicar varias vezes no botao config e ir abrindo,
+janela config agora aparece no meio

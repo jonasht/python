@@ -135,7 +135,17 @@ class Root(Window):
         u.set_configTheme(self.style.theme_use())
         
     def open_topbar(self):
+        # disabled bt config
+        self.bt_config.config(state=DISABLED)
+        
+        
+        # func destroy toplevel
+        def toplevel_destroy(event=None):
+            self.toplevel.destroy()
+            self.bt_config.config(state=NORMAL)
+
         self.toplevel = ttk.Toplevel(self)
+        self.toplevel.place_window_center()
         self.toplevel.geometry('300x200')
         self.toplevel.title(self.l.toplevel_title)
 
@@ -150,14 +160,14 @@ class Root(Window):
 
         self.bt_toplevelQuit = ttk.Button(self.toplevel, text=self.l.bt_toplevelQuit)
 
-        self.bt_toplevelQuit.config(command=lambda:self.toplevel.destroy())
+        self.bt_toplevelQuit.config(command=toplevel_destroy)
         self.bt_toplevelQuit.config(bootstyle=DANGER)
         self.lb_theme.grid(row=0, column=0)
         self.cb.grid(row=0, column=1)
         self.fr_theme.pack(side=TOP)
         self.bt_toplevelQuit.pack(side=BOTTOM, fill=BOTH)
         
-        self.toplevel.bind('<Escape>', lambda x: self.toplevel.destroy())
+        self.toplevel.bind('<Escape>', toplevel_destroy)
         
         self.cb.bind('<<ComboboxSelected>>', self.change_theme)
         

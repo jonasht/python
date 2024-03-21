@@ -14,7 +14,7 @@ class Fr_Certidao(ttk.LabelFrame):
         self.var = BooleanVar()
 
         #   Certidao =================================================
-        self.configure(text='Certidao', padding=20)
+        self.configure(text='Certidão', padding=20)
         self.etd = ttk.Entry(self, width=40)
         self.bt_gerar = ttk.Button(self, text='Gerar',bootstyle=SUCCESS, command=self.gerar)
         self.chbt_mask = ttk.Checkbutton(self, text='mask', variable=self.var, command=self.chbt_Evento, bootstyle="success-round-toggle")

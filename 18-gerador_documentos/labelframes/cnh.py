@@ -15,9 +15,9 @@ class Fr_CNH(ttk.Labelframe):
 
         #   CNH =================================================
         self.configure(text='CNH', padding=20)
-        self.etd = ttk.Entry(self)
+        self.etd = ttk.Entry(self, justify=CENTER, font=('arial 12 bold'))
         self.bt_gerar = ttk.Button(self, text='Gerar', bootstyle=SUCCESS, command=self.gerar)
-        self.chbt_mask = ttk.Checkbutton(self, text='mask', variable=self.var, bootstyle="success-round-toggle", command=self.chbt_Evento)
+        self.chbt_mask = ttk.Checkbutton(self, text='Mascara', variable=self.var, bootstyle="success-round-toggle", command=self.chbt_Evento)
         self.bt_copy = ttk.Button(self, text='Copiar', bootstyle=INFO, command=self.copiar)
         
         self.etd.grid(row=0, column=0, padx=2, pady=5, columnspan=2, sticky=EW)

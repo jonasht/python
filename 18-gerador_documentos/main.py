@@ -33,7 +33,7 @@ class GeradorMain(Window):
 
         
         # button config
-        self.image = Image.open('./contexto.png')
+        self.image = Image.open('./img/contexto.png')
         self.image = self.image.resize((25, 25), Image.LANCZOS)
 
         self.imagetk = ImageTk.PhotoImage(self.image)
@@ -44,7 +44,7 @@ class GeradorMain(Window):
         self.bt_gerar = ttk.Button(self.fr_doc, text='gerar tudo',bootstyle=SUCCESS, command=self.cmd_gerarTudo)
 
         # checkbutton colocar maskara em tudo
-        self.chb_mask = ttk.Checkbutton(self.fr_doc, text='mask', variable=self.var, command=self.chb_event, bootstyle="success-round-toggle")
+        self.chb_mask = ttk.Checkbutton(self.fr_doc, text='Mask Tudo', variable=self.var, command=self.chb_event, bootstyle="success-round-toggle")
 
         # definindo labelframes =-=-=-=-=-=-=-=-=-=-=-=-=
         self.fr_cpf = Fr_cpf(self.fr_doc)
@@ -74,7 +74,7 @@ class GeradorMain(Window):
         self.lb_titulo.grid(row=3, column=0, columnspan=2)
         self.bt_gerar.grid(row=3, column=2, sticky=EW, padx=10, pady=7)
         self.chb_mask.grid(row=4, column=2, sticky=E)
-
+        
         # colocando a frame doc principal
         self.fr_doc.grid(row=1, column=0)
         # colocan bt config
@@ -83,7 +83,10 @@ class GeradorMain(Window):
         self.bind('q', lambda x: self.quit()) 
         self.bind('<Escape>', lambda x: self.quit()) 
         # set theme config
+
+
         self.style.theme_use(u.get_configTheme())
+        self.change_theme_lbTitle()
     def chb_event(self):
         var = True if self.var.get() else False
         self.fr_cpf.var.set(var)
@@ -127,16 +130,26 @@ class GeradorMain(Window):
         self.fr_certidao.gerar()
         self.fr_tituloEleitoral.gerar()
         self.fr_renavam.gerar()
-
+    def change_theme_lbTitle(self):
+        pass
+        theme = self.style.theme_use()
+        if theme == 'darkly' or theme == 'cyborg':
+            self.lb_titulo.configure(font='times 14 bold', foreground='dark gray')
+        elif theme == 'solar':
+            self.lb_titulo.configure(font='times 14 bold', foreground='white')
+        else:
+            self.lb_titulo.configure(font='times 14 bold', foreground='gray')
+# superhero
     def change_theme(self, event):
         theme = self.cb.get()
+        self.change_theme_lbTitle()
         self.style.theme_use(theme)
         u.set_configTheme(self.style.theme_use())
         
     def open_topbar(self):
         # disabled bt config
         self.bt_config.config(state=DISABLED)
-        self.state_all(DISABLED)
+        # self.state_all(DISABLED)
         
         
         # func close toplevel
@@ -147,16 +160,16 @@ class GeradorMain(Window):
             
             self.toplevel.destroy()
             self.bt_config.config(state=NORMAL)
-            self.state_all(NORMAL)
+            # self.state_all(NORMAL)
 
         self.toplevel = ttk.Toplevel(self)
         self.toplevel.place_window_center()
-        self.toplevel.geometry('300x200')
-        self.toplevel.title('config tema')
+        self.toplevel.geometry('300x180')
+        self.toplevel.title('Config Tema')
 
         self.fr_theme = ttk.Label(self.toplevel)
 
-        self.lb_theme = ttk.tk.Label(self.fr_theme, text='tema:')
+        self.lb_theme = ttk.tk.Label(self.fr_theme, text='Tema:')
 
 
         cb_list = self.style.theme_names()

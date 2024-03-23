@@ -81,6 +81,7 @@ class GeradorMain(Window):
         self.bt_config.grid(row=0, column=0, sticky=E)
 
         self.bind('q', lambda x: self.quit()) 
+        self.bind('<Escape>', lambda x: self.quit()) 
         # set theme config
         self.style.theme_use(u.get_configTheme())
     def chb_event(self):

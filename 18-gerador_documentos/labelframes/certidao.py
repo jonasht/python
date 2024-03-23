@@ -29,8 +29,14 @@ class Fr_Certidao(ttk.LabelFrame):
         # gerando =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         self.gerar()
 
-        # desativando checkbox
-        # self.chbt_mask.state(['!alternate'])
+        self.bind('<Enter>', self.enter_lbfr)
+        self.bind('<Leave>', self.leave_lbfr)
+        
+    def enter_lbfr(self, event=None):
+        self.config(bootstyle=SUCCESS)
+        
+    def leave_lbfr(self, event=None):
+        self.config(bootstyle=NORMAL)
         
     def gerar(self):
         self.etd.delete(0, END)
@@ -44,7 +50,6 @@ class Fr_Certidao(ttk.LabelFrame):
         pc.copy(self.etd.get())
 
     def chbt_Evento(self):
-        
         if self.var.get():
             self.etd.delete(0, END)
             self.etd.insert(0, self.Certidao.mask(self.Certidao_num))
@@ -52,7 +57,16 @@ class Fr_Certidao(ttk.LabelFrame):
             self.etd.delete(0, END)
             self.etd.insert(0, self.Certidao_num)
 
+    def state(self, var):
+        self.bt_copy.config(state=var)
+        self.bt_gerar.config(state=var)
+        self.chbt_mask.config(state=var)
+        self.etd.config(state=var)
+        
 if __name__ == '__main__':
     app = ttk.Window()
-    fr = Fr_Certidao(app).pack()
+    fr = Fr_Certidao(app)
+    fr.pack()
+  
+    
     app.mainloop()

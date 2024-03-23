@@ -25,7 +25,14 @@ class Fr_PIS(ttk.LabelFrame):
         
         # gerando =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         self.gerar()
-
+        self.bind('<Enter>', self.enter_lbfr)
+        self.bind('<Leave>', self.leave_lbfr)
+        
+    def enter_lbfr(self, event=None):
+        self.config(bootstyle=SUCCESS)
+        
+    def leave_lbfr(self, event=None):
+        self.config(bootstyle=NORMAL)
         
     def gerar(self):
         self.etd.delete(0, END)
@@ -45,3 +52,8 @@ class Fr_PIS(ttk.LabelFrame):
             self.etd.delete(0, END)
             self.etd.insert(0, self.PIS_num)
 
+    def state(self, var):
+        self.bt_copy.config(state=var)
+        self.bt_gerar.config(state=var)
+        self.chbt_mask.config(state=var)
+        self.etd.config(state=var)

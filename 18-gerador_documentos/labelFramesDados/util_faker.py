@@ -2,7 +2,7 @@ from faker import Faker
 from random import choice
 from datetime import datetime
 
-FAKE = Faker('pt_BR')
+FAKE = Faker('pt_br')
 
 
 

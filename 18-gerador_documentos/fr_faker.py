@@ -22,7 +22,10 @@ class Fr_faker(ttk.Frame):
         self.et_fone = ttk.Entry(self.fr_left)
         self.et_email = ttk.Entry(self.fr_left)
         self.et_dataNasc = ttk.Entry(self.fr_left)
-
+        self.bt_nomeCopy = ttk.Button(self.fr_left, text='Copy')
+        self.bt_foneCopy = ttk.Button(self.fr_left, text='Copy')
+        self.bt_emailCopy = ttk.Button(self.fr_left, text='Copy')
+        self.bt_dataNascCopy = ttk.Button(self.fr_left, text='Copy')
         # frame right ==================
         self.lb_rua = ttk.Label(self.fr_right, text='Rua:')
         self.lb_numero = ttk.Label(self.fr_right, text='Número:')

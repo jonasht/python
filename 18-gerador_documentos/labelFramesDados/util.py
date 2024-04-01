@@ -44,7 +44,8 @@ def remove_things(word:str) -> str:
         'ĉ':'c',
         'ŝ':'s',
         'ĵ':'j',
-        
+        'ẑ':'z',
+        'ź':'z',
 
         'dra\.\s': '',
         'dr\.\s': '',
@@ -61,43 +62,35 @@ def remove_things(word:str) -> str:
 
 # gera um email utilizando nome
 def generate_email(nome:str='', date:str=''):
-    if not nome: nome = FAKER.name()
 
     nome = nome.lower()
     nome = remove_things(nome)
-    nome = nome.split(' ')
-    # print(nome)
-    q:list = [True, False]
-    if choice(q):
-        if choice(q):
-            for i, n in enumerate(nome):
-                if choice(q) and i == 0:
-                    nome[0] = n[:2]
-                elif choice(q):
-                    nome[i] = n[:4]
-                else:
-                    nome[i] = n[:3]
-        elif choice(q):
-            nome[0] = nome[0][:2]
-
-    # data de nascimento
+    nome_list = nome.split(' ')
     
-    date = date.split(('/' if '/' in date else '-'))
+    q = [True, False]
     if choice(q):
-            date = date[0] if len(date[0]) == 4 else date[-1]
+        nome = nome_list[0] + '.' + nome_list[-1]
+    elif choice(q):
+        nome = nome_list[0][:2] + '.' + nome_list[-1]
+    elif choice(q):
+        nome = nome_list[0][:3] + '.' + nome_list[-1]
+    elif choice(q):
+        nome = nome_list[0][:2] + '.' + nome_list[-1][:2]
+    elif choice(q):
+        nome = nome_list[0][:2] + '.' + nome_list[-1][:3]
     else:
-         date = ''
-    #   -------------------
-    
-    if choice(q):
-        nome = nome[0], nome[-1]
-        nome = '.'.join(nome)
-    else:
-        nome = ''.join(nome)
-    
-    return nome +date+'@' + choice(EMAIL_LINKS)
+        nome = nome_list[0] + nome_list[-1]
+        # nome = ''.join(nome_list)
+    print(date)
 
+    
+    print('data:', date)
+    if False:
+        nome = nome + date
 
+    print(nome)
+    email = f'{nome}@{choice(EMAIL_LINKS)}'
+    return email
 
 def gen_date():
     dia = str(randint(0, 30))
@@ -106,33 +99,10 @@ def gen_date():
     return f'{dia}/{mes}/{ano}'
 
 
-
-
-
-# for i in range(200):
-#     date = gen_date()
-#     nome = FAKER.name()
-#     email = generate_email(nome, date)
-#     print('email:', email)
-#     print(' nome:', nome)
-#     print('----------------------')
-
-for _ in range(10):
-    email = generate_email()
-    print('|>'+email+'<|')
-    print('-'*len(email)+'----')
-
-# nome = 'Dra. Letícia da Costa'
-# email = generate_email(nome)
-# print(email)
-# nome = 'Sr. Daniel Rocha'
-# email = generate_email(nome)
-# print(email, nome)
-# nome = 'Dr. Luiz Otávio da Costa'
-# email = generate_email(nome)
-# print(email, '|nome:' + nome)
-# nome = 'Srta. Alice Sales'
-# email = generate_email(nome)
-# print(email, '|nome:' + nome)
-# Ana Laura Rocha
-
+if __name__ == '__main__':
+    nome = 'jórge henrique teixeira'
+    data = gen_date()
+    email = generate_email(nome, data)
+    print(email)
+    import email
+    email.main()

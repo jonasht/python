@@ -35,7 +35,7 @@ class Fr_nome(ttk.Labelframe):
         
     def gerar(self):
         self.et.delete(0, END)
-        self.et.insert(0, self.faker.name())
+        self.et.insert(0, self.faker.phone_number())
         
 
     def copiar(self):

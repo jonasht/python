@@ -2,13 +2,15 @@ import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 
 import pyperclip as pc
-
+import util
 
 
 class Fr_nome(ttk.Labelframe):
-    def __init__(self, parent, faker, nome):
+    def __init__(self, parent, faker, nome, data):
         super().__init__(parent)
         self.faker = faker
+        self.nome:str = nome
+        self.data:str = nome
 
         #   Nome =================================================
         self.configure(text='Nome', padding=20)
@@ -23,6 +25,7 @@ class Fr_nome(ttk.Labelframe):
         
         # gerando =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         self.gerar()
+
         self.bind('<Enter>', self.enter_lbfr)
         self.bind('<Leave>', self.leave_lbfr)
         
@@ -32,10 +35,12 @@ class Fr_nome(ttk.Labelframe):
         
     def leave_lbfr(self, event=None):
         self.config(bootstyle=NORMAL)
-        
+
+
     def gerar(self):
+        email = util.generate_email(self.nome, self.data)
+        print('email:', email)
         self.et.delete(0, END)
-        email = nome.replace(' ', '') +'@' + choice(self.emails_links)
         self.et.insert(0, email)
         
 
@@ -44,15 +49,21 @@ class Fr_nome(ttk.Labelframe):
 
 
 
-if __name__ == '__main__':
+
+def main():
     from faker import Faker
     faker = Faker('pt-br')
 
     window = ttk.Window()
     window.place_window_center()
-    fr = Fr_nome(window, faker, faker.name())
+    nome='jorge teixeira'
+    data = util.gen_date()
+    fr = Fr_nome(window, faker, nome, data)
+
     fr.pack()
-    fr.et.config(width=25)
+    fr.et.config(width=45)
     window.style.theme_use('cyborg')
     window.bind('q', lambda x: window.quit())
     window.mainloop()
+if __name__ == '__main__':
+    main()

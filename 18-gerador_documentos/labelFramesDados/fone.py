@@ -5,13 +5,13 @@ import pyperclip as pc
 
 
 
-class Fr_nome(ttk.Labelframe):
+class Lbfr_fone(ttk.Labelframe):
     def __init__(self, parent, faker):
         super().__init__(parent)
         self.faker = faker
 
-        #   Nome =================================================
-        self.configure(text='Nome', padding=20)
+        #   Telefone =================================================
+        self.configure(text='Telefone', padding=20)
         self.et = ttk.Entry(self)
         self.bt_gerar = ttk.Button(self, text='Gerar', bootstyle=SUCCESS, command=self.gerar)
         self.bt_copy = ttk.Button(self, text='Copiar', bootstyle=INFO, command=self.copiar)
@@ -25,7 +25,9 @@ class Fr_nome(ttk.Labelframe):
         self.gerar()
         self.bind('<Enter>', self.enter_lbfr)
         self.bind('<Leave>', self.leave_lbfr)
-        
+
+    def get_et(self) -> str:
+        return self.et.get()
 
     def enter_lbfr(self, event=None):
         self.config(bootstyle=SUCCESS)

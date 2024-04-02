@@ -5,10 +5,11 @@ import pyperclip as pc
 
 
 
-class Fr_dataNasci(ttk.Labelframe):
-    def __init__(self, parent, faker):
+class Lbfr_dataNasci(ttk.Labelframe):
+    def __init__(self, parent, faker, controller):
         super().__init__(parent)
         self.faker = faker
+        self.controller = controller
 
         #   dataNasci =================================================
         self.configure(text='DataDeNascimento', padding=20)
@@ -22,24 +23,27 @@ class Fr_dataNasci(ttk.Labelframe):
         
         
         # gerando =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        self.gerar()
+        self.gerar(True)
         self.bind('<Enter>', self.enter_lbfr)
         self.bind('<Leave>', self.leave_lbfr)
         
 
+    
     def enter_lbfr(self, event=None):
         self.config(bootstyle=SUCCESS)
         
     def leave_lbfr(self, event=None):
         self.config(bootstyle=NORMAL)
         
-    def gerar(self):
+    def gerar(self, first=False):
         self.et.delete(0, END)
         data = self.faker.date_of_birth(minimum_age=18, maximum_age=70, ).strftime("%d/%m/%Y")
 
         self.et.insert(0, data)
         
-
+        # controlle:
+        if not first:
+            self.controller.gen_email()
     def copiar(self):
         pc.copy(self.etd.get())
 
